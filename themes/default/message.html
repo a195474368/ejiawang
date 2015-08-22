@@ -1,0 +1,80 @@
+<{include file="block/header.html"}>
+<div class="w1000">
+
+    <{if $type == 'yes'}>
+    
+    <!--恭喜你回复成功-->
+    <div class="w1000 huifu_sucess">
+    	<div style="height:170px;"></div>
+    	<div class="w410 huifu_success_all">
+        	<i class="huifu_duihao"></i>
+            <div class="huifu_success_b">
+            	<p>恭喜您发布成功!</p>
+                <p>
+                	<span id='message_box_html'>5秒之后返回首页&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+                    <a href="<{link ctl='index'}>">直接返回</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+     <!--恭喜你回复成功-->
+     
+     <script>
+      var message_time = 5;   
+         var myInterval  = setInterval(function(){
+             if(message_time<=0){  
+                 clearInterval(myInterval);
+                location.href="<{link ctl='index'}>";
+             }else{
+                 message_time--;
+                 $("#message_box_html").html(message_time+"秒之后返回首页&nbsp;&nbsp;&nbsp;&nbsp;|");
+             }
+         },1000);
+         
+     </script>
+     
+    <{/if}>
+    
+    <{if $type == 'no'}>
+    
+     <!--操作不成功-->
+    <div class="w1000 huifu_sucess">
+    	<div style="height:170px;"></div>
+    	<div class="w410 huifu_success_all">
+        	<i class="huifu_cha"></i>
+            <div class="huifu_success_b">
+            	<p>对不起，操作不成功！</p>
+                <p><span>点确定按钮返回网站首页</span></p>
+                <p>
+                    <a href="###" class="queding">确定</a>
+
+                </p>
+            </div>
+        </div>
+    </div>
+      <!--操作不成功-->
+    
+    <{/if}>
+    
+    <{if $type == 'notice'}>
+    
+     <!--是否删除-->
+     <div class="w1000 huifu_sucess">
+    	<div style="height:170px;"></div>
+    	<div class="w410 huifu_success_all">
+        	<i class="huifu_gantanhao"></i>
+            <div class="huifu_success_b">
+            	<p>如果删除，将无法恢复，您确定吗？</p>
+                <p>
+                    <a href="###" class="queding">确定</a>
+                    <a href="###" class="quxiao">取消</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--是否删除-->
+    
+    <{/if}>
+</div>
+<{include file="block/footer.html"}>

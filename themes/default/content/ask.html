@@ -1,0 +1,131 @@
+<{include file="block/header.html"}>
+<!--        主题部分区域开始        --> 
+<div class="index_b_bg hauto">
+    <!--   问答输入框开始    -->
+    <div class="w1000 hauto mt15">
+        <!-- 左面开始      -->
+        <div class="ask_search_l lt">
+            <div class="ask_seach_textarea">
+                <form action="<{link ctl='ask:make'}>">
+                    <textarea id='data_title' name="title">在这里输入你的问题，有问必答</textarea>  	
+                    <p>
+         
+                        <input type="image" src="<{$pager.theme}>/default/static/images/but.png" />
+                    </p>
+                </form>
+                <script>
+                    $(document).ready(function(){
+                        $("#data_title").focus(function(){
+                            if($(this).val() == '在这里输入你的问题，有问必答'){
+                                $(this).val('');
+                            } 
+                         }).focusout(function(){
+                            if($(this).val() == ''){
+                                $(this).val('在这里输入你的问题，有问必答');
+                            }  
+                         });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <!-- 左面结束      -->
+        <!-- 右面开始     -->
+        <div class="ask_search_r lt ml20">
+            <p>
+                <span class="block_lt wenhao icobg"></span>
+                <span class="block_lt">
+                    <font class="f20 ftw blackb">让每个疑问都有</font><br />
+                    <font class="f24 ftw red"><i>解答!</i></font>
+                </span>
+            </p>
+            <div class="cl"></div>
+            <a href="<{link ctl='ask:items' arg0=0 arg1=2}>" class="a3 a5">我要回答</a>
+            <a href="<{link ctl='ask:make'}>" class="a4 a5">我要提问</a>
+        </div>
+        <!-- 右面结束     -->
+        <div class="cl"></div>
+    </div>               
+    <!--   问答输入框结束    -->
+
+    <!--   主题中间部分开始  -->
+    <div class="ask_main w1000 hauto">
+        <!--   主题中间部分左面开始  -->
+        <div class="ask_main_l lt hauto mt20">
+            <h2>问题分类</h2>
+            <div class="ask_main_l_b hauto bgwhite mt10">
+                <{foreach from=$cates item=item name=cat1}>
+                <{if $item.parent_id == 0}>
+                <div class="ask_main_l_b_b hauto <{if $smarty.foreach.cat1.index > 0}>mt10<{/if}>">
+                    <p>
+                        <span class="lt  f14 ftw"><a title="<{if $item.seo_title}><{$item.seo_title}><{else}><{$item.title}>有关问题<{/if}>" href="<{link ctl='ask:items' arg0=$item.cat_id}>"><{$item.title}></a></span>
+                    </p>
+                    <div class="cl"></div>
+                    <div style="width: 180px; height: auto;overflow: hidden;">
+                    <{foreach from=$cates item=it2 name=cat2}>
+                    <{if $it2.parent_id == $item.cat_id}>
+                    <a  title="<{if $it2.seo_title}><{$it2.seo_title}><{else}><{$it2.title}>有关问题<{/if}>" href="<{link ctl='ask:items' arg0=$it2.cat_id}>"><{$it2.title}></a>
+                    <{/if}>
+                    <{/foreach}>
+                    </div>
+                </div>
+                <div class="cl"></div>
+                <{/if}>
+                <{/foreach}>
+
+
+            </div>         
+        </div>
+        <!--   主题中间部分左面结束  -->
+        <!--   主题中间部分中间开始  -->
+        <div class="ask_main_c lt hauto mt20">
+            <div class="ask_main_c_t hauto">
+                <p>
+                    <span class="lt">已解决问题</span>
+                    <span class="rt"><font class="red">>&nbsp;</font><a title="已解决问题" href="<{link ctl='ask:items' arg0=0 arg1=1}>">更多</a></span>
+                </p>
+                <div class="cl"></div>
+                <div class="ask_main_c_t_ul hauto bgwhite mt10">
+                    <div class="ask_main_c_t_ul_son hauto">
+                        <ul>
+                            <{calldata mdl="ask/ask" answer_id='>:0' order="ask_id:desc" limit="15"}> 
+                            <li class="current4"><a target='_blank' title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>" <{if $index <3}>class="red"<{/if}>><{$item.title}></a><span class="org">回答<{$item.answer_num}></span></li>
+                            <{/calldata}>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ask_main_c_t hauto mt15">
+                <p>
+                    <span class="lt">待解决问题</span>
+                    <span class="rt"><font class="red">>&nbsp;</font><a title="待解决问题" href="<{link ctl='ask:items' arg0=0 arg1=2}>">更多</a></span>
+                </p>
+                <div class="cl"></div>
+                <div class="ask_main_c_t_ul hauto bgwhite mt10">
+                    <div class="ask_main_c_t_ul_son1 hauto">
+                        <ul>
+                            <{calldata mdl="ask/ask" answer_id='0' order="ask_id:desc" limit="15"}> 
+                            <li class="current4"><a target='_blank' title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>" <{if $index <3}>class="red"<{/if}>><{$item.title}></a><span class="org">回答<{$item.answer_num}></span></li>
+                            <{/calldata}>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <!--   主题中间部分中间结束  -->
+        <!--   主题中间部分右面开始  -->
+        <div class="ask_main_r lt hauto mt20">
+        <{include file='block/ask_right.html'}>
+         </div>
+        <!--   主题中间部分右面结束  -->
+        <div class="cl h20"></div>
+      
+    </div>
+    <{include file="block/footer.html"}>               

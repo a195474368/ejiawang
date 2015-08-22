@@ -1,0 +1,167 @@
+<{include file="block/header.html"}>
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="学装修" href="<{link ctl='content'}>" class="block_lt">学装修</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='content:diary'}>" title="装修日记" class="block_lt">装修日记</a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        引导开始             -->
+    <div class="w1000 dirary_list hauto bgwhite mt20">
+        <div class="dirary_list_t hauto">
+            <p class="h30 bodr_b ftw f14">
+                <font >看装修日记选</font>
+                <font class="red">最值得信赖</font>
+                <font>的装修公司!</font>
+            </p>
+            <div class="home_list_area hauto bodr_b_x mt10">
+                <span class="block_lt span75"><b>装修方式&nbsp;：&nbsp;</b></span>
+
+                <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$pager.type_id arg2=0 arg3=$pager.orderby}>" class="block_lt <{if empty($pager.way_id)}>a1<{/if}>">不限</a>
+
+                <{foreach from=$cfg_setting[$cfg_type['way']] item=item key=key}>
+                <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$pager.type_id arg2=$key arg3=$pager.orderby}>" class="block_lt  <{if $pager.way_id == $key}>a1<{/if}>"><{$item}></a>
+
+                <{/foreach}>
+                <div class="cl"></div>
+                <div class="h10"></div>
+            </div>
+            <div class="home_list_area hauto bodr_b_x mt10">
+                <span class="block_lt span75"><b>房屋户型&nbsp;：&nbsp;</b></span>
+
+                <a href="<{link ctl='content:diary' arg0=$pager.status arg1=0 arg2=$pager.way_id arg3=$pager.orderby}>" class="block_lt <{if empty($pager.type_id)}>a1<{/if}>">不限</a>
+
+                <{foreach from=$cfg_setting[$cfg_type['house_type']] item=item key=key}>
+                <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$key arg2=$pager.way_id arg3=$pager.orderby}>" class="block_lt  <{if $pager.type_id == $key}>a1<{/if}>"><{$item}></a>
+
+                <{/foreach}>
+
+                <div class="cl"></div>
+                <div class="h10"></div>
+            </div>
+            <div class="home_list_area hauto bodr_b_x mt10">
+                <span class="block_lt span75"><b>施工阶段&nbsp;：&nbsp;</b></span>
+                <a href="<{link ctl='content:diary' arg0=0 arg1=$pager.type_id arg2=$pager.way_id arg3=$pager.orderby}>" class="block_lt <{if empty($pager.status)}>a1<{/if}>">不限</a>
+
+                <{foreach from=$cfg_status item=item key=key}>
+                <a href="<{link ctl='content:diary' arg0=$key arg1=$pager.type_id arg2=$pager.way_id arg3=$pager.orderby}>" class="block_lt  <{if $pager.status == $key}>a1<{/if}>"><{$item}></a>
+
+                <{/foreach}>
+
+                <div class="cl"></div>
+                <div class="h10"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--        引导结束             -->
+    <div class="ask_detail_main w1000 mt15 hauto">
+        <!--        位置结束左面下开始       -->
+        <div class="ask_detail_main_l hauto mt5 lt bgwhite">
+            <div class="dirary_list_l_title">
+                <ul>
+                    <li>
+                        <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$pager.type_id arg2=$pager.way_id arg3=0}>" class="block_lt a40">按照最新发布</a>
+                        <span class="block_lt <{if $pager.orderby == 0}>span78<{else}>span77<{/if}> acitivity_ico1"> </span>
+
+                    </li>
+                    <li>
+                        <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$pager.type_id arg2=$pager.way_id arg3=1}>" class="block_lt a40">按照阅读最多</a>
+                        <span class="block_lt <{if $pager.orderby==1}>span78<{else}>span77<{/if}> acitivity_ico1"></span>
+                    </li>
+                    <li>
+                        <a href="<{link ctl='content:diary' arg0=$pager.status arg1=$pager.type_id arg2=$pager.way_id arg3=2}>" class="block_lt a40">按照评论最多</a>
+                        <span class="block_lt <{if $pager.orderby==2}>span78<{else}>span77<{/if}> acitivity_ico1"></span>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="dirary_list_l_b hauto  dirary_list_l_b_0">
+                <ul>
+                    
+                    <{foreach from=$items item=item}>
+                    <li>
+                        <a title="<{$item.title}>" target="_blank" href="<{link ctl='content:diaryDetail' arg0=$item.diary_id}>"><img alt="<{$item.title}>" src="<{$pager.img}>/<{$item.face_pic}>" width="80" height="60"/></a>
+                        <div class="dirary_list_l_b_r lt ml15">
+                            <p><a title="<{$item.title}>" target="_blank" href="<{link ctl='content:diaryDetail' arg0=$item.diary_id}>"><{$item.title}></a></p>
+                            <p>
+                                <font class="f12">小区：<a target="_blank" title="<{$home_list[$item.home_id].name|default:'--'}>" href="<{link ctl='home:detail' arg0=$item.home_id}>"><{$home_list[$item.home_id].name|default:'--'}></a>     状态：<{$cfg_status[$item.status]}>    合同总价：</font>
+                                <font class="f12 red">￥<{$item.total_price}></font>
+                            </p>
+                            <p class="p49">
+                                <span class="block_lt span79">
+                                    <font>开工时间：<{$item.start_date}></font><font> 施工：</font>
+                                    <a title="<{$company_list[$item.company_id].name|default:'--'}>" target="_blank" href="<{link ctl='company' arg0=$item.company_id}>"><{$company_list[$item.company_id].name|default:'--'}></a>
+                                </span>
+                                <span class="block rt span80">
+                                   <a title="<{$item.title}>" target="_blank" href="<{link ctl='content:diaryDetail' arg0=$item.diary_id}>">详情</a>
+                                </span>
+
+                            </p>
+                            <p class="cl"></p>
+                            <p class="p50">
+                                <span class="block_lt span81">
+                                    <b class="org"><{$userList[$item.uid].uname|default:'游客'}></b><font>提供</font>
+                                </span>
+                                <span class="block rt span82">
+                                    <font>日记&nbsp;:&nbsp;</font><font class="red"><{$item.content_num}>篇</font>
+                                    <font>阅读&nbsp;:&nbsp;</font><font class="red"><{$item.pv_num}></font>
+                                    <font>评论&nbsp;:&nbsp;</font><font class="red"><{$item.ping_num}></font>
+                                </span>
+                            </p>
+                        </div>
+                    </li>  
+                    <{/foreach}>
+                    
+                    
+
+                </ul>
+                <div class="dirary_list_page hauto">
+                    <div class="page">
+                        
+                            <{$pager.pagebar}>
+                 
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!--        位置结束左面下结束       -->
+
+        <!--        位置结束右面下开始       -->
+        <div class="ask_detail_main_r hauto mt5 lt ml20">
+            <{include file="block/tenders.html"}>  
+            <div class="cl"></div>
+            <div class="ads8 mt15 hauto">   
+                  <{widget id="adv" name="装修日记右侧列表广告位"  city_id=$request.city_id limit="5"}>
+            </div>
+            <div class="today_tuijian hauto">
+                <h2 class="mb10 mt10">今日推荐</h2>
+                <div class="today_tuijian_b hauto bgwhite">
+                   <{widget id='diary/right' limit=10 city_id=$request.city_id}>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--        位置结束右面结束       -->
+        <div class="cl"></div>
+
+    </div>  
+      <div class="h20"></div>       
+</div>
+<!--             主题部分结束    -->
+
+<{include file="block/footer.html"}>           

@@ -1,0 +1,72 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>发布案例</b></div>
+<form mini-form="company" action="<{link ctl='ucenter/designerCase:create'  http=true}>" method="post">
+
+    <div class="page-data" style=" margin-top: 10px;">
+        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+            <li><a href="#table-info">基本信息</a></li>
+            <li><a href="#table-attr">属性信息</a></li>
+            <li><a href="#table-seo">SEO信息</a></li>
+        </ul>
+        <table width="100%" border="0" cellspacing="0" class="form" id="table-info">
+            <tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-400"/></td></tr>
+
+            <tr><th>小区：</th>
+                <td>
+                    <input type="hidden" name="data[home_id]" id="select_home_id" value="0" />
+                    <input type="text" id="select_home_name" value="0" class="input"/>
+                    <a class="yzmbtn" action="<{link ctl='ucenter/select:home'}>" mini-select="#select_home_id,#select_home_name/N/<{$company.city_id}>/选择小区"/>选择小区</a><br />
+                </td>
+            </tr>
+            <tr>
+                <th>户型图：</th>
+                <td>
+                    <input type="hidden" id="select_huxing_id" value="0" name='data[huxing_id]'/>
+                    <input type="text" id="select_huxing_name" value="0" class="input"/>
+                    <img src="###" id="select_huxing_photo" class="w-50"/>
+                    <a class="yzmbtn" action="<{link ctl='ucenter/select:huxing' arg0='#home_id#' arg1='1'}>" id="select_huxing_btn"/>选择户型图</a><br />
+                </td>
+            </tr>
+
+            <tr><th>设计思路：</th><td><textarea name="data[intro]" class="textarea"><{$detail.intro}></textarea><br /></td></tr>
+
+            <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" value="保存" class="set_btn" /></td></tr>
+        </table>
+
+        <table width="100%" border="0" cellspacing="0" class="table-data form" id="table-seo" style="display:none;">
+            <tr><th>seo_title：</th><td><input type="text" name="data[seo_title]" value="<{$detail.seo_title|default:''}>" class="input w-500"/></td></tr>
+            <tr><th>seo_keywords：</th><td><input type="text" name="data[seo_keywords]" value="<{$detail.seo_keywords|default:''}>" class="input w-500"/></td></tr>
+            <tr><th>seo_description：</th><td><textarea name="data[seo_description]" class="textarea"><{$detail.seo_description}></textarea><br /></td></tr>
+<tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>  
+
+<table width="100%" border="0" cellspacing="0" class="table-data form" id="table-attr" style="display:none;">
+<{widget id="attr/form" from="zx:case"}>
+<tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table> 
+    
+</form>
+</div>
+<script type="text/javascript">
+    (function(K, $) {
+        $("div.page-data").tabs();
+        $("#select_huxing_btn").click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var home_id = $("#select_home_id").val();
+            if (!$.isNumeric(home_id) || home_id < 1) {
+                Widget.MsgBox.error("请先选择小区");
+                return false;
+            }
+            var link = $(this).attr("action") || $(this).attr("href");
+            link = link.replace("#home_id#", home_id);
+            Widget.Dialog.Select(link, "N", function(ret) {
+                $("#select_huxing_id").val(ret[0]);
+                $("#select_huxing_name").val(ret[1].title);
+                $("#select_huxing_photo").attr("src", ret[1].photo);
+            }, {title: "选择户型图", width: 500});
+        });
+    })(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

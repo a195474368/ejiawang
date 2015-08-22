@@ -1,0 +1,92 @@
+<{include file="block/header.html"}>
+
+<!--          主题部分开始       -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 mt15 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='ask'}>" class="block_lt">问答</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='ask:make'}>" class="block_lt">我要提问</a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        提问开始           -->
+    <div class="ask_question_search1 w1000 mt20">
+        <h2>告诉我们您的疑问</h2>
+        <form id='data_form' mini-form="ask" action="<{link ctl='ask:save'  http=true}>" method="post">
+            <div class="ask_question_search_b mt5">
+                <div class="ask_questiom_search_b_l1 lt hauto">
+                    <textarea id='data_title' name='data[title]'><{$title|default:'在这里输入你的问题，有问必答'}></textarea>                                	                              
+                    <div class="xt ml15 mt3">
+                        <font class="f14 white">问题补充(选填)</font>
+                    </div> 
+                </div>
+                <div class="ask_questiom_search_b_r lt">
+                    <p>
+                        <b>提示：</b>完整的说出您遇<br />到的问题，例如：抽油<br />烟机的烟管不够长怎么办?
+                    </p>
+                </div>
+            </div>
+            <div class="ask_question_search_b">
+                <div class="ask_questiom_search_b_l2 lt hauto">
+                    <textarea id='data_intro' name='data[intro]'>详细的描述您的问题，有利于更好的解答</textarea>                        	         
+                    <div class="question_style mt10 ml10">
+                        <span class="lt"><font class="f14">问题分类&nbsp;&nbsp;</font></span>
+                        <span class="selecct lt">
+                            <input type="hidden" name="data[cat_id]" value="0" id="J_cate_id"/>
+                            <select class="J_cate_select mgr10" style="min-width:100px;" data-pids="" data-pid="0" data-uri="<{link ctl='ask:cat' arg0='#pid#'}>"></select>
+                        </span>
+                        <input id='data_submit' type="image" src="<{$pager.theme}>/default/static/images/but.png"  class="rt"/>
+                    </div>
+                </div>
+                <div class="ask_questiom_search_b_r lt">
+                    <p>
+                        详细说明问题的情况，<br />描述得越仔细，获得准<br />确回答的机会越大。
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="w1000 mt20"></div>
+    <script type="text/javascript"  src="<{$pager.res}>/script/jquery.cate_select.js"></script>
+    <script>
+       (function(K, $) {
+           
+            $("#data_submit").click(function(e){
+                e.preventDefault();
+                if($("#data_title").val() == '在这里输入你的问题，有问必答'){
+                    Widget.MsgBox.error('请输入您要提交的问题！'); 
+                }else{
+                    if( $("#data_intro").val() == '详细的描述您的问题，有利于更好的解答'){
+                        $("#data_intro").val('');
+                    }
+                    $("#data_form").submit();
+                }
+            });
+            $("#data_title").focus(function() {
+                if ($(this).val() == '在这里输入你的问题，有问必答') {
+                    $(this).val('');
+                }
+            }).focusout(function() {
+                if ($(this).val() == '') {
+                    $(this).val('在这里输入你的问题，有问必答');
+                }
+            });
+            $("#data_intro").focus(function() {
+                if ($(this).val() == '详细的描述您的问题，有利于更好的解答') {
+                    $(this).val('');
+                }
+            }).focusout(function() {
+                if ($(this).val() == '') {
+                    $(this).val('详细的描述您的问题，有利于更好的解答');
+                }
+            });
+            $('.J_cate_select').cate_select();
+       })(window.KT, window.jQuery);
+    </script>
+
+    <{include file="block/footer.html"}>          

@@ -1,0 +1,118 @@
+<{include file="block/header.html"}>
+<!--        主题部分开始               -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="我搜我家" href="<{link  ctl='home'}>" class="block_lt">我搜我家</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>楼盘详情" class="block_lt"><{$detail.name}>楼盘详情</a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        标题开始     -->
+    <div class="home_buildings_title w1000 mt20 hauto mb10">
+        <p class="lt p22"><a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>"><{$detail.name}></a></p>
+        <p class="lt ml20">
+            <span><a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>"><{$detail.pv_num}></a>人关注</span><br />
+            <span>本楼盘qq群:<font class="red"><{$detail.qq_qun}></font></span>
+        </p>
+    </div>
+    <!--        标题结束     -->
+    <div class="cl"></div>
+    <!--    找我家楼盘页面主题开始-->
+    <div class="home_buildings_main w1000 hauto mt10">
+        <!--        子页面导航开始     -->
+        <div class="w1000 son_menu orgbgg">
+            <ul>
+                <li><a title="<{$detail.name}>楼盘主页" href="<{link ctl='home:detail' arg0=$detail.id}>">楼盘主页</a></li>
+                <li><a title="<{$detail.name}>设计方案" href="<{link ctl='home:cases' arg0=$detail.id}>">设计方案</a></li>
+                <li><a title="<{$detail.name}>楼盘详情" href="<{link ctl='home:info' arg0=$detail.id}>"  class="current6">楼盘详情</a></li>
+                <li><a title="<{$detail.name}>实景图" href="<{link ctl='home:photo' arg0=$detail.id arg1=2}>">实景图</a></li>
+                <li><a title="<{$detail.name}>户型图" href="<{link ctl='home:photo' arg0=$detail.id arg1=1}>">户型图</a></li>
+                <li><a title="<{$detail.name}>样板间" href="<{link ctl='home:photo' arg0=$detail.id arg1=3}>">样板间</a></li>
+                <li><a title="<{$detail.name}>在建工地" href="<{link ctl='site'}>">在建工地</a></li>
+            </ul>
+        </div>
+        <!--        子页面导航结束     -->
+       <div class="home_buildings_main_l hauto lt mt15">
+            <div class="home_buildings_main_l_t1 bgwhite">
+                <a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>"><img src="<{$pager.img}>/<{$detail.face_pic}>" width="200" height="140" /></a>
+                <p class="p26">
+                    <font>楼盘地址&nbsp;:&nbsp;</font><font><{$detail.addr}></font>
+                </p>
+                <p class="p26">
+                    <font>参考均价&nbsp;:&nbsp;</font><font class="f1"><{$detail.price}></font>
+                </p>
+                <p class="p26">
+                    <font>竣工时间&nbsp;:&nbsp;</font><font><{$detail.jf}></font>
+                </p>
+                <p class="p26">
+                    <font>开发商&nbsp;:&nbsp;</font><font><{$detail.kf}></font>
+                </p>
+                <p class="p26">
+                    <font>开盘时间 &nbsp;:&nbsp;</font><font><{$detail.kp}></font>
+                </p>
+            </div>
+           
+            <div class="home_building_content hauto mt15 bgwhite">
+                	<div class="home_building_content_b hauto">
+                    	<a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>" class="a6 bluebgg" name="xmjj">项目介绍</a>
+                       
+                       <p class="p25 lt mt10">
+                           <{$detail.details}>
+                       </p>
+                    </div>
+                </div>
+           
+       </div>
+                           
+       
+        <!-- 主题左面结束-->
+        <!-- 主题右面开始-->
+        <div class="home_buildings_main_r hauto lt mt15 ml20">
+          <{widget id='home/tuan' home_id=$detail.id}>          
+            <div class="ads5 hauto">
+                <{widget id="adv" name="我搜我家详情页右侧广告位" city_id=$request.city_id limit="5"}>
+            
+            </div>
+            <div class="home_buildings_laest_designfa hauto mt25">
+              <{widget id="case/casenew" limit=5}>
+            </div>
+        </div>
+        <!-- 主题右面结束-->
+            <div class="cl h20"></div>
+
+    </div>
+    <!--    找我家楼盘页面主题结束-->
+
+    <script>
+        $(document).ready(function() {
+            $(".son_menu ul li:last").css('background', 'none');
+            $(".home_building_small_menu ul li:last").css('background', 'none');
+            $(".home_buildings_laest_designfa_show ul li:last").css('border-bottom', 'none');
+            $(".home_buildings_laest_designfa_show ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".home_buildings_laest_designfa_show ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).css('background', '#EAEAEA');
+                        $(this).css('border-bottom', 'none');
+
+                    } else {
+                        $(this).css('background', '');
+                    }
+                });
+            }).mouseout(function() {
+                $(this).css('background', '');
+                $(this).css('border-bottom', '');
+            });
+          
+
+        });
+    </script>
+
+
+    <{include file="block/footer.html"}>     

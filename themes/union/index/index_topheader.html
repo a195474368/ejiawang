@@ -1,0 +1,67 @@
+
+<div class="union_banner">
+    <div class="w1000 union_banner_b">
+        <a href="<{link ctl='tenders'}>" class="lijitijian"></a>
+        <span class="shouqi"></span>
+    </div> 
+</div>
+<div class="xialashouqi none">
+    <a href="<{link ctl='tenders'}>">
+        <strong class="block jq_index_to_an_font">
+            还在为装修发愁，小秘书帮您轻松搞定!
+        </strong>
+    </a>
+</div>
+<script>
+    var index_top_an_status = 0;
+    $(document).ready(function() {
+        $(".shouqi").click(function() {
+            $(".union_banner").hide();
+            index_top_an_status = 1;
+            $(".xialashouqi").show().css('top','50px');
+            $(".jq_index_to_an_font").animate({'fontSize':"18px"},500);
+        });
+        var index_top_an_num = 320;//导航栏与浏览器的高度
+        var index_top_an_num_2 = 50;
+        $(window).scroll(function() {
+            if (index_top_an_status == 0) {
+                if ($(this).scrollTop() > index_top_an_num) {
+
+                    $(".xialashouqi").css({
+                        top: 0 + 'px',
+                        position: 'fixed'
+                    });
+                    $(".union_banner").hide();
+                    $(".xialashouqi").show();
+                    $(".jq_index_to_an_font").animate({'fontSize':"18px"},500);
+                }
+                if ($(this).scrollTop() < index_top_an_num) {
+                    $(".xialashouqi").css({
+                        position: ''
+                    });
+                    $(".jq_index_to_an_font").css({'fontSize':"24px"});
+                    $(".union_banner").show();
+                    $(".xialashouqi").hide();
+                }
+            } else {
+                if ($(this).scrollTop() > index_top_an_num_2) {
+
+                    $(".xialashouqi").css({
+                        top: 0 + 'px',
+                        position: 'fixed'
+                    });
+                    
+                }
+                if ($(this).scrollTop() < index_top_an_num_2) {
+                    $(".xialashouqi").css({
+                        position: ''
+                    });
+                    
+                }
+
+            }
+
+
+        });
+    });
+</script>

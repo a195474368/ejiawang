@@ -1,0 +1,58 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+	<table width="100%" align="center" cellpadding="0" cellspacing="0" >
+		<tr>
+			<td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+			<th>亿家网装修平台管理首页</th>
+			<td class="right"></td>
+			<td width="15"></td>
+		</tr>
+	</table>
+</div>
+<div class="page-data">
+<{if $ADMIN.admin_name=='ijianghu' && $ADMIN.passpwd==md5('ijianghu')}>
+<p class="tips">老兄！据我所知你使用的还是默认帐号密码，请尽快修改以免发生安全问题</p>
+<{/if}>
+<!--<table width="100%" border="0" cellspacing="0" class="table-data table">
+<tr><th colspan="15" class="left">江湖信息科技</th></tr>
+<tr>
+<{foreach $news as $new}>
+<{if $new@iteration is div by 2}>
+<td class="left"><a href="http://www.ijh.cc/article/main/<{$new.content_id}>.html" target="_blank"><{$new.title}></a></td><td><{$new.create_time}></td>
+</tr>
+<{else}>
+<tr><td class="left"><a href="http://www.ijh.cc/article/main/<{$new.content_id}>.html" target="_blank"><{$new.title}></a></td><td style="border-right:1px solid #D7D7D7;"><{$new.create_time}></td>
+<{/if}>
+<{/foreach}>
+</table>-->
+<div class="space15"></div>
+<table width="100%" border="0" cellspacing="0" class="table-data table">
+<tr><th colspan="15" class="left">系统信息</th></tr>
+
+<tr>
+	<td class="w-150 left">服务器操作系统：</td><td class="left"><{$sysinfo.server_os}></td>
+	<td class="w-150 left">服务器域名/IP：</td><td class="left"><{$sysinfo.server_domain}></td>
+	<td class="w-150 left">服务器环境：</td><td class="left"><{$sysinfo.web_server}></td>
+</tr>
+<tr>
+	<td class="w-150 left">PHP 版本：</td><td class="left"><{$sysinfo.php_version}></td>
+	<td class="w-150 left">Mysql 版本：</td><td class="left"><{$sysinfo.mysql_version}></td>
+	<td class="w-150 left">GD 版本：</td><td class="left"><{$sysinfo.gd_version}></td>
+</tr>
+<tr>
+	<td class="w-150 left">文件上传限制：</td><td class="left"><{$sysinfo.upload_max_filesize}></td>
+	<td class="w-150 left">最大占用内存：</td><td class="left"><{$sysinfo.memory_limit}></td>
+	<td class="w-150 left">最大执行时间：</td><td class="left"><{$sysinfo.max_execution_time}></td>
+</tr>
+<tr>
+	<td class="w-150 left">安全模式：</td><td class="left"><{$sysinfo.safe_mode}></td>
+	<td class="w-150 left">Zlib支持：</td><td class="left"><{$sysinfo.zlib}></td>
+	<td class="w-150 left">Curl支持：</td><td class="left"><{$sysinfo.curl}></td>
+</tr>
+</table>
+<div class="space15"></div>
+
+</div>
+<!--有最新安全漏洞补丁的时候后台提醒请不要删除该JS-->
+<script type="text/javascript" src="http://www.ijh.cc/index.php?ctl=patch&act=check&cat=jiaju&version=<{$smarty.const.JH_VERSION}>.<{$smarty.const.JH_RELEASE}>"></script>
+<{include file="admin:common/footer.html"}>

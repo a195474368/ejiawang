@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap">
+    <{include file="block/top-header.html"}>
+   
+      <!--新的头部--->
+      <div class="top_all_bg">
+        <!--logo开始--->
+        <div class="style4_top">
+            <div class="w1000 style4_top_all">
+            <!--top左面开始-->
+                <div class="style4_top_all_l lt" id="jq_city_change">
+                    <h1><a href="<{link ctl='index'}>"><img src="%THEME%/static/images/logo.png" width="221" height="67" /></a></h1>
+                    <div class="style4_top_city lt">
+                          <b><{$request.city.city_name}></b>
+                        <{if $CONFIG.site.multi_city}>
+                        <site><a href="<{link ctl='city'}>" id="jq_city_header_change">[&nbsp;切换城市&nbsp;]</a></site>
+                        <{/if}>
+                        <p><img src="%THEME%/static/images/tiexin.png" /></p>
+                     </div>                         
+                </div>
+               <!--搜索框开始-->
+           <div class="style4_top_all_r rt">
+        	<form method="get" action="<{link ctl='home:tuan'}>" id="top-search">
+                <input type="text" name="s"  class="seach_kuang" value="亲,您要搜的小区" id="search_header" />
+                <input type="submit" value="搜索" class="s_but"/>
+            </form>
+        </div>
+        <!--搜索框结束-->    
+            </div>
+            <!--top左面结束-->    
+        </div>
+         <script>
+                $(document).ready(function() {
+                    $("#search_header").focus(function() {
+                        if ($(this).val() == '亲,您要搜的小区') {
+                            $(this).val('');
+                        }
+                    }).focusout(function() {
+                        if ($(this).val() == '') {
+                            $(this).val('亲,您要搜的小区');
+                        }
+                    });
+                });
+            </script>
+    <!--logo结束--->
+		<div class="cl"></div>
+      <!--新的头部--->
+      
+      
+      
+     
+    <!-- 主导航 -->
+    <!--导航开始-->
+	<div class="style4_menu w1000">
+        <div class="style4_menu_t">
+        	<ul>
+            	<li><a class="style4_main_a0 <{if $request.ctl=='index'}>radiusredl<{/if}>" href="<{link ctl='index'}>">首页</a></li>
+                <li><a title='我要装修'  class="style4_main_a <{if $request.ctl=='tenders'}>sredcurrent<{/if}>" href="<{link ctl='tenders'}>">我要装修</a></li>
+                <li><a class="style4_main_a <{if $request.ctl=='case'}>sredcurrent<{/if}>" href="<{link ctl='case'}>">效果图</a></li>
+                <li><a title="<{$request.city.city_name}>小区装修" class="styl4_main_a <{if $request.ctl=='home' || $request.ctl=='site'}>sredcurrent<{/if}>" href="<{link ctl='home'}>">我搜我家</a></li>
+                <li><a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs'}>" class="style4_main_a <{if $request.ctl=='gs'}>sredcurrent<{/if}>">找装修公司</a></li>
+                <li><a class="style4_main_a <{if $request.ctl=='activity'}>sredcurrent<{/if}>" href="<{link ctl='activity'}>">活动</a></li>
+                <li><a class="style4_main_a <{if $request.ctl=='content'}>sredcurrent<{/if}>" title="学装修" href="<{link ctl='content'}>">学装修</a></li>
+                <li><a class="style4_main_a <{if $request.ctl=='ask'}>sredcurrent<{/if}>" title="问答" href="<{link ctl='ask'}>">问答</a></li>
+                <li><a class="style4_main_a1 <{if $request.ctl=='mall/index'}>radiusredr<{/if}>" href="<{link ctl='mall/index'}>">家居商城</a></li>
+            </ul>
+        </div>
+        <div class="style4_menu_c w1000"></div>
+        <div class="style4_menu_b">
+        	<div class="style4_menu_b_l lt">
+            	<h2><br>找公司</h2>
+                <div class="style4_menu_b_l_r rt">
+                	<p><a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs'}>">找装修公司</a><a  title="<{$request.city.city_name}>设计师" href="<{link ctl='designer'}>">找设计师</a></p>
+                    <p><a title="<{$request.city.city_name}>装修公司打折信息" href="<{link ctl='gs:youhui'}>">优惠活动</a><a href="<{link ctl='home'}>">找小区</a>
+                    <p><a href="<{link ctl='site'}>">找工地&nbsp;</a><a href="<{link ctl='city'}>">找城市</a></p>
+                </div>
+            </div>
+        	<div class="style4_menu_b_l lt">
+            	<h2><br>找我家</h2>
+                <div class="style4_menu_b_l_r rt">
+                	<p><a title="小区楼盘" href="<{link ctl='home:items'}>">小区楼盘</a><a href="<{link ctl='home:maps'}>">楼盘地图</a></p>
+                    <p><a href="<{link ctl='site'}>">在建工地 </a><a href="<{link ctl='home:tuan'}>">团装小区</a></p>
+                    <p><a href="<{link ctl='mall/index'}>">家居商城</a><a href="<{link ctl='app'}>">微家居</a></p>
+                </div>
+            </div>
+            <div class="style4_menu_b_l lt">
+            	<h2><br>学装修</h2>
+                <div class="style4_menu_b_l_r rt">
+                	<p><a href="<{link ctl='content:diary'}>">装修日记</a><a  href="<{link ctl='ask'}>">知识问答</a></p>
+                    <p><a  href="<{link ctl='content:items'}>">装修课堂</a><a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs'}>">找装修公司</a></p>
+                    <p><a <a href="<{link ctl='case'}>">装修案例</a><a href="<{link ctl='ask'}>">热门问答</a></p>
+                </div>
+            </div>
+            <div class="style4_menu_b_l lt">
+            	<h2><br>效果图</h2>
+                <div class="style4_menu_b_l_r rt">
+                	<p><a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs'}>">找装修公司</a><a  title="<{$request.city.city_name}>设计师" href="<{link ctl='designer'}>">找设计师</a></p>
+                    <p><a href="<{link ctl='content:diary'}>">装修日记</a><a  href="<{link ctl='ask'}>">知识问答</a></p>
+                   	<p><a href="<{link ctl='case'}>">扮家灵感</a><a href="<{link ctl='case'}>">家居赏析</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--导航结束-->
+	<div class="cl"></div>
+<div class="cl"></div>
+<script type="text/javascript">(function(K, $){$(".style4_menu_t ul li").mouseover(function(){$(this).find("ul").show();}).mouseout(function(){$(this).find("ul").hide();});})(window.KT, window.jQuery);</script>
+
+<!-- //主导航 -->

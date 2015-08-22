@@ -1,0 +1,48 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+        	<a href="<{link ctl='article'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second"><{$cate.title}></div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+    <div class="mobile_main hauto"> 
+    	<div class="mobile_tuan">
+            <div class="mobile_wenzhang_b">
+            	<ul>
+                    <{foreach $items as $item}>
+                	<li>
+                    	<div class="mobile_tuan_b_all1">
+                        	<p class="h10"></p>
+                            <p><a href="<{link ctl='article:detail' arg0=$item.article_id}>" title="<{$item.title}>"><{$item.title}></a></p>
+                            <p>
+                            	<span class="ico span_time"></span>
+                                <span>发布时间 : <{date('Y-m-d',$item.dateline)}></span>
+                            </p>             
+                        </div>
+                    </li>
+                    <{/foreach}>
+                </ul>
+        	</div>
+            <div class="pagination">
+                <{if $pager.prevpage}><div class="box"><a href="<{link ctl='article:items' arg0=$cate.cat_id arg1=$pager.prevpage}>" id="back_page">上一页</a></div><{/if}>
+                <div><{$pager.page}>/<{$pager.pagecount}></div>
+                <{if $pager.nextpage}><div class="box"><a href="<{link ctl='article:items' arg0=$cate.cat_id arg1=$pager.nextpage}>" id="next_page">下一页</a></div><{/if}>
+            </div>
+           <script>
+		   	$(document).ready(function(){
+				$(".mobile_wenzhang_b ul li:odd").css('background','#FFF');
+				$(".mobile_wenzhang_b ul li:even").css('background','#F5F5F5');
+				$(".mobile_wenzhang_b ul li").last().css('border-bottom','none');
+			});
+		   </script>
+        </div>
+       <div class="h45"></div>
+    </div>
+    
+<!--主题部分结束-->
+
+ <{include file='mobile:block/footer.html'}>

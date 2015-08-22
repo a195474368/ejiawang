@@ -1,0 +1,199 @@
+/* CSS Document */
+
+.i_l_menu_ul li {border-bottom:1px dashed #1963A2;}
+.i_l_menu_b_squre p span.red{color:#0285BD;}
+.sqbut {
+width: 115px;
+height: 37px;
+background:url(../images/org_bg.png) no-repeat;
+line-height: 37px!important;
+text-align: center;
+}
+.i_l_menu_t p span.red{color:#0285BD;}
+.i_l_menu_b p.org{color:#0285BD}
+.i_l_menu_ul li span.span37{color:#FFF;}
+.news_ul_l ul li a.a23{color:#0285BD}
+.news_c h2 a.red{color:#0285BD;}
+.news_r_b ul li a.a24{background:#0285BD;}
+.news_r_b ul li a.a25:hover{color:#0285BD;}
+.company_charts h2 a.a28{color:#0285BD!important;}
+.news_qdb_details a.mfyu{background:#0285BD;}
+.designer_name p b a{color:#1963A2;}
+.decoration_class_t_l_r ul li a:hover{color:#0285BD;}
+.decoration_class_b .ul1 li a:hover{color:#0285BD;}
+.home_infor p.p1 span{background: url(../images/big_org_but.png) no-repeat;}
+.new_favorable_info_b ul li a{color:#0285BD;}
+.decoration_company a:hover{background:#0285BD;}
+.newest_qdb ul li a:hover{color:#0285BD;}
+.free_decoration_r {background: url(../images/kuang_bg.png) no-repeat;}
+.span4{width: 20px;
+height: 20px;
+background: url(../images/x.png) no-repeat;}
+.span5 {
+width: 20px;
+height: 20px;
+background: url(../images/ll.png) no-repeat;}
+.rijifenxaing_l_ul ul li a{color:#0285BD;}
+.home_list_area .a1{background:#0285BD;}
+.home_list_area a:hover{background:#0285BD;}
+.decoration_list_l_t_r h2 a{color:#0285BD;}
+.decoration_all_r1 p.p7{border-top: 2px solid #0285BD;}
+.home_list_show_b_r .p6 .a2{background:#0285BD;}
+.map_main_l_b_1 p a font{color:#0285BD;}
+.huxing a:hover, .style a:hover, .yusuan a:hover, .hot_house a:hover{color:#0285BD;}
+.rijifenxiang_content_ul ul li font{color:#0285BD}
+.rijifenxiang_content_ul ul li a:hover{color:#0285BD}
+.span70 a:hover{color:#0285BD}
+.learn_decoration_list_t_t ul li a:hover, .current11{background:#0285BD;}
+.ask_main_l_b_b a:hover{background:#0285BD;}
+.ask_main_c_t_ul_son ul li a:hover, .ask_main_c_t_ul_son ul li a.red{color:#0285BD;}
+.ask_main_c_t_ul_son1 ul li a:hover, .ask_main_c_t_ul_son1 ul li a.red{color:#0285BD;}
+.ask_main_c_t_ul_son ul li a:hover,.current4{color:#0285BD;}
+.acitivity_r_b p.p48 span.span90{background:#0285BD;}
+.zjgd_xunhuan_l a:hover, .current12{background:#0285BD!important;}
+.line1{border-bottom: 1px solid #0285BD;}
+.apply_but {
+width: 200px;
+height: 39px;
+background: url(../images/apply_bg.png) no-repeat;
+margin: 5px 0 0 10px;
+}
+.change_city_zongji{background:#0285BD;}
+.change_city_main_style_t a.goincity {
+width: auto;
+height: 30px;
+line-height: 30px;
+padding: 0 7px;
+background: #0285BD;
+color: white;
+border-radius: 4px;
+font-size: 16px;
+font-weight: bold;
+}
+.jianyuecity {
+width: 998px;
+border: 1px solid #0285BD;
+margin-top: 10px;
+background: white;
+}
+.all_city{width: 130px;
+height: 30px;
+line-height: 30px;
+text-align: center;
+background: #0285BD;
+border-radius: 0 0 6px 6px;
+margin: 0 auto;
+}
+.all_city a span {
+background: #0285BD;
+width: 100px;
+padding-left: 20px;
+}
+.orange a {
+color: #0285BD!important;
+}
+.changecity_yzpj ul li p a{color:#0285BD}
+.changecity_yzpj ul li .changecity_yzpj_detail .changecity_yzpj_content:hover {
+border-color: #0285BD;
+}
+.changecity_free_sq {
+width: 200px;
+height: 39px;
+background: url(../images/apply_bg.png) no-repeat;
+}
+.change_city_free_teders_l strong{color:#0285BD;}
+.change_city_free_tenders_c p i{color:#0285BD;}
+.changecity_free_sq p b{color:#0285BD;}
+.decoration_detail_main_l p.p51 a.a39 {
+width: 110px;
+height: 32px;
+background: #0285BD;
+border-radius: 3px;
+line-height: 32px;
+text-align: center;
+color: white;
+font-size: 14px;
+font-weight: bold;
+}
+.baocunpl {
+width: 84px;
+height: 28px;
+background: url(../images/redbut.png) no-repeat;
+color: white;
+line-height: 28px;
+font-size: 14px;
+font-weight: bold;
+border: none;
+}
+
+.dirary_list_l_b p a {
+color: #0285BD;
+font-size: 14px;
+font-weight: bold;
+}
+.dirary_list_l_b p.p49 span.span80 a {
+display: block;
+width: 65px;
+height: 26px;
+color: white;
+background: #0285BD;
+border-radius: 5px;
+line-height: 26px;
+text-align: center;
+line-height: 26px;
+text-align: center;
+font-size: 14px;
+font-weight: bold;
+}
+.materials_mall_all_l_t_ul li a:hover {
+color: #0285BD;
+}
+.simple_style a:hover {
+background: #0285BD;
+color: white;
+}
+.bigbg {
+background: url(../images/li_bg1.png) no-repeat;
+}
+.span1 {
+display: block;
+width: 24px;
+height: 24px;
+background-position: -67px -241px;}
+.span2 {
+display: block;
+width: 24px;
+height: 24px;
+background-position: -93px -240px;
+}
+.span3 {
+display: block;
+width: 23px;
+height: 24px;
+background-position: -120px -241px;
+}
+.decoration_case_b_l ul li a.dcotion_case_bg {
+background: url(../images/li_bg1.png) no-repeat -179px -50px;
+display: block;
+width: 43px;
+height: 43px;
+margin: 14px 0 0 10px;
+float: left;
+}
+
+.change_city_free_teders_l strong {
+font-size: 26px;
+color:#0285BD;
+}
+.change_city_free_tenders_c p i {
+color:#0285BD;
+font-style: normal;
+}
+.changecity_free_sq {
+width: 200px;
+height: 39px;
+background: url(../images/apply_bg.png) no-repeat;
+}
+.changecity_free_sq p b {
+color: #0285BD;
+}

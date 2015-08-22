@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>爱咋咋地，页面就是没有找到! - Powered by IJH.CC</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta property="qc:admins" content="2306637261615205167636" />
+<meta property="wb:webmaster" content="af9cee1997e39a23" />
+<link rel="stylesheet" type="text/css" href="/themes/default/static/style/public.css?20140109"/>
+<link rel="stylesheet" type="text/css" href="/themes/default/static/style/index.css?20140109"/> 
+<link rel="stylesheet" type="text/css" href="/themes/default/static/style/append.css?20140109"/> 
+<link rel="stylesheet" href="http://www.95zhuang.cn/static/style/kt.widget.css" type="text/css" />
+<link rel="stylesheet" href="http://www.95zhuang.cn/static/style/common.css" type="text/css" />
+<link rel="stylesheet" href="http://www.95zhuang.cn/static/ui/j.ui.css" type="text/css" />
+<script type="text/javascript">window.URL={"domain":"","url":"", "res":"http://www.95zhuang.cn/static", "img":"http://img.95zhuang.cn/attachs","city":"http://hf.95zhuang.cn"};</script>
+<script type="text/javascript"  src="http://www.95zhuang.cn/static/script/kt.j.js"></script>
+<script type="text/javascript"  src="http://www.95zhuang.cn/static/script/kt.js"></script>
+<script type="text/javascript"  src="http://www.95zhuang.cn/static/ui/j.ui.js"></script>
+<script type="text/javascript"  src="http://www.95zhuang.cn/static/script/widget.login.js"></script>
+<script type="text/javascript"  src="http://www.95zhuang.cn/static/script/widget.msgbox.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div class="top">
+    <div class="information_top w1000">
+        <div class="information_t_l lt">
+                        <a href="http://www.95zhuang.cn/passport.html">[登录]</a><a href="http://www.95zhuang.cn/passport-signup.html">&nbsp;&nbsp;[注册]</a>
+                    </div>
+        <div class="information_r rt">
+            <ul>
+                <li><a href="http://www.95zhuang.cn/mall/cart.html">购物车</a>&nbsp;&nbsp;&nbsp;|</li>
+                <li><a href="http://www.95zhuang.cn/ucenter/order.html">我的订单</a>&nbsp;&nbsp;&nbsp;|</li>
+                <li><a href="###">快捷导航</a><img src="http://www.95zhuang.cn/themes/default/static/images/xia_ico.jpg" /></li>
+                <li><a>咨询热线</a><span>&nbsp;<b>0551-64278115</b></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <!--top end-->
+    <div class="w1000 hauto mt20">
+        <div class="logo lt hauto">
+            <h1><a href="http://hf.95zhuang.cn/index.html"><img src="http://www.95zhuang.cn/themes/default/static/images/logo.jpg" width="255" height="90" /></a></h1>
+        </div>
+    </div>
+    <div class="no_page">
+    	<div class="w1000 hauto">
+        	<p class="not_img">
+            	<img src="/themes/default/static/images/not_ico.png" width="238" height="161" />
+            </p>
+            <div class="char_bg ml20">
+            	<p><font>抱歉，你要找的页面</font><span>没有找到，</span><font>它可能...去打小怪兽了！</font></p>
+                <p class="goback"><a href="http://hf.95zhuang.cn/index.html">返回>></a></p>
+            </div>            
+        </div>
+        <div class="null_foot mt30">
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+        <tr>
+            <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+            <th><{$MOD.title}></th>
+            <td align="right"></td>
+            <td width="15"></td>
+        </tr>
+    </table>
+</div>
+<div class="page-data"><form action="?system/config-audit.html" mini-form="config-form" method="post" >
+        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+            <li><a href="#table-member">业主会员</a></li>
+            <li><a href="#table-company">装修公司</a></li>
+            <li><a href="#table-designer">设计师</a></li>
+            <li><a href="#table-shop">商家</a></li>
+        </ul>
+        <input type="hidden" name="K" value="audit" />
+        <table width="100%" border="0" cellspacing="0" id="table-member" class="table-data form">
+            <tr>
+                <th></th>
+                <td><h3>普通会员</h3></td>
+                <td><h3>实名会员</h3></td>
+            </tr>
+            <tr>
+                <th>发布问题</th>
+                <td>
+                    <select name="config[ask_member_N]">
+                        <option <{if $config.ask_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[ask_member_Y]">
+                        <option <{if $config.ask_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <th>回答问题</th>
+                <td>
+                    <select name="config[answer_member_N]">
+                        <option <{if $config.answer_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[answer_member_Y]">
+                        <option <{if $config.answer_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+             <tr>
+                <th>装修日记</th>
+                <td>
+                    <select name="config[diary_member_N]">
+                        <option <{if $config.diary_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diary_member_Y]">
+                        <option <{if $config.diary_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+                <tr>
+                <th>点评公司</th>
+                <td>
+                    <select name="config[dianping_member_N]">
+                        <option <{if $config.dianping_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.dianping_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.dianping_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[dianping_member_Y]">
+                        <option <{if $config.dianping_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.dianping_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.dianping_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            
+               <tr>
+                <th>评论案例</th>
+                <td>
+                    <select name="config[caseComment_member_N]">
+                        <option <{if $config.caseComment_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[caseComment_member_Y]">
+                        <option <{if $config.caseComment_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>评论日记</th>
+                <td>
+                    <select name="config[diaryComment_member_N]">
+                        <option <{if $config.diaryComment_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diaryComment_member_Y]">
+                        <option <{if $config.diaryComment_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>点评商品</th>
+                <td>
+                    <select name="config[productComment_member_N]">
+                        <option <{if $config.productComment_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_member_Y]">
+                        <option <{if $config.productComment_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            
+            <tr>
+                <th>点评商铺</th>
+                <td>
+                    <select name="config[shopComment_member_N]">
+                        <option <{if $config.shopComment_member_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_member_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_member_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_member_Y]">
+                        <option <{if $config.shopComment_member_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_member_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_member_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>             
+            <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+        </table>
+
+        <!-----装修公司------>
+        <table width="100%" border="0" cellspacing="0" id="table-company" class="table-data form">
+            <tr>
+                <th></th>
+                <td><h3>普通公司</h3></td>
+                <td><h3>认证公司</h3></td>
+                <td><h3>旗舰公司</h3></td>
+            </tr>
+            <tr>
+                <th>发布问题</th>
+                <td>
+                    <select name="config[ask_company_N]">
+                        <option <{if $config.ask_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[ask_company_Y]">
+                        <option <{if $config.ask_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[ask_company_V]">
+                        <option <{if $config.ask_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>回答问题</th>
+                <td>
+                    <select name="config[answer_company_N]">
+                        <option <{if $config.answer_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[answer_company_Y]">
+                        <option <{if $config.answer_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[answer_company_V]">
+                        <option <{if $config.answer_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+             <tr>
+                <th>装修日记</th>
+                <td>
+                    <select name="config[diary_company_N]">
+                        <option <{if $config.diary_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diary_company_Y]">
+                        <option <{if $config.diary_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[diary_company_V]">
+                        <option <{if $config.diary_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>案例效果图</th>
+                <td>
+                    <select name="config[case_company_N]">
+                        <option <{if $config.case_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.case_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.case_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[case_company_Y]">
+                        <option <{if $config.case_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.case_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.case_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[case_company_V]">
+                        <option <{if $config.case_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.case_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.case_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            
+            
+             <tr>
+                <th>在建工地</th>
+                <td>
+                    <select name="config[site_company_N]">
+                        <option <{if $config.site_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.site_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.site_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[site_company_Y]">
+                        <option <{if $config.site_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.site_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.site_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[site_company_V]">
+                        <option <{if $config.site_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.site_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.site_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>优惠信息</th>
+                <td>
+                    <select name="config[youhui_company_N]">
+                        <option <{if $config.youhui_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.youhui_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.youhui_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[youhui_company_Y]">
+                        <option <{if $config.youhui_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.youhui_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.youhui_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[youhui_company_V]">
+                        <option <{if $config.youhui_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.youhui_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.youhui_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th>企业新闻</th>
+                <td>
+                    <select name="config[news_company_N]">
+                        <option <{if $config.news_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[news_company_Y]">
+                        <option <{if $config.news_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[news_company_V]">
+                        <option <{if $config.news_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th>评论案例</th>
+                <td>
+                    <select name="config[caseComment_company_N]">
+                        <option <{if $config.caseComment_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[caseComment_company_Y]">
+                        <option <{if $config.caseComment_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[caseComment_company_V]">
+                        <option <{if $config.caseComment_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>评论日记</th>
+                <td>
+                    <select name="config[diaryComment_company_N]">
+                        <option <{if $config.diaryComment_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diaryComment_company_Y]">
+                        <option <{if $config.diaryComment_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[diaryComment_company_V]">
+                        <option <{if $config.diaryComment_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+                <th>点评商品</th>
+                <td>
+                    <select name="config[productComment_company_N]">
+                        <option <{if $config.productComment_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_company_Y]">
+                        <option <{if $config.productComment_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_company_V]">
+                        <option <{if $config.productComment_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            
+            <tr>
+                <th>点评商铺</th>
+                <td>
+                    <select name="config[shopComment_company_N]">
+                        <option <{if $config.shopComment_company_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_company_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_company_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_company_Y]">
+                        <option <{if $config.shopComment_company_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_company_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_company_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_company_V]">
+                        <option <{if $config.shopComment_company_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_company_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_company_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>          
+            <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+        </table>
+
+       <table width="100%" border="0" cellspacing="0" id="table-designer" class="table-data form"> 
+           <tr>
+                <th></th>
+                <td><h3>普通设计师</h3></td>
+                <td><h3>实名设计师</h3></td>
+            </tr>
+            <tr>
+                <th>发布问题</th>
+                <td>
+                    <select name="config[ask_designer_N]">
+                        <option <{if $config.ask_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[ask_designer_Y]">
+                        <option <{if $config.ask_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>回答问题</th>
+                <td>
+                    <select name="config[answer_designer_N]">
+                        <option <{if $config.answer_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[answer_designer_Y]">
+                        <option <{if $config.answer_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>装修日记</th>
+                <td>
+                    <select name="config[diary_designer_N]">
+                        <option <{if $config.diary_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diary_designer_Y]">
+                        <option <{if $config.diary_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diary_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diary_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th>案例效果图</th>
+                <td>
+                    <select name="config[case_designer_N]">
+                        <option <{if $config.case_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.case_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.case_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[case_designer_Y]">
+                        <option <{if $config.case_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.case_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.case_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>评论案例</th>
+                <td>
+                    <select name="config[caseComment_designer_N]">
+                        <option <{if $config.caseComment_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[caseComment_designer_Y]">
+                        <option <{if $config.caseComment_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>评论日记</th>
+                <td>
+                    <select name="config[diaryComment_designer_N]">
+                        <option <{if $config.diaryComment_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diaryComment_designer_Y]">
+                        <option <{if $config.diaryComment_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>点评商品</th>
+                <td>
+                    <select name="config[productComment_designer_N]">
+                        <option <{if $config.productComment_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_designer_Y]">
+                        <option <{if $config.productComment_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            
+            <tr>
+                <th>点评商铺</th>
+                <td>
+                    <select name="config[shopComment_designer_N]">
+                        <option <{if $config.shopComment_designer_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_designer_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_designer_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_designer_Y]">
+                        <option <{if $config.shopComment_designer_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_designer_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_designer_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+        </table>
+        
+        <table width="100%" border="0" cellspacing="0" id="table-shop" class="table-data form"><tr>
+               <tr>
+                <th></th>
+                <td><h3>普通商铺</h3></td>
+                <td><h3>认证商铺</h3></td>
+                <td><h3>旗舰商铺</h3></td>
+            </tr>
+            <tr>
+                <th>添加商品</th>
+                <td>
+                    <select name="config[product_shop_N]">
+                        <option <{if $config.product_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.product_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.product_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[product_shop_Y]">
+                        <option <{if $config.product_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.product_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.product_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[product_shop_V]">
+                        <option <{if $config.product_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.product_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.product_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>活动资讯</th>
+                <td>
+                    <select name="config[news_shop_N]">
+                        <option <{if $config.news_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[news_shop_Y]">
+                        <option <{if $config.news_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[news_shop_V]">
+                        <option <{if $config.news_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.news_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.news_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>优惠券</th>
+                <td>
+                    <select name="config[coupon_shop_N]">
+                        <option <{if $config.coupon_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.coupon_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.coupon_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[coupon_shop_Y]">
+                        <option <{if $config.coupon_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.coupon_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.coupon_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[coupon_shop_V]">
+                        <option <{if $config.coupon_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.coupon_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.coupon_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>发布问题</th>
+                <td>
+                    <select name="config[ask_shop_N]">
+                        <option <{if $config.ask_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[ask_shop_Y]">
+                        <option <{if $config.ask_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[ask_shop_V]">
+                        <option <{if $config.ask_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.ask_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.ask_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+              <tr>
+                <th>回答问题</th>
+                <td>
+                    <select name="config[answer_shop_N]">
+                        <option <{if $config.answer_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[answer_shop_Y]">
+                        <option <{if $config.answer_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[answer_shop_V]">
+                        <option <{if $config.answer_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.answer_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.answer_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>评论案例</th>
+                <td>
+                    <select name="config[caseComment_shop_N]">
+                        <option <{if $config.caseComment_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[caseComment_shop_Y]">
+                        <option <{if $config.caseComment_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[caseComment_shop_V]">
+                        <option <{if $config.caseComment_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.caseComment_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.caseComment_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>评论日记</th>
+                <td>
+                    <select name="config[diaryComment_shop_N]">
+                        <option <{if $config.diaryComment_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[diaryComment_shop_Y]">
+                        <option <{if $config.diaryComment_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                <td>
+                   <select name="config[diaryComment_shop_V]">
+                        <option <{if $config.diaryComment_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.diaryComment_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.diaryComment_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            
+            <tr>
+                <th>点评商品</th>
+                <td>
+                    <select name="config[productComment_shop_N]">
+                        <option <{if $config.productComment_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_shop_Y]">
+                        <option <{if $config.productComment_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[productComment_shop_V]">
+                        <option <{if $config.productComment_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.productComment_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.productComment_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            
+            <tr>
+                <th>点评商铺</th>
+                <td>
+                    <select name="config[shopComment_shop_N]">
+                        <option <{if $config.shopComment_shop_N == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_shop_N == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_shop_N == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_shop_Y]">
+                        <option <{if $config.shopComment_shop_Y == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_shop_Y == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_shop_Y == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+                 <td>
+                   <select name="config[shopComment_shop_V]">
+                        <option <{if $config.shopComment_shop_V == -1}> selected="selected"<{/if}> value="-1">不允许发布</option>
+                        <option <{if $config.shopComment_shop_V == 0}> selected="selected"<{/if}>  value="0">允许发布需要审核</option>
+                        <option <{if $config.shopComment_shop_V == 1}> selected="selected"<{/if}> value="1">不需要审核直接显示</option>
+                    </select>
+                </td>
+            </tr>            </tr>
+            
+            <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+        </table>
+    </form></div>
+<script>
+    $(document).ready(function() {
+
+        $("div.page-data").tabs();
+    });
+</script>
+<{include file="admin:common/footer.html"}>

@@ -1,0 +1,17 @@
+<{include file="ucenter/header.html"}>
+<div class="set_c2"><h3 class="header_left">下载日志</h3></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr>
+        <th>优惠券</th><th class="w-100">联系人</th><th class="w-100">手机</th><th class="w-100">优惠码</th><th class="w-100">下载时间</th>
+    </tr>
+    <{foreach $items as $item}>
+    <tr>
+        <td><a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" target="_blank"><{$coupon_list[$item.coupon_id].title|default:'--'}></a></td>
+        <td><{$item.contact}></td><td><{$item.mobile}></td><td><{$item.number}></td><td><{$item.dateline|format}></td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="10"><p class="textc">还没有人下载过你的优惠券</p></td></tr>
+    <{/foreach}>
+</table>
+<p class="page"><{$pager.pagebar}></p>
+<{include file="ucenter/footer.html"}>

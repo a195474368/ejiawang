@@ -1,0 +1,15 @@
+/* CSS Document */
+
+.information_t_l a:hover, .information_r ul li span{color: #23A0DA;text-decoration: none;}
+
+.menured_bg{background:url(../images/bg01.jpg) repeat;}
+.menu .menu_main{float:left; width:110px;background:url(../images/li_bg.png) no-repeat right center;}
+.menu .menu_main .menu_main_a:hover,.menu_son li a:hover,.current9{background:url(../images/bg-02.jpg) repeat;}
+.menu_son li{width:110px;background:#FF8B02;z-index:9999;}
+.information_t_l a:hover, .information_r ul li span{color:#FF8B02;}
+.redbg{background:#FF8B02;}
+.red{color:#FF8B02}
+.red_bg {background:#FF8B02}
+.orgbgg{background:#FF8B02}
+.org {color: #FF8B02;}
+.pinkbg{background:#FF8B02;}

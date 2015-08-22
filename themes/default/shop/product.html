@@ -1,0 +1,34 @@
+<{assign var="seo_sub_title" value="店铺商品"}>
+<{assign var="shop_nav_curr" value="product"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+	<div class="material_all_product bgwhite hauto">
+		<h2><span>所有商品</span></h2>
+		<div class="cl"></div>
+		<ul>
+			<{foreach $items as $item}>
+			<li>
+				<div class="all_product_li">
+					<div class="ml10 mt10">
+						<a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>"><img src="<{$pager.img}>/<{$item.photo}>" width="165" height="110" /></a>
+						<p><{if $item.sale_type_title}>【<{$item.sale_type_title}>】<{/if}><a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>"><{$item.title|cutstr:30:''}></a></p>
+						<p><{if $item.sale_type_title}>【抢购价】<{else}>【商铺价】<{/if}><span>￥<{$item.price}></span></p>
+					</div>
+				</div>
+			</li>
+			<{/foreach}>
+		</ul>
+		<div class="h20 cl"></div>
+		<div class="page mt20 mb30 ml20"><{$pager.pagebar}></div>
+	</div> 
+</div>
+<!-- 右面结束 -->
+<{include file="shop/block/footer.html"}>

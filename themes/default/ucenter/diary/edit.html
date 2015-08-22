@@ -1,0 +1,61 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>编辑日记</b></div>
+<form mini-form="company" action="<{link ctl='ucenter/diary:edit' arg0=$detail.diary_id  http=true}>" method="post">
+    <table cellspacing="0" cellpadding="0" class="form">
+           <tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-300"/></td></tr>
+          <tr><th>小区：</th>
+                <td>
+                    <input type="hidden" name="data[home_id]" id="select_home_id" value="<{$detail.home_id}>" />
+                    <input type="text" id="select_home_name" value="<{$home.name}>" class="input"/>
+                    <a class="yzmbtn" action="<{link ctl='ucenter/select:home'}>" mini-select="#select_home_id,#select_home_name/N/<{$member.city_id}>/选择小区"/>选择小区</a><br />
+                </td>
+            </tr>
+        <tr><th><span class="red">*</span>缩略图：</th><td><input type="file" name="data[face_pic]" class="input w-100" /></td></tr>
+         <tr>
+                <th>承接公司：</th>
+                <td>
+                    <input type="hidden" id="select_company_id" name="data[company_id]" value="<{$detail.company_id}>" class="input"/>
+                    <input type="text" id="select_company_name" value="<{$company.name}>" class="input"/>
+                    <a class="yzmbtn" action="<{link ctl='ucenter/select:company'}>" mini-select="#select_company_id,#select_company_name/N/<{$member.city_id}>/选择公司"/>选择公司</a>
+                </td>
+            </tr>
+        <tr>
+            <th>
+                空间户型：
+            </th>
+            <td>
+                <select name="data[type_id]" class="select w-100">
+                    <option value="0">请选择</option>
+                    <{foreach from=$setting[$type['house_type']] item=item key=key}>
+                    <option <{if $detail.type_id == $key}> selected="selected" <{/if}> value="<{$key}>"><{$item}></option>
+                    <{/foreach}>
+                </select>
+          
+            </td>
+        </tr>
+        <tr>
+            <th>
+                装修方式：
+            </th>
+            <td>
+                <select name="data[way_id]" class="select w-100">
+                    <option value="0">请选择</option>
+                    <{foreach from=$setting[$type['way']] item=item key=key}>
+                    <option <{if $detail.way_id == $key}> selected="selected" <{/if}> value="<{$key}>"><{$item}></option>
+                    <{/foreach}>
+                </select>
+              
+            </td>
+        </tr>
+        <tr><th><span class="red">*</span>合同总价：</th><td><input type="text" name="data[total_price]" value="<{$detail.total_price|default:''}>" class="input w-100"/></td></tr>
+        <tr><th>开工日期：</th><td><input type="text" name="data[start_date]" value="<{$detail.start_date|default:''}>" class="input w-100" date="start_date" readonly/></td></tr>
+        <tr><th>完工日期：</th><td><input type="text" name="data[end_date]" value="<{$detail.end_date|default:''}>" class="input w-100" date="end_date" readonly/></td></tr>
+
+
+        <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+    </table>
+</form>
+
+
+<{include file="ucenter/footer.html"}>

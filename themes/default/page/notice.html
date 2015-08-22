@@ -1,0 +1,30 @@
+<{include file="block/header.html"}>
+<div class="w1000">
+    <div class="w1000 huifu_sucess">
+        <div style="height:170px;"></div>
+        <div class="w410 huifu_success_all">
+            <{if $pager.error}><i class="huifu_cha"></i><{else}><i class="huifu_duihao"></i><{/if}>
+            <div class="huifu_success_b">
+                <p><{$pager.message}></p>
+                <p>
+                    <span id='message_box_html'><{$pager.timer}>秒之后自动跳转&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+                    <a href="<{$pager.url}>">点击立即跳转</a>
+                </p>
+            </div>
+        </div>
+    </div>    
+     <!--恭喜你回复成功-->     
+     <script>
+      var timer = <{$pager.timer|default:2}>;
+         var myInterval  = setInterval(function(){
+             if(timer <= 0){  
+                 clearInterval(myInterval);
+                location.href="<{if $pager.url}><{$pager.url}><{else}><{link ctl='index'}><{/if}>";
+             }else{
+                 timer--;
+                 $("#message_box_html").html(timer+"秒之后自动跳转&nbsp;&nbsp;&nbsp;&nbsp;|");
+             }
+         },1000);         
+     </script>
+</div>
+<{include file="block/footer.html"}>

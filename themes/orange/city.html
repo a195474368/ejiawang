@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<div id="wrap">
+	<!--头部开始-->
+    <{include file="block/top-header.html"}>
+    <!--头部结束-->
+    <!--logo开始-->
+    <div class="change_city_logo">
+    	<div class="w1000 hauto">
+    		<div class="logo lt hauto mt20" id="jq_city_change">
+                <h1><a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>"><img src="<{$pager.theme}>/orange/static/images/logo.jpg" width="255" height="90" /></a></h1>
+                    <div class="city">
+                       
+                    </div>
+                
+                </div>
+            <div class="change_city_zongji rt">
+            	<i>总计</i>
+                <i>注册业主：<{$pager.sitecount.member}></i>
+                <i>装修公司：<{$pager.sitecount.company}> </i>
+                <i>设计师：<{$pager.sitecount.designer}></i>
+            </div>
+        </div>
+    </div>
+    <!--logo结束-->
+    <div class="cl"></div>
+    <!--主题开始-->
+    <div class="index_b_bg hauto">
+    <!--城市切换开始-->
+    	<div class="change_city_main_style hauto w1000">
+        	<div class="change_city_main_style_t">
+            	<span>我们猜您可能在<{$request.city.city_name}>，</span>
+                <a title="<{$request.city.city_name}><{$CONFIG.site.title}>" href="<{$allcity[$request.city_id].siteurl}>" class="goincity">点击进入<{$request.city.city_name}>站</a>
+                <ul>
+                    <li><a href="<{link ctl='case'}>">装修效果图</a></li>
+                    <li><a href="<{link ctl='ask'}>">装修问答</a></li>
+                    <li><a href="<{link ctl='content'}>">学装修</a></li>
+                    <li><a href="<{link ctl='gs'}>">装修公司 </a></li>
+                    <li><a href="<{link ctl='tenders'}>">免费量房</a></li>
+                </ul>
+                 <div class="cl"></div>
+            </div>
+           
+            <div class="chanage_city_main_style_b hauto">
+            	<div class="jianyuecity hauto">
+                    <span>热门城市</span>
+                    <ul>
+                        <{foreach from=$allcity item=item}>
+                          <{if $item.audit==1}>
+                        <li><a href="<{$item.siteurl}>"><{$item.city_name}></a></li>
+                        <{/if}>
+                        <{/foreach}>
+                    </ul>
+                    
+                    <span class="kaitongcity">共开通了<{count($allcity)}>个城市</span>
+                </div>
+                <div class="cl"></div>
+                <div class="all_city">
+                    <a href="###"><span style="background:url(<{$pager.theme}>/default/static/images/jianyue.png) no-repeat left center;">显示全部城市</span></a>
+                </div>
+            </div>
+        	
+        </div>
+    <!--城市切换结束-->
+
+<script>
+$(document).ready(function(){
+var $category = $('.jianyuecity ul li:gt(13):not(:last)');     	    //  获得索引值大于5的品牌集合对象(除最后一条)	
+		$category.hide();							    //  隐藏上面获取到的jQuery对象。
+		var $toggleBtn = $('div.all_city > a');             //  获取"显示全部品牌"按钮
+		$toggleBtn.click(function(){
+		       if($('.all_city a span').text()== '精简城市'){
+					$category.hide();                   		 //  隐藏$category
+					$('.all_city a span').css("background","url(<{$pager.theme}>/default/static/images/jianyue.png) no-repeat left center").text("显示全部城市");   
+                //改变背景图片和文本
+					$('.jianyuecity ul li').removeClass("orange");			// 去掉高亮样式
+			  }else{
+					$category.show();                   		 //  显示$category
+					$('.all_city a span')
+						.css("background","url(<{$pager.theme}>/default/static/images/all_fenlei.png) no-repeat left center")    
+						.text("精简城市");                  //改变背景图片和文本
+					$('.jianyuecity ul li').filter(":contains('北京'),:contains('深圳'),:contains('广州'),:contains('上海')").addClass("orange");	
+                    //添加高亮样式
+			  }
+			return false;					      	//超链接不跳转
+		});	
+	
+	
+ $(".decoration_case_b_l ul li").mouseover(function() {
+                            var index = $(this).index();
+                            $(".decoration_case_b_l ul li").each(function(a) {
+                                var nn = a + 1
+                                if (a == index) {
+                                   
+                                    $(".decoration_case_b_all_" + nn).show();
+                                } else {
+                                    $(this).find("a").removeClass("currentt");
+                                    $(".decoration_case_b_all_" + nn).hide();
+                                }
+
+                            });
+                        });
+                        $(".decoration_case_b_l ul li").eq(0).mouseover();
+								
+               		
+                $(".decoration_case_b_r_l").mouseover(function(){
+                        $(this).find(".p1").show();
+                        $(this).find(".text").show();
+                        
+                        }).mouseout(function(){
+                            $(this).find(".p1").hide();
+                            $(this).find(".text").hide();
+                            });
+                            
+                            
+                        $(".decoration_case_b_r_r ul li").mouseover(function(){
+                        $(this).find(".p1").show();
+                        $(this).find(".text").show();
+                        
+                        }).mouseout(function(){
+                            $(this).find(".p1").hide();
+                            $(this).find(".text").hide();
+                    });	
+					
+					   $(".changecity_yzpj ul li .changecity_yzpj_content").mouseover(function(){
+						   $(this).siblings(".span91").css('color','#FF8B02');
+					   }).mouseout(function(){
+						     $(this).siblings(".span91").css('color','')
+						   });
+                
+
+});
+</script>
+    
+        <!--------------装修案例开始-------------------->
+    <div class="decoration_case hauto mt25">
+        <div class="decoration_case_title w1000 " >
+            <h2 class="lt"><a href="<{link ctl='case'}>">装修案例</a></h2><span class="rt mt10"><a href="<{link ctl='case'}>">更多>></a></span>
+        </div>
+        <div class="cl"></div>
+        <div class="decoration_case_b w1000 hauto bgwhite mt10">
+            <div class="decoration_case_b_l lt bodr">
+                <ul>
+                    <li><a href="<{link ctl='case'}>" class="dcotion_case_bg" ></a><p><a href="<{link ctl='case'}>" class="red">风格</a><br /><font>Style</font></p></li>
+                    <li><a href="<{link ctl='case'}>" class="dcotion_case_bg"></a><p><a href="<{link ctl='case'}>" class="red">空间</a><br /><font>Space</font></p></li>
+                    <li><a href="<{link ctl='case'}>" class="dcotion_case_bg "></a><p><a href="<{link ctl='case'}>" class="red">别墅</a><br /><font>Ulila</font></p></li>
+                    <li><a href="<{link ctl='case'}>" class="dcotion_case_bg"></a><p><a href="<{link ctl='case'}>" class="red">小户型</a><br /><font>Small</font></p></li>
+                    <li><a href="<{link ctl='case'}>" class="dcotion_case_bg"></a><p><a href="<{link ctl='case'}>" class="red">公装</a><br /><font>Publicloaded</font></p></li>
+                </ul>
+            </div>
+            <div class="decoration_case_b_all_1">
+                <div class="decoration_case_b_r lt hauto bgwhite">
+                    <{KT name="首页装修案例:风格" limit="1"}>
+                    <div class="decoration_case_b_r_l lt hauto">
+                        <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="240" height="295"/></a>
+                        <p class="p1 none"></p>
+                        <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></p>
+                    </div>
+                    <div class="decoration_case_b_r_r lt hauto">
+                        <ul>
+                            <{foreach $item.ext.photos as $photo}>
+                            <li>
+                                <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photo.photo}>_thumb.jpg" width="180" height="145"/></a>
+                                <p class="p1 none"></p>
+                                <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$photo.title}></a></p>
+                            </li>
+                            <{if $photo@iteration > 5}><{break}><{/if}>
+                            <{/foreach}>
+                        </ul>
+                    </div>
+                    <{/KT}>
+                </div>
+            </div>
+            <div class="decoration_case_b_all_2">
+                <div class="decoration_case_b_r lt hauto bgwhite">
+                    <{KT name="首页装修案例:空间" limit="1"}>
+                    <div class="decoration_case_b_r_l lt hauto">
+                        <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="240" height="295"/></a>
+                        <p class="p1 none"></p>
+                        <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></p>
+                    </div>
+                    <div class="decoration_case_b_r_r lt hauto">
+                        <ul>
+                            <{foreach $item.ext.photos as $photo}>
+                            <li>
+                                <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photo.photo}>_thumb.jpg" width="180" height="145"/></a>
+                                <p class="p1 none"></p>
+                                <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$photo.title}></a></p>
+                            </li>
+                            <{if $photo@iteration > 5}><{break}><{/if}>
+                            <{/foreach}>
+                        </ul>
+                    </div>
+                    <{/KT}>
+                </div>
+            </div>
+            <div class="decoration_case_b_all_3">
+                <div class="decoration_case_b_r lt hauto bgwhite">
+                    <{KT name="首页装修案例:别墅" limit="1"}>
+                    <div class="decoration_case_b_r_l lt hauto">
+                        <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="240" height="295"/></a>
+                        <p class="p1 none"></p>
+                        <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></p>
+                    </div>
+                    <div class="decoration_case_b_r_r lt hauto">
+                        <ul>
+                            <{foreach $item.ext.photos as $photo}>
+                            <li>
+                                <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photo.photo}>_thumb.jpg" width="180" height="145"/></a>
+                                <p class="p1 none"></p>
+                                <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$photo.title}></a></p>
+                            </li>
+                            <{if $photo@iteration > 5}><{break}><{/if}>
+                            <{/foreach}>
+                        </ul>
+                    </div>
+                    <{/KT}>
+                </div>
+            </div>
+            <div class="decoration_case_b_all_4">
+                <div class="decoration_case_b_r lt hauto bgwhite">
+                    <{KT name="首页装修案例:小户型" limit="1"}>
+                    <div class="decoration_case_b_r_l lt hauto">
+                        <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="240" height="295"/></a>
+                        <p class="p1 none"></p>
+                        <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></p>
+                    </div>
+                    <div class="decoration_case_b_r_r lt hauto">
+                        <ul>
+                            <{foreach $item.ext.photos as $photo}>
+                            <li>
+                                <a title="<{$item.title}>" target="_blank" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photo.photo}>_thumb.jpg" width="180" height="145"/></a>
+                                <p class="p1 none"></p>
+                                <p class="text none"><a title="<{$item.title}>" target="_blank" href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$photo.title}></a></p>
+                            </li>
+                            <{if $photo@iteration > 5}><{break}><{/if}>
+                            <{/foreach}>
+                        </ul>
+                    </div>
+                    <{/KT}>
+                </div>
+            </div>
+            <div class="decoration_case_b_all_5">
+                <div class="decoration_case_b_r lt hauto bgwhite">
+                    <{KT name="首页装修案例:公装" limit="1"}>
+                    <div class="decoration_case_b_r_l lt hauto">
+                        <a title="<{$item.title}>" target="_blank" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="240" height="295"/></a>
+                        <p class="p1 none"></p>
+                        <p class="text none"><a title="<{$item.title}>" target="_blank"  href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></p>
+                    </div>
+                    <div class="decoration_case_b_r_r lt hauto">
+                        <ul>
+                            <{foreach $item.ext.photos as $photo}>
+                            <li>
+                                <a title="<{$item.title}>" target="_blank" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photo.photo}>_thumb.jpg" width="180" height="145"/></a>
+                                <p class="p1 none"></p>
+                                <p class="text none"><a href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$photo.title}></a></p>
+                            </li>
+                            <{if $photo@iteration > 5}><{break}><{/if}>
+                            <{/foreach}>
+                        </ul>
+                    </div>
+                    <{/KT}>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function(K, $) {
+            $(".decoration_case_b_l ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".decoration_case_b_l ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).addClass("dcotion_case_bgon");
+                        $(this).find(".red").css('color', '#E53236');
+						if($.browser.msie){
+                        	$(this).find(".dcotion_case_bg").css('backgroundPositionX','-225px');}
+							else{$(this).find(".dcotion_case_bg").stop().animate({backgroundPositionX: '-225px'}, 100);}
+                    } else {
+                        $(this).removeClass("dcotion_case_bgon");
+                        $(this).find(".red").css('color', '');
+                        if($.browser.msie){
+                        	$(this).find(".dcotion_case_bg").css('backgroundPositionX','-179px');}
+							else{$(this).find(".dcotion_case_bg").stop().animate({backgroundPositionX: '-179px'}, 100);}
+                    }
+                });
+            });
+        })(window.KT, window.jQuery);
+    </script>
+    <!--------------装修案例结束-------------------->
+    
+    
+   <div class="cl"></div>
+   <!--业主评价学装修开始-->
+   		<div class="changecity_main_c w1000 hauto mt20">
+        	<!--左面开始-->
+                    <div class="rijifenxiang_l lt hauto">
+                        <{widget id='dianping/index'}>   
+                    </div>
+                    <!--左面结束-->
+                    <!--右面开始-->
+                    <div class="rijifenxiang_l lt hauto ml20">
+                        <{widget id='diary/newitems'}>
+                    
+                    </div>
+                    <!--右面结束-->
+        </div>	
+    <!--业主评价学装修结束-->
+    <div class="cl"></div>
+    
+      <!--免费发布招标开始-->
+      <div class="change_city_free_tenders w1000 mt20">
+      		<div class="change_city_free_teders_l lt">
+            	<p>
+                	<strong>免费发布招标</strong>
+                    <i>Free Publishing Tenders</i>
+               </p>
+            </div>
+            <div class="change_city_free_tenders_c lt">
+            	<span class="fabuzb_0 jxz"></span>
+                <p>申请免费量房<br />已有<i>159</i>人申请</p>
+            </div>
+             <div class="change_city_free_tenders_c lt">
+            	<span class="fabuzb_1 jxz"></span>
+                <p>申请免费户型设计<br />已有<i>222</i>人申请</p>
+            </div>
+             <div class="change_city_free_tenders_c lt">
+            	<span class="fabuzb_2 jxz"></span>
+                <p>申请免费装修预算<br />已有<i>189</i>人申请</p>
+            </div>
+            <div class="change_city_tenders_r lt">
+            	
+                	<div class="changecity_free_sq">
+                    <iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+                    <form action="<{link ctl='tenders:save' http=true}>" mini-form="tenders" method="post" >
+                    	<input type="text" name="data[mobile]" id='data_mobile' class="free_sq" value="请输入您的联系电话"/>
+                        <input type="submit" name="sq" class="mfsq_but" value="" />
+                     </form>
+                     <p>已有<b>145</b>人申请</p>
+                    </div>
+                <script>
+                    $(document).ready(function(){
+                        $("#data_mobile").focus(function(){
+                            if($(this).val() == '请输入您的联系电话'){
+                                $(this).val('');
+                            }
+                        }).focusout(function(){
+                             if($(this).val() == ''){
+                                $(this).val('请输入您的联系电话');
+                            }
+                        });
+                    });
+                </script>
+                
+            </div>
+      </div>
+      <!--免费发布招标结束-->
+        <div class="friends_link w1000 hauto mt30 mb20">
+        <h2><a href="<{link ctl='about:link'}>" target="_blank">友情链接</a></h2>
+        <div class="w1000 friend_link_show bgwhite hauto mt10"><p><{widget id="links" city_id=$request.city_id}></p></div>
+    </div>
+      <div class="h30"></div>
+    </div>
+     <!--主题结束-->
+
+<{include file="block/footer.html"}>

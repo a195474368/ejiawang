@@ -1,0 +1,52 @@
+<div class="zhuanxiu">
+<h2>装修四大困惑</h2>
+<div class="zhuangxiu_1">
+<div class="zhuangxiu_1_1">
+	<ul>
+		<li>不了解装修公司</li>
+		<li>看不懂设计方案</li>
+		<li>看不懂报价</li>
+		<li>担心施工质量</li>
+	</ul>
+</div>
+<div class="zhuangxiu_1_2">
+<form id='tenders_form' action="">
+            <input type="hidden" id='tenders_type_id' name='data[type_id]' value="1" />
+  <table>
+    
+    <tr>
+      <td align="right">招标类型</td>
+      <td><select name="data[type_id]" >
+          <option value="0">请选择</option>
+          <{foreach from=$setting[$type['type']] item=item key=key}>
+          <option  value="&lt;{$key}&gt;">&lt;{$item}&gt;</option>
+          <{/foreach}>
+        </select>
+      </td>
+      <td align="right">装修预算</td>
+      <td><select name="data[budget_id]" >
+          <option value="0">请选择</option>
+          <{foreach from=$setting[$type['budget']] item=item key=key}> <option <{if $detail.budget_id == $key}> selected="selected" <{/if}> value="<{$key}>"><{$item}>
+        </option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+   <tr>
+      <td align="right"><i>*</i>我的称呼</td>
+      <td align="left"><input type="text" name="data[name]"/></td>
+      <td align="right"><i>*</i>联系电话</td>
+      <td align="left"><input type="text" name="data[mobile]"/></td>
+    </tr>
+  </table>
+  <div class="cl"></div>                           
+                <p class="zhuangxiu_1_3">
+                    <span>立即<a mini-submit='#tenders_form' action="<{link ctl='tenders:save'}>">申请</a></span>
+                    <font>免费获得3家正规<br />装修公司不同的设计和报价</font>
+                </p>
+              
+    </form>      
+</div>
+</div>
+
+</div>

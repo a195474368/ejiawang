@@ -1,0 +1,227 @@
+<{assign var="shop_nav_curr" value="info"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+     	  <div class="material_main_r lt hauto ml10">
+              <div class="mall_detail hauto bgwhite">
+              	 <h2><{$detail.title}></h2>
+                 <div class="mall_detail_b hauto">
+                 	<div class="mall_detail_b_l lt">
+                    	<div class="mall_detail_b_l_bigshow">
+                            <a href="<{$pager.img}>/<{$detail.photo}>" rel="zoomWidth:360,zoomHeight:240,adjustX:10" class="cloud-zoom" id='gallery'><img src="<{$pager.img}>/<{$detail.photo}>_thumb.jpg" width="360" height="240"></a>
+                        </div>
+                        <div class="mall_detail_b_l_smallshow mt20">
+							<{foreach $photo_list as $photo}>
+                            <a href="<{$pager.img}>/<{$photo.photo}>" class="cloud-zoom-gallery" rel="useZoom: 'gallery', smallImage: '<{$pager.img}>/<{$photo.photo}>_thumb.jpg'"><img src="<{$pager.img}>/<{$photo.photo}>_small.jpg" width="60" height="60" /></a>
+                            <{foreachelse}>
+                            <a href="<{$pager.img}>/<{$detail.photo}>" class="cloud-zoom-gallery" rel="useZoom: 'gallery', smallImage: '<{$pager.img}>/<{$detail.photo}>_thumb.jpg'"><img src="<{$pager.img}>/<{$detail.photo}>_small.jpg" width="60" height="60" /></a>
+							<{/foreach}>
+                         </div>
+                        <div class="cl"></div>
+                        <div class="h20"></div>
+                    </div>
+                    <div class="mall_detail_b_r lt hauto ml20">
+                    	<div class="mall_detail_r_t hauto">
+                            <p>市场价：￥<del><{$detail.market_price}></del></p>
+                            <p>
+                                <span>商铺价：<b class="red">￥<{$detail.price}></b></span>
+                                <{if $detail.sale_type}>
+                                <span class="span94">抢购</span>
+                                <{elseif $detail.sale_remai}>
+                                <span class="span94">热卖</span>
+                                <{elseif $detail.sale_youhui}>
+                                <span class="span94">优惠</span>
+                                <{elseif $detail.sale_tuijian}>
+                                <span class="span94">推荐</span>
+                                <{/if}>
+                            </p>
+                            <div class="cl"></div>
+                            <p>单位：<{$detail.danwei|default:"件"}></p>
+                            <p>分类：<{$detail.cat_title}></p>
+                            <p>
+                                <span> 运费：<{if $detail.freight}><b class="red">￥<{$detail.freight}></b><<{else}><i>包邮</i><{/if}></span>
+                                <span>库存：<{if $detail.sale_type == 2 && ($detail.sale_sku <= $detail.sale_count)}><i>缺货</i><{else}><i>有货</i><{/if}></span>
+                            </p>
+                            <p class="cl h10"></p>
+                            <p>
+                                <span> 评价：<b score="item_score" data-score="<{if $detail.comments}><{($detail.score/$detail.comments)}><{else}>3<{/if}>"></b></span>
+                                <span><i>共<{$detail.comments|default:"0"}>条评价</i></span>
+                            </p>
+                        </div>
+                        <div class="goumai_together">
+                            <{if $detail.sale_type == 2}>
+                            <!-- 限时购买 -->
+                            <div class="basic_kuang">
+                                <p>
+                                    <span class="xianshi_ico"></span>
+                                    <span remaintime="<{strtotime($detail.sale_time)}>"></span>
+                                </p>
+                            </div>
+                            <!-- //限时购买 -->
+                            <{elseif $detail.sale_type == 1}>
+                            <!-- 限量购买 -->
+                            <div class="basic_kuang">
+                                <p>
+                                    <{if $detail.sale_sku > $detail.sale_count}>
+                                    <span class="xianshi_ico"></span>
+                                    <span><{if $detail.sale_count}>已有&nbsp;<b class="red"><{$detail.sale_count}></b>&nbsp;人抢购<{else}>赶紧滴<{/if}>，仅剩余&nbsp;<b class="red"><{($detail.sale_sku-$detail.sale_count)}></b></span>
+                                    <{else}>
+                                    <span class="null_ico"></span>
+                                    <span>真遗憾您来晚了，已经卖光了。</span>
+                                    <{/if}>
+                                </p>
+                            </div>
+                            <!-- //限量购买 -->
+                            <{/if}>
+                            <div class="mall_detail_r_b mt15">
+                                <p>购买数量&nbsp;：&nbsp;<input type="text" id="cart_product_num"  class="w-50" value="1"/></p>
+                                <p>
+                                <{if $detail.onsale == 'Y'}>
+                                    <{if $detail.onpayment}>
+                                    <{if empty($detail.sale_type) || ($detail.sale_type == 2 && strtotime($detail.sale_time)>$pager.dateline) || ($detail.sale_type == 1 && $detail.sale_sku > $detail.sale_count)}>
+                                    <a cart="buy:<{$detail.product_id}>" class="red_light_bg">优惠购买</a>
+                                    <a cart="cart:<{$detail.product_id}>" class="orgbg">加入购物车</a>
+                                    <{/if}>
+                                    <{/if}>
+                                    <a href="<{link ctl='mall/product:book' arg0=$detail.product_id}>" mini-load="预约商品" class="bluebgg">立即预约</a>
+                                <{else}>
+                                    商品已经下架
+                                <{/if}>                                
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="mall_detail_product_show hauto mt15">
+              	<div class="mall_deyail_product_show_t">
+                	<ul>
+                    	<li><a href="###" class="a96">商品详情</a></li>
+                        <li><a href="###" class="a96">订购须知</a></li>
+                        <li><a href="###" class="a96">配送与安装</a></li>
+                        <li><a href="###" class="a96">留言评价</a></li>
+                    </ul>
+                </div>
+                <div class="mall_detail_product_b hauto bgwhite">
+                	<div class="mall_detail_prodect_xq hauto mall_detail_product_1">
+                    	<h2>商品详情</h2>
+                        <div class="mall_detail_product_js"><p><{$detail.info}></p></div>
+                        <div class="h10"></div>
+                    </div>
+                    <div class="mall_detail_prodect_xq hauto mall_detail_product_2">
+                    	<h2>订购须知</h2>
+                        <div class="mall_detail_product_js"><p><{$shop.dgxz}></p></div>
+                        <div class="h10"></div>
+                    </div>
+                    <div class="mall_detail_prodect_xq hauto mall_detail_product_3">
+                    	<h2>配送安装</h2>
+                        <div class="mall_detail_product_js"><p><{$shop.psaz}></p></div>
+                        <div class="h10"></div>
+                    </div>
+                    <div class="mall_detail_prodect_xq hauto mall_detail_product_4">
+                    	<h2>留言评价</h2>
+                        <{foreach $comments as $comment}>
+                        <div class="material_yzpj hauto">
+                        	<div class="material_yzpj_m hauto">                                
+                            	<p><a><img src="<{$pager.img}>/<{$member_list[$comment.uid].face_80}>" width="42" height="42"/></a></p>
+                                <div class="material_yzpj_m_r lt">                                    
+                                	<p>
+                                        <a><{$member_list[$comment.uid].uname}></a>
+                                        <i><b score="item_score" data-score="<{$comment.score}>"></b>&nbsp;<b><{$comment.score}>分</b></i>
+                                        <span><{$comment.dateline|format}></span>
+                                    </p>
+                                    <p class="p40"><{if $comment.audit}><{$comment.content}><{else}><h4>评论内容审核中</h4><{/if}></p>
+                                    <div class="cl"></div>
+                                    <{if $comment.replytime}>
+                                    <div class="huifu">
+                                        <div class="huifu_b">
+                                        	<p><span><{$comment.replytime|format}>/span></p>
+                                            <p><{$comment.reply}></p>
+                                        </div>                     
+                                    </div>
+                                    <{/if}>
+                                </div>
+                            </div>
+                        </div>
+                        <{foreachelse}>
+                        <h4 class="tips" style="width:700px;">还没有人对该商品进行点评</h4>
+                        <{/foreach}>
+                        <div class="page"><{$pager.pagebar}></div>                                                
+                        <div class="mall_detail_product_js">
+                        	<form action="<{link ctl='mall/product:comment'}>"  mini-form="product-comment" method="post">
+                                <input type="hidden" name="product_id" value="<{$detail.product_id}>"/> 
+                            	<table>
+                                	<tr><td align="right">评分&nbsp;：&nbsp;</td><td><input type="hidden" name="data[score]" id="comment-score" value="3" /><b comment-score="score" data-score="3"></b></td></tr>
+                                    <tr><td align="right">您的留言&nbsp;：&nbsp;</td><td align="left"><textarea name="data[content]"></textarea></td></tr>
+                                    <tr><td></td><td><input type="submit" value="我要留言" class="wypj"/></td></tr>
+                                </table>
+                            </form>
+                            <div class="h30"></div>
+                        </div>
+                    </div>
+                </div>
+              </div> 
+          </div>
+<!-- 右面结束 -->
+<script type="text/javascript" src="<{$pager.res}>/script/cloud-zoom.js"></script>
+<script type="text/javascript" src="<{$pager.res}>/script/raty/jquery.raty.js"></script>
+<script type="text/javascript">
+(function(K, $){
+    $('b[comment-score]').raty({
+        path: "http://hq.ijianghu.net/static/script/raty/img/",
+        score: function() {return $(this).attr('data-score');},
+        hints: ["差","还行","好","很好","非常好"],
+        click: function(score, evt) {$("#comment-score").val(score);}
+    });
+    $(".mall_deyail_product_show_t li").click(function(){
+        var index = $(this).index();
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".mall_detail_product_b div.mall_detail_prodect_xq:eq("+index+")").show().siblings().hide();
+    });
+    $('b[score]').each(function(){$(this).raty({numberMax:5,readOnly: true,hints: ["差","还行","好","很好","非常好"],path:"<{$pager.res}>/script/raty/img/",score: function() {return $(this).attr('data-score');}})});
+    $("[cart]").click(function(e){
+        var link = "<{link ctl='mall/cart:add' arg0=$detail.product_id arg1='#num#'}>";
+        var num = parseInt($("#cart_product_num").val(), 10);
+        var d = $(this).attr("cart").split(":")
+        $.getJSON(link.replace("#num#", num), function(ret){
+            if(ret.error){
+                Widget.MsgBox.error(ret.message.join(""));
+            }else if(d[0] == 'buy'){
+                window.location = "<{link ctl='mall/cart'}>";
+            }else{
+                Widget.MsgBox.success('添加到购物车成功');
+            }
+        });
+    });
+$(function(){
+    var dateTime = new Date();
+    var difference = dateTime.getTime() - <{$pager.dateline}>*1000;	
+    setInterval(function(){
+      $("[remaintime]").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('remaintime')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime() + difference;
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24;
+        var myM=Math.floor(nMS/(1000*60)) % 60;
+        var myS=Math.floor(nMS/1000) % 60;
+        var myMS=Math.floor(nMS/100) % 10;
+        if(myD>= 0){
+			var str = myD+"天"+myH+"小时"+myM+"分"+myS+"."+myMS+"秒";
+        }else{
+			var str = "真遗憾您来晚了，抢购已经结束。";	
+		}
+		obj.html(str);
+      });
+    }, 100);
+});
+})(window.KT, window.jQuery);
+</script>
+<{include file="shop/block/footer.html"}>

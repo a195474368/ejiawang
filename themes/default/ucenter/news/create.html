@@ -1,0 +1,21 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>发布企业新闻</b></div>
+<form mini-form="company" action="<{link ctl='ucenter/news:create'  http=true}>" method="post">
+    <table cellspacing="0" cellpadding="0" class="form">
+            <tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-300"/></td></tr>
+            <tr><th><span class="red">*</span>内容：</th><td><textarea name="data[content]" kindeditor="full" style="width:550px;height:350px;"><{$detail.content}></textarea><br /></td></tr>
+
+           <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+    </table>
+</form>
+
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $){
+
+var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '<{link ctl="magic:editorupload" http=true}>', extraFileUploadParams:{OTOKEN:"<{$OTOKEN}>"}});
+
+})(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

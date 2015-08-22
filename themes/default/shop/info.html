@@ -1,0 +1,31 @@
+<{assign var="seo_sub_title" value="店铺介绍"}>
+<{assign var="shop_nav_curr" value="info"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+  <div class="shoppers_sum hauto bgwhite">
+		<h2>商家介绍</h2>
+		<p>
+			<span class="material_shopper_span_l">商家名称：<a href="<{link ctl='mall/shop' arg0=$shop.shop_id}>"><{$shop.title}></a></span>
+			<span class="material_shopper_span_r">联系人：<{$shop.contact}></span> 
+		</p>
+        
+		 <p>
+			<span class="material_shopper_span_l">主营行业：<{$shop.cat_title}></span>
+			<span class="material_shopper_span_r">经营品牌： </span> 
+		</p>
+		<p>经营地点：<{$shop.address}></p>
+		 <p class="h20"></p>
+		 <div class="ml10"><{$shop.info}></div>
+		<p class="h30"></p>
+  </div>
+</div>
+<!-- 右面结束 -->
+<{include file="shop/block/footer.html"}>

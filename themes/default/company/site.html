@@ -1,0 +1,82 @@
+<{include file='company/header.html'}>
+	<!-- 详情页的公共部分 -->
+    <!-- 主题部分开始 -->
+     <div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    	<div class="favor_detail_weizhi w1000 bodr_b mb20">
+        	<font>你当前的位置：</font>
+            <a href="<{link ctl='company:site' arg0=$company_id}>">在建工地</a>
+            
+        </div>
+    <!-- 当前位置结束   -->
+    <!-- 效果图案例主题部分开始 -->
+        <div class="w1000 hauto effect_case">
+    	<!--标题开始 -->
+            <h2>
+                <span class="block_lt f20">在建工地</span>
+                <span class="block rt f14">共有<font class="red"><{$pager.count|default:'0'}></font>套案例</span>
+            </h2>
+            <div class="cl"></div>
+         <!--标题结束-->
+         <!--案例介绍开始-->
+         	<div class="shop_zjgd w1000 bgwhite hauto">
+                
+                  <{foreach $items as $item}>
+            	<div class="shop_zjgd_show lt ml10 mt10">
+                	<div class="shop_zjgd_show_t mt20 ml10">
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="220" height="155" /></a>
+                        <p class="p46 greenbg none">
+                        	<a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>">我要参观</a>
+                        </p>
+                    </div>
+                    <p class="p47"><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$item.title|cutstr:30:'..'}></a></p>
+                    <p class="p48 rt">
+                    	<span class="block_lt ftw black f14">进度&nbsp;:&nbsp;</span>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>" class="block_lt orgbgg"><{$site_status[$item.status]}></a>
+                    </p>
+                
+                </div>
+                  <{/foreach}>
+            	
+            </div>
+      
+
+         
+         
+         <!--案例介绍结束-->
+    		<!--分页开始-->
+            <div class="w1000 hauto bgwhite mt20">
+                <div class="page">
+                	<{$pager.pagebar}>
+                </div>
+            </div>
+            <!--分页结束-->
+    
+    </div>
+   		
+        
+    <!-- 效果图案例主题部分结束 -->
+	<div class="h30"></div>      
+    </div> 
+     <!-- 主题部分结束 -->
+
+
+
+
+
+
+<script>
+	$(document).ready(function(){
+			$(".shop_zjgd_show").mouseover(function(){
+				$(this).css('border','1px solid red').css('width','238px');
+				$(this).find(".p46").show();
+				
+			}).mouseout(function(){
+				$(this).css('border','1px solid #FFF').css('width','238px');
+				$(this).find(".p46").hide();
+				});
+
+		
+	});
+</script>
+<{include file='company/foot.html'}>

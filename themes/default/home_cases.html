@@ -1,0 +1,143 @@
+<{include file="block/header.html"}>
+<!--        主题部分开始               -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="我搜我家" href="<{link  ctl='home'}>" class="block_lt">我搜我家</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>" class="block_lt"><{$detail.name}></a
+        ><span class="block_lt">></span>
+        <a href="<{link ctl='home:cases' arg0=$detail.id}>" title="<{$detail.name}>" class="block_lt"><{$detail.name}>的设计方案</a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        标题开始     -->
+    <div class="home_buildings_title w1000 mt20 hauto mb10">
+        <p class="lt p22"><a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>"><{$detail.name}></a></p>
+        <p class="lt ml20">
+            <span><a href="<{link ctl='home:detail' arg0=$detail.id}>" title="<{$detail.name}>"><{$detail.pv_num}></a>人关注</span><br />
+            <span>本楼盘qq群:<font class="red"><{$detail.qq_qun}></font></span>
+        </p>
+    </div>
+    <!--        标题结束     -->
+    <div class="cl"></div>
+    <!--    找我家楼盘页面主题开始-->
+    <div class="home_buildings_main w1000 hauto mt10">
+        <!--        子页面导航开始     -->
+        <div class="w1000 son_menu orgbgg">
+            <ul>
+                <li><a title="<{$detail.name}>楼盘主页" href="<{link ctl='home:detail' arg0=$detail.id}>" >楼盘主页</a></li>
+                <li><a title="<{$detail.name}>设计方案" href="<{link ctl='home:cases' arg0=$detail.id}>" class="current6">设计方案</a></li>
+                <li><a title="<{$detail.name}>楼盘详情" href="<{link ctl='home:info' arg0=$detail.id}>">楼盘详情</a></li>
+                <li><a title="<{$detail.name}>实景图" href="<{link ctl='home:photo' arg0=$detail.id arg1=2}>">实景图</a></li>
+                <li><a title="<{$detail.name}>户型图" href="<{link ctl='home:photo' arg0=$detail.id arg1=1}>">户型图</a></li>
+                <li><a title="<{$detail.name}>样板间" href="<{link ctl='home:photo' arg0=$detail.id arg1=3}>">样板间</a></li>
+                <li><a title="<{$detail.name}>在建工地" href="<{link ctl='site'}>">在建工地</a></li>
+            </ul>
+        </div>
+        <!--        子页面导航结束     -->
+        <!--     主题左面开始 -->
+        <div class="home_buildings_main_l hauto lt mt15">
+           
+            <div class="cl"></div>
+            <div class="yfatzw hauto">
+                <h2><{$detail.name}>的装修设计方案<font class="red">（<{$detail.case_num}>）</font></h2>
+                       
+                     <{foreach from=$items item=item name=case}>
+                     <div class="wntj_show mt5 hauto bgwhite">
+                     
+                    <div class="wntj_show1 hauto">
+                        <h3><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>"><{$item.title}></a></h3>
+                       <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="250" height="150" /></a>
+                        <div class="wntj_show1_r lt">
+                            <p>
+                                <span class="lt"><b>喜欢数：</b><font class="f12 red"><{$item.likes}></font></span>
+                                <span class="rt"><font class="f12 red"><{$item.views}></font>人看了此方案</span>
+                            </p>
+                            <p class="cl"></p>
+                            <p class="p27 orgbgg"><{$smarty.foreach.case.index+1}></p>
+                            <p>
+                                <font><b>方案提供者：</b></font>
+                                <a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="f12 red">
+                                <{$company_list[$item.company_id].name}>
+                              </a>
+                              <a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>"  class="org">(<{$item.photos}>张设计图)</a>
+                            </p>
+                            <p>
+                                <font><b>设计思路：</b></font>
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>" class="black8">  <{$item.intro}></a>
+                            </p>
+                            <p class="mt20"></p>
+                            <p>
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>" class="a7">平面布置图&nbsp;&nbsp;|</a>
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>" class="a7">设计图&nbsp;&nbsp;</a>
+                                <a mini-load='申请设计' href="<{link ctl='gs:yuyue' arg0=$item.company_id http='empty'}>"  class="block rt a8 red_bg">我也要他设计</a>
+                            </p>
+                        </div>
+                    </div>
+                         </div>
+                     <{foreachelse}>
+                        <div class="nofa bgwhite mt20">
+                           <h3>暂时没有公司提供该小区方案</h3>
+                          <!-- <a href="###" class="orgbgg block">有新方案通知我</a>-->
+                        </div>
+                     <{/foreach}>
+                    
+                     <div><div class="page"><{$pager.pagebar}></div></div>
+                
+                
+            </div>
+            
+           
+            
+                           
+        </div>
+        <!-- 主题左面结束-->
+        <!-- 主题右面开始-->
+        <div class="home_buildings_main_r hauto lt mt15 ml20">
+         <{widget id='home/tuan' home_id=$detail.id}>          
+            <div class="ads5 hauto">
+                <{widget id="adv" name="我搜我家详情页右侧广告位" city_id=$request.city_id limit="5"}>
+            
+            </div>
+            <div class="home_buildings_laest_designfa hauto mt25">
+              <{widget id="case/casenew" limit=5}>
+            </div>
+        </div>
+        <!-- 主题右面结束-->
+        <div class="cl h20"></div>
+
+    </div>
+    <!--    找我家楼盘页面主题结束-->
+
+    <script>
+        $(document).ready(function() {
+            $(".son_menu ul li:last").css('background', 'none');
+            $(".home_building_small_menu ul li:last").css('background', 'none');
+            $(".home_buildings_laest_designfa_show ul li:last").css('border-bottom', 'none');
+            $(".home_buildings_laest_designfa_show ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".home_buildings_laest_designfa_show ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).css('background', '#EAEAEA');
+                        $(this).css('border-bottom', 'none');
+
+                    } else {
+                        $(this).css('background', '');
+                    }
+                });
+            }).mouseout(function() {
+                $(this).css('background', '');
+                $(this).css('border-bottom', '');
+            });
+           
+	
+        });
+    </script>
+
+
+    <{include file="block/footer.html"}>     

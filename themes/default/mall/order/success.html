@@ -1,0 +1,31 @@
+<{include file="block/small-header.html"}>
+<!--主题开始-->
+<div class="bgwhite w1000 gouwubuzhou">
+    <!--步骤开始-->
+    <div class="basic_buzhou w1000">
+        <div class="progress-3"></div>
+        <ul><li class="step_1 on">1、我的购物车</li><li class="step_2 on">2.填写核对订单信息</li><li class="step_3 on">3.成功提交订单</li><li class="step_4">4.订单已完成</li></ul>
+    </div>
+    <!--步骤结束-->
+    <div class="cl"></div>
+    <!--成功提交订单开始-->
+    <div class="w1000 success_all">
+        <div class="success_detail">
+            <div class="success_t">
+                <span></span><p>恭喜！您成功提交了订单!</p>
+                <a class="a_img"></a>
+                <a href="<{link ctl='mall/order:detail' arg0=$pager.order_no}>" class="next_bu">下一步&nbsp;:&nbsp;</a>
+                <a href="<{link ctl='mall/order:detail' arg0=$pager.order_no}>" class="zfdd">支付订单</a>
+            </div>
+            <p>如果您不具备在线付款的条件或其他原因无法在线支付，您可以与商家联系商定其他付款方式。</p>
+            <div class="success_b">
+                <a href="<{link ctl='mall/detail:detail' arg0=$pager.order_no}>" class="jixugouwu">查看订单</a>
+                <a href="<{link ctl='ucenter/order'}>" class="jixugouwu">稍后付款</a>
+                <a href="<{link ctl='mall/order:payment' arg0=$pager.order_no}>" class="qujiesuan">立即付款&nbsp;&gt;</a>
+            </div>
+        </div>
+    </div>
+    <!--成功提交订单结束-->
+</div>
+<!--主题结束-->
+<{include file="block/footer.html"}>

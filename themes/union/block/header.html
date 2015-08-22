@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap">
+    <{include file="block/top-header.html"}>
+    <!--top end-->
+    <div class="w1000 hauto mt5">
+        <div class="logo lt hauto" id="jq_city_change">
+            <h1><a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/union/static/images/logo.jpg" width="220" height="90" /></a></h1>
+            <div class="city">
+                <b><{$request.city.city_name}></b>
+                <{if $CONFIG.site.multi_city}>
+                <site><a href="<{link ctl='city'}>" id="jq_city_header_change" class="f14">[&nbsp;切换城市&nbsp;]</a></site>
+                <{/if}>
+                <p><img src="%THEME%/static/images/logo_p.jpg" /></p>
+            </div>         
+        </div>
+        <!--logo end-->
+        <!-- 搜索框-->
+        <div class="search lt">
+            <p class="rt mb10">总计&nbsp;注册业主：<{$pager.sitecount.member}>&nbsp;装修公司：<{$pager.sitecount.company}>&nbsp;设计师：<{$pager.sitecount.designer}></p><br />
+            <div class="cl"></div>
+            <form method="get" action="<{link ctl='home:tuan'}>" id="top-search"><div class="topso"><input id='search_header' type="text" name="s" value="<{$pager.s|default:'请输入您要查询的小区名称'}>" class="sokw"/><input type="submit" name="" class="sobtn" value="搜索"/></div></form>
+               <script>
+                $(document).ready(function() {
+                    $("#search_header").focus(function() {
+                        if ($(this).val() == '请输入您要查询的小区名称') {
+                            $(this).val('');
+                        }
+                    }).focusout(function() {
+                        if ($(this).val() == '') {
+                            $(this).val('请输入您要查询的小区名称');
+                        }
+                    });
+                });
+            </script>
+        </div>    
+    </div>
+    <!-- //搜索框--> 
+    <!-- 主导航 -->
+    <div class="menu_bg menured_bg mt5">
+        <div class="w1000  menu">
+          <ul  class="menu_ul">  
+              <li class="menu_main"><a class="menu_main_a <{if $request.ctl=='index'}>current9<{/if}>" href="<{link ctl='index'}>">首页 </a></li>       
+                <li class="menu_main"><a title='我要装修'  class="menu_main_a <{if $request.ctl=='tenders'}>current9<{/if}>" href="<{link ctl='tenders'}>">我要装修</a></li>
+                   <li class="menu_main">
+                    <a class="menu_main_a <{if $request.ctl=='gs' || $request.ctl=='designer' }>current9<{/if}>" title="<{$request.city.city_name}>装修公司" href="<{link ctl='gs'}>">找装修公司</a>
+                     <ul class="menu_son none">
+                         <li><a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs:items'}>">找装修公司</a></li>     
+                         <li><a  title="<{$request.city.city_name}>设计师" href="<{link ctl='designer'}>">找设计师</a></li>
+                         <li><a title="<{$request.city.city_name}>装修公司打折信息" href="<{link ctl='gs:youhui'}>">优惠信息</a></li> 
+                        
+                    </ul>
+                </li>   
+           
+                <li class="menu_main">
+                    <a title="<{$request.city.city_name}>小区装修" class="menu_main_a <{if $request.ctl=='home' || $request.ctl=='site'}>current9<{/if}>" href="<{link ctl='home'}>">我搜我家</a>
+                    <ul class="menu_son none">
+                        <li><a title="小区楼盘" href="<{link ctl='home:items'}>">小区楼盘</a></li>
+                        <li><a href="<{link ctl='home:maps'}>">楼盘地图</a></li>
+                        <li><a href="<{link ctl='site'}>">在建工地 </a></li>   
+                        <li><a href="<{link ctl='home:tuan'}>">团装小区</a></li>   
+                    </ul>
+                </li>
+              
+                <li class="menu_main"><a class="menu_main_a <{if $request.ctl=='case'}>current9<{/if}>" href="<{link ctl='case'}>">效果图</a></li>
+                <li class="menu_main">
+                    <a class="menu_main_a <{if $request.ctl=='content' || $request.ctl=='ask' }>current9<{/if}>"" title="学装修" href="<{link ctl='content'}>">学装修</a>
+                    <ul class="menu_son none">
+                         <li><a href="<{link ctl='content:diary'}>">装修日记</a></li>
+                         <li><a  href="<{link ctl='ask'}>">知识问答</a></li>
+                         <li><a  href="<{link ctl='content:items'}>">装修课堂</a></li>
+                    </ul>
+                </li>
+                <li class="menu_main"><a class="menu_main_a <{if $request.ctl=='activity'}>current9<{/if}>" href="<{link ctl='activity'}>">活动</a></li>
+                <li class="menu_main"><a class="menu_main_a" href="<{link ctl='mall/index'}>">家居商城</a></li>     
+            </ul> 
+        </div>
+    </div>
+<script type="text/javascript">(function(K, $){$(".menu_main").mouseover(function(){$(this).find("ul").show();}).mouseout(function(){$(this).find("ul").hide();});})(window.KT, window.jQuery);</script>
+<!-- //主导航 -->

@@ -1,0 +1,89 @@
+<{include file='mobile:block/header.html'}>
+<script type="text/javascript" src="<{$pager.res}>/script/widget.YMD.js"></script>
+<!--头部开始-->
+<div class="mobile_top">
+    <div class="mobile_top_son">
+        <a href="<{link ctl='ucenter'}>" class="detail-first"><img src="images/back_bg.png" widtd="10"/></a>
+        <div class="detail-second">我的信息</div>
+    </div>
+</div>
+<div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+<div class="mobile_main hauto">
+    <div class="mobile_tenders">
+        <form id='login-form'>
+            <table cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <td><span class="red">&nbsp;</span>手机：</td>    </tr><tr>
+                    <td>
+                        <{if $MEMBER.verify_mobile}><{$MEMBER.mobile}> <span style="color: green;">已验证</span><{else}>
+                        <input type="text" name="account[mobile]" value="<{$MEMBER.mobile}>" class="public_text"/> <{/if}>
+                    </td>
+                </tr>
+                <{if $MEMBER.from=='member'}>
+                <tr>
+                    <td>类型：</td>    </tr><tr>
+                    <td>
+                        <select class="select1" name="account[from]">
+
+                            <{foreach from=$fromlist key=key item=item}> 
+                            <{if $key != 'mechanic'}>
+                            <option value="<{$key}>" <{if $MEMBER.from == $key}>selected="selected"<{/if}>  ><{$item}></option>
+                            <{/if}>
+                            <{/foreach}>
+                        </select>
+                        业主可以选择更换用户类型！更换后不能变更回来！
+                    </td>
+                </tr>
+                <{/if}>
+                <tr>
+                    <td><span class="red">*&nbsp;</span>性别：</td>    </tr><tr>
+                    <td>
+                        <label><input type="radio" name="account[gender]" value="man" <{if $MEMBER.gender == 'man'}>checked="checked"<{/if}>/>&nbsp;男&nbsp;</label>
+                        <label><input type="radio" name="account[gender]" value="womain" <{if $MEMBER.gender == 'woman'}>checked="checked"<{/if}>/>&nbsp;女&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+                <tr height="40">
+                    <td><span class="red">*&nbsp;</span>生日：</td>    </tr><tr>
+                    <td><{YMD Y=$MEMBER.Y M=$MEMBER.M D=$MEMBER.D  name="account" class="select1"}></td>
+                </tr>
+                <tr>
+                    <td><span class="red">*&nbsp;</span>城市：</td>    </tr><tr>
+                    <td><select name="account[city_id]" class="select1"><option value="0">选择城市</option><{widget id="data/city" value=$MEMBER.city_id}></select></td>
+                </tr>
+
+                <tr id='showErr' style="display: none;">
+                    <td style="text-align: center;" ><font id="showTxt" style=" color: red; font-size: 14px;"></font></td>
+                </tr>
+            </table>
+
+            <div class="mobile_register_c"><a  href="###" id='login-btn' class="register_but mt10">修改信息</a></div>
+        </form>
+
+    </div>
+    <div class="h45"></div>
+    <script>
+        $(document).ready(function() {
+            function showmsg(message) {
+                $("#showErr").show();$("#showTxt").html(message);
+            }
+            $("#login-btn").click(function() {
+                $.post('<{link ctl="ucenter:info"}>', $("#login-form").serialize(), function(data) {
+                    if (data.error) {
+                        showmsg(data.message);
+                    } else {
+                        window.location = "<{link ctl='ucenter:info'}>";
+                    }
+                }, 'json');
+            });
+
+        });
+
+    </script>
+
+</div>
+<!--主题部分结束-->
+
+<{include file='mobile:block/footer.html'}>

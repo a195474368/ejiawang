@@ -1,0 +1,5 @@
+<{foreach $items as $item}>
+<a href="<{link ctl='case:detail' arg0=$item.case_id}>" alt="<{$item.title}>"> <img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" alt="<{$item.title}>"><span><{$item.intor}></span><span class="project"><{$item.title}></span></a>
+<{foreachelse}>
+<a><b class="red" style="text-align:center">已经山穷水尽</b></a>
+<{/foreach}>  

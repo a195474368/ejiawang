@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<{include file="block/sheader.html"}>
+  <style>
+        /* 底部开始 */
+#footer{ width:100%; border-top:2px solid #E6E9EE; background-color:#F6F7FB;}
+.footer{ width:1200px; margin:0 auto; height:230px;}
+.footer-logo{ position:relative; width:460px;}
+.footer-logo img{ position:absolute; left:100px; top:35px;}
+.copy{ width:680px; margin-top:20px;}
+.copy a{ color:#666;}
+.copy ul{ margin-bottom:10px;}
+.copy li{ float:left; line-height:30px; margin-right:30px; font-size:16px;}
+.copy p{ line-height:30px; font-size:13px;}
+.copy img{ margin-top:10px;}
+/* 底部结束 */
+    </style>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap">
+    <{include file="block/top-header.html"}>
+    <!--top end-->
+    <div class="w1000 hauto mt5">
+        <div class="logo lt hauto cheerful_logo" id="jq_city_change">
+            <h1><a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/cheerful_green/static/images/index_logo_city.jpg" width="319" height="60" /></a></h1>
+            <div class="city">
+                <b><{$request.city.city_name}></b>
+                <{if $CONFIG.site.multi_city}>
+                <site><a href="<{link ctl='city'}>" id="jq_city_header_change">[&nbsp;切换城市&nbsp;]</a></site>
+                <{/if}>
+                
+            </div>         
+        </div>
+        <!--logo end-->
+        <!-- 搜索框-->
+		<div class="you_se">
+		<div class="tel_400"><a>咨询热线:</a><span>&nbsp;<b><{$CONFIG.site.phone}></b></span></div>
+        <div class="search lt">
+		<img src="<{$pager.theme}>/cheerful_green/static/images/super.jpg"  />
+        </div>    
+		</div>
+    </div>
+    <!-- //搜索框--> 
+    <div classs="cl"></div>
+    <!-- 主导航 -->
+    
+<div class="cl"></div>
+<div class="top_all_bg">
+
+<script type="text/javascript">(function(K, $){$(".menu_main").mouseover(function(){$(this).find("ul").show();}).mouseout(function(){$(this).find("ul").hide();});})(window.KT, window.jQuery);</script>
+<!-- //主导航 -->
+
+

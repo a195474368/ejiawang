@@ -1,0 +1,36 @@
+<{foreach from=$items item=item}>
+    <li>
+            <table cellspacing="0" cellpadding="0">
+               <tr>
+                        <th>标题</th>  <td><{$item.title}></td>
+                    </tr><tr>   
+                        <th>看标需要消耗金币</th> <td><{$item.gold}></td>
+                    </tr><tr>  
+                        <th>允许看标企业数</th> <td><{$item.num}></td>
+                    </tr><tr>  
+                        <th>参加看标的企业数</th> <td><{$item.num2}></td>
+                    </tr><tr>  
+                        <th>IP</th><td><{$item.create_ip}></td>
+                    </tr><tr>  
+                        <th>创建时间</th><td><{$item.dateline|format}></td>
+                    </tr><tr>  
+                        <th>操作</th>
+                        <td>
+                            <{if $lookIds[$item.id]}>
+                            已查看
+                            <{else}>
+
+                            <{if $item.num2 >=$item.num}>
+                            结束
+                            <{else}>
+                            <a href="<{link ctl='ucenter:tenderview' arg0=$item.id}>">查看</a>
+                            <{/if}>
+                            <{/if}>
+                        </td>
+
+                    </tr>
+
+
+            </table>
+    </li>
+    <{/foreach}>

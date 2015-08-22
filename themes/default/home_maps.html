@@ -1,0 +1,115 @@
+<{include file="block/header.html"}>
+<!--        主题部分开始        --->
+<div class="w1000 hauto bgwhite">
+    <!--  左面部分开始       -->
+    <div class="map_main_l lt">
+        <div class="map_main_l_t">
+            共有<font class="red" id='jq_total_nums'>0</font>条结果
+        </div>
+        <div class="map_main_l_b">
+
+        </div>
+        <div class="cl"></div>
+        <div class="return_list mt15">
+            <a href="<{link ctl='home:items'}>">返回列表模式>></a>
+        </div>
+    </div>
+    <!--  左面部分结束       -->
+    <!--  滑动部分开始       -->
+    <div class="map_main_c lt hauto">
+
+    </div>
+    <!--  滑动部分结束       -->
+    <!--  右面部分开始       -->
+    <div class="map_main_r lt hauto">
+        <div id='baidumap' style="width: 685px; height: 600px;"></div>
+    </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=824a595f958e444b737a5bc6325ad44f"></script>  
+    <!--  右面部分结束       -->                 		
+</div>           
+<div class="cl h20"></div> 
+<!--        主题部分结束        --->
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({cache: false});
+        var map = new BMap.Map("baidumap");
+        map.centerAndZoom("<{$request.city.city_name}>", 14);
+        map.addEventListener("load",function(){ //加载完成时
+            getResult();
+        });
+        map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+        
+        map.addEventListener("dragend", function() {
+            map.clearOverlays();
+            getResult();
+        });
+        window.markerData = [];    
+        window.infoWindowData = [];
+        function addMarker(data){
+            var point  = new BMap.Point(data.lng,data.lat);
+            window.markerData[data.id] = new BMap.Marker(point);
+            map.addOverlay(window.markerData[data.id]);
+            var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>"+data.name+"</h4>" + 
+            "<a target='_blank' href='"+data.link+"'><img style='float:right;margin:4px' id='baidu_pic_"+data.id+"' src='<{$pager.img}>/"+data.face_pic+"' width='139' height='104' title='"+data.name+"'/><a>" + 
+            "</div>";
+            
+            window.infoWindowData[data.id]= new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+            
+            window.markerData[data.id].setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            window.markerData[data.id].addEventListener("click", function(){          
+                this.openInfoWindow(window.infoWindowData[data.id]);
+             
+            });
+            window.markerData[data.id].openInfoWindow(window.infoWindowData[data.id]);
+        }
+        $(".map_main_l_b_1").live('mouseover',function(){
+             $(this).css('background','#F3F3F3').siblings().css('background','#FFFFFF');
+             var id = $(this).attr('rel');
+             window.markerData[id].openInfoWindow(window.infoWindowData[id]);
+        });
+        $(".map_main_l_b_1").live('mouseout',function(){
+           $(this).css('background','#FFFFFF')
+        }); 
+        function calldata(data){
+            var str = ' ';
+            var i = 0;
+            for(a in data){
+              i++;
+                addMarker(data[a]);
+                str+='<div rel="'+data[a].id+'" class="map_main_l_b_1 mt5"><div class="red_ico icobg"><font>'+i+'</font></div><p>';
+                            
+                str+='<a  target="_blank" title="'+data[a].name+'"  href="'+data[a].link+'"><font>'+data[a].name+'</font></a> - <a  target="_blank" title="'+data[a].name+'" href="'+data[a].link+'">详情>></a><br />';
+				str+='				地址：'+data[a].addr+'<br />';
+				str+='				电话:'+data[a].tel;
+                str+='            </p>';
+                str+='            <a  target="_blank" title="'+data[a].name+'"  href="'+data[a].link+'"><img src="<{$pager.img}>/'+data[a].face_pic+'" width="70" height="50"/></a>';
+                str+='       </div>';
+                
+            }
+            $(".map_main_l_b").html(str);
+        }
+        function getResult() {
+            var bs = map.getBounds();   //获取可视区域
+            var bssw = bs.getSouthWest();   //可视区域左下角
+            var bsne = bs.getNorthEast();   //可视区域右上角
+            $.post(
+                '<{link ctl="home:result"}>',
+                {'SO[lng_start]':bssw.lng,'SO[lng_end]':bsne.lng,'SO[lat_start]':bssw.lat,'SO[lat_end]':bsne.lat},
+                 function(data) {
+                    if(data.result){
+                       $("#jq_total_nums").html(data.total);
+                       calldata(data.result);
+                    }
+                },'json'
+            );
+        }
+       
+
+
+    });
+</script>
+
+<{include file="block/footer.html"}>           
+

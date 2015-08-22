@@ -1,0 +1,25 @@
+<{foreach $designers as $item}>
+<li>
+    <div class="mobile_tuan_b_all">
+        <a href="<{link ctl='designer:detail' arg0=$item.uid}>" class="a_designer"><img src="<{$pager.img}>/<{$user_list[$item.uid].face}>" width="70" height="70"/></a>
+        <div class="mobile_tuan_b_all_r lt">
+            <h4>
+                <a href="<{link ctl='designer:detail' arg0=$item.uid}>" class="block_lt"><{$user_list[$item.uid].realname}></a>
+                <span class="block rt">
+                    <a href="<{link ctl='designer:detail' arg0=$item.uid}>" class="block_lt boke_but">博客</a>
+                    <a href="<{link ctl='designer:detail' arg0=$item.uid}>" class="block_lt yuyue_but">预约</a>
+                </span> 
+            </h4>
+            <!--如若没有加入旗舰店和证书，则将i1和i2换成i11和i22则图标则会变灰色-->
+            <div class="cl"></div>
+            <p class="mt10">
+                <span>QQ:<b><{$item.qq}></b>  </span>
+            </p>
+            <div class="cl"></div>
+            <p class="mt7">
+                <span>自我介绍：<{$item.about|cutstr:20:'...'}></span>
+            </p>
+        </div>
+    </div>
+</li>
+<{/foreach}>

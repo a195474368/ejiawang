@@ -1,0 +1,39 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>装修日记</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>标题</th>
+        <th>小区</th>
+        <th>公司</th>
+        <th class="w-50">状态</th>
+        <th>创建IP</th>
+        <th class="w-100">创建时间</th>
+        <th class="w-50">是否审核</th>
+        <th>操作</th>
+    </tr>
+    <{foreach $items as $item}>
+    <tr>    
+
+        <td><{$item.title}></td>
+        <td><{$home_list[$item.home_id].name|default:'--'}></td>
+        <td><{$company_list[$item.company_id].name|default:'--'}></td>
+        <td><{$status[$item.status]}></td>
+        <td><{$item.create_ip}></td>
+        <td><{$item.dateline|format}></td>
+        <td><{if $item.audit==1}>已审核<{else}>待审核<{/if}></td>
+        <td>
+            <a href="<{link ctl='ucenter/diary:detail' arg0=$item.diary_id http=true}>" class="yzmbtn">日记文章</a>
+            <a href="<{link ctl='ucenter/diary:edit' arg0=$item.diary_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+        <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,3 @@
+<{foreach from=$data.items item=item}>
+<a href="<{$item.link}>"<{if $data.style}> style="<{$data.style}>"<{/if}><{if $data.class}> class="<{$data.class}>"<{/if}> title="<{$item.title}>"<{if $item.target}> target="<{$item.target}>"<{/if}>><img src="<{$pager.img}>/<{$item.thumb}>" alt="<{$item.title}>"<{if $adv.config.width}> width="<{$adv.config.width}>"<{/if}><{if $adv.config.height}> width="<{$adv.config.height}>"<{/if}>/></a>
+<{/foreach}>

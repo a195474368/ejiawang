@@ -1,0 +1,52 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+        	<a href="<{link ctl='shop:detail' arg0=$detail.shop_id}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second">优惠券详情</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+  <div class="mobile_main1 hauto"> 
+  	<div class="mobile_designer_blog">
+    	<div class="mobile_youhui_detail_t"> 
+        	<h2><{$detail.title}></h2>
+            <div class="mobile_youhuiquan_down">
+            	<div class="ico zhe_quan"></div>
+                <p>
+                	<span class="h10"></span>
+                	<span><{$shop.name|cutstr:20:''}></span>
+                    <span><i><{$detail.money}>元优惠券</i></span>
+                </p>
+            </div>
+            <p><a href="<{link ctl='shop:downloads' arg0=$detail.coupon_id}>" class="tuan_but1 mt10">下载到手机</a></p>
+        </div>
+        <div class="mobile_youhui_detail_c"> 
+            <p>已领取数：<i><{$detail.downloads}></i></p>
+        </div>
+        <div class="mobile_tuan_detail_b">
+      		<h2>优惠券详情</h2>
+            <div class="html_contents">
+                <{$detail.content}>
+            </div>
+            
+        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+     <div class="h45"></div>
+  </div>
+<!--主题部分结束-->
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

@@ -1,0 +1,25 @@
+<{include file="block/header.html"}>
+<div class="w1000">
+<div class="content mt10 mb10">
+<!--左侧-->
+	<div class="lt btnLBox">
+        <{foreach from=$items item=item}>
+        <a <{if $item.page == $page}>class="selectBtn"<{/if}> href="<{link ctl='about' arg0=$item.page}>"><{$item.title}></a>
+        <{/foreach}>
+    </div>
+<!--右侧-->
+	<div class="lt bgWhite aboutBox">
+	<div class="pad20">
+    	
+        <h1 class="f24 cOrange fontSW"><{$info.title}></h1>
+        <div class="h20"></div>
+        <div>
+            <{$info.content}>
+        </div>
+  
+    </div>
+    </div>
+    <div class="clearFloat h20"></div>
+</div>
+</div>
+<{include file="block/footer.html"}>

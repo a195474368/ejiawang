@@ -1,0 +1,5 @@
+<?php exit("Access Denied");?>
+note:System cache file, DO NOT modify me!
+hash:3f907958806edc72c50a0d9852c885ae:system_config_sms
+time:0
+data:YTo1OntzOjU6ImNvbWlkIjtzOjQ6IjIyNjYiO3M6OToic21zbnVtYmVyIjtzOjU6IjEwNjkwIjtzOjU6InVuYW1lIjtzOjg6ImVqaWF3YW5nIjtzOjY6InBhc3N3ZCI7czoxMDoiZWppYXdhbmdDQyI7czo2OiJtb2JpbGUiO3M6MTE6IjE4OTg2MDMyMTMyIjt9

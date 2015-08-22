@@ -1,0 +1,66 @@
+<{include file="ucenter/header.html"}>
+<div class="info_end lt hauto " style="width:770px;">
+    <form id='data_form' mini-form="ask" action="<{link ctl='ask:save'  http=true}>" method="post" target="_blank">
+        
+        <div >
+           问题：  <textarea id='data_title' style ="width:500px;height:60px" name='data[title]'><{$title|default:'在这里输入你的问题，有问必答'}></textarea>       
+        </div>
+        <div >
+         详细： <textarea id='data_intro' style ="width:500px;height:60px" name='data[intro]'>详细的描述您的问题，有利于更好的解答</textarea>   
+        </div>
+        
+        
+        <div class="question_style mt10 ml10">
+                        <span class="lt"><font class="f14">问题分类&nbsp;&nbsp;</font></span>
+                        <span class="selecct lt">
+                            <input type="hidden" name="data[cat_id]" value="0" id="J_cate_id"/>
+                            <select class="J_cate_select mgr10" style="min-width:100px;" data-pids="" data-pid="0" data-uri="<{link ctl='ask:cat' arg0='#pid#'}>"></select>
+                        </span>
+                        <input id='data_submit' type="image" src="<{$pager.theme}>/default/static/images/but.png"  class="rt"/>
+                    </div>
+        
+        
+        
+    </form>
+    
+    
+</div>
+ <script type="text/javascript"  src="<{$pager.res}>/script/jquery.cate_select.js"></script>
+    <script>
+       (function(K, $) {
+           
+            $("#data_submit").click(function(e){
+                e.preventDefault();
+                if($("#data_title").val() == '在这里输入你的问题，有问必答'){
+                    Widget.MsgBox.error('请输入您要提交的问题！'); 
+                }else{
+                    if( $("#data_intro").val() == '详细的描述您的问题，有利于更好的解答'){
+                        $("#data_intro").val('');
+                    }
+                    $("#data_form").submit();
+                }
+            });
+            $("#data_title").focus(function() {
+                if ($(this).val() == '在这里输入你的问题，有问必答') {
+                    $(this).val('');
+                }
+            }).focusout(function() {
+                if ($(this).val() == '') {
+                    $(this).val('在这里输入你的问题，有问必答');
+                }
+            });
+            $("#data_intro").focus(function() {
+                if ($(this).val() == '详细的描述您的问题，有利于更好的解答') {
+                    $(this).val('');
+                }
+            }).focusout(function() {
+                if ($(this).val() == '') {
+                    $(this).val('详细的描述您的问题，有利于更好的解答');
+                }
+            });
+            $('.J_cate_select').cate_select();
+       })(window.KT, window.jQuery);
+
+    </script>
+   
+<{include file="ucenter/footer.html"}>

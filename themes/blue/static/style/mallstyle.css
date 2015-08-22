@@ -1,0 +1,55 @@
+/* CSS Document */
+
+.mall_main_l_r h2{color:#0285BD;}
+.mall_main_t_l ul li .mall_main_l_l p a:hover{color:#0285BD;}
+.mall_main_l_r p a:hover{color:#0285BD;}
+.mall_sale_t a.a42 {
+float: left;
+width: 50px;
+text-align: right;
+color: #0285BD;
+font-size: 12px;
+}
+.mall_sale_t ul li b {
+font-size: 18px;
+display: block;
+width: 18px;
+height: 16px;
+left: 30px;
+top: 16px;
+position: absolute;
+overflow: hidden;
+color: #0285BD;}
+.mall_sale_t ul li:hover, .current24 {
+border-bottom: 2px solid #0285BD;
+}
+.mall_main_t_r_b_ul ul li:hover, .current25 {
+border-bottom: 2px solid #0285BD;
+width: 80px;
+}
+.mall_main_t_product ul li i b,.mall_basic_jcjc_b ul li p b{color:#0285BD;}
+.mall_basic_jcjc_b ul li p a.a43{color:#0285BD;}
+.mall_title_r p a{color:#0285BD;}
+.mall_title_r ul li a:hover{color:#0285BD;}
+.mall_list_r_b_title h3{color:#0285BD;}
+.mall_list_r_b_title p{font-size: 14px;
+font-weight: bold;
+color:#0285BD;
+line-height: 45px;}
+.mall_list_r_b_title a.on {
+background: #0285BD!important;
+color: white;}
+.mall_list_paihang ul li p i{color:#0285BD;}
+.mall_list_shunxu {
+width: 100%;
+height: 32px;
+line-height: 32px;
+border-top: 1px solid #0285BD;
+
+}
+.mall_basic_jcjc_b ul li p a.a44 {
+color: white;
+background: #0285BD;
+border-radius: 5px;
+}
+.mall_list_shunxu span.span92 i{color:#0285BD}

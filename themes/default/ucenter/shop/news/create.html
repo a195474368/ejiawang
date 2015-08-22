@@ -1,0 +1,17 @@
+<{include file="ucenter/header.html"}>
+<div class="set_c2"><h3 class="header_left">添加活动资讯</h3><a href="<{link ctl='ucenter/shop/news:index'}>" class="wytw">活动资讯</a></div>
+<form mini-form="company" action="<{link ctl='ucenter/shop/news:create'}>" method="post">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>类型：</th><td><select name="data[from]" class="select w-100"/><option value="news">资讯</option><option value="active">活动</option></select></td></tr>
+    <tr><th><span class="red">*</span>内容：</th><td><textarea name="data[content]" kindeditor="simple" style="width:600px;height:250px;"></textarea><br /></td></tr>
+    <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>
+</form>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $) {
+var editor = KindEditor.create('textarea[kindeditor]', $.extend({}, window.KindEditor_Simple,{uploadJson : '<{link ctl="magic:editorupload"}>'}));
+})(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

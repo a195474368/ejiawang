@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <{include file="block/sheader.html"}>
+    <body>
+        <iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+        <div id="wrap">
+            <!-- 主题部分开始     -->
+            <div class="designer_detail_bg">
+				<div class="designer_opacity"></div>
+                <!--  导航区域开始   -->
+                <div class="designer_detail_bg_t">
+                    <div class="w1000 designer_son_nav">
+                        <a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/default/static/images/son_logo.png" width="185" height="60" /></a>
+                        <ul>
+                            <li><a href="\">首页</a></li>
+                            <li><a href="<{link ctl='case'}>">效果图</a></li>
+                            <li><a href="<{link ctl='gs'}>">找装修公司</a></li>
+                            <li><a href="<{link ctl='designer'}>">找设计师</a></li>
+                            <li><a href="<{link ctl='tenders'}>">我要装修</a></li>
+                        </ul>
+                        <p class="rt mt10">
+
+
+                            <{if $MEMBER.uname}>
+                            <a href="<{link ctl='ucenter/member:index' http=true}>"  >  <{$MEMBER.uname}>您好！</a><font class="white">&nbsp;|&nbsp;</font><a  href="<{link ctl='passport:loginout'}>">退出</a>
+                            <{else}>
+                            <a href="<{link ctl='passport-signup' http=true}>" >注册</a><font class="white">&nbsp;|&nbsp;</font>
+                            <a href="<{link ctl='passport' http=true}>" >登录</a>
+
+                            <{/if}>
+
+                        </p>
+                    </div>
+
+                </div>
+                <!-- 导航区域结束  -->
+               
+                <div class="cl"></div>
+
+                <!-- 设计师简介开始 -->
+                <div class="designer_describe w1000  mt40">
+                    <div class="designer_describe_l lt bgwhite">
+                        <a title="<{$member.realname}>的博客" href="<{link ctl='blog' arg0=$member.uid}>"><img src="<{$pager.img}>/<{$member.face}>" width="200" height="200" /></a>
+                        <div class="lt designer_ms">
+                            <p class="mb20"></p>
+                            <h2><{$designer.realname}></h2>
+                            <p>公司：<{if $company}><a title="<{$company.name}>" target="_blank" href="<{link ctl='company' arg0=$company.company_id}>" class="black8"><{$company.sort_name}></a><{/if}></p>
+                            <p>毕业于：<{$designer.school}></p>                          
+                            <a mini-load='委托设计' href="<{link ctl='designer:yuyue' arg0=$member.uid http='empty'}>" class="block a10 orgbgg mt15">委托设计</a>
+                        </div>
+                    </div>
+                    <div class="designer_describe_r lt">
+                        <{foreach from=$designer_values item=item name=loop}>
+                        <p class="p29 bodr_b_x <{if $smarty.foreach.loop.index ==0}>mt15<{/if}>"><b ><{$item.title}>:</b>
+
+                            <{foreach from=$item.values item=it}>
+                            <{if in_array($it.attr_value_id,$myattr)}>
+                            <span style="margin-left: 5px;"><{$it.title}></span>
+                            <{/if}>
+                            <{/foreach}>
+                        </p>
+                        <{/foreach}>
+                        <p class="p29 bodr_b_x"><b>个人简介: </b><{$designer.txt|cutstr:100:'...'}> <font color="red"><a mini-load='委托设计' href="<{link ctl='designer:yuyue' arg0=$member.uid http='empty'}>">立级预约</a></font></p>
+                        <!-- <p class="p29"></p> -->
+                    </div>
+
+                </div>
+                <!-- 设计师简介结束 -->
+                <div class="cl"></div>
+                <!--  设计师案例开始 -->
+
+                <{foreach from=$case item=item name=ct}>
+                <div class="designer_case w1000 hauto mt20">
+                    <div class="designer_case_l lt bgwhite">
+                        <h3 class="ml20 mt20"><a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></h3>
+                        <ul>
+                            <{if $item.lastphotos}>   
+                            <{foreach from=$item.lastphotos item=item2 name=loop}>
+                            <{if $smarty.foreach.loop.index < 4}>
+                            <li><a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photos[$item2].photo}>" width="260" height="180"/></a></li>
+
+                            <{/if}>
+                            <{/foreach}>
+                            <{/if}>
+                        </ul>
+                        <div class="cl"></div>
+                        <div class="h30"></div>
+                    </div>
+                    <div class="designer_case_r lt">
+                        <p>
+                            <span class="block f18"><b>Case<{$smarty.foreach.ct.index+1}></b></span>
+
+                            <span class="span_case">案例名称：<{$item.title}></span>
+                            <{foreach from=$case_values item=itemcase name=loop}>
+                            <span class="span_case"><{$itemcase.title}>:
+
+                                <{foreach from=$itemcase.values item=it}>
+                                <{if $item.attr[$it.attr_value_id]}>
+                                <{$it.title}> &nbsp;&nbsp;
+                                <{/if}>
+                                <{/foreach}>
+                            </span>
+                            <{/foreach}>
+
+                            <span class="span_case">人气指数：<{$item.views}></span>
+                            <span class="span_case">喜欢数量：<{$item.likes}></span>
+                            <span class="span_case1">
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>">
+                                    案例描述：<{$item.intro|cutstr:100:'..'}>
+                                </a>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+                <{/foreach}>
+                
+                <div class="designer_case w1000 bgwhite hauto mt20">
+                	<div class="page">
+                   		<{$pager.pagebar}>
+                    </div>
+                </div>
+                <div class="h20"></div>
+
+				</div>
+             
+                <{include file="block/footer.html"}>              

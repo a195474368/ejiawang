@@ -1,0 +1,32 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>装修日记:<{$diary.title}></b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>状态</th><th>创建IP</th><th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    <{foreach $items as $item}>
+    <tr>    
+
+        <td><{$status[$item.status]}></td>
+        <td><{$item.create_ip}></td>
+        <td><{$item.dateline|format}></td>
+        <td>
+            <a href="<{link ctl='ucenter/diary:detailEdit' arg0=$item.detail_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+        <td  colspan="20" class="page-list"> <a href="<{link ctl='ucenter/diary:detailCreate' arg0=$diary_id http=true}>" class="yzmbtn">写文章</a></td>
+    </tr>
+    
+     <tr>
+            <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

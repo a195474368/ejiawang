@@ -1,0 +1,175 @@
+/*公共样式
+Time:2013-11-4
+AUctor:zhangpeng
+*/
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, 
+textarea, iframe, table, th, td {margin: 0;padding: 0;}
+body{font:12px/1.6 "微软雅黑";color:#666666;/*IE下容器居中*/}
+h1,h2,h3,h4,h5,h6{text-align:left;}
+ul,li{list-style:none;}
+a,img,a img{border:0 none;}
+a{text-decoration:none;cursor:pointer;}
+a:hover{text-decoration:underline;}
+input,select{outline:none} 
+textarea{ outline:0; resize:none;text-align:left;}
+form submit,form img,form reset,form button{cursor:pointer;}
+.block_lt{display:block;float:left;}
+.lt{float:left; display:inline;}
+.rt{float:right; display:inline;}
+
+.cl{clear:both;}
+.f12{font-size:12px;}
+.f14{font-size:14px;}
+.f16{font-size:16px;}
+.f17{font-size:17px;}
+.f18{font-size:18px;}
+.f20{font-size:20px;}
+.f22{font-size:22px;}
+.f24{font-size:24px;}
+.f28{font-size:28px;}
+.f100{font-size:100px;}
+.f68{font-size:68px;}
+.ftsb{font-size:17px;font-weight:bold;color:#888888;}
+#wrap{text-align:left;}
+.index_b_bg{background:url(../images/body_bg.jpg) repeat;width:100%;}
+.w400{width:400px;}
+.w600{width:600px; margin:0 auto; overflow:hidden; zoom:1;}
+.w960{width:960px; margin:0 auto; overflow:hidden; zoom:1;}
+.w980{width:1180px; margin:0 auto; overflow:hidden; zoom:1;}
+.w900{width:900px; margin:0 auto; overflow:hidden; zoom:1;}
+.w1000{width:1200px;; margin:0 auto; overflow:hidden; zoom:1; position:relative}
+
+.w960d{width:960px; margin:0 auto; overflow:hidden; zoom:1;margin-left:50px;}
+.pc_overflow{overflow:hidden; zoom:1;}
+.none{display:none;}
+.block{display:block;}
+.h5{height:5px;}
+.h10{height:10px;}
+.h20{height:20px;}
+.h30{height:30px;}
+.h80{height:80px;}
+
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.mauto{margin:0 auto;}
+.mt3{margin-top:3px;}
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt20{margin-top:20px;}
+.mt25{margin-top:25px;}
+.mt30{margin-top:30px;}
+.mt40{margin-top:40px;}
+.mt50{margin-top:50px;}
+.mt200{margin-top:200px;}
+.ml10{margin-left:10px;}
+.ml15{margin-left:15px;}
+.ml20{margin-left:20px;}
+.ml30{margin-left:30px;}
+.ml5{margin-left:5px;}
+.ml10{margin-left:10px;}
+.ml20{margin-left:20px;}
+.ml25{margin-left:25px;}
+.ml60{margin-left:60px;}
+.ml160{margin-left:160px;}
+.mr15{margin-right:15px;}
+.mr17{margin-right:17px;}
+.mr10{margin-right:10px;}
+.mr20{margin-right:20px;}
+.mr30{margin-right:30px;}
+.mb10{margin-bottom:10px;}
+.mb15{margin-bottom:15px;}
+.mb20{margin-bottom:20px;}
+.mb30{margin-bottom:30px;}
+.mb50{margin-bottom:50px;}
+.ftw{font-weight:bold;}
+.bodrno{border:none;}
+.bodr{border:1px solid #E1E1E1;}
+.bodr_r{border-right:1px solid #E1E1E1;}
+.bodr_b{border-bottom:1px solid #D8D8D8;}
+.bodr_b_x{border-bottom:1px dashed #D8D8D8;}
+.green{color:#B5FF00; font-weight:bold;}
+.green1{color:#34A452;}
+.red{color:#E53336;}
+.org{color:#FE8007;}
+.black8{color:#888888;}
+.black{color:#666666;}
+.blackb{color:#454545;}
+.zongse{color:#934519;}
+.white{color:#FFFFFF;}
+.blue{color:#60BAF4;}
+.bgwhite{background:#FFFFFF;}
+.hauto{height:auto;overflow:hidden;}
+.bodr_bgwhite{background:#FFFFFF;border:1px solid #E1E1E1;}
+
+/*登录注册的body背景*/
+.bo_bg{width:100%;height:910px;overflow:hidden;}
+.login_top img{margin-top:35px;}/*登录注册的body背景*/
+
+/*top公共样式*/
+.top{width:100%;height:30px;background:#F7F7F7;border-bottom:1px solid #EEEEEE;}
+.information_top{height:30px;line-height:30px;}
+.information_t_l a{color:#666;}
+.information_t_l a:hover,.information_r ul li span{color:#E53336;text-decoration:none;}
+.information_t_l{width:240px;}
+.information_r{ width: auto; overflow-x:hidden; }
+.information_r ul li{float:left;padding:0 10px;}
+.information_r ul li a{color:#888888;}
+.logo{width:615px;}
+.logo h1{float:left;}
+.city{float:left;width:241px;margin:30px 0 0 20px;}
+.city b{font-size:14px;}
+.city a{color:#888888;}
+.city_list{width: 400px;height: auto;overflow: hidden;z-index: 50000;padding: 10px 15px;border: solid 1px #329132;background: white;box-shadow: 1px 2px 5px #666;color: #444;top: 156px;left: 722px;position: absolute;}
+.all_city b{font-size:14px;}
+.all_city a,.city_p a{padding-left:8px;color:#329132;font-size:14px;}
+.city_p b{display:block;width:22px;height:22px;background:#D5D6D5;line-height:22px;text-align:center;float:left;}
+.infobg{width:100%;height:1275px;overflow:hidden;background:#fff url(../images/info_bg.png) no-repeat right center;}
+.search{width:381px;}
+.search p{margin-left:37px;margin-top:7px;}
+/*top公共样式*/
+/*menu end 导航公共样式*/
+.menu_bg{width:100%;height:40px;}
+.red_bg{background:#E53336;}/*导航背景颜色*/
+.menured_bg{background:url(../images/bg01.jpg) repeat;}
+
+.menu_ul{ display:  block}
+.menu .menu_main{float:left; width:110px;background:url(../images/li_bg.png) no-repeat right center;}
+
+.menu .menu_main a{font-size:14px;color:#FFF;font-weight:bold; text-decoration:none; display:block;padding:0 10px; width: 90px; height:39px;line-height:39px;text-align:center;}
+.menu .menu_main .menu_main_a:hover,.menu_son li a:hover,.current9{background:url(../images/bg-02.jpg) repeat;}
+
+.menu_son{position:absolute; z-index: 10000;}
+.menu_son li{width:110px;background:#E53336;z-index:9999;}
+
+
+/*menu end 导航公共样式*/
+
+.baocun{width:150px;height:39px;border:none;color:#FFF;font-size:18px;font-weight:bold;line-heighht:39px; cursor:pointer;}
+.redbg{background:#E53336;}/*红色保存按钮背景*/
+.denglu,.zhuce,.login_free_zhuce{width:121px;height:36px;border:none;background:#E53336;line-height:36px;color:#FFF; cursor:pointer;font-size:18px;
+font-weight:bold;border-radius:2px;}
+.now_zhuce{display:block;width:142px;height:35px;border:none;background:#E53336;line-height:35px;color:#FFF; cursor:pointer;font-size:16px;text-align:center;border-radius:2px;}
+.bluebg{background:#10C8C8;}/*蓝色提交按钮背景*/
+
+.redbgg{background:#FF401A;}
+.redbgm{background:#E53336;}
+.greenbg{background:#00A27E;}
+.green_l_bg{background:#59C883;}
+.greenbgg{background:#5BB009;}
+.bluebgg{background:#32A8FA;}
+.graybg{background:#E6E6E6;}
+.graybgg{background:#C6C6C6;}
+.orgbg{background:#FF9C00;}
+.orgbgg{background:#FE8007;}
+
+.applebg{background:#CDC600;}
+.pinkbg{background:#FA898F;}
+.pinkbgg{background:#F46264;}
+.tel_400{    width: 333px;
+    height: 30px;
+    float: right;
+}
+.tel_400 a{ font-size:16px}
+.tel_400 span{ font-size:20px;color:red}

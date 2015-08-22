@@ -1,0 +1,28 @@
+<{include file="ucenter/header.html"}>
+<div class="set_c2"><h3 class="header_left">商品管理</h3><a href="<{link ctl='ucenter/product:create'}>" class="wytw" title="添加商品">添加商品</a></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr>
+        <th class="w-50">图片</th><th>标题</th><th class="w-50">店铺价</th><th class="w-50">类型</th><th class="w-50">点评数</th>
+        <th class="w-50">预约数</th><th class="w-50">审核</th><th class="w-100"></th>
+    </tr>
+    <{foreach $items as $item}>
+    <tr id="item-<{$item.product_id}>">
+        <td>
+            <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" target="_blank"><img src="<{$pager.img}>/<{$item.photo}>_small.jpg" photo="<{$pager.img}>/<{$item.photo}>_thumb.jpg" class="wh-50" style="margin:3px;"></a>
+        </td>
+        <td><a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" target="_blank"><{$item.title}></a></td>
+        <td>￥<{$item.price}></td><td><{if $item.sale_type == 2}>限量抢购<{elseif $item.sale_type == 1}>即时抢购<{else}>普通<{/if}></td><td><{$item.comments}></td>
+        <td><{$item.books}></td><td><{if $item.audit}>已发布<{else}><strong style="color:red">待审核</strong><{/if}></td>
+        <td>
+            <a href="<{link ctl='ucenter/product:photo' arg0=$item.product_id}>" mini-iframe="商品相册">相册</a>
+            <a href="<{link ctl='ucenter/product:edit' arg0=$item.product_id}>" >编辑</a>
+            <a href="<{link ctl='ucenter/product:delete' arg0=$item.product_id}>" mini-act="remove:item-<{$item.product_id}>" mini-confirm="您确定要删除该商品吗？">删除</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="10"><p class="textc">还没有添加商品</p></td></tr>
+    <{/foreach}>
+</table>
+<p class="page"><{$pager.pagebar}></p>
+
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,24 @@
+/* CSS Document */
+.topso {background:url(../images/topso.png) no-repeat;
+width: 381px;
+height: 38px;
+display: inline-block;}
+.currentred{background:#0285BD;}
+.tuanzhuang_join p{color:#666;}
+.tuanzhuang_join p i{color:#0285BD}
+.now_cantuan{background: url(../images/join_but.png) no-repeat;}
+.tuanzhuang_show p i{color:#0285BD;}
+.case_attr_hover{background: #33A5E5;}
+.tenders_type_hover{background: url(../images/a_bg.png) no-repeat left bottom;}
+.tuangzhuang_search_l{background:#0285BD;}
+.tuanzhaung_search_r p i{color:#0285BD;}
+.tuanzhang_none a {
+display: block;
+width: 120px;
+height: 30px;
+background: #0285BD;
+line-height: 30px;
+text-align: center;
+margin: 30px auto;
+font-size: 16px;
+color: white;}

@@ -1,0 +1,51 @@
+<{include file='mobile:block/header.html'}>
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+            <a href="<{link ctl='index'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second">我的管理中心</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+  <div class="mobile_main1 hauto"> 
+  	<div class="mobile_designer_blog">
+    	<div class="mobile_blog_t">
+            	<p class="h10"></p>
+                <a href="<{link ctl='ucenter'}>" class="design_img"><img src="<{$pager.img}>/<{$MEMBER.face_80}>" width="70" height="70"/></a>
+                <p class="designer_jieshao mt10">
+                    <a href="<{link ctl='ucenter'}>" class="lt"><{$MEMBER.uname}></a><i class="lt" style=" color: red; "><{$MEMBER.from_title}></i>
+                  	<span class="block cl"></span>
+                    <span class="block mt7"><i class="block_lt jinbi_ico"></i><a href="<{link ctl='ucenter'}>" class="block_lt">我的金币&nbsp;：&nbsp;<b><{$MEMBER.gold}></b></a></span>
+                   
+                </p>
+            </div>
+        <div class="cl"></div>
+        <div class="mobile_register">
+            <div class="mobile_register_t">
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:info'}>">基本信息</a></i></p>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:passwd'}>">修改密码</a></i></p>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:mail'}>">修改邮箱</a></i></p>
+            <{if $MEMBER.from =='designer'}>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:designer'}>">预约设计</a></i></p>
+            <{elseif  $MEMBER.from =='company'}>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:companyyuyue'}>">预约管理</a></i></p>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:companydesign'}>">预约设计</a></i></p>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:tenderin'}>">招标管理</a></i></p>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:kehu'}>">我的客户</a></i></p>
+            <{elseif  $MEMBER.from =='shop'}>
+            <p class="i_left_ico"><i><a href="<{link ctl='ucenter:order'}>">订单管理</a></i></p>          
+            <{else}>
+                <p class="i_left_ico"><i><a href="<{link ctl='ucenter:tender'}>">我的招标</a></i></p>
+            <{/if}>
+            </div>
+            <div class="mobile_register_c"><a href="<{link ctl='passport:loginout'}>" class="register_but mt10">退出登录</a></div>
+   	 </div>
+    </div>
+    <div class="h45"></div>
+ 
+ 
+ 
+ </div>
+<!--主题部分结束-->
+ <{include file='mobile:block/footer.html'}>

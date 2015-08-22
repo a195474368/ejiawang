@@ -1,0 +1,70 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+        <th><{$MOD.title}></th>
+        <td align="right"><{link ctl="home/site:index" priv="hidden" class="button"}></td>
+        <td width="15"></td>
+      </tr>
+    </table>
+</div>
+<div class="page-data"><form action="?home/site-edit.html" mini-form="site-form" method="post" ENCTYPE="multipart/form-data">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+<input type="hidden" name="site_id" value="<{$detail.site_id}>"/>
+<tr><th class="w-100">城市：</th><td>
+<label>城市:<select name="data[city_id]" class="w-100"><{widget id="data/city" value=$detail.city_id}></select></label>
+<label>地区:<select name="data[area_id]" class="w-100"><{widget id="data/area" value=$detail.area_id city_id=$detail.city_id}></select></label>
+</td></tr>
+<tr><th>小区：</th>
+	<td>
+		<input type="hidden" name="data[home_id]" value="<{$detail.home_id}>" id="case_home_id"/>
+		<input type="text"  value="<{if $home.name}><{$home.name}><{/if}>" id="case_home_name" class="input w-300" readonly="readonly"/>
+        <{link ctl="home/main:dialog" select="mini:#case_home_id,#case_home_name/N/选择小区" class="button"}>
+	</td>
+</tr>
+<tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-300"/></td></tr>
+<tr><th>装修公司：</th>
+    <td>
+    <input type="hidden" name="data[company_id]" value="<{$detail.company_id}>" id="case_company_id"/>
+    <input type="text"  value="<{$company.name}>" id="case_company_name" class="input w-300" readonly="readonly"/>
+    <{link ctl="company/company:dialog" id="select_company_btn" class="button"}>    
+    </td>
+</tr>
+<tr><th><span class="red">*</span>缩略图：</th><td><input type="file" name="data[face_pic]" class="input w-100" /></td></tr>
+<tr><th>地址：</th><td><input type="text" name="data[addr]" value="<{$detail.addr|default:''}>" class="input w-300"/></td></tr>
+<tr>
+    <th>审核：</th>
+    <td>
+	<label><input type="radio" name="data[audit]" <{if $detail.audit}>checked="checked"<{/if}> value="1"/>是</label>&nbsp;&nbsp;
+	<label><input type="radio" name="data[audit]" <{if empty($detail.audit)}>checked="checked"<{/if}> value="0"/>否</label>
+    </td>
+</tr>
+
+<tr><th>工地简介：</th><td><textarea name="data[intro]" class="textarea"><{$detail.intro}></textarea><br /></td></tr>
+
+    <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+</table>
+</form></div>
+<script type="text/javascript">
+(function(K, $){
+$("select[name='data[city_id]']").live('change', function(){
+	var city_id = $(this).val();
+	if(!city_id){return false;}
+	$.getJSON("?data/area-city-"+city_id+".html", function(ret){
+		if(ret.error){
+			Widget.MsgBox.error(ret.message.join(","));
+		}else if(ret.areas.length>0){
+			var html = "";
+			for(var i=0; i<ret.areas.length; i++){
+				html += '<option value="'+ret.areas[i].area_id+'">'+ret.areas[i].area_name+'</option>';
+			}
+			$("select[name='data[area_id]']").html(html);		
+		}else{
+			$("select[name='data[area_id]']").html('<option value="">--</option>');
+		}
+	});
+});
+})(window.KT, window.jQuery);
+</script>
+<{include file="admin:common/footer.html"}>

@@ -1,0 +1,52 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>我的招标客户</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>客户</th>
+        <th>称呼</th>  
+        <th>电话</th>  
+        <th>IP</th>
+        <th>创建时间</th>
+        <th>操作</th>
+        <th>信息</th>
+
+    </tr>
+
+    <{foreach $items as $item}>
+    <tr> 
+        <td><{$tenders[$item.tenders_id].title}></td>
+        <td><{$tenders[$item.tenders_id].name}></td>
+        <td><{$tenders[$item.tenders_id].mobile}></td>
+        <td><{$item.create_ip}></td>
+        <td><{$item.dateline|format}></td>
+        <td>
+            <{if $item.is_signed == 1}>
+            <a href="<{link ctl='ucenter/tenders:tracking' arg0=$item.look_id http=true}>" class="yzmbtn" style=" color: red; "> 恭喜签单</a>
+            <{else}>
+            <a href="<{link ctl='ucenter/tenders:tracking' arg0=$item.look_id http=true}>" class="yzmbtn">跟踪</a>
+            <{/if}>
+        </td>
+
+        <!-- 判断有几条回复信息 -->
+        <td>
+
+            <{if $tenders_ides[$tenders[$item.tenders_id].id] == $tenders[$item.tenders_id].id }><font style=" color: red;">
+                您有一条新回复</font>
+            <{else}>
+                没有信息
+            <{/if}>
+
+        </td>
+
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+          <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

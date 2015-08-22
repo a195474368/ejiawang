@@ -1,0 +1,119 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+<div class="mobile_top">
+    <div class="mobile_top_son">
+        <a href="<{link ctl='index'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+        <div class="detail-second">材料商<i><a href="<{link ctl='city'}>"><{$request.city.city_name}></a>&nbsp;<img src="images/xia_white_ico.png" /></i></div>
+         <a href="###" class="detail-third1">
+            	分类
+            </a>
+              <!--弹出层开始-->
+              <div class="mobile_show2 none" style="height:  auto;overflow: hidden;">
+                <ul>
+                    <li><a href="<{link ctl='shop'}>"><b>全部商家</b></a></li>
+                     <{foreach from=$cate_list item=item}>
+                     <{if empty($item.parent_id)}>
+                    <li> <a title="<{$item.title}>"  href="<{link ctl='shop:items' arg0=$item.cat_id}>"><{$item.title}></a></li>
+                    <{/if}>
+                    <{/foreach}>
+                </ul>
+			</div>
+			<!--弹出层结束-->
+            <script>
+				$(document).ready(function(){
+					$(".mobile_top_son a.detail-third1").toggle(
+						function(){
+						$(".mobile_show2").show();
+						},
+						function(){
+						$(".mobile_show2").hide();
+						}
+					);
+					
+					$(".mobile_show2").click(function(){
+						$(this)	.hide();
+					});
+				});
+			</script>
+    </div>
+</div>
+<div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+<div class="mobile_main hauto">
+    <div class="mobile_material">
+        <ul>
+
+            <{foreach $items as $shop}>
+            <li>
+                <div class="mobile_material_all">
+                    <div class="mobile_material_all_t">
+                        <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>"><img src="<{$pager.img}>/<{$shop.logo}>" width="68" height="68"/></a>
+                        <div class="mobile_material_all_r lt">
+                            <h4>
+                                <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>" class="block_lt"><{$shop.name|cutstr:18:'..'}></a>
+                                <span class="block rt mt10">
+                                    <i class="block_lt ico <{if $shop.is_vip}>i1<{else}>i11<{/if}>"></i>
+                                    <i class="block_lt ico <{if $shop.is_vip}>i2<{else}>i22<{/if}>"></i>
+                                    <i class="block_lt ico <{if $shop.is_vip}>i3<{else}>i33<{/if}>"></i>
+                                    <i class="block_lt ico <{if $shop.is_vip}>i4<{else}>i44<{/if}>"></i>
+                                </span> 
+                            </h4>
+                            <!--如若没有加入旗舰店和证书，则将i1和i2,i3,i4换成i11和i22,i33,i44则图标则会变灰色-->
+                            <div class="cl"></div>
+                            <p class="mt10">
+                                <span class="block_lt ico span_map"></span>
+                                <span class="block_lt">
+                                    <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>"><{$shopex[$shop.shop_id].address|cutstr:30:'..'}></a><br />
+                                    <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>">联系电话：<{$shop.phone}></a>
+                                </span>
+
+                            </p>
+                            <div class="cl"></div>
+                        </div>
+                    </div>
+                    <div class="cl"></div>
+
+                </div>
+            </li>
+            <{/foreach}>
+
+        </ul>
+
+    </div>
+    <div id="jq_loding" style=" height: 20px; text-align: center; "></div>
+    <div class="h45"></div>
+
+
+
+
+
+</div>
+<script>
+    var num = 1;
+    var nextpage = '<{$nextpage}>';
+    var lock = 0;
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if (!lock && $(window).scrollTop() == $(document).height() - $(window).height()) {
+                lock = 1;
+                num++;
+                var link = nextpage.replace('{page}', num);
+                $("#jq_loding").html('正在加载中...');
+                $.get(link, function(data) {
+                    if (data != 0) {
+                        $("#jq_loding").html('');
+                        $(".mobile_material ul").append(data);
+                        lock = 0;
+                    } else {
+
+                        $("#jq_loding").html('没有数据了.....');
+                    }
+                }, 'html');
+            }
+        });
+
+    });
+</script>
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

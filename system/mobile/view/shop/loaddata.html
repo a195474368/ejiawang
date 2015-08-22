@@ -1,0 +1,33 @@
+   <{foreach $items as $shop}>
+            	<li>
+                    <div class="mobile_material_all">
+                    	<div class="mobile_material_all_t">
+                            <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>"><img src="<{$pager.img}>/<{$shop.logo}>" width="68" height="68"/></a>
+                            <div class="mobile_material_all_r lt">
+                            	<h4>
+                                	<a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>" class="block_lt"><{$shop.name|cutstr:18:'..'}></a>
+                                    <span class="block rt mt10">
+                                    	<i class="block_lt ico <{if $shop.is_vip}>i1<{else}>i11<{/if}>"></i>
+                                        <i class="block_lt ico <{if $shop.is_vip}>i2<{else}>i22<{/if}>"></i>
+                                        <i class="block_lt ico <{if $shop.is_vip}>i3<{else}>i33<{/if}>"></i>
+                                        <i class="block_lt ico <{if $shop.is_vip}>i4<{else}>i44<{/if}>"></i>
+                                    </span> 
+                                </h4>
+                                <!--如若没有加入旗舰店和证书，则将i1和i2,i3,i4换成i11和i22,i33,i44则图标则会变灰色-->
+                                <div class="cl"></div>
+                                <p class="mt10">
+                                	<span class="block_lt ico span_map"></span>
+                                    <span class="block_lt">
+                                    	<a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>"><{$shopex[$shop.shop_id].address|cutstr:30:'..'}></a><br />
+                                        <a href="<{link ctl='shop:detail' arg0=$shop.shop_id}>">联系电话：<{$shop.phone}></a>
+                                    </span>
+                                    
+                                </p>
+                                <div class="cl"></div>
+                            </div>
+                        </div>
+                        <div class="cl"></div>
+                    
+                    </div>
+                </li>
+                <{/foreach}>

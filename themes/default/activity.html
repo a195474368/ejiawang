@@ -1,0 +1,111 @@
+<{include file="block/header.html"}>
+<!--menu--> 
+<!----------头部和导航公共部分------------>
+<!--        主题部分区域开始        --> 
+<div class="index_b_bg hauto">
+    <!--        banner开始     -->
+    <div class="acitivity_banner w1000 mt15 bgwhite">
+        <div class="acitivity_banner_t" style="width: 980px;">
+            <div id="acitivity_banner_t" kinBox='{"height":250}'>  <{widget id="adv" name="活动列表头部轮播动画" city_id=$request.city_id limit="5"}></div>
+        </div>
+    </div>
+    <!--        banner结束     -->
+    <!--        建材活动公益活动团庄活动开始-->
+    <div class="w1000 acitivity_main mt20 hauto">
+
+        <!--左面开始-->
+        <div class="acitivity_l lt hauto">
+            <div class="acitivity_l_title">
+                <ul>
+                    <{foreach $cateList as $item}>
+                    <li><a title="<{$item.title}>" href="<{link ctl='activity:items' arg0=$item.cat_id}>" class="black" <{if $cate_id == $item.cat_id}>style="color: red;" <{/if}> ><{$item.title}></a></li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <div class="cl"></div>
+            <div class="acitivity_l_b hauto bgwhite mt10 acitivity_l_b_0">
+                <ul>
+                    <{foreach $items as $item}>
+                    <li>
+                        <a title="<{$item.title}>" target="_blank" href="<{link ctl='activity:detail' arg0=$item.id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="300" height="210" /></a>
+                        <div class="acitivity_li_r lt">
+                            <h2>
+                                【<{$cityList[$item.city_id].city_name}>】<{$item.title}>
+                            </h2>
+                            <p class="h20"></p>
+                            <p><font class="red">时间：</font><{$item.bg_time}> - <{$item.end_time}></p>	
+                            <p><font class="red">地点：</font><{$item.addr}></p>
+                            <p class="h30"></p>
+                            <p class="p46">
+                                <a title="<{$item.title}>" target="_blank" href="<{link ctl='activity:detail' arg0=$item.id}>" class="block_lt red_bg">我要报名</a>
+                                <span class="block_lt ml15 mt20"><font>已有<{$item.sign_num}>人报名</font></span>
+                            </p>
+                        </div>
+                    </li>
+                    <{/foreach}>
+
+                </ul> 
+                <div class="acitivity_page mt5">
+                    <div class="page">
+                        <{$pager.pagebar}>
+                    </div>
+                </div>        
+            </div>
+
+        </div>    
+        <!--左面结束-->
+        <!--右面开始-->
+        <div class="acitivity_r lt hauto ml20">
+            <div class="ads6 hauto">
+                <{widget id="adv" name="活动列表右侧广告位" city_id=$request.city_id limit="5"}>
+            </div>
+            <div class="acitivity_r_b hauto bgwhite mt10">
+                <p class="p47">
+                    3大服务保障
+                </p>
+                <p class="p48 mt20 bodr_b_x">
+                    <span class="span90">1</span>
+                    <span class="ml30 f16">保障最低价</span>
+                    <span>免去商家高昂的店租和广告费，减少中间环节，让利空间更大。</span>
+                    <span class="mt10 mb10">人多力量大，商家实行薄利多销，着实为客户着想。</span>  
+                </p>
+                <p class="p48 mt20 bodr_b_x">
+                    <span class="span90">2</span>
+                    <span class="ml30 f16">保障商品质量</span>
+                    <span class="block">商家均为地区一级渠道商，源头采购，保障品质和售后。</span>
+                    <span class="block mt10 mb10">所有商品均为正品，假一罚三，享受卖场同等售后。</span>
+                </p>
+                <p class="p48 mt20">
+                    <span class="span90">3</span>
+                    <span class="ml30 f16">保障业主权益</span>
+                    <span class="block">活动折扣半年有效，在没有上门测量之前，无条件退换!</span>
+                    <span class="block mt10 mb10">所有投诉30分钟内响应，承诺100%投诉问题解决率。</span>
+                </p>
+                <div class="h10"></div>
+            </div>
+
+
+        </div>
+        <!--右面结束-->
+    </div>
+    <!--        建材活动公益活动团庄活动结束-->
+    <!--         往期活动回顾开始-->
+    <div class="past_acitivity w1000 hauto mt20 mb20">
+        <h2>往期活动回顾</h2>
+        <div class="past_acitivity_b w1000 hauto bgwhite mt10">
+            <ul>
+                <{KT id="4" name="活动回顾" city_id=$request.city_id limit="4"}>
+                <li>
+                    <a  target="_blank" title="<{$item.title}>" href="<{link ctl='content:detail' arg0=$item.article_id}>"><img src="<{$pager.img}>/<{$item.thumb}>" width="210" height="145" /></a><br />
+                    <a  target="_blank" title="<{$item.title}>" href="<{link ctl='content:detail' arg0=$item.article_id}>"><{$item.title|cutstr:30:'..'}></a>
+                </li>
+                <{/KT}>
+            </ul>
+        </div>
+    </div>
+    <!--         往期活动虎骨结束-->   
+    <div class="cl"></div>  
+    <div class="h30"></div>
+
+
+    <{include file="block/footer.html"}>               

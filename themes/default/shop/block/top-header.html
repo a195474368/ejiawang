@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$seo_sub_title}><{if $seo_title}><{$seo_title}><{elseif $SEO.title}><{$SEO.title}><{else}><{$CONFIG.site.title}><{/if}></title>
+<meta name="keywords" content="<{if $seo_keywords}><{$seo_keywords}><{elseif $SEO.keywords}><{$SEO.keywords}><{/if}>" />
+<meta name="description" content="<{if $seo_description}><{$seo_description}><{elseif $SEO.description}><{$SEO.description}><{/if}>" />
+<link rel="stylesheet" type="text/css" href="%THEME%/shop/style/default/css/basic.css"/>
+<link rel="stylesheet" type="text/css" href="%THEME%/shop/style/default/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="%THEME%/shop/style/default/css/append.css"/>
+<link rel="stylesheet" type="text/css" href="%THEME%/static/style/append.css"/> 
+<{if $shop.skin_cfg}><{foreach $shop.skin_cfg.css as $css}><link rel="stylesheet" type="text/css" href="<{$pager.theme}>/<{$css}>"/><{/foreach}><{/if}>
+<link rel="stylesheet" href="<{$pager.res}>/style/kt.widget.css" type="text/css" />
+<link rel="stylesheet" href="<{$pager.res}>/style/common.css" type="text/css" />
+<link rel="stylesheet" href="<{$pager.res}>/ui/j.ui.css" type="text/css" />
+<script type="text/javascript">window.URL={"domain":"<{$CONFIG.site.domain}>","url":"<{$CONFIG.siteurl}>", "res":"<{$pager.res}>", "img":"<{$pager.img}>","city":"<{$request.city.siteurl}>"};</script>
+<script type="text/javascript"  src="<{$pager.res}>/script/kt.j.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/script/kt.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/ui/j.ui.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/script/widget.login.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/script/widget.msgbox.js"></script>
+</head>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap">
+<!-- 头部导航开始 -->
+    <div class="material_top">
+        <div class="w1000 hauto material_top_i">
+            <a href="<{link ctl='index'}>"><img src="%THEME%/shop/style/default/logo.png" width="190" height="55" /></a>
+            <div class="material_nav lt">
+                <ul>
+                    <li><a href="<{link ctl='index'}>">首页</a></li>
+                    <li><a href="<{link ctl='case'}>">效果图</a></li>
+                    <li><a href="<{link ctl='home'}>">找我家</a></li>
+                    <li><a href="<{link ctl='content'}>">学装修</a></li>
+                    <li><a href="<{link ctl='mall/index'}>">商城</a></li>
+                </ul>
+            </div>
+            <div class="material_top_r rt">
+                <a href="<{link ctl='mall/cart'}>" class="my_book">购物车<{if $COOKIE.CART_NUMBER}>(<{$COOKIE.CART_NUMBER}>)<{/if}></a>
+                <a href="###" class="fast_nav">快速导航</a>
+                <span class="zixunrexian">咨询热线：<{$CONFIG.site.phone}></span>
+            </div>
+        </div>
+    </div>
+    <div class="cl"></div>
+    <!-- 头部导航结束 -->
+<!-- 别问我为什么这么多头部文件。我对这规划能力妥协了 -->

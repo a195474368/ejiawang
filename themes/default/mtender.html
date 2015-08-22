@@ -1,0 +1,166 @@
+<{include file="block/header.html"}>
+<a name="mmz"></a>
+<!-- 头部和导航公共部分发 --> 
+<!--<div class="deco_t">
+    <div class="w1000 hauto deco_pa">
+        <h2><{$CONFIG.site.title}>全心致力于打造中国第一装修平台，<span class="red">更阳光，更透明！</span></h2>
+        <p class="deco_bg mb30">
+            <span class="l_line lt mt10 mr10"></span>
+            <span class="c_wenzi lt f16">拥有<font class="red">千余家</font>装修公司，提供<font class="org">7大免费产品</font></span>
+            <span class="r_line lt mt10 ml10"></span>
+        </p>
+    </div>
+</div>-->
+
+<!-- 推荐装修公司 -->
+
+<div class="lastest_order w1000 hauto mt30">
+    <h2>我的装修招标订单</h2>
+    <div class="lastest_order_show w1000 hauto">
+        <div class="lastest_order_show_l lt">
+            <div class="lastest_order_show_title red_bg">
+                <span>发布时间</span>
+                <span>业主</span>
+                <span>面积</span>
+                <span>标情况</span>
+                <span>预算</span>
+            </div>
+            <div class="cl"></div>
+            <ul>
+                <{foreach $tenders as $item}>
+                <li>
+                    <span><{$item.dateline|format:'m-d'}></span>
+                    <span><{$item.name|cutstr:3:'**'}></span>
+                    <span><{$item.area}>㎡</span>
+                     <{if $item.title}>
+                    <span><a target='_blank' title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>" class="red">
+                            <{$item.title}>
+                        </a></span>
+                     <{else}>
+                     <span>还没审核</span>
+                     <{/if}>
+                    <span><{$setting[$type['budget']][$item.budget_id]}></span>
+                    <div class="cl"></div>
+                </li>
+                <{/foreach}>
+            </ul>
+            <div class="page">
+                <{$pager.pagebar}>
+            </div>
+        </div>
+        <script>$(document).ready(function() {
+                $(".lastest_order_show_l ul li:odd").css('background', '#F5F6F6');
+            });</script>
+        
+        
+        <script>
+            (function(K, $) { $(".lastest_order_show_r a").click(function(){  $("html,body").animate({scrollTop:0},300);}); })(window.KT, window.jQuery);
+        </script>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="deco_command_pp hauto w1000">
+    <div class="deco_command_p_title mt20 w1000">
+        <ul>
+            <li><a href="javascript:void(0);" class="a6">推荐装修公司</a></li>
+            <li><a href="javascript:void(0);" class="a6">品牌保障公司</a></li>
+            <li><a href="javascript:void(0);" class="a6">口碑装修公司</a></li>
+            <li><a href="javascript:void(0);" class="a6">签单排行公司</a></li>                                        
+        </ul>
+    </div>
+    <div class="deco_command_show w1000 hauto none deco_son_1">
+        <ul>
+            <{calldata mdl="company/company" city_id=$request.city_id   order="orderby:DESC"   limit="14"}>
+            <li>
+                <a target='_blank'  title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img alt="<{$item.name}>" src="<{$pager.img}>/<{$item.logo}>" width="150" height="70" /></a>
+                <div class="shuzi  <{if $index == 0}>redbgg <{else}><{if $index == 1}>greenbgg<{else}><{if $index == 2}>bluebgg<{else}> graybgg<{/if}><{/if}><{/if}> "><{$index+1}></div>
+            </li>
+            <{/calldata}>
+        </ul>
+    </div>
+    <div class="deco_command_show w1000 hauto none deco_son_2">
+        <ul>
+             <{calldata mdl="company/company" city_id=$request.city_id   order="security:DESC"   limit="14"}>
+            <li>
+                <a target='_blank'  title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img alt="<{$item.name}>" src="<{$pager.img}>/<{$item.logo}>" width="150" height="70" /></a>
+                <div class="shuzi  <{if $index == 0}>redbgg <{else}><{if $index == 1}>greenbgg<{else}><{if $index == 2}>bluebgg<{else}> graybgg<{/if}><{/if}><{/if}> "><{$index+1}></div>
+            </li>
+            <{/calldata}>
+
+        </ul>
+    </div>
+    <div class="deco_command_show w1000 hauto none deco_son_3">
+        <ul>
+              <{calldata mdl="company/company" city_id=$request.city_id   order="scores:DESC"   limit="14"}>
+            <li>
+                <a target='_blank'  title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img alt="<{$item.name}>" src="<{$pager.img}>/<{$item.logo}>" width="150" height="70" /></a>
+                <div class="shuzi  <{if $index == 0}>redbgg <{else}><{if $index == 1}>greenbgg<{else}><{if $index == 2}>bluebgg<{else}> graybgg<{/if}><{/if}><{/if}> "><{$index+1}></div>
+            </li>
+            <{/calldata}>
+
+        </ul>
+    </div>
+    <div class="deco_command_show w1000 hauto none deco_son_4">
+        <ul>
+            <{calldata mdl="company/company" city_id=$request.city_id   order="tenders_num:DESC"   limit="14"}>
+            <li>
+                <a target='_blank'  title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img alt="<{$item.name}>" src="<{$pager.img}>/<{$item.logo}>" width="150" height="70" /></a>
+                <div class="shuzi  <{if $index == 0}>redbgg <{else}><{if $index == 1}>greenbgg<{else}><{if $index == 2}>bluebgg<{else}> graybgg<{/if}><{/if}><{/if}> "><{$index+1}></div>
+            </li>
+            <{/calldata}>
+
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    (function(K, $) {
+        $(".deco_command_p_title li").mouseover(function() {
+            var index = $(this).index();
+            $(".deco_command_p_title li").each(function(a) {
+                var num = a + 1;
+                if (a == index) {
+                    $(this).find(".a6").css('color', '#666666');
+                    $(".deco_son_" + num).show();
+                } else {
+                    $(this).find(".a6").css('color', '');
+                    $(".deco_son_" + num).hide();
+                }
+            });
+        });
+        $(".deco_command_p_title li").eq(0).mouseover();
+        $(".deco_command_p_title li:eq(0) a").css('color', '#666666')
+
+        $("select[name='data[city_id]']").live('change', function() {
+            var city_id = $(this).val();
+            if (!city_id) {
+                return false;
+            }
+            var link = "<{link ctl='magic:area' arg0='#city_id#' http=true}>"
+            $.getJSON(link.replace("#city_id#", city_id), function(ret) {
+                if (ret.error) {
+                    Widget.MsgBox.error(ret.message.join(","));
+                } else if (ret.areas.length > 0) {
+                    var html = "";
+                    for (var i = 0; i < ret.areas.length; i++) {
+                        html += '<option value="' + ret.areas[i].area_id + '">' + ret.areas[i].area_name + '</option>';
+                    }
+                    $("select[name='data[area_id]']").html(html);
+                } else {
+                    $("select[name='data[area_id]']").html('<option value="">--</option>');
+                }
+            });
+        });
+    })(window.KT, window.jQuery);
+</script>
+<div class="h30"></div>
+<{include file="block/footer.html"}>

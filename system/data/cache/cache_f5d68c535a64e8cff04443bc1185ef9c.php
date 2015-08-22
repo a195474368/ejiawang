@@ -1,0 +1,5 @@
+<?php exit("Access Denied");?>
+note:System cache file, DO NOT modify me!
+hash:f5d68c535a64e8cff04443bc1185ef9c:shop_brand_list
+time:0
+data:YToxOntpOjE7YTo5OntzOjg6ImJyYW5kX2lkIjtzOjE6IjEiO3M6NToidGl0bGUiO3M6Njoi546J5466IjtzOjQ6ImxvZ28iO3M6MDoiIjtzOjM6InVybCI7czowOiIiO3M6NDoiZGVzYyI7czowOiIiO3M6Nzoib3JkZXJieSI7czoyOiI1MCI7czo1OiJhdWRpdCI7czoxOiIxIjtzOjY6ImNsb3NlZCI7czoxOiIwIjtzOjg6ImRhdGVsaW5lIjtzOjE6IjAiO319

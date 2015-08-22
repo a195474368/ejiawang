@@ -1,0 +1,112 @@
+<{include file="block/small-header.html"}>
+ <!--主题开始-->
+   <div class="bgwhite w1000 gouwubuzhou">
+   		<!--步骤开始-->
+        <div class="basic_buzhou w1000">
+        	<div class="progress-4"></div>
+        	<ul>
+            	<li class="step_1 on">1、我的购物车</li><li class="step_2 on">2.填写核对订单信息</li><li class="step_3 on">3.成功提交订单</li><li class="step_4<{if $order.order_status == 2}> on<{/if}>">4.订单已完成</li>
+            </ul>
+        </div>
+        <!--步骤结束-->
+      <div class="cl"></div>
+      <!--订单号开始-->
+      	<div class="w1000 dingdan_infor">
+        	<p>
+            	<b>订单号：<{$order.order_no}></b>
+                <span>状态
+                <{if $order.order_status < 0}>已取消
+                <{elseif $order.order_status == 2}>完成
+                <{elseif $order.order_status == 1}>已发货 <{if empty($order.pay_status) && ($MEMBER.uid == $order.uid)}>, <a href="<{link ctl='mall/order:payment' arg0=$order.order_no}>" class="btn_pay">立即付款&nbsp;&gt;</a><{/if}>
+                <{elseif $order.pay_status==1}>已支付
+                <{else}>
+				<{if $MEMBER.uid == $order.uid}>
+				未支付, <a href="<{link ctl='mall/order:payment' arg0=$order.order_no}>" class="btn_pay">立即付款&nbsp;&gt;</a>
+				<{elseif empty($order.status)}>
+				等待买家付款，你可以先行发货 <a href="<{link ctl='ucenter/shop/order:index' arg0='unship'}>" class="btn_ship">去发货&nbsp;&gt;</a>
+				<{else}>
+				等待买家付款
+				<{/if}>
+                <{/if}>
+             </p>
+             <p>
+                <{if $order.order_status == 2}>
+                订单已经完成，感谢您在<{$CONFIG.site.title}>购物，欢迎您对本次交易及所购商品进行评价。
+                <{elseif $order.order_status == 1}>
+				<{if $MEMBER.uid == $order.uid}>
+                卖家已经发货，收到货品后，核对商品正确后及时确认收货。
+				<{else}>
+				已经发货，等待买收货。
+				<{/if}>
+                <{/if}>
+             </p>
+        </div>
+      <!--订单号结束-->
+      <!--订单信息开始-->
+      	<div class="dingdan_detail_info hauto w1000">
+        	<h3>订单信息</h3>
+            <div class="dingdan_detail_info_b hauto">
+            <!--收货人信息开始-->
+            	<div class="dingdan_detail_title">
+                	<h4>收货人信息</h4>
+                     <ul>
+                    	<li>
+                        	<span>收货人&nbsp;：&nbsp;</span>
+                            <span><{$order.contact}></span>
+                        </li>
+                        <li>
+                        	<span>地址&nbsp;：&nbsp;</span>
+                            <span><{$order.address}></span>
+                        </li>
+                         <li>
+                        	<span>联系电话&nbsp;：&nbsp;</span>
+                            <span><{$order.mobile}></span>
+                        </li>
+                    </ul>
+                </div>
+            <!--收货人信息结束-->
+              <div class="gouwuche hauto">
+         
+                <div class="gowushangpin">
+                <div class="gouwushangpin_show">
+                	<table>
+                         <tr>
+                            <th class="w-100"></th>
+                            <th>商品</th>
+                            <th class="w-150">商品单价</th>
+                            <th class="w-100">数量</th>
+                            <th class="w-1500">运费</th>                                                         
+                        </tr>
+                         <{foreach $order.products as $product}>
+                    	<tr>
+                        	<td><img src="<{$pager.img}>/<{$product.photo}>_small.jpg" width="60" height="60" /></td>
+                            <td  style="text-align:left;"><a href="<{link ctl='mall/product:detail'}>"><i><{$product.title}></i></a><br />
+                            商家&nbsp;:&nbsp;<a href="<{link ctl='mall/shop' arg0=$order.shop_id}>"><{$shop.title}></a></td>
+                            <td>￥<{$product.price}></td>
+                            <td><{$product.number}></td>                          
+                            <td><{if $product.freight}>￥<{$product.freight}><{else}>包邮<{/if}></td>
+                        </tr>
+                        <{/foreach}>
+                    </table>          
+                </div>
+                <div class="gouwuche_jiezhang">
+                	
+                    <div class="gouwuche_jiezhang_r rt">
+                    	<p><span>总商品金额：</span><span class="spqian">￥<{$order.product_price}></span></p>
+                        <p><span>运费&nbsp;：&nbsp;</span><span class="spqian"><{if $order.ship_fee}>￥<{$order.ship_fee}><{else}>包邮<{/if}></span></p>  
+                        <p class="bodr_b"></p>              
+                        <p><b>合计(含运费)&nbsp;：&nbsp;</b><span class="spqian"><strong>￥<{$order.amount}></strong></span></p>
+                        <p></p>
+                    </div>
+                </div>    
+            </div>
+          
+               </div>
+            </div>
+        </div>
+    <!--订单信息开始--> 
+    <div class="h30"></div>
+    <div class="h30"></div>   
+</div>
+<!--主题结束-->
+<{include file="block/footer.html"}>

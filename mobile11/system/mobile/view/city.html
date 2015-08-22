@@ -1,0 +1,30 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+   
+        <div class="mobile_top_son">
+            <div class="detail-second"><{$CONFIG.site.title}><sub>&nbsp;&nbsp;你的贴心装修管家</sub></div>
+        </div>
+    </div>
+
+        <!--头部内容结束 -->
+        <!--main开始 -->
+        <!--中间内容开始 -->
+        <div class="city_switch main">
+            <h2>按拼音检索城市</h2>
+            <div class="clear"></div>
+            <div class="city_all_box">
+                <ul class="city_all">
+                    <{foreach $py_city as $k=>$v}>
+                    <li id="city-<{$k}>">
+                    <span><{$k}></span>
+                    <{foreach $v as $vv}><a href="<{link ctl='city:city' arg0=$vv.city_id}>"><{$vv.city_name}></a><{/foreach}>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+        </div>
+        <!--中间内容结束 -->
+        <div class="clear"></div>
+ <div class="cl h45"></div>
+ <{include file='mobile:block/footer.html'}>

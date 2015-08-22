@@ -1,0 +1,154 @@
+<{include file="block/header.html"}>
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+       
+            <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="学装修" href="<{link ctl='content'}>" class="block_lt">学装修</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='content:diary'}>" title="装修日记" class="block_lt">装修日记</a>
+        <span class="block_lt">></span>
+        <a title="<{$detail.title}>" href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id}>" class="block_lt"><{$detail.title}></a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--  日记档案开始  -->
+    <div class="w1000 mt10 bgwhite hauto dirary">
+        <div class="dirary_l lt hauto">
+            <p>
+                <span class="block_lt span81 acitivity_ico1 mt5 mr10"></span>
+                <span class="f22 black">日记档案</span>
+            </p>
+            <div class="dirary_l_c hauto">
+                <div class="dirary_l_c_l lt hauto">
+                     <a title="<{$detail.title}>" href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id}>"><img src="<{$pager.img}>/<{$detail.face_pic}>" width="190" height="190" /></a>
+                    <span class="block_lt mt10 mr10">
+                       <img src="<{$pager.img}>/<{$member.face_32}>" width="40" height="40"/>
+                    </span>
+                    <span class="block_lt mt10">
+                        <font>由</font><font class="org"><{$member.uname}></font><br />
+                        <font>发表</font>
+                    </span>
+                </div>
+                <div class="dirary_l_c_r lt hauto ml20">
+                    <p><{$detail.title}></p>
+                    <p>
+                        <span class="block_lt">
+                            <font>小区名称&nbsp;：&nbsp;</font>
+                            <a target="_blank" title="<{$home.home_name}>" href="<{link ctl='home:detail' arg0=$home.id}>" class="black"><{$home.home_name}></a>
+                            <a target="_blank" href="<{link ctl='home:maps'}>" class="black">(在地图上查看)</a>
+                        </span>
+                        <span class="block_lt span82 icobg ml10"></span>
+                    </p>
+                    <p class="cl"></p>
+                    <p>
+                        装修方式：<{$cfg_setting[$cfg_type['way']][$detail.way_id]}>
+                    </p>
+                    <p>房屋类型&nbsp;：&nbsp;<{$cfg_setting[$cfg_type['house_type']][$detail.type_id]}><a target="_blank" href="<{link ctl='home:detail' arg0=$home.id}>" class="red">(查看户型图)</a></p>
+                    <p>合同总价&nbsp;:&nbsp;<span class="red"><{$detail.total_price}></span></p>
+                    <p>
+                        <span>开工时间&nbsp;：&nbsp;<{$detail.start_date}>&nbsp;&nbsp;</span>
+                        <span>竣工时间：<{$detail.end_date}></span>
+                    </p>
+                   
+                    <p>
+                        <font>日记&nbsp;:&nbsp;</font><font class="red">共<{$detail.content_num}>篇</font>&nbsp;&nbsp;
+                        <font>阅读&nbsp;:&nbsp;</font><font class="red"><{$detail.pv_num}></font>&nbsp;&nbsp;
+                        <font>评论&nbsp;:&nbsp;</font><font class="red"><{$detail.ping_num}></font>
+                    </p>
+                </div>
+            </div>
+            <div class="cl"></div>
+            <div class="dirary_l_b hauto mt30 mb15">
+                  <a  title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>" <{if $detail.status >=1}>class="current14"<{/if}>>开工大吉</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=2}>class="current14"<{/if}> title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">水电改造</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=3}>class="current14"<{/if}>  title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">泥瓦工</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=4}>class="current14"<{/if}>  title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">木工</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=5}>class="current14"<{/if}> title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">油漆</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=6}>class="current14"<{/if}> title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">安装</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $detail.status >=7}>class="current14"<{/if}>  title="<{$detail.title}>"  href="<{link ctl='content:diaryDetail' arg0=$detail.diary_id }>">验收</a>
+            </div>
+            <div class="h10"></div>
+        </div>
+        <div class="dirary_r lt hauto">
+            <p class="f16 ftw">施工单位</p>
+            <p class="mt10">
+                <a target="_blank" title='<{$company.name}>' href="<{link ctl='company' arg0=$company.company_id}>"><img src="<{$pager.img}>/<{$company.logo}>" width="150" height="75"/></a>
+            </p> 
+            <p class="mt10">分享到：<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_t163" data-cmd="t163"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","t163"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","t163"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];</script></p>
+        </div>      
+    </div>  
+    <!--  日记档案结束  -->
+    <!--  交房篇开始  -->
+    <{foreach from=$contents item=item name=loop}>
+    <div class="w1000 hauto jiaofang bgwhite mt20">
+        <p>
+            <span class="block_lt f18 ftw red"><{$smarty.foreach.loop.index+1}>、<{$cfg_status[$item.status]}></span>
+            <span class="block rt f14">发表于<{$item.dateline|format}></span>
+        </p>
+        <p class="cl"></p>
+        <p>
+            <{$item.contents}>
+
+        </p>
+ 
+    </div>   
+    <{/foreach}>
+    <!--  交房篇结束  --> 
+   
+    <!--  评论开始 -->
+       <div class="w1000 hauto bgwhite mt10">
+            <div class="w900 hauto mt20 pinglun">
+                <h2>共<{$pager.count|default:'0'}>条评论</h2>
+                <{foreach $items as $item}>
+                <div class="pl_contant mt10 hauto">
+                    <a href="javascript:void(0);"><img src="<{$pager.img}>/<{$userList[$item.uid].face_80}>" width="40" height="40" /></a>
+                    <div class="pl_contant_b lt" style=" margin-left: 10px; width: 800px;" >
+                        <p>
+                            <span class="red"><{$userList[$item.uid].uname}></span><span style="margin-left: 10px;">时间：<{$item.dateline|format}></span><span style="margin-left: 10px;">来自：<{$item.create_ip}></span>
+                        </p>
+                        <div><{$item.content}></div>
+                    </div>
+                </div>
+                <{/foreach}>
+              
+                <form id='comment_form'>
+                <div class=" w900 hauto mt10">
+                   
+                    <textarea style="width: 800px;" rows="5" name="content" ></textarea>
+                    
+                </div>
+                <div class="fbpl rt mt20 mb30">
+                    
+
+                        <input type="submit" mini-submit='#comment_form' action="<{link ctl='content:diaryComment' arg0=$detail.diary_id}>" name="fbpl" value="发表评论" class="baocunpl"/>
+               
+                </div>
+                </form>
+            </div>
+		
+        </div>
+    <!--  评论结束 -->  
+		<div class="h20"></div>   
+
+
+    <script>
+        $(document).ready(function() {
+            $(".qyrz ul li:last").css('border-right', 'none');
+            $(".newest_qdb li").eq(0).mouseover();
+        });
+    </script>
+
+
+<{include file="block/footer.html"}>           

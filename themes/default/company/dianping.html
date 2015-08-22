@@ -1,0 +1,162 @@
+<{include file='company/header.html'}>
+<!-- 详情页的公共部分 -->
+<!-- 主题部分开始 -->
+<div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    <div class="favor_detail_weizhi w1000 bodr_b mb20">
+        <font>你当前的位置：</font>
+        <a href="<{link ctl='company:dianping' arg0=$company_id}>">企业评价</a>
+
+    </div>
+    <!-- 当前位置结束   -->
+    <!-- 企业评价主题部分开始 -->
+    <div class="qyjs_main w1000 hauto">
+        <!-- 企业评价主题部分左面开始 -->
+        <{include file='company/left.html'}>		
+        <!-- 企业评价主题部分左面结束 -->
+        <!-- 企业介绍主题部分右面开始 -->
+        <div class="qyjs_main_r lt hauto ml20">
+            <h2>
+                <span class="block_lt f22">业主评价</span>
+                <span class="block rt f14">共有<font class="red"><{$pager.count|default:'0'}></font>条评论</span>
+            </h2>
+            <div class="cl"></div>
+            <div class="yzpj_content hauto bgwhite mt10">
+                <div class="yzpj_content_detail hauto">
+
+                    <{foreach from=$items item=item name=loop}>
+                    <div class="lt ml15 yzpj_content_detail_b">
+                        <p class="p44 bodr_b hauto mb10">
+                            <{$smarty.foreach.loop.index+1}>、<font class="red"><{$item.name|cutstr:3:'**'}></font>&nbsp;<font>
+                            <{$CONFIG['company_dianping'].score1}>:<{$item.score1}> &nbsp;
+                            <{$CONFIG['company_dianping'].score2}>:<{$item.score2}> &nbsp;
+                            <{$CONFIG['company_dianping'].score3}>:<{$item.score3}> &nbsp;
+                            <{$CONFIG['company_dianping'].score4}>:<{$item.score4}> &nbsp;
+                            <{$CONFIG['company_dianping'].score5}>:<{$item.score5}> &nbsp;
+                            &nbsp;评论时间：<{$item.dateline|format}></font><br />
+                            <{$item.content}>                       
+                        </p>
+                        <{if !empty($item.reply)}>
+                        <p class="p45">
+
+                            <span class="block_lt  ml30 span43">
+                                <font class="red"><{$company.sort_name}>：</font><br />
+                                <{$item.reply}>
+                            </span>
+                        </p>
+                        <{/if}>
+                        <p class="cl"></p>
+                        <p class="mt10"></p>
+
+                    </div>
+                    <{/foreach}>
+
+
+                </div>
+            </div>
+
+            <div class="yzpj_page bgwhite hauto mt20">
+                <div class="page"><{$pager.pagebar}></div>
+            </div>
+            <h2 class='mt20'>
+                <span class="block_lt f22">我要评价</span>
+
+            </h2>
+            <div class="yzpj_page bgwhite hauto mt20">
+                <form  mini-form="company" action="<{link ctl='company:save'  arg0=$company_id http=true}>" method="post">
+                    <table width="100%" style="height: 500px;" cellspacing="0" cellpadding="0" border="0" align="left" >
+                        <tr height="30">
+                            <td width="70" align="right"><{$CONFIG['company_dianping'].score1}>：</td>
+                            <td width="200" align="left">
+                                <div rel='data[score1]' class="jq_score" ></div>
+                            </td>
+                            <td width="70" align="right"><{$CONFIG['company_dianping'].score2}>：</td>
+                            <td width="200" align="left">
+                                <div  rel='data[score2]' class="jq_score"></div>
+                            </td>
+                        </tr>
+                        <tr height="30">
+                            <td width="70" align="right"><{$CONFIG['company_dianping'].score3}>：</td>
+                            <td width="200" align="left">
+                                <div rel='data[score3]' class="jq_score"></div>
+                            </td>
+                            <td width="70" align="right"><{$CONFIG['company_dianping'].score4}>：</td>
+                            <td width="200" align="left">
+                                <div rel='data[score4]' class="jq_score"></div>
+                            </td>
+                        </tr>
+                        
+                        <tr height="30">
+                            <td width="70" align="right"><{$CONFIG['company_dianping'].score5}>：</td>
+                            <td width="200" align="left">
+                                <div rel='data[score5]' class="jq_score"></div>
+                            </td>
+                            <td width="70" align="right"></td>
+                            <td width="200" align="left">
+                               
+                            </td>
+                        </tr>
+                        <script>
+                            $(document).ready(function() {
+                                $(".jq_score").each(function(){
+                                    $(this).raty({
+                                    starOn: '/static/script/raty/img/star-on.png',
+                                    starOff: '/static/script/raty/img/star-off.png',
+                                    starHalf: '/static/script/raty/img/star-half.png',
+                                    width: 200,
+                                    scoreName: $(this).attr('rel')
+                                });
+                                });
+
+
+                            });
+                        </script>
+
+                        <tr height="90">
+                            <td align="right">评价内容：</td>
+                            <td align="left" colspan="3">
+                                <textarea rows="4" cols="30" style="width:500px; height: 70px; line-height: 18px; padding: 5px 0px;  border:1px solid #DDD; color:#888888;font-size: 12px;" 
+                                          name="data[content]" id="dianping"></textarea>
+                                <span id="bookpjTip" class="block">写点评价吧，您的评价内容对您的售后服务质量有重要监督作用，对其他用户具有重要参考价值。</span>
+                            </td>
+                        </tr>
+                        <tr height="90">
+                            <td align="right">装修项目：</td>
+                            <td align="left" colspan="3">
+                                <input type="text" id="home_name" value="" maxlength="16" style="width:180px; border:1px solid #aaa; height: 20px;" name="data[home_name]" size="15">
+                                <span id="bookdescTip" class="block">如:描述您的装修小区，面积，风格等等。便于公司看到您的评价后进行售后服务。2室房屋装修</span>
+                            </td>
+                        </tr>
+                        <tr height="30">
+                            <td align="right" style="LINE-HEIGHT: 30px; HEIGHT: 30px">称呼：</td>
+                            <td align="left" style="LINE-HEIGHT: 30px; HEIGHT: 30px" colspan="3">
+                                <input type="text" id="name" value="" maxlength="16" style="width:180px; border:1px solid #aaa; height: 20px;" name="data[name]" size="15">
+                                <span id="realNameTip">只能输入1-16个字</span>
+                            </td>
+                        </tr>
+                        <tr height="30">
+                            <td align="right" style="LINE-HEIGHT: 30px; HEIGHT: 30px">手机号码：</td>
+                            <td align="left" style="LINE-HEIGHT: 30px; HEIGHT: 30px" colspan="3">
+                                <input type="text" size="32" name="data[mobile]" id="contact" maxlength="100" style="width:180px; border:1px solid #aaa;color:#888888; height: 20px;" value="">
+                                <span id="contactTip">用于本站解决争端或提供更优质的服务(本站绝对保密)</span>
+                            </td>
+                        </tr>
+                        <tr height="30">
+                            <td></td>
+                            <td>
+                                <input style="height: 30px; width: 120px; line-height: 30px; font-size: 14px;margin-bottom:10px;" type="submit"  value="我要评价"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- 企业评价主题部分右面结束 -->      
+    </div>
+    <!-- 企业评价主题部分结束 -->
+    <div class="h30"></div>
+</div> 
+<!-- 主题部分结束 -->
+<{include file='company/foot.html'}>

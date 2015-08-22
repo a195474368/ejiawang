@@ -1,0 +1,143 @@
+<{assign var="shop_nav_curr" value="index"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+    <div class="material_main_r_news hauto bgwhite">
+        <div class="material_main_r_news_l lt">
+            <div class="material_main_r_news_img none" id="material_main_r_news_img" kinBox='{"height": 210}'>
+                <{calldata mdl="shop/banner" shop_id=$shop.shop_id limit=5 nocache=true}>
+                <div><a href="<{$item.link}>"><img src="<{$pager.img}>/<{$item.photo}>" width="450" height="210" /></a></div>
+                <{/calldata}>
+            </div>
+        </div>
+        <div class="material_main_r_news_r lt mt10 ml20">
+            <h2>活动资讯<span><a href="<{link ctl='mall/shop:news'}>">更多>></a></span></h2>
+            <div class="cl"></div>
+            <ul>
+				<{calldata mdl='shop/news' shop_id=$shop.shop_id limit=7 nocache=true}>
+                <li><a href="<{link ctl='mall/news:detail' arg0=$item.news_id}>"><{$item.title}></a></li>
+                <{/calldata}>
+            </ul>
+        </div>
+    </div>
+    <div class="material_hot_command bgwhite mt15 hauto">
+        <h2>热卖推荐</h2>
+        <ul>
+			<{calldata mdl="product/product" shop_id=$shop.shop_id sale_type="IN:1,2" limit=4 nocache=true}>
+            <li>
+                <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="165" height="110" /></a>
+                <p></p>
+                <p class="text"><span></span><{if $item.sale_type==2}><div remaintime="<{strtotime($item.sale_time)}>"></div><{elseif $item.sale_type == 1}><{if $item.sale_sku}>还剩余 <{$item.sale_sku}>件<{else}>你来晚了，已售罄<{/if}><{/if}></p>
+                <h3 class="h30"></h3>
+                <h3>【<{$item.sale_type_title}>】<a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>"><{$item.title}></a></h3>
+                <h3>抢购价<span>￥<{$item.price}></span></h3>
+            </li>
+            <{/calldata}>
+        </ul>
+    </div>
+    <div class="material_all_product bgwhite mt15 hauto">
+        <h2><span>所有商品</span><a href="<{link ctl='mall/shop:product' arg0=$shop.shop_id}>">更多>></a></h2>
+        <div class="cl"></div>
+        <ul>
+            <{calldata mdl="product/product" shop_id=$shop.shop_id limit=8 nocache=true}>
+            <li>
+                <div class="all_product_li">
+                    <div class="ml10 mt10">
+                        <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="165" height="110" /></a>
+                        <p><{if $item.sale_type_title}>【<{$item.sale_type_title}>】<{/if }><a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>"><{$item.title}></a></p>
+                        <p>【抢购价】<span>￥<{$item.price}></span></p>
+                    </div>
+                </div>
+            </li>
+            <{/calldata}>
+        </ul>
+    </div>
+    <div class="material_hot_purchases bgwhite hauto mt15">
+        <h2>热门优惠券</h2>
+        <ul>
+			<{calldata mdl="shop/coupon" shop_id=$shop.shop_id limit=4 nocache=true}>
+            <li>
+                <a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>">
+                    <div class="material_hot_purchases_l lt">
+                        <span><sup>￥</sup><{$item.money}></span>
+                    </div>
+                    <div class="material_hot_purchases_r lt">电子优惠券<p>满<{$item.min_amount}>减</p></div>
+                </a>
+            </li>
+            <{/calldata}>
+        </ul>
+        <div class="h30 cl"></div>
+    </div>
+    <div class="material_shopper_sum mt15 hauto bgwhite">
+        <h2>商家介绍</h2>
+        <p>
+            <span class="material_shopper_span_l">商家名称：<a href="<{link ctl='mall/shop' arg0=$shop.shop_id}>"><{$shop.title}></a></span>
+            <span class="material_shopper_span_r">联系人：<{$shop.contact}></span> 
+        </p>
+         <p>
+            <span class="material_shopper_span_l">主营行业：<{$shop.cat_title}></span>
+            <span class="material_shopper_span_r">经营品牌： </span> 
+        </p>
+        <p>经营地点：<{$shop.address}></p>
+        <p class="h10"></p>
+        <p><{$shop.info|strip_tags|cutstr:200}><a href="<{link ctl='mall/shop' arg0='info' arg1=$shop.shop_id}>" class="red">查看全部»</a></p>
+        <p class="h20"></p>
+    </div>
+    <div class="h30"></div>       
+</div>    	
+<!-- 右面结束 -->
+<script type="text/javascript">
+(function(K, $){
+$(function(){
+    var dateTime = new Date();
+    var difference = dateTime.getTime() - <{$pager.dateline}>*1000;	
+    setInterval(function(){
+      $("[remaintime]").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('remaintime'), 10) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime() + difference;
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24;
+        var myM=Math.floor(nMS/(1000*60)) % 60;
+        var myS=Math.floor(nMS/1000) % 60;
+        var myMS=Math.floor(nMS/100) % 10;
+        if(myD>= 0){
+			var str = myD+"天"+myH+"小时"+myM+"分"+myS+"."+myMS+"秒";
+        }else{
+			var str = "已结束！";	
+		}
+		obj.html(str);
+      });
+    }, 100);
+});
+})(window.KT, window.jQuery);
+</script>
+<style>
+    .rt{
+        margin-right: 60px;
+    }
+    .rt ul{
+        width:100%;
+        margin-top: 30px;
+    }
+      .rt ul li{
+        width:80px;
+        display:inline-block;
+        float:left;
+        margin-left:20px;
+        margin-bottom: 20px;
+    }
+     .rt ul li a{
+        font-size:14px;
+        color:#999999;
+     }
+</style>
+<{include file="block/footer.html"}>

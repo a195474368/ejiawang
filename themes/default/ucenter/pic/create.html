@@ -1,0 +1,19 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>新增荣誉资质</b></div>
+<form mini-form="company" action="<{link ctl='ucenter/pic:create'  http=true}>" method="post">
+    <table cellspacing="0" cellpadding="0" class="form">
+         <tr><th class="w-100"><span class="red">*</span>类型：</th><td>
+        <select name="data[type]">
+            <{foreach from=$type item=item key=key}>
+            <option value="<{$key}>"><{$item}></option>
+            <{/foreach}>
+        </select>
+    </td></tr>
+<tr><th><span class="red">*</span>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-300"/></td></tr>
+<tr><th><span class="red">*</span>图片：</th><td><input type="file" name="data[pic]" class="input w-100" /></td></tr>
+        
+           <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+    </table>
+</form>
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>家装案例效果图大全_<{$request.city.city_name}>家装案例装修样板间大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/case.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header >
+            <a class="return" href="<{link ctl='company:detail' arg0=$company.compnay_id}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">装修案例</h1>
+        </header>
+        <!--头部内容结束 -->
+
+<!--search -->
+<{include file="mobile:block/search.html"}>
+<!--search end-->
+<!--main开始 -->
+        
+<div class="main">
+    <div class="clear"></div>
+    <!--案例图-->
+    <div class="case">
+        <div class="case_list">
+        </div>
+        <div class="down">查看更多</div>
+    </div>
+    <!--案例图 end-->
+</div>
+<!--main结束 -->
+</div>
+<!--warp结束 -->
+
+    <div id="bgdiv"></div>    
+    <script type="text/javascript">
+        var lock = 0;
+        var next_page = 1;        
+        $(function () {
+            $(".down").click(function(){AsyncLoad();});
+            AsyncLoad();
+        })
+        //给窗口绑定事件scroll
+        //$(window).bind("scroll", function () {
+        //    // 然后判断窗口的滚动条是否接近页面底部，这里的20可以自定义
+        //    if ($(document).scrollTop() + $(window).height() > $(document).height() - 20) {
+        //        AsyncLoad();
+        //    }
+        //})
+
+        function AsyncLoad() {
+            //如果页码大于1，取出当前页索引
+            if (next_page > 0) {
+                if (lock == 0) {
+                    lock = 1;
+                    $.post("<{link ctl='case:loaddata'}>",{"page":next_page, "company_id":"<{$company.company_id}>"}, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            next_page = ret.nextpage;
+                            $(".case_list").append(ret.html);
+                            if(ret.nextpage < 1){
+                                $(".down").remove();
+                            }
+                        }
+                        lock = 0;
+                    }, 'json');
+                }
+            }
+        }
+
+        //全部
+        function reload() {
+            style = 0;
+            styleName = "风格";
+            apartment = 0;
+            apartmentName = "户型";
+            //重置
+            next_page = 1;
+            //清空
+            $(".case_list").children().remove();
+            //加载
+            AsyncLoad();
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+﻿<{include file="block/header.html"}>
+<!----------头部和导航公共部分------------>
+<!--        主题部分开始                -->
+<div class="hauto index_b_bg">
+    <!-- 列表风格导航开始 -->
+    <div class="w1000 mt20 bgwhite">
+        <div class="hauto home_style">
+            <div class="seach_xq bodr_b">
+                <h2>找到小区，快速得到<font class="red">现成的</font>设计案例！</h2>
+            </div>
+            <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span>区域&nbsp;:&nbsp;</span>
+                <a  href="<{$area_url}>" <{if empty($url_data.area_id)}>class="a1"<{/if}>>不限</a>
+                <{foreach $area_list  as $v}>
+                <a  title="<{$v.area_name}>小区列表" href="<{$v.link}>" <{if $v.checked}>class="a1"<{/if}>><{$v.area_name}></a>
+                <{/foreach}>
+            </div>
+            
+            <{foreach $attr_values as $item}>
+            <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span><{$item.title}>&nbsp;:&nbsp;</span>
+                <a  title="<{$item.title}>小区" href="<{$item.link}>"  <{if $item.checked}>class="a1"<{/if}>>不限</a>
+                <{foreach $item.values as $it2}>
+                <a  title="<{$it2.title}>小区" href="<{$it2.link}>"  <{if $it2.checked}>class="a1"<{/if}>><{$it2.title}></a>
+                <{/foreach}>
+             
+            </div>
+           <{/foreach}>
+        </div>
+
+    </div>
+    <!-- 列表风格导航结束 -->
+    <!-- 小区列表开始  -->
+    <div class="hauto mt20 w1000">
+        <!--  左面开始  -->
+        <div class="home_list_show_l lt hauto">
+            <div class="bgwhite home-List_all hauto">
+                <div class="home_list_show_l_t hauto">
+                    <div class="home-List_show_title bodr_b">
+                        <span class="block lt"><b>为您找到<font class="red">
+                               
+                               <font class="red"> <{if $items_name}>有关"<{$items_name}>"<{else}>所有<{/if}></font>小区</b></span>
+                        <span class="block rt span15"><a href="<{link ctl='home:maps'}>">切换到地图模式</a></span>
+                    </div>
+                    <div class="cl"></div>
+             
+
+                </div>
+            </div>
+            <{foreach from=$homes item=item name=home}>           
+            <div class="bgwhite home-List_all hauto <{if $smarty.foreach.home.index>0}>mt10<{/if}>">
+                <div class="home_list_show_l_t hauto">
+
+                    <div class="cl"></div>
+                    <div class="home_list_show_b hauto mt20">
+                        <a title="<{$item.name}>" target="_blank" href="<{link ctl='home:detail' arg0=$item.id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="180" height="125" /></a>
+                        <div class="home_list_show_b_r lt">
+                            <p>
+                                <span class="f16 ftw blackb lt"><a title="<{$item.name}>" target="_blank" href="<{link ctl='home:detail' arg0=$item.id}>" class="f16 ftw blackb a3"><{$item.name}></a></span>
+                                <span class="f12 rt"><font class="red"><{$item.pv_num}></font>人查看了该楼盘</span>
+                            </p>
+                            <div class="cl"></div>
+                            <p class="mt15">
+                                均 价：<font class="red"><{$item.price}> </font> <br /> 
+                                开发商：<{$item.kf}><br />
+                                最新设计方案由<a target="_blank" href="<{link ctl='company' arg0=$item.last_case_company_id}>" title="<{$company_list[$item.last_case_company_id].name}>" class="org ftw"><{$company_list[$item.last_case_company_id].name}></a>提供
+                            </p>
+                            <p class="p6">
+                                <a title="<{$item.name}>" target="_blank" href="<{link ctl='home:detail' arg0=$item.id}>"><u>小区详情</u></a><a href="<{link ctl='ask'}>"><u>装修问答</u></a>
+                                <a href="<{link ctl='content:diary'}>"><u>装修日记</u></a><a title="<{$item.name}>" target="_blank" href="<{link ctl='home:photo' arg0=$item.id arg1=3}>"><u>业主实拍样板间</u></a>
+                                <a title="<{$item.name}>" target="_blank" href="<{link ctl='home:detail' arg0=$item.id}>" class="a2 ftw a4">查看装修方案>></a>
+                            </p>
+                            <div class="cl"></div>
+                            <p class="h30"></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>     
+            
+            <{/foreach}>
+            
+             
+         <div class="bgwhite home_list_page mt10 hauto">
+
+                <div class="page">
+                  <{$pager.pagebar}>
+                </div>
+            </div>
+            <script>
+          $(document).ready( function(){
+            $(".page").find("em").hide();
+           }  )                 
+                </script>
+         
+            <div class="cl"></div>
+
+        </div>
+        <!--  左面结束  -->
+        <!--  右面开始  -->
+        <div class="home_list_show_r rt hauto" style="position: fixed;bottom:20px">
+            <div class="home-List_form hauto bgwhite">
+
+                <div class="home_all_r hauto bgwhite ml5">
+                    <p>
+                        <font class="ftw black f17">想参加小区</font>
+                        <font class="ftw red f17">团购</font>，
+                        <font class="ftw black f17">看</font><font class="ftw red f17">样板间</font><br />
+                        <font class="f12">提交信息，试试看</font>
+                    </p>
+                     <form mini-form="survey" action="<{link ctl='home:survey'  http=true}>" method="post">
+                        <!--城市来源-->
+                                           <input type="hidden" value="<{$request.city.city_name}>" name="data[cityName]" />
+                                           
+                        <input type="text" name="data[home_name]"  value="请输入小区名称" class="lp_hx bodr lp"/>
+                        <select name='data[area_id]' class="hx bodr mt10">
+                            <{foreach from=$area_list item=item name=area}>
+                            <option value="<{$item.area_id}>"><{$item.area_name}></option>
+                            <{/foreach}>
+
+                        </select>
+                        <input type="text" name="data[name]"  value="请输入你的姓名" class="lp_hx bodr mt10 na"/>
+                        <input type="text" name="data[tel]"  value="请输入你的联系电话" class="lp_hx bodr mt10 ph"/>
+                        <input type="submit"  value="提交查询" class="lp_hxq bodr mt10 redbg dc"/>
+                    </form>
+                    <script>
+                          $(document).ready(function() {
+                                $(".lp").focus(function() {
+                                    if ($(this).val() == '请输入楼盘名称')
+                                        $(this).val('');
+                                }).focusout(function() {
+                                    if ($(this).val() == '')
+                                        $(this).val('请输入楼盘名称');
+                                }); 
+                                $(".na").focus(function() {
+                                    if ($(this).val() == '请输入您的姓名')
+                                        $(this).val('');
+                                }).focusout(function() {
+                                    if ($(this).val() == '')
+                                        $(this).val('请输入您的姓名');
+                                });
+
+                                $(".ph").focus(function() {
+                                    if ($(this).val() == '请输入您的联系电话')
+                                        $(this).val('');
+                                }).focusout(function() {
+                                    if ($(this).val() == '')
+                                        $(this).val('请输入您的联系电话');
+                                });//banner右面表单
+                            });
+                    </script>
+                    <p>
+                        已有<font class="red">12563</font>人提交
+                    </p>
+
+                </div>
+            </div>
+            <div class="ads3 hauto mt15">
+                 <{widget id="adv" name="我搜我家小区列表右侧广告位" city_id=$request.city_id limit="5"}>
+            </div>
+        </div>
+
+        <!--  右面结束  -->
+        <div class="h20 cl"></div>
+
+    </div>
+    <!-- 小区列表结束  -->
+
+    <{include file="block/footer.html"}>         

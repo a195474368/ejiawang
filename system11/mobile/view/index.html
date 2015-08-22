@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><{$request.city.seo_title}> -<{$CONFIG.mobile.title}></title>
+<meta name="Keywords" content="<{$request.city.seo_keywords}>" />
+<meta name="Description" content="<{$request.city.seo_description}>" />
+<link type="text/css" rel="stylesheet" href="style/index.css">
+<{include file="mobile:block/sheader.html"}>
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header >
+            <h1 class="logo"><img src="images/index_logo.png" alt="logo" /></h1>
+            <div class="index_search">公司/图库/工地</div>
+            <a href="<{link ctl='city'}>" class="city"><{$request.city.city_name}><span class="down-triangle1"></span></a>
+        </header>
+        <!--头部内容结束 -->
+    <!--search -->
+    <{include file="mobile:block/search.html"}>
+    <!--search end-->
+<!--main开始 -->        
+<div class="width320 main">
+    <div class="index_nav">
+        <a href="<{link ctl='case'}>" class="a1"><img src="images/a1.png" alt="装修案例"/>装修案例</a>
+        <a href="<{link ctl='company'}>" class="a2"><img src="images/a2.png" alt="找公司"/>找公司</a>
+        <a href="<{link ctl='site'}>" class="a3"><img src="images/a3.png" alt="找工地"/>找工地</a>
+        <a href="<{link ctl='youhui'}>" class="a4"><img src="images/a4.png" alt="优惠活动"/>优惠活动</a>
+        <a href="<{link ctl='article'}>" class="a5"><img src="images/a5.png" alt="装修学堂"/>装修学堂</a>
+    </div>
+    <div class="clear"></div>
+        <!--banner-->
+        <div class="banner_box">
+            <div class="banner">
+                <div class="inner" style="width: 900px;">
+                <{AD name="手机首页轮转广告" limit="3"}><a href="<{$item.link}>"><img src="<{$pager.img}>/<{$item.thumb}>"/></a><{/AD}>
+                </div>
+            </div>
+            <div class="pointer" id="pointer">
+                <span class="color"></span><span></span><span></span>
+            </div>
+        </div>
+        <!--banner end-->
+        <div class="clear"></div>
+    <!--效果图-->
+    <section class="index_box">
+        <h2><p><span class="red">Hot</span>效果图</p><span class="line_bg"></span></h2>
+            <div class="width300">
+                
+                <div id="flipsnap_img1" class="flipsnap_img" style="width: 840px">
+                    <{calldata mdl="case/case" city_id=$request.city_id order="hot" limit="6"}>
+                    <a href="<{link ctl='case:detail' arg0=$item.case_id}>" title="<{$item.title}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" alt="<{$item.title}>"></a>
+                    <{/calldata}>
+                </div>
+            </div>
+            <{foreach $case_attrs as $k=>$v}>
+            <{if $v.filter}>
+            <div class="white_box">
+                <h3><{$v.title}></h3>
+                <{foreach $v.values as $kk=>$vv}><a class="button_gray oval" href="<{link ctl='case:index' arg0=$vv.attr_value_id}>"><{$vv.title}></a><{/foreach}>
+            </div>
+            <{/if}>
+            <{/foreach}>
+    </section>
+    <!--效果图 end-->
+    <div class="clear"></div>
+    <!--在建工地-->
+    <section class="index_box">
+        <h2><p><span class="red">Hot</span>在建工地</p><span class="line_bg"></span></h2>
+            <div class="width300">
+                <div id="flipsnap_img2" class="flipsnap_img" style="width: 840px">
+                <{calldata mdl="home/site" city_id=$request.city_id limit="6"}>
+                    <a href="<{link ctl='site'}>"><img src="<{$pager.img}>/<{$item.face_pic}>" alt="<{$item.title}>"></a>
+                <{/calldata}>
+                </div>
+            </div>
+    </section>
+    <!--在建工地 end-->
+    <!--优惠活动-->
+    <section class="index_box">
+        <h2><p><span class="red">Hot</span>优惠活动</p><span class="line_bg"></span></h2>
+        <{calldata mdl="company/youhui" city_id=$request.city_id order="new" limit="3"}>
+        <a class="promotions_box" href="<{link ctl='youhui:detail' arg0=$item.youhui_id}>">
+            <img class="promotions" src="<{$pager.img}>/<{$item.face_pic}>" alt="<{$item.title}>" />
+            <span class="title"><{$item.title}></span>
+            <span class="date"><span class="zhong"></span><{$item.bg_date}>~<{$item.end_date}></span>
+            <span class="date"><{if $item.last_date}>火热进行中<{else}>已经结束<{/if}></span>
+        </a>
+        <{/calldata}>
+    </section>
+    <!--优惠活动 end-->
+</div>
+<!--main结束 -->
+<{include file="mobile:block/sfooter.html"}>
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+<!--底部悬浮结束--> 
+<div id="bgdiv"></div>
+<script type="text/javascript">
+    var $pointer = $('.pointer span');
+    var flipsnap = Flipsnap('.inner', { distance: 300 });
+    flipsnap.element.addEventListener('fsmoveend', function () {
+        $pointer.filter('.color').removeClass('color');
+        $pointer.eq(flipsnap.currentPoint).addClass('color');
+    }, false);
+    if ($("#flipsnap_img1").size() > 0) {
+        var mp = $("#flipsnap_img1 a").size() - 2;
+        if (mp > 0) {
+            Flipsnap('#flipsnap_img1', { distance: 140, maxPoint: mp });
+        }
+    }
+    if ($("#flipsnap_img2").size() > 0) {
+        var mp = $("#flipsnap_img2 a").size() - 2;
+        if (mp > 0) {
+            Flipsnap('#flipsnap_img2', { distance: 140, maxPoint: mp });
+        }
+    }
+</script>
+</body>
+</html>

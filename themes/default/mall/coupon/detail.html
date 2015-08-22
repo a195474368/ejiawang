@@ -1,0 +1,49 @@
+<{assign var="shop_nav_curr" value="info"}>
+<{include file="shop/block/header.html"}>
+<link rel="stylesheet" type="text/css" href="%THEME%/static/style/mallstyle.css"/>
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+	<div class="sale_detail bgwhite hauto">  
+		<h2><a href="###"><{$detail.title}></a>  满<{$detail.min_amount}>元减<{$detail.money}> 优惠券</h2> 
+		<p>                        
+			<{if $detail.photo}>
+			<span class="sale_detail_l lt" style="padding:1px;width:292px;height:182px;"><img src="<{$pager.img}>/<{$detail.photo}>" style="width:290px;height:180px;"/></span>
+			<{else}>
+			<span class="sale_detail_l lt"><sup>￥</sup><{$detail.money}><sub>满减券</sub></span>
+			<{/if}>                       
+			<span class="sale_detail_r lt">
+				<i>适用范围：全场通用，除个别商品外</i>
+				<i>使用期限：<{$detail.expire_label}></i>
+				<i>已领取数：<{$detail.downloads}></i>
+				<a href="<{link ctl='mall/coupon:download' arg0=$detail.coupon_id}>" mini-load="下载优惠券到手机" mini-width="400">下载到手机</a>
+			</span>
+		</p>
+		<p class="h20 cl"></p>
+	</div>
+	<div class="how_use_sale mt10 hauto bgwhite"><{$detail.content}></div>
+	<div class="material_hot_purchases bgwhite hauto mt15">
+		<h2>领过此券的人还领过</h2>
+		<ul>
+			<{calldata mdl="shop/coupon" order="hot" shop_id=$shop.shop_id limit=5 nocache=true}>
+			<{if $index<4 && $item.coupon_id != $detail.coupon_id}>
+				<li>
+				<a href="<{link ctl='shop/coupon:detail' arg0=$item.coupon_id}>" title="<{$item.title}>">
+				<div class="material_hot_purchases_l lt"><span><sup>￥</sup>20</span></div>
+				<div class="material_hot_purchases_r lt">电子优惠券<p>满<{$item.min_amount}>减</p></div>
+				</a>
+				</li>
+			<{/if}>
+			<{/calldata}>
+		</ul>
+		<div class="h30 cl"></div>
+	</div>         
+</div>
+<!-- 右面结束 -->
+<{include file="shop/block/footer.html"}>

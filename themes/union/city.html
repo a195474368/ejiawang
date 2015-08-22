@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<div id="wrap">
+	<!--头部开始-->
+    <{include file="block/top-header.html"}>
+    <!--头部结束-->
+    <!--logo开始-->
+    <div class="change_city_logo">
+    	<div class="w1000 hauto">
+    		<div class="logo lt hauto mt20" id="jq_city_change">
+                <h1><a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>"><img src="<{$pager.theme}>/union/static/images/logo.jpg" width="220" height="90" /></a></h1>
+                <div class="city">
+                <b><{$request.city.city_name}></b>
+                <{if $CONFIG.site.multi_city}>
+                <site><a href="<{link ctl='city'}>" id="jq_city_header_change" class="f14">[&nbsp;切换城市&nbsp;]</a></site>
+                <{/if}>
+                <p><img src="%THEME%/static/images/logo_p.jpg" /></p>
+            </div>
+                
+                </div>
+            <div class="change_city_zongji rt">
+            	<i>总计</i>
+                <i>注册业主：<{$pager.sitecount.member}></i>
+                <i>装修公司：<{$pager.sitecount.company}> </i>
+                <i>设计师：<{$pager.sitecount.designer}></i>
+            </div>
+        </div>
+    </div>
+    <!--logo结束-->
+    <div class="cl"></div>
+    <!--主题开始-->
+    <div class="index_b_bg hauto">
+    <!--城市切换开始-->
+    	<div class="change_city_main_style hauto w1000">
+        	<div class="change_city_main_style_t">
+            	<span>我们猜您可能在<{$request.city.city_name}>，</span>
+                <b>点击进入</b>
+                <a title="<{$request.city.city_name}><{$CONFIG.site.title}>" href="<{$allcity[$request.city_id].siteurl}>" class="goincity"><{$request.city.city_name}>站</a>
+                <ul>
+                    <li><a href="<{link ctl='case'}>">装修效果图</a></li>
+                    <li><a href="<{link ctl='ask'}>">装修问答</a></li>
+                    <li><a href="<{link ctl='content'}>">学装修</a></li>
+                    <li><a href="<{link ctl='gs'}>">装修公司 </a></li>
+                    <li><a href="<{link ctl='tenders'}>">免费量房</a></li>
+                </ul>
+                 <div class="cl"></div>
+            </div>
+           <div class="cl"></div>
+            <div class="chanage_city_main_style_b hauto">
+            	<div class="jianyuecity hauto">
+                    <span>热门城市</span>
+                    <ul>
+                        <{foreach from=$allcity item=item name=loop}>
+                        <{if $item.audit==1 && $smarty.foreach.loop.index <10}>
+                        <li><a href="<{$item.siteurl}>"><{$item.city_name}></a></li>
+                        <{/if}>
+                        <{/foreach}>
+                    </ul>
+                    
+                    <span class="kaitongcity">共开通了<{count($allcity)}>个城市</span>
+                </div>
+                <div class="chazhao_city hauto">
+                	<div class="chazhao_city_t">
+                    	<div class="chazhao_city_t_pinyin"><p>按拼音字母选择&nbsp;：&nbsp;</p> </div>
+                        <div class="chazhao_city_t_all">
+                            <span class="show_all">全部</span>
+                        	<ul>
+                                <{foreach from=$pycity item=item key=key}>
+                                <li class="city_chazhao"><a href="javascript:void(0);"  rel="<{$key}>"><{$key}></a></li>
+                                <{/foreach}>
+                            </ul>
+                        </div>
+                        <script>
+                            $(document).ready(function(e){
+                                $(".city_chazhao").mouseover(function(){
+                                    var index = $(this).index();
+                             
+                                    $(".city_chazhao").each(function(a){
+                                         if(a == index){
+                                             $(this).find('a').addClass('chazhao_city_on');
+                                             $("#city_list_"+$(this).find('a').attr('rel')).show();
+                                         }else{
+                                             $(this).find('a').removeClass('chazhao_city_on');
+                                             $("#city_list_"+$(this).find('a').attr('rel')).hide();
+                                         }
+                                    });
+                                });
+                                $(".show_all").mouseover(function(){
+                                    $(".chazhao_all_city").show();
+                                    $(".city_chazhao").each(function(a){
+                                        $(this).find('a').removeClass('chazhao_city_on');
+                                    });
+                                });
+                               
+                            });
+                        </script>
+                        <div class="cl"></div>
+                        <div class="chazhao_city_bg"></div>
+                            <{foreach from=$pycity item=item key=key}>
+                        <div class="chazhao_all_city" id="city_list_<{$key}>">
+                         
+                        	<div class="chazhao_all_city_l lt">
+                            	<ul>
+                                   
+                                    <li><a href="###"><{$key}></a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="chazhao_all_city_r lt">
+                            	<p>
+                                    <{foreach from=$item item=it}>
+                                
+                                    <a href="<{if $it.audit ==1}><{$it.siteurl}><{else}>###<{/if}>"><{$it.city_name}></a>
+                                    <{/foreach}>
+                                </p>
+                              
+                            </div>
+                             
+                        </div>
+                             <{/foreach}>
+                    </div>
+                </div>
+                <div class="cl"></div>
+                
+            </div>
+        	
+        </div>
+    <!--城市切换结束-->
+
+        <!--------------装修案例开始-------------------->
+    
+    <div class="cl"></div>
+
+        <div class="friends_link w1000 hauto mt30 mb20">
+        <h2><a href="<{link ctl='about:link'}>" target="_blank">友情链接</a></h2>
+        <div class="w1000 friend_link_show bgwhite hauto mt10"><p><{widget id="links" city_id=$request.city_id}></p></div>
+    </div>
+      <div class="h30"></div>
+    </div>
+     <!--主题结束-->
+
+<{include file="block/footer.html"}>

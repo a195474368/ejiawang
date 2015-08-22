@@ -1,0 +1,50 @@
+<div class="decoration_all_r1 lt hauto bgwhite">
+    <p class="p7">
+        <span><font class="ftsb">免费获得</font><font class="f22 ftw org">3</font><font class="ftsb">份不同</font></span><br />
+        <font class="ftw f20">户型设计及预算方案</font>
+    </p>
+    <div class="apply_but">
+        <form action="<{link ctl='tenders:save' http='empty'}>" mini-form="tenders" method="post" >
+            <input type="text" name="data[mobile]" id='data_mobile' value="请输入您的联系电话" class="your_phone" style="float: left;"/>
+            <input type="submit"  name="sq" class="sq" value=" " style="float: left;" />
+        </form>
+    </div>
+      <script>
+                    $(document).ready(function(){
+                        $("#data_mobile").focus(function(){
+                            if($(this).val() == '请输入您的联系电话'){
+                                $(this).val('');
+                            }
+                        }).focusout(function(){
+                             if($(this).val() == ''){
+                                $(this).val('请输入您的联系电话');
+                            }
+                        });
+                    });
+                </script>
+    <h3 class="red tc mt5"><font class="f12">*申请装修</font><font class="f14">立省</font><font class="f12">30%</h3>
+    <div class="qyrz mt10">
+        <ul>
+            <li><a href="<{link ctl='tenders'}>"><img src="<{$pager.theme}>/default/static/images/qyrz1.jpg" /></a><br /><a href="<{link ctl='tenders'}>">企业认证 </a></li>
+            <li><a href="<{link ctl='tenders'}>"><img src="<{$pager.theme}>/default/static/images/qyrz2.jpg" /></a><br /><a href="<{link ctl='tenders'}>">装修保障</a></li>
+            <li><a href="<{link ctl='tenders'}>"><img src="<{$pager.theme}>/default/static/images/qyrz3.jpg" /></a><br /><a href="<{link ctl='tenders'}>">第三方监理</a></li>
+        </ul>
+    </div>
+    <div class="cl"></div>
+</div>
+<script>
+			$(document).ready(function(){ 
+                         // $(".decoration_all_r1").onMouseMove(function(){
+                          var top=$(".decoration_all_r1").offset().top
+                           var scrolltop=$(document).scrollTop();  
+                                  
+                    //if(top<=scrolltop){
+                     //   $(".decoration_all_r1").css("position","fixed");
+                      // $(".decoration_all_r1").css("top","179px");
+                     //  $(".decoration_all_r1").css("top","470px");
+                   //     $(".decoration_all_r1").css("right","90px");
+                     // }
+                     
+                        }); 
+			//});
+		</script>    

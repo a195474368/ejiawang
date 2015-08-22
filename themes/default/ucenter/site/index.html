@@ -1,0 +1,39 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>在建工地</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>地区</th>
+        <th>小区</th>
+        <th>标题</th>
+        <th>缩略图</th>
+        <th>工地的状态</th>
+        <th>是否审核</th>
+        <th>创建时间</th>
+        <th>操作</th></tr>
+
+    <{foreach $items as $item}>
+    <tr>    
+        <td><{$areaList[$item.area_id].area_name}></td>
+        <td><{$home_list[$item.home_id].name|default:'--'}></td>
+        <td><{$item.title}></td>
+        <td><img src="<{$pager.img}>/<{$item.face_pic}>" class="wh-50" /></td>
+        <td><{$status[$item.status]}></td>
+        <td><{if $item.audit}>正常<{else}><span class="red">待审</span><{/if}></td>
+        <td><{$item.dateline|format}></td>
+
+        <td>
+            <a href="<{link ctl='ucenter/site:diary' arg0=$item.site_id http=true}>" class="yzmbtn">工地日记</a>
+            <a href="<{link ctl='ucenter/site:edit' arg0=$item.site_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+          <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>家装案例效果图大全_<{$request.city.city_name}>家装案例装修样板间大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/shop_gd.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header class="header">
+            <a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">在建工地</h1>
+            <a id="area_click" class="area">区域</a>
+            <a class="find" href="#"><img src="images/find.png" alt="搜索"></a>
+        </header>
+        <!--头部内容结束 -->
+        <!--search -->
+        <{include file="mobile:block/search.html"}>
+        <!--search end-->
+        <!--main开始 -->        
+        <div class="main">
+            <div class="gd_list">
+                <div class="down" >查看更多</div>
+            </div>
+        </div>
+    </div>
+    <!--warp结束 -->
+    <!--右侧区域-->
+    <div class="sidebar">
+        <span class="pack_up">></span>
+        <dl>
+            <dt onclick="javascript:LoadData(0,'区域');">
+            <h3><a href="javascript:LoadData(0,'区域');">全部区域</a></h3>
+            </dt>
+            <{foreach $area_list as $k=>$v}>
+            <dd onclick="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');" ><a href="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');"><{$v.area_name}></a><span>></span></dd>
+            <{/foreach}>
+        </dl>
+    </div>
+    <!--右侧区域 end-->
+    <div id="bgdiv"></div>    
+    <script type="text/javascript">
+        var lock = 0;
+        var Area = 0;
+        var QuName = '区域';
+        var search = '';
+        var next_page = 1;
+        $(function () {AsyncLoad();})
+        function AsyncLoad() {
+            //如果页码大于1，取出当前页索引
+            if (next_page > 0) {
+                if (lock == 0) {
+                    lock = 1;
+                    $("#area_click").text(QuName);
+                    $.post("<{link ctl='site:loaddata'}>", {"page":next_page, "area_id":Area_ID, "kw":search}, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            next_page = ret.nextpage;
+                            $(".case_list").append(ret.html);
+                            if(ret.nextpage < 1){
+                                $(".down").remove();
+                            }
+                        }
+                        lock = 0;
+                    }, 'json');
+                }
+            }
+        }
+        //区域加载
+        function LoadData(ID, Name ) {
+            Area_ID = ID;
+            Area_Name = Name;
+            next_page = 1;
+            //清空
+            $(".gd_list").children().remove();
+            //加载
+            AsyncLoad();
+        }
+    </script>
+</body>
+</html>

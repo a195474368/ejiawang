@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$detail.title}> - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/offer.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header><a class="return" href="<{link ctl='youhui'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">优惠活动</h1></header>
+        <!--头部内容结束 -->        
+<!--main开始 -->
+<div class="main">
+    <section class="offer_box">
+        <dl class="promotions_box2">
+            <dt><img src="<{$pager.img}>/<{$detail.face_pic}>" alt="<{$detail.title}>" />
+                <span class="title"><{$detail.title}></span>
+				<span class="date">活动状态：<{if $item.status == 'finish'}>已结束<{else}>进行中<{/if}></span>
+                <a id="pop_zb" class="button_zb white">预约</a>
+            </dt>
+            <dd>活动时间：<{$detail.bg_date}>~<{$detail.end_date}></dd>
+            <dd>举办公司：<{$company.name}></dd>
+			<dd>公司地址：<{$company.addr}></dd>
+        </dl>
+        <h2 class="h2_title">活动简介</h2>
+        <div class="offer_con"><{$detail.content}></div>
+    </section>
+</div>
+<!--main结束 -->
+    <!--发布招标-->
+<div class="pop_fabu" style="display: none">
+    <div class="fabu_zb">
+            <p class="remind">我想报名参加 <b class="red"><{$company.name}></b> 的优惠活动</p>
+        <form>
+            <div class="gray_bg">
+                <input type="text" id="UserName" onfocus="if (this.value=='您的姓名') this.value='';" onblur="if (this.value=='') this.value='您的姓名';" value="您的姓名" />
+                <span class="tishi" id="userNameError"></span>
+                <input type="text" id="Phone" onfocus="if (this.value=='手机号码') this.value='';" onblur="if (this.value=='') this.value='手机号码';" value="手机号码">
+                <span class="tishi" id="phoneError"></span>
+            </div>
+            <input type="button" value="确认提交" class="submit" /><input type="reset" class="off_fabu" value="取消" />
+        </form>
+    </div>
+</div>
+<!--发布招标 end-->
+<!--提交成功-->
+<div class="fabu_ok_bg">
+    <div class="fabu_ok">
+        <h3>
+            <img src="images/renzhen.png" alt="成功">提交成功</h3>
+        <p>稍后您的专职装修管家将与您联系，为您讲解装修流程和相关注意事 项，装修过程中遇到的任何问题都可 以咨询您的专职装修管家。</p>
+        <a class="know">知道了</a>
+    </div>
+</div>
+<!--提交成功-->
+<script>
+    window.__LOAD_LOCK = false;
+    var lock = 0;
+    var CitySimpName = 'hf';
+        //弹出层发布招标							   
+        $("#pop_zb").click(function () {
+            $(".pop_fabu").show();
+        });
+        $(document).ready(function () {
+            //定义正则表达式
+            var reg_Tname = /^[\u4e00-\u9fa5]{2,8}$/;  //真实姓名正则表达式
+            var reg_mobile = /^[1][3458]\d{9}$/;  //手机正则表达式
+            $(".submit").click(function () {
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                $UserName = $("#UserName");
+                $Phone = $("#Phone");
+                var contact = $UserName.val();
+                var phone = $Phone.val();
+                if (contact == "" || contact == "您的姓名") {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                } else if (!reg_Tname.test(contact)) {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                }
+                if (phone == "" || phone == "手机号码") {
+                    $("#phoneError").html("请填写您的手机号码！");
+                    return false;
+                }
+                else if (!reg_mobile.test(phone)) {
+                    $("#phoneError").html("手机号码格式不正确！");
+                    return false;
+                }
+                if (!window.__LOAD_LOCK){
+                    $.post("<{link ctl='magic:yuyue'}>", {"company_id":"<{$company.company_id}>", "contact": contact, "mobile": phone,"content":"预约优惠：<{$detail.title}>"}, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            window.__LOAD_LOCK = true;
+                            $("#UserName").val('');
+                            $("#Phone").val('');
+                            $("#userNameError").html('');
+                            $("#phoneError").html('');
+                            $(".pop_fabu, #bgdiv").hide();
+                            $(".fabu_ok_bg").show();                            
+                        }
+                    }, 'json');
+                }else{
+                    alert("您已发布过订单，请勿重复发布！");
+                }
+            });
+            $(".off_fabu").click(function () {
+                $("#UserName").val('');
+                $("#Phone").val('');
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                lock = 0;
+                $(".pop_fabu, #bgdiv").hide();
+            });
+            $(".know").click(function () {
+                $(".fabu_ok_bg").hide();
+            });
+        });
+</script>
+<!--main结束 -->
+    </div>
+    <!--warp结束 -->
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+</body>
+</html>

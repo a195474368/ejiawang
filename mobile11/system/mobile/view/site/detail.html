@@ -1,0 +1,49 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+        	<a href="javascript:window.history.go(-1);" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second">工地详情</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+    <div class="mobile_main1 hauto"> 
+    	<div class="mobile_designer_blog">
+        	<div class="mobile_blog_t">
+            	<p class="h10"></p>
+            	<a href="<{link ctl='site:yuyue' arg0=$detail.site_id}>" class="design_img"><img src="<{$pager.img}>/<{$company.square_logo}>" width="70" height="70"/></a>
+                <p class="designer_jieshao">
+                	<a href="###" class="block"><{$detail.title}></a>
+                    <span class="block"><i>进度&nbsp;:&nbsp;</i><a href="<{link ctl='site:yuyue' arg0=$detail.site_id}>" class="jincheng"><{$site_status[$detail.status]}></a></span>
+                    <span class="block cl"></span>
+                    <span class="block">
+                    	<i class="ico i_dizhi"></i>
+                        <i class="gd_dizhi">
+                        	<{$detail.addr}>
+                        </i>
+                    </span>
+                    <span class="block cl"></span>
+                    <span class="block">承接公司&nbsp;:&nbsp;<a href="<{link ctl='site:yuyue' arg0=$detail.site_id}>"><{$company.sort_name}></a></span>
+                    <a href="<{link ctl='site:yuyue' arg0=$detail.site_id}>" class="yuyue_but1">预约参观>></a>
+                </p>
+                <p class="cl h20bodr_b"></p>
+            </div>
+            <div class="cl"></div>
+            <div class="mobile_gd_detail_b">
+                <{foreach $site_notes as $item}>
+                <p>
+                        <b>[<{$site_status[$item.status]}>]</b>
+                </p>
+                <div class="html_contents">
+                    <{$item.content}>   
+                </div>
+                <{/foreach}>
+            </div> 
+        
+        </div>
+      <div class="h45"></div>
+    </div>
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

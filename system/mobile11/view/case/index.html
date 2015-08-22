@@ -1,0 +1,114 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+<div class="mobile_top">
+    <div class="mobile_top_son">
+        <a href="<{link ctl='index'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+        <div class="detail-second">图库</div>
+    </div>
+</div>
+<div class="h45"></div>
+<!--头部结束-->
+<!--导航开始-->
+<div class="mobile_photo">
+    <ul class="mobile_photo_menu">
+        <{foreach from=$attr_values item=item name=loop}>
+        <{if $smarty.foreach.loop.index < 3}>
+        <li>
+            <a href="###" class="personal_menu_a"><{$item.title}></a>
+            <ul class="mobile_photo_son none">
+                <li><a href="<{$item.link}>">不限</a></li>
+                <{foreach $item.values as $item2}>
+                <li class="item"> <a href="<{$item2.link}>" ><{$item2.title}></a></li>
+                <{/foreach}>
+            </ul>
+        </li>
+        <{/if}>
+        <{/foreach}>
+    </ul>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".mobile_photo_menu li").hover(
+                function() {
+                    $(this).find(".personal_menu_a").addClass("current2");
+                    $(this).find(".mobile_photo_son").show();
+                },
+                function() {
+                    $(this).find(".personal_menu_a").removeClass("current2");
+                    $(this).find(".mobile_photo_son").hide();
+                }
+        );
+    });
+</script>
+<!--导航结束-->
+<div class="cl"></div>
+<!--主题部分开始-->
+<div class="mobile_main1 hauto"> 
+    <div class="mobile_img_all">
+        
+        <{foreach from=$case item=item}>
+        <div class="item"><a href="<{link ctl='case:detail' arg0=$item.case_id}>" title="<{$item.title}>"><img src='<{$pager.img}>/<{$item.photo}>_thumb.jpg' /></a></div>
+        <{/foreach}>
+    </div>
+    <div id="jq_loding" style=" height: 20px; text-align: center; "></div>
+    <div class="h45"></div>
+   
+</div>
+
+<script type="text/javascript" src="script/jquery.masonry.min.js"></script>
+<script type="text/javascript">
+    var num = 1;
+    var nextpage = '<{$nextpage}>';
+    var lock  = 0;
+    $(document).ready(function() {
+        var $container = $('.mobile_img_all');
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector : '.item',
+                columnWidth: 90, //一列的宽度 Integer
+                isAnimated: true, //使用jquery的布局变化  Boolean
+                gutterWidth: 8, //列的间隙 Integer
+                isFitWidth: true, // 适应宽度   Boolean
+                isResizableL: true, // 是否可调整大小 Boolean
+                isRTL: true, //使用从右到左的布局 Boolean
+            });
+                
+        });
+        $(window).scroll(function(){              
+            if(!lock && $(window).scrollTop() ==$(document).height() - $(window).height()  ){
+                lock = 1;
+                num++;
+                var link = nextpage.replace('{page}',num);
+                $("#jq_loding").show().html('正在加载中...');
+                $.get(link,function(ret){
+                    if(ret.data){
+                        var data = ret.data;
+                        $("#jq_loding").html('');
+                       var items = [],
+                            item, datum;
+
+                        for ( var i=0, len = data.length; i < len; i++ ) {
+                          datum = data[i];
+                          item = '<div class="item"><a title="'+datum.title+'" href="' + datum.url + '">'
+                            + '<img src="<{$pager.img}>/' + datum.img+'_thumb.jpg" />'
+                            + '</a></div>';
+                          items.push( item );
+                        }
+                        var $items = $( items.join('') );
+                        $items.imagesLoaded(function(){
+                          $container.append( $items ).masonry( 'appended', $items, true );
+                        });                    
+                        lock = 0;
+                    }else{
+                        
+                        $("#jq_loding").html('没有数据了.....');
+                    }
+                },'json');
+            }           
+        });
+
+    });
+</script>
+
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

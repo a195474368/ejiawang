@@ -1,0 +1,6 @@
+<{foreach from=$data item=adv}>
+<li<{if $data.style}> style="<{$data.style}>"<{/if}><{if $data.class}> class="<{$data.class}>"<{/if}>>
+	<a href="<{$adv.link}>" title="<{$item.title}>"<{if $adv.target}> target="<{$adv.target}>"<{/if}>><img src="<{$pager.img}>/<{$item.thumb}>" alt="<{$adv.title}>"<{if $adv.config.width}> width="<{$adv.config.width}>"<{/if}><{if $adv.config.height}> width="<{$adv.config.height}>"<{/if}>/><br /><{$adv.adv_title}></a>
+	<p class="money">￥<strong><{if $adv.price>0}><{$adv.price}><{else}>--<{/if}></strong></p>
+</li>
+<{/foreach}>

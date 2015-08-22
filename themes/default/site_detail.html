@@ -1,0 +1,106 @@
+<{include file="block/header.html"}>
+            <!----------头部和导航公共部分------------>
+            <!--   主题部分开始 -->
+            
+        <div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    	<div class="w1000 bgwhite ask_list_weizhi">
+                  <span class="span11 icobg block_lt"></span>
+        	   <span class="block_lt">您当前所在的位置:</span>
+                <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+                <span class="block_lt">></span>
+                <a title="我搜我家" href="<{link  ctl='home'}>" class="block_lt">我搜我家</a>
+                <span class="block_lt">></span>
+                <a href="<{link ctl='site'}>" title="在建工地" class="block_lt">在建工地</a>
+                <span class="block_lt">></span>
+                <a href="<{link ctl='site:detail' arg0=$detail.site_id}>" title="<{$detail.title}>" class="block_lt"><{$detail.title}></a>
+        </div>
+    <!-- 当前位置结束   -->  
+    <!-- 公司介绍开始  -->
+    	<div class="w1000 company_describition bgwhite mt20 hauto">
+           <div class="company_describition_l lt hauto">
+            	<p class="lt p30">
+                    <a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>"><img src="<{$pager.img}>/<{$company.logo}>" width="135" height="70" /></a>
+                </p>
+                <p class="lt p31">
+                	<span class="block"><b>承接公司：</b><a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>" class="black8"><{$company.name}></a></span>
+					<span class="block"><b>电话：</b><{$company.tel}></span>
+					<span class="block"><b>地址：</b><{$company.addr}></span>
+                </p>  
+                <p class="cl"></p>            
+             </div>
+             <div class="company_describition_c lt mb15"></div>
+             <div class="company_describition_r lt hauto">
+                <h3 class="red f16 mb20"><{$detail.title}></h3>
+				<p>进度：<{$site_status[$detail.status]}></p>
+				<p>创建时间：<{$detail.dateline|format}></p>  
+             </div>
+             <div class="cl"></div>    
+        </div>   
+    <!-- 公司介绍结束  -->
+    <!-- 工地进行时开始  -->
+    	<div class="work_area_all w1000">
+            <div class="work_area w1000 mt20">
+                <p class="p32">
+                    <font class="ftw org f100">工地进行</font><font class="ftw f68 black">时间轴</font>
+                </p>
+             <div class="w1000 work_area_b">
+                    <div class="work_area_b1 site_status_<{$detail.status}>">
+                    </div>
+                   
+             </div>
+            </div>
+   		</div>
+    <!-- 工地进行时结束  -->
+    <!-- QQ咨询开始  -->
+    
+        <{foreach $site_notes as $item}>
+        <div class="w1000 bgwhite zjgd_qq mt5 hauto" style="min-height: 200px;">
+        	<div class="zjgd_qq_l lt">
+            	<h2 class="mt40 black f22">[<{$site_status[$item.status]}>]</h2>
+                <a target="_blank"  href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$company.qq}>&amp;site=qq&amp;menu=yes" class="block a18 a5">QQ咨询</a>
+                <a  mini-load="预约参观"  href="<{link ctl='site:yuyue' arg0=$detail.site_id http='empty'}>" class="block a19 a5 mt15">免费预约</a>
+            </div>
+            <div class="zjgd_qq_r lt">
+                <div class="mt10">
+                <{$item.content}>   
+                </div>
+            </div>
+        </div>
+        <{/foreach}>
+    <div class="w1000 bgwhite mt5 hauto">
+        <div class="page">
+           <{$pager.pagebar}>
+        </div>
+    </div>
+     <!-- QQ咨询结束  -->
+     <!-- 相关在建工地开始 -->
+     	<div class="xgzjgd w1000 hauto mt20">
+        	<h2>相关在建工地</h2>
+            <div class="zjgd_show_1 w1000 bgwhite mt10 hauto">
+             
+                	<ul class="lt">
+                        <{foreach $sites as $item}>
+                    	<li>
+                         <a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="220" height="155"/></a>
+                           
+                            <p><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$item.title|cutstr:30:''}></a></p>
+                            <p class="rt mr10">
+                            	<span class="block_lt">进度：</span>
+                                <span class="block_lt span27 orgbg"><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$site_status[$item.status]}></a></span>
+                            </p>
+                            <p class="cl"></p>
+                           
+                        </li>
+                    <{/foreach}>
+                    </ul>
+              
+            </div>
+            <div class="h20"></div>
+        </div>
+  
+     
+
+
+
+<{include file="block/footer.html"}>       

@@ -1,0 +1,99 @@
+<{include file='company/header.html'}>
+<!-- 详情页的公共部分 -->
+<!-- 主题部分开始 -->
+<div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    <div class="favor_detail_weizhi w1000 bodr_b mb20">
+        <font>你当前的位置：</font>
+        <a href="<{link ctl='company:xiaoguotu' arg0=$company_id}>">效果图库案例</a>
+
+    </div>
+    <!-- 当前位置结束   -->
+    <!-- 效果图案例主题部分开始 -->
+    <div class="w1000 hauto effect_case">
+        <!--标题开始 -->
+        <h2>
+            <span class="block_lt f20">图库案例</span>
+            <span class="block rt f14">共有<font class="red"><{$pager.count|default:'0'}></font>套案例</span>
+        </h2>
+        <div class="cl"></div>
+        <!--标题结束-->
+        <!--案例介绍开始-->
+        <div class="w1000 effect_case_detail mt10 hauto">
+             <{foreach $case as $item}>
+             <div class="effect_case_detail_t bgwhite lt bodr mr10 mt10" style="height:285px;overflow: hidden">
+                <div class="effect_case_detail_t_t">
+                    <p class="p39 lt" >
+                       <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="210" height="170" /></a>
+                    </p>
+                    <p class="p40 lt">
+   
+                         <{if $item.lastphotos}>   
+                            <{foreach from=$item.lastphotos item=item2 name=loop}>
+                            <{if $smarty.foreach.loop.index==2||$smarty.foreach.loop.index==1}>
+                            <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img style="margin-top:-1px"src="<{$pager.img}>/<{$photos[$item2].photo}>_thumb.jpg" width="100" height="83" _height="80" /></a>
+                            
+                            <{if $smarty.foreach.loop.index == 0}><{/if}>
+                            
+                            <{/if}>
+                            <{/foreach}>
+                            <{/if}>
+                    </p>
+                    <div class="yusj orgbgg none">
+                        <a  mini-load="免费设计" href="<{link ctl='gs:yuyue' arg0=$company.company_id http='empty'}>">预约设计</a>
+                    </div>
+                </div>
+                <div class="effect_detail_t_c">
+                    <p class="lt p41 ml10">
+                      <a title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title|cutstr:10:'..'}></a>
+                    </p>
+                    <p class="rt p42">
+                        <span class="span40 block_lt"></span>
+                        <span class="block_lt ml5"><a title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>" class="black ftw"><{$item.likes}>人喜欢</a></span>
+                        <span class="span41 block_lt ml5"></span>
+                        <span class="block_lt ml5"><a title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>" class="black ftw"><{$item.views}>人浏览</a></span>
+                    </p>
+                    <div class="cl"></div>
+                </div>
+                 <div class="effect_detail_t_b" style="height:auto">
+                    <p>
+                       <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>">
+                            设计理念：<{$item.intro|cutstr:80:'..'}>
+                        </a>
+                    </p>
+                </div>
+            </div>
+              <{/foreach}>
+        
+        </div>
+        
+
+
+        <!--案例介绍结束-->
+        <!--分页开始-->
+        <div class="w1000 hauto bgwhite mt20">
+            <div class="page">
+           <{$pager.pagebar}>
+            </div>
+        </div>
+        <!--分页结束-->
+
+    </div>
+    <!-- 效果图案例主题部分结束 -->
+    <div class="h30"></div>      
+</div> 
+
+<script>
+    $(document).ready(function() {
+        $(".effect_case_detail_t").mouseover(function() {
+            $(this).css('border', '1px solid red');
+            $(this).find(".yusj").show();
+
+        }).mouseout(function() {
+            $(this).css('border', '1px solid #FFF');
+            $(this).find(".yusj").hide();
+        });
+    });
+</script>
+
+<{include file='company/foot.html'}>

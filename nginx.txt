@@ -1,0 +1,11 @@
+location /themes\/.*\.(html|xml)$ {
+    return 403;
+}
+location /mobile {
+    if (!-e $request_filename) {
+        rewrite ^/mobile/(.*)$ /mobile/index.php last;
+    }
+}
+if (!-e $request_filename) {
+    rewrite ^(.*)$ /index.php last;
+}

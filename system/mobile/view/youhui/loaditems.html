@@ -1,0 +1,6 @@
+<{foreach $items as $item}>
+<a class="promotions_box" href="<{link ctl='youhui:detail' arg0=$item.youhui_id}>" title="<{$item.title}>"><img class="promotions" src="<{$pager.img}>/<{$item.face_pic}>"><span class="title" href="<{link ctl='youhui:detail' arg0=$item.youhui_id}>"><{$item.title|cutstr:10}></span><span class="date"><span class="zhong"></span><{$item.bg_date}>~<{$item.end_date}></span>
+<span class="date"><{if $item.status == 'wait'}>活动还未开始<{elseif $item.status == 'finish'}>活动已经结束<{else}>距离结束还有<span class="red"><{$item.last_date}></span>天<{/if}></span></a>
+<{foreachelse}>
+<a class="promotions_box"><b class="red" style="text-align:center">已经山穷水尽</b></a>
+<{/foreach}>  

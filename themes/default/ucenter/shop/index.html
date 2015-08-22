@@ -1,0 +1,32 @@
+<{include file="ucenter/header.html"}>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/shop:index'}>" class="tab on">基本设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop:info'}>" class="tab">信息设置</a><i></i>
+	<a href="<{link ctl='ucenter/shop:gmsm'}>" class="tab">购买说明</a><i></i>
+    <a href="<{link ctl='ucenter/shop:seo'}>" class="tab">SEO设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop/banner:index'}>" class="tab">轮转广告</a><i></i>
+    <a href="<{link ctl='ucenter/shop:skin'}>" class="tab">店铺模板</a><i></i>
+</div>
+<form mini-form="company" action="<{link ctl='ucenter/shop:index'}>" method="post" ENCTYPE="multipart/form-data">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr><th>商铺名称：</th><td><{$shop.title}></td></tr>
+    <tr><th></th><td><img src="<{$pager.img}>/<{$shop.logo}>" width="200" height="100"/></td></tr>
+    <tr>
+        <th class="w-100">商铺Logo：</th>
+        <td><input type="file" name="shop_logo"  class="input w-200"/><span class="tip-comment" style="inline-block">显示在列表中，建议尺寸200*100像素</span></td>
+    </tr>
+    <tr><th></th><td><img src="<{$pager.img}>/<{$shop.banner}>" width="600" height="100"/></td></tr>
+    <tr>
+        <th class="w-100">商铺Banner：</th>
+        <td><input type="file" name="shop_banner"  class="input w-200"/><span class="tip-comment" style="inline-block">显示在列表中，建议尺寸1000*200像素</span></td>
+    </tr>
+    <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>
+</form>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $){
+    var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '<{link ctl="magic:editorupload"}>', extraFileUploadParams:{OTOKEN:"<{$OTOKEN}>"}});
+})(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

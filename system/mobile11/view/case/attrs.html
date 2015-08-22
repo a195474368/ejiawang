@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>家装案例效果图大全_<{$request.city.city_name}>家装案例装修样板间大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/case.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header >
+            <a class="return" href="<{link ctl='company:detail' arg0=$company.compnay_id}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">装修案例</h1>
+        </header>
+        <!--头部内容结束 -->
+        <!--search -->
+        <{include file="mobile:block/search.html"}>
+        <!--search end-->
+        <!--main开始 -->        
+        <div class="main">
+            <div class="clear"></div>
+            <!--筛选属性-->
+            <section class="attr_box " style="margin-top:50px;">
+                <{foreach $case_attrs as $k=>$v}>
+                <{if $v.filter}>
+                <div class="white_box">
+                    <h3><{$v.title}></h3>
+                    <{foreach $v.values as $kk=>$vv}><a class="button_gray oval" href="<{link ctl='case:index' arg0=$vv.attr_value_id}>"><{$vv.title}></a><{/foreach}>
+                </div>
+                <{/if}>
+                <{/foreach}>
+            </section>
+            <!--筛选属性 end-->
+        </div>
+        <!--main结束 -->
+    </div>
+    <!--warp结束 -->
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+</body>
+</html>

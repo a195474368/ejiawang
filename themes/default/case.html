@@ -1,0 +1,109 @@
+<{include file="block/header.html"}>
+<!----------头部和导航公共部分------------> 
+<div class="index_b_bg hauto">
+    <div class="w1000 hauto bgwhite mt20 effect_show bodr_b mb20">
+        <{foreach from=$attr_values item=item name=loop}>
+        <div class="case_attr hauto">
+            <span class="bigbg span<{$smarty.foreach.loop.index+1}> lt"></span>
+            <span class="huxing2 block lt f14"><b><{$item.title}>:</b></span>
+            <a href="<{$item.link}>" class="block_lt  <{if $item.checked == true}> case_attr_hover<{/if}>">不限 </a>
+            
+            <{foreach $item.values as $item2}>
+            <a href="<{$item2.link}>" class="block_lt <{if $item2.checked ==true}>case_attr_hover<{/if}>"><{$item2.title}></a>
+            <{/foreach}>
+        </div>
+       <{/foreach}>
+    </div>
+    <div class="w980 bgwhite hot_house bodr_b mb20">
+        <b class="f14">热门楼盘：</b>
+        <{calldata mdl="home/main" city_id=$request.city_id   order="pv_num:DESC"   limit="10"}>
+        <a target="_blank" title="<{$item.name}>" href="<{link ctl='home:detail' arg0=$item.id}>"><{$item.name}></a>   
+        <{/calldata}>
+    </div>
+    <!--      楼盘区域      -->
+    <div class="today_comd w1000 hauto">
+        <div class="case_attr_order lt">
+            <ul>
+                
+                <li><a href="<{$order_url.today}>" class="<{if $url_data.order == 0}>case_attr_order_hover<{else}>case_attr_order_a<{/if}>">今日推荐</a></li>
+                <li><a href="<{$order_url.like}>" class="<{if $url_data.order == 2}>case_attr_order_hover<{else}>case_attr_order_a<{/if}>">最受欢迎</a></li>
+                <li><a href="<{$order_url.pv}>" class="<{if $url_data.order == 1}>case_attr_order_hover<{else}>case_attr_order_a<{/if}>">最人气排行</a></li>
+            </ul>
+        </div>
+        <div class="today_comd_r rt">                	
+            <div class="page">
+             
+            </div>
+
+        </div>
+
+                
+    </div>  
+    <div class="cl"></div>
+    <!--      热门推荐    -->  
+    <div class="w1000 hauto mt5 effect_show_all">
+        <div class="effect_show_all1 lt">
+            <ul>
+                
+                <{foreach $case as $item}>
+                <li>
+                    <div class="effect_show_img ">
+                        <p class="lt mt5"><a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="200" height="170" _width="150px"/></a></p>
+                        <p class="lt small_img mt5" style="width: 104px; height: 180px;_width:80px;">
+                            <{if $item.lastphotos}>   
+                            <{foreach from=$item.lastphotos item=item2 name=loop}>
+                            <{if $smarty.foreach.loop.index==1||$smarty.foreach.loop.index==2}>
+                            <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$photos[$item2].photo}>_thumb.jpg" width="104" height="81" _width="80"/></a>
+                            
+                            <{if $smarty.foreach.loop.index == 0}><{/if}>
+                            
+                            <{/if}>
+                            <{/foreach}>
+                            <{/if}>
+                            
+                        </p>
+
+                        <p class="mt5">&nbsp;&nbsp;<b class="red">[案例]</b><span><b>&nbsp;<a title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><{$item.title}></a></b></span></p>
+                        <p>
+                            <span class="block lt mt10 ml10">
+                                <{if !empty($company_list[$item.company_id])}><a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img width="30" height="30" src="<{$pager.img}>/<{$company_list[$item.company_id].square_logo}>" /></a><{/if}>
+                            </span>
+                            <span class="block lt mt15 ml10">
+                                <b><a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$company_list[$item.company_id].sort_name}></a></b>
+                            
+                            </span>
+                            
+                            <span class="block lt mt15 ml10 span4"></span>
+                            <span class="block lt mt15 ml5"><b><{$item.likes}>喜欢</b></span>
+                            <span class="block lt mt15 ml10 span5"></span>
+                            <span class="block lt mt15 ml5"><b><{$item.views}>浏览</b></span>
+
+                        </p>
+
+                    </div> 
+
+                </li>
+                
+                <{/foreach}>
+              
+
+               
+            </ul>
+        </div>
+
+
+
+
+    </div>   
+    <!--       产品展示  --> 
+    <div class="w1000 hauto mt20 next_page mb10">
+        <div class="today_comd_r rt">
+            <div class="page">
+                 <{$pager.pagebar}>
+            </div>
+            
+        </div>             
+    </div>
+	
+</div>
+<{include file="block/footer.html"}>

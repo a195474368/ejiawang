@@ -1,0 +1,78 @@
+<{include file="ucenter/header.html"}>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/shop:index'}>" class="tab">基本设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop:info'}>" class="tab on">信息设置</a><i></i>
+	<a href="<{link ctl='ucenter/shop:gmsm'}>" class="tab">购买说明</a><i></i>
+    <a href="<{link ctl='ucenter/shop:seo'}>" class="tab">SEO设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop/banner:index'}>" class="tab">轮转广告</a><i></i>
+    <a href="<{link ctl='ucenter/shop:skin'}>" class="tab">店铺模板</a><i></i>
+</div>
+<form mini-form="company" action="<{link ctl='ucenter/shop:info'}>" method="post">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr><th><span class="red">*</span>商铺标题：</th><td><input type="text" name="data[title]" value="<{$shop.title|default:''}>" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>商铺名称：</th>
+		<td><input type="text" name="data[name]" value="<{$shop.name|default:''}>" class="input w-300"/>
+			<span class="tip-comment">店铺短名称、简称</span>
+		</td>
+	</tr>
+    <tr><th><span class="red">*</span>商铺分类：</th><td><select name="data[cat_id]" class="input w-200"><{widget id="shop/cate" value=$shop.cat_id}></select></td></tr>
+  
+    <tr>
+        <th class="w-100"><span class="red">*</span>公司所在地区：</th>
+        <td>
+            <label><{$shop.city_name}></label>
+            <select name="data[area_id]" class="w-100"><{widget id="data/area" value=$shop.area_id city_id=$shop.city_id}></select>
+        </td>
+    </tr>
+    <tr><th><span class="red">*</span>联系人：</th><td><input type="text" name="data[contact]" value="<{$shop.contact|default:''}>" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>电话：</th><td><input type="text" name="data[phone]" value="<{$shop.phone|default:''}>" class="input w-300"/></td></tr>
+    <tr><th>传真：</th><td><input type="text" name="fields[fox]" value="<{$shop.fox|default:''}>" class="input w-300"/></td></tr>
+    <tr>
+        <th>客服QQ：</th><td><input type="text" name="fields[qq]" value="<{$shop.qq|default:''}>" class="input w-300"/><span class="tip-comment">多个QQ用","分隔</span></td>
+    </tr>
+    <tr><th>公司邮箱：</th><td><input type="text" name="fields[mail]" value="<{$shop.mail|default:''}>" class="input w-300"/></td></tr>
+    <tr><th>营业时间：</th><td><input type="text" name="fields[hours]" value="<{$shop.hours}>" class="input w-300"/><span class="tip-comment">如9:00 - 18:00</span></td></tr>
+
+    <tr><th>店铺公告：</th><td><textarea name="fields[bulletin]" class="textarea"><{$shop.bulletin}></textarea></td></tr>
+    <tr><th>交通：</th><td><input type="text" name="fields[jiaotong]" value="<{$shop.jiaotong}>" class="input w-500"/></td></tr>
+    <tr><th>地址：</th><td><input type="text" name="fields[address]" value="<{$shop.address|default:''}>" class="input w-500"/></td></tr> 
+	<tr><th>地图坐标：</th>
+		<td>
+			<label>经度:<input type="text" name="data[lng]" value="<{$shop.lng}>" id="Bmap_marker_lng" class="input w-100"/></label>
+			<label>纬度:<input type="text" name="data[lat]" value="<{$shop.lat}>" id="Bmap_marker_lat" class="input w-100"/></label>	
+			<span class="tip-comment">使用百度地图经纬度<a map-marker="#Bmap_marker_lng,#Bmap_marker_lat" class="yzmbtn"><b>拾取工具</b></a></span>
+		</td>
+	</tr>    
+	<tr><th>公司介绍：</th><td><textarea name="fields[info]" kindeditor="simple" style="width:550px;height:350px;"><{$shop.info}></textarea></td></tr>
+    <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>
+</form>
+<script type="text/javascript" src="<{$pager.res}>/script/widget.bmap.js"></script>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $){
+ var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '<{link ctl="magic:editorupload"}>', extraFileUploadParams:{OTOKEN:"<{$OTOKEN}>"}});
+$("[map-marker]").die("click").live("click", function(e){
+	e.stopPropagation();e.preventDefault();
+	var input = $(this).attr("map-marker").split(",");
+	var point = {lng:"", lat:""};
+	if(input.length < 2){
+		var d = $(input[0]).val().split(",");
+		point.lng = d[0];
+		point.lat = d[1];
+	}else{
+		point.lng = $(input[0]).val();
+		point.lat = $(input[1]).val();
+	}
+	Widget.BMap.Marker(point, function(ret){
+		if(input.length < 2){
+			$(input[0]).val(ret.lng+","+ret.lat);
+		}else{
+			$(input[0]).val(ret.lng);
+			$(input[1]).val(ret.lat);
+		}
+	});
+});
+})(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

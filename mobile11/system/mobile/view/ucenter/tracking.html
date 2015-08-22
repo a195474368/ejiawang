@@ -1,0 +1,236 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+<div class="mobile_top">
+    <div class="mobile_top_son">
+        <a href="<{link ctl='ucenter:tenderin'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+        <div class="detail-second">看标详情</div>
+    </div>
+</div>
+<div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+<div class="mobile_main1 hauto grey_bg">
+    <div class="owner_info">
+        <ul>
+
+            <li>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>城市：</th>
+                        <td><{$cityList[$detail.city_id].city_name}></td> </tr><tr>   
+                        <th>地区：</th>
+                        <td><{$areaList[$detail.area_id].area_name}></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            小区：
+                        </th>
+                        <td><{if $home.name}><{$home.name}><{else}><{$detail.home_name}><{/if}></td> </tr><tr>   
+                        <th>地址:</th>
+                        <td><{$detail.addr}></td>
+
+                    </tr>
+                    <tr>
+                        <th>
+                            称呼：
+                        </th>
+                        <td>
+                            <{$detail.name}>
+                        </td> </tr><tr>   
+                        <th>手机:</th>
+                        <td>
+                            <{$detail.mobile}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            招标类型：
+                        </th>
+                        <td>
+                            <{$setting[$type['type']][$detail.type_id]}>
+                        </td> </tr><tr>   
+                        <th>喜欢风格：</th>
+                        <td>
+                            <{$setting[$type['style']][$detail.style_id]}>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>
+                            预算范围：
+                        </th>
+                        <td>
+                            <{$setting[$type['budget']][$detail.budget_id]}>
+                        </td> </tr><tr>   
+                        <th>服务需求：</th>
+                        <td>
+                            <{$setting[$type['service']][$detail.service_id]}>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>
+                            空间户型：
+                        </th>
+                        <td>
+                            <{$setting[$type['house_type']][$detail.house_type_id]}>
+                        </td> </tr><tr>   
+                        <th>装修方式：</th>
+                        <td>
+                            <{$setting[$type['way']][$detail.way_id]}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            开始时间：
+                        </th>
+                        <td>
+                            <{$detail.start_time|default:''}>
+                        </td> </tr><tr>   
+                        <th>面积：</th>
+                        <td>
+                            <{$detail.area|default:''}>㎡
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>
+                            看标需要消耗金币：
+                        </th>
+                        <td>
+                            <{$detail.gold|default:'0'}><em class="fb_ico3"></em>
+                        </td> </tr><tr>   
+                        <th>允许看标企业数：</th>
+                        <td>
+                            <{$detail.num|default:''}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            参加看标的企业数：
+                        </th>
+                        <td>
+                            <{$detail.num2|default:''}>
+                        </td> </tr><tr>   
+                        <th>浏览量：</th>
+                        <td>
+                            <{$detail.pv_num|default:''}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            IP：
+                        </th>
+                        <td>
+                            <{$detail.create_ip|default:''}>
+                        </td> </tr><tr>   
+                        <th>创建时间：</th>
+                        <td>
+                            <{$detail.dateline|format}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            其他需求：
+                        </th>
+                        <td >
+                            <{$detail.demand}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            客服反馈：
+                        </th>
+                        <td>
+                            <{$detail.feedback}>
+                        </td> 
+                    </tr>
+             
+                </table>
+            </li>
+            
+            <li>
+                <table  cellspacing="0" cellpadding="0" >
+                <tr>
+                <th>我的反馈</th>
+                <th>跟踪日期</th>
+                <th>客服回复</th>
+                <th>回复时间</th>
+                </tr>
+                <{foreach $tracking as $item}>
+                <tr>
+                    <td><{$item.content}></td>
+                    <td><{$item.dateline|format}></td>
+                    <td><{$item.reply}></td>
+                    <td><{$item.reply_time|format}></td>
+                </tr>
+                <{foreachelse}>
+                 <tr><td colspan="4"><p class="text-align tip-notice">没有数据</p></td></tr>
+                <{/foreach}>
+                </table>
+                
+            </li>
+            
+            <li>
+                <form id='tenders_form'>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>我要反馈：</th>
+                        <td>
+                            <textarea name="data[content]" rows="10" cols="20" class="textarea"></textarea>
+                        </td>
+                    </tr>
+                    <tr id='showErr' style="display: none;">
+                        <td style="text-align: center;" colspan="2" ><font id="showTxt" style=" color: red; font-size: 14px;"></font></td>
+                    </tr>
+                    <tr>
+                       
+                        <td colspan="2"><input type="button" id='tender_submit' value="立刻反馈"  class="public_text1" /></td>
+                    </tr>
+                </table>
+            </form>
+                
+            </li>
+            
+        </ul>
+    </div>
+
+<script type="text/javascript">
+    var lock = 0;
+    (function(K, $) {
+        function showmsg(message){
+            $("#showErr").show();
+            $('#showTxt').html(message);
+        }
+        $("#tender_submit").click(function(){
+          if (lock == 0) {    
+                lock = 1;
+                $.post("<{link ctl='ucenter:trackinglog' arg0=$look_id}>",$("#tenders_form").serialize(),function(ret){
+                        if(ret.error){
+                            lock = 0 ;
+                            showmsg(ret.message);
+                        }else{ 
+                            window.location="<{link ctl='ucenter:tracking' arg0=$look_id}>";
+                        }
+                    },'json');
+            }
+            
+        });
+    })(window.KT, window.jQuery);
+</script>
+
+    <div class="cl"></div>
+    <div class="h45"></div>
+</div>
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

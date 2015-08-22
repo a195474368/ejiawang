@@ -1,0 +1,86 @@
+/* CSS Document */
+
+.topso {background:url(../images/topso.png) no-repeat;
+width: 381px;
+height: 38px;
+display: inline-block;}
+.currentred{background:#FF8B02;}
+.tuanzhuang_join p{color:#666;}
+.tuanzhuang_join p i{color:#FF8B02;}
+.now_cantuan{background: url(../images/join_but.png) no-repeat;}
+.tuanzhuang_show p i{color:#FF8B02;}
+.tenders_type_hover {
+width: 80px;
+height: 45px;
+background: url(../images/a_bg.png) no-repeat left bottom;
+}
+.case_attr_hover{background:#FF8B02;}
+.tuanzhuang_detail_qianyue p i{color:#FF8B02;}
+.tuanzhuang_l_c_r p i {
+font-style: normal;
+font-size: 34px;
+color: #FF8B02;
+}
+.tuangzhuang_search_l{background:#FF8B02;}
+.tuanzhaung_search_r p i{color:#FF8B02;}
+.tuanzhang_none a {
+display: block;
+width: 120px;
+height: 30px;
+background: #FF8B02;
+line-height: 30px;
+text-align: center;
+margin: 30px auto;
+font-size: 16px;
+color: white;}
+.tuanzhaung_detail_huxing_r_t p b {
+color: #FF8B02;
+font-style: normal;
+font-size: 20px;
+}
+.home_buildings_title p.p22 a {
+color: #FF8B02;
+font-size: 26px;
+font-weight: bold;
+}
+.son_menu ul li {
+float: left;
+padding: 5px;
+background: url(../images/son_menu_li_bg.jpg) no-repeat right center;
+}
+.home_tuan_join p{
+float: left;
+width: 120px;
+height: 40px;
+line-height: 40px;
+color: #FF8B02;
+font-size: 14px;
+font-weight: bold;
+}
+.home_tuan_show p i{color:#FF8B02}
+.dirary_list_l_b p a {
+color: #FF8B02;
+font-size: 14px;
+font-weight: bold;
+}
+.dirary_list_l_b p.p49 span.span80 a {
+display: block;
+width: 65px;
+height: 26px;
+color: white;
+background: #FF8B02;
+border-radius: 5px;
+line-height: 26px;
+text-align: center;
+line-height: 26px;
+text-align: center;
+font-size: 14px;
+font-weight: bold;
+}
+.today_tuijian ul li a:hover{color:#FF8B02}
+.ask_main_l_b_b a:hover {
+background: #FF8B02;
+}
+.dirary_l_b a:hover, .current14 {
+background:#FF8B02!important;
+}

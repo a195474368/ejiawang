@@ -1,0 +1,27 @@
+        </div>
+		<div class="h30"></div>  
+    </div>
+    <!-- 主题部分结束 -->
+    <div class="line1"></div>
+    <div class="footer hauto">
+        <{widget id="public/help"}>
+        <{include file="block/sfooter.html"}>
+    </div>
+    <{widget id="public/kefu"}>
+    <!--客服-->             
+</div>
+<{widget id="shop/updateviews" shop_id=$shop.shop_id}>
+<script type="text/javascript">
+(function(K, $){
+$(window).scroll(function(){
+	if($(this).scrollTop() > 248){
+		 $(".shop_menu").css({top: 0 +'px',position:'fixed'});
+	}
+	if($(this).scrollTop() < 248){
+		$(".shop_menu").css({position :''});
+	}					
+});
+})(window.KT, window.jQuery);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+    public function edit($#pk#=null)
+    {
+        if(!($#pk# = (int)$#pk#) && !($#pk# = $this->GP('#pk#'))){
+            $this->err->add('未指定要修改的内容ID', 211);
+        }else if(!$detail = K::M('#module#/view')->detail($#pk#)){
+            $this->err->add('您要修改的内容不存在或已经删除', 212);
+        }else if($this->checksubmit('data')){
+            if(!$data = $this->GP('data')){
+                $this->err->add('非法的数据提交', 201);
+            }else{
+#upload#
+                if(K::M('#module#/handler')->update($#pk#, $data)){
+                    $this->err->add('修改内容成功');
+                }  
+            } 
+        }else{
+        	$this->pagedata['detail'] = $detail;
+        	$this->tmpl = 'admin:#view#/edit.html';
+        }
+    }

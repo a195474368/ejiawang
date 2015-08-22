@@ -1,0 +1,41 @@
+<div class="home_all_r hauto bgwhite" style="width: 230px;">
+    <p>
+        <font class="ftw black f17">要</font>
+        <font class="ftw red f17">装修？</font>，
+        <font class="ftw black f17">团装</font><font class="ftw red f17">最省心！</font><br />
+        <font class="f12">我要参与“<{$detail.name}>”团装</font>
+    </p>
+    <form mini-form="survey" action="<{link ctl='tenders:save'  http=true}>" method="post">
+        <input type='hidden' name='data[home_id]' value='<{$detail.id}>'/>
+        <input type="text" name="data[home_name]" id='jq_home_name'  value="<{$detail.name}>" class="lp_hx bodr lp"/>
+        <input type="text" name="data[name]"  id='jq_name' value="您的称呼" class="lp_hx bodr mt10 ph"/>
+        <input type="text" name="data[mobile]" id='jq_mobile'  value="您的联系电话" class="lp_hx bodr mt10 ph"/>
+        <input type="submit"  value="我要团装" class="lp_hxq bodr mt10 redbg dc"/>
+    </form>
+    <script>
+        $(document).ready(function() {
+            $("#jq_home_name").focusout(function() {
+                if ($(this).val() == '')
+                    $(this).val('<{$detail.name}>');
+            });
+        $("#jq_name").focus(function() {
+                if ($(this).val() == '您的称呼')
+                    $(this).val('');
+            }).focusout(function() {
+                if ($(this).val() == '')
+                    $(this).val('您的称呼');
+            });//banner右面表单
+            $("#jq_mobile").focus(function() {
+                if ($(this).val() == '您的联系电话')
+                    $(this).val('');
+            }).focusout(function() {
+                if ($(this).val() == '')
+                    $(this).val('您的联系电话');
+            });//banner右面表单
+        });
+    </script>
+    <p>
+        已有<font class="red">2563</font>人提交
+    </p>
+
+</div>

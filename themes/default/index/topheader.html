@@ -1,0 +1,12 @@
+<!-- 主页banner-->
+<div class="i_banner">
+    <!--kinMaxShow-->
+    <div class="jq_index_banner none" id="jq_index_banner1" kinBox='{"height": 320,"easing": "linear","button": {"normal": {"right": "40%"}}}'>
+        <{AD name="首页头部轮转广告"  city_id=$request.city_id limit="3"}>
+        <div style="height:320px;"><a href="<{$item.link}>" title="<{$item.title}>" target="_blank"><img src="<{$pager.img}>/<{$item.thumb}>" /></a></div>
+        <{/AD}>
+    </div>
+    <!--kinMaxShow-->
+</div>
+<!-- //主页banner-->
+<div class="w1000"><{include file="index/kszx.html"}></div>

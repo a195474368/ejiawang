@@ -1,0 +1,25 @@
+﻿            <div class="line1">
+            </div>
+            <div class="footer_b w1000 mt30">
+                <p>
+ <{calldata mdl='article/view' from='about' order='article_id:ASC' limit=10}>
+ <a target="_blank" title="<{$item.title}>" href="<{link ctl='about' arg0=$item.page}>"><{$item.title}></a>
+        <{/calldata}>                </p>
+                  <p> Copyright © 2014 <a href="http://www.ejiawang.cc" target="_blank">亿家网</a>, All rights reserved. ICP备案：<{$CONFIG.site.icp}> <a href="http://www.ejiawang.cc" target="_blank">装修平台</a>技术支持：<a href="http://www.ejiawang.cc" target="_blank">www.ejiawang.cc</a></p>
+    <ul class="w400 mt30 mb30">
+        <li><img src="<{$pager.theme}>/default/static/pic/wj.jpg" width="50" height="50" /><br />网警110
+        </li>
+        <li><img src="<{$pager.theme}>/default/static/pic/gs.jpg" width="50" height="50" /><br /><{$request.city.city_name}>工商
+        </li>
+        <li><img src="<{$pager.theme}>/default/static/pic/xh.jpg" width="50" height="50" /><br />网络协会
+        </li>
+        <li><img src="<{$pager.theme}>/default/static/pic/hb.jpg" width="50" height="50" /><br />ICP备
+        </li>
+    </ul>
+            </div>
+        </div> 
+        
+        <div style="display:none;"><{<{$CONFIG.site.tongji}>}></div>
+    </body>
+
+</html>

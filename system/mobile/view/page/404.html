@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$CONFIG.mobile.title}></title>
+    <link type="text/css" rel="stylesheet" href="style/error.css">
+    <{include file="mobile:block/sheader.html"}>
+</head>
+<style>
+</style>
+<body>
+<!--页面内容开始 -->
+<div class="warp">
+    <!--头部内容开始 -->
+    <header >
+        <h1 class="logo"><a href="<{link ctl='index'}>"<img src="images/index_logo.png" alt="logo" /></a></h1>
+        <a href="<{link ctl='city'}>" class="city"><{$request.city.city_name}><span class="down-triangle1"></span></a>
+    </header>
+    <!--头部内容结束 -->
+<!--search -->
+<{include file="mobile:block/search.html"}>
+<!--search end-->
+<!--错误开始-->
+<div class="mistake"><a href="<{link ctl='index'}>" class="mistake_bg" style="display:block;"></a></div>
+<{include file="mobile:block/sfooter.html"}>
+<script type="text/javascript">setTimeout(function(){window.location="<{link ctl='index'}>";}, 3000);</script>
+</body>
+</html>

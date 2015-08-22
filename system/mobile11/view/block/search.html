@@ -1,0 +1,41 @@
+<section class="search_area" style="display: none">
+    <span class="close"><img src="images/close.png" alt="关闭"/></span>
+    <ul class="sort" id="top_option">
+        <li action="<{link ctl='company'}>">公司</li>
+        <li action="<{link ctl='case'}>">图库</li>
+        <li action="<{link ctl='site'}>">工地</li>
+    </ul>
+    <div class="search">
+        <form action="<{link ctl='company'}>" id="top_search_form"  >
+            <input type="text" class="search_input" id="sokeyword" name="kw" autocomplete="off" />
+            <input type="reset" class="reset" value="" style="display: none" />
+            <input type="submit" value="" id="btn_search" class="submit" />
+        </form>
+    </div>
+    <div class="dislist" id="dislist" style="display: none"></div>
+</section>
+<script type="text/javascript">
+$(function () {
+    $("#top_option li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");//删除默认样式
+        $("#top_search_form").attr('action', $(this).attr("action"));
+    });
+    /*点击搜索输入框，区域按钮隐藏*/
+    $(".index_search, .find").click(function () {
+        $(".search_area").show();
+        $(".search_input").focus();
+        $(".dislist").css("height", $(document).height() - 95);
+        $(".dislist").show();
+        $(".filter_box").fadeOut("hide");
+    });
+    /*点击关闭按钮，搜索区隐藏*/
+    $(".close").click(function () {
+        $(".search_area").hide();
+    });
+    //搜索框重置
+    $(".reset").click(function () {
+        $(".search_input").focus();
+        $(".dislist").html('');
+    });
+});
+</script>

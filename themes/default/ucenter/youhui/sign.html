@@ -1,0 +1,32 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>报名列表>>"<{$detail.title}>"</b></div>
+
+  <table width="100%" border="0" cellspacing="0" class="info">
+        <tr>
+         <th>ID</th>
+         <th>手机</th>
+         <th>联系人</th>
+         <th>报名时间</th>
+         <th>报名IP</th>
+        
+        </tr>
+
+    <{foreach $items as $item}>
+    <tr>
+        <td><{$item.sign_id}></td>
+        <td><{$item.mobile}></td>
+        <td><{$item.cantact}></td>
+        <td><{$item.dateline|format}></td>
+        <td><{$item.create_ip}></td>
+  
+    </tr>
+    <{foreachelse}>
+     <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+           <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+    </table>
+
+<{include file="ucenter/footer.html"}>

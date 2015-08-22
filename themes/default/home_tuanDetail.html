@@ -1,0 +1,244 @@
+<{include file="block/header.html"}>
+<script type="text/javascript"  src="<{$pager.theme}>/cheerful_green/static/style/Marquee.js"></script>
+<script type="text/javascript">
+$(function(){
+	//一次横向滚动一个
+	$('#marquee5').kxbdSuperMarquee({
+		isMarquee:true,
+		isEqual:false,
+		scrollDelay:25,
+		controlBtn:{left:'#goL',right:'#goR'},
+		direction:'up'
+		
+	});
+})
+        </script>
+            <!--         主题部分开始           -->
+            <div class="index_b_bg hauto">
+            	<!--         你所在的位置开始             -->
+                <div class="w1000 bgwhite ask_list_weizhi">
+                    <span class="span11 icobg block_lt"></span>
+                    <span class="block_lt">您当前所在的位置:</span>
+                    <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+                    <span class="block_lt">></span>
+                    <a href="<{link ctl='home:tuan'}>" title="团装小区" class="block_lt">团装小区</a>
+                    <span class="block_lt">></span>
+                    <a href="<{link ctl='home:tuanDetail' arg0=$tuan.tuan_id}>" title="<{$tuan.title}>" class="block_lt"><{$tuan.title}></a>
+                </div>
+                <div class="cl"></div>
+               <!--        你所在的位置结束      -->
+             
+               <div class="tuanzhuang_detail w1000 mt20 hauto">
+                 <!--主题左面开始-->
+                 	<div class="tuanzhaung_detail_l lt">
+                    	<!--左面上部开始-->
+                        	<div class="tuanzhuang_detail_l_t">
+                            	<div class="tuanzhuang_detail_qianyue">
+                                	<p>已报名<i><{$tuan.sign_num}></i>户</p>
+                                    <p>已签约<i><{$tuan.qy_num}></i>户</p>
+                                    <p>已施工<i><{$tuan.sg_num}></i>户</p>
+                                </div>
+                                <div class="tuanzhuang_detail_free">
+                                	<div class="tuanzhuang_detail_free_home">
+                                    	<h2>免费量房</h2>
+                                        <p>现场清楚了解需求</p>
+                                        <p>给客户以专业建议</p>
+                                    </div>
+                                    <div class="tuanzhuang_detail_free_home">
+                                    	<h2>免费设计方案</h2>
+                                        <p>免费获取最规范、</p>
+                                        <p>最实用的设计方案</p>
+                                    </div>
+                                    <div class="tuanzhuang_detail_free_home">
+                                    	<h2>免费预算</h2>
+                                        <p>精准装修预算报价</p>
+                                        <p>装修费用更省30%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cl"></div>
+                        <!--左面上部结束-->
+                        <!--左面中部开始-->
+                        	<div class="tuanzhuang_detail_l_c">
+                            	<div class="tuanzhuang_l_c_l lt">
+                                    <a href="<{link ctl='home:tuanDetail' arg0=$tuan.tuan_id}>" title="<{$tuan.title}>">
+                                        <img src="<{$pager.img}>/<{$home.face_pic}>" width="350" height="245"/>
+                                    </a>
+                                </div>
+                                <div class="tuanzhuang_l_c_r rt">
+                                    <h2><a target="_blank" title="<{$home.name}>" href="<{link ctl='home:detail' arg0=$home.id}>"><{$home.name}></a></h2>
+                                    <p><a target="_blank" title="<{$home.name}>" href="<{link ctl='home:detail' arg0=$home.id}>">[查看该小区图集]</a></p>
+                                    <p>团装立省&nbsp;:&nbsp;<i>￥<{$tuan.jieyue}></i></p>
+                                    <p class="h20"></p>
+                                    <a href="<{link ctl='home:tuanSign' arg0=$tuan.tuan_id}>" mini-load="我要参团" class="now_cantuan">立即参团</a>
+                                </div>
+                            </div>
+                        <!--左面中部开始-->
+                        <!--左面户型开始-->
+                           <div class="tuanzhuang_detail_huxing hauto">
+                        	<div class="tuanzhuang_detail_huxing_title">
+                            	<p>户型</p>
+                               <!-- <p>套餐</p>
+                                <p>团装价</p>-->
+                            </div>
+                            
+                            <div class="tuanzhuang_detail_huxing_b">
+                                  <{foreach from=$huxing item=item}>   
+                            	<div class="tuanzhuang_detail_huxing_l" >
+                                   <a href="<{link ctl='home:tuanSign' arg0=$tuan.tuan_id}>" mini-load="我要参团"><img src="<{$pager.img}>/<{$item.pic}>" width="210" height="147" /></a>
+                                    <p><a href="<{link ctl='home:tuanSign' arg0=$tuan.tuan_id}>" mini-load="我要参团"><{$item.title}></a></p>
+                                </div>
+                               <!-- <div class="tuanzhuang_detail_huxing_r">
+                                    
+                                    <{foreach $package as $p}>
+                                    <{if $p.huxing_id == $item.id}>
+                                	<div class="tuanzhaung_detail_huxing_r_t">
+                                    	<p><{$p.price}>套餐</p>
+                                        <p>团装总造价：<b>￥<{$p.total_price}></b>元</p>
+                                    </div>
+                                    <{/if}>
+                                    <{/foreach}>
+                                   
+                                </div>-->
+                                <{/foreach}>
+                                <div class="cl"></div>
+                            </div>
+                            
+                         
+                        </div>
+                        <!--左面户型结束-->
+                        <!--团装说明开始-->
+                        <div class="tuanzhuang_shuoming_all">
+                        	<h2>团装优惠</h2>
+                        	<div class="tuanzhaung_shuoming">
+                                    <div class="tuanzhaung_youhui"style="float:left">
+                                        <ul>
+                                            <h3> 亿家网“当代卡梅尔小镇”团装活动参加企业：</h3>
+                                            <li> 武汉市得易空间装饰工程有限公司  </li>
+                                            <li> 武汉市鲁公大宅装饰工程有限公司 </li>                     
+                                            <li> 武汉市XXXXXXXXXXXXXXXXXXXX</li>                                                                                
+                                            <li>  武汉市XXXXXXXXXXXXXXXXXXXX </li> 
+                                            <li> 武汉市XXXXXXXXXXXXXXXXXXXX</li>                                                                                
+                                            <li>  武汉市XXXXXXXXXXXXXXXXXXXX </li> 
+                                        </ul>
+                                    </div>
+                                    <div class="tuanzhaung_youhui" style="float:right;margin-left:0px">
+                                        <ul>
+                                            <h3>团装活动细节：</h3>
+                                            <li> 1：团装时间1月20至2月20日截至，过期无效。 </li>
+                                            <li> 2：凡报名参加团购业主签单金额：
+                                                <p>&nbsp;&nbsp;&nbsp;3万以上（半包）享受最终报价后立减1000元现金</p>                                                      
+                                                <p>&nbsp;&nbsp;&nbsp;8万以上（半包）享受最终报价后立减2000元现金</p>
+                                                <p>&nbsp;&nbsp;&nbsp;5万以上（全包）享受最终报价后立减1000元现金</p>
+                                                <p>&nbsp;&nbsp;&nbsp;10万以上（全包）享受最终报价后立减2000元现金</p>
+                                                
+                                            </li>                     
+                                                                                                                       
+                                           
+                                        </ul>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                        <!--团装说明结束-->
+                    </div>
+                 <!--主题左面结束-->
+                 <!--主题右面开始-->
+                 <div class="tuanzhaung_detail_r rt" style="width:380px">
+                     <div class="tuanzhuang_detail_r_t" style="height:240px">
+                           <!-- <h2><a title='<{$company.name}>' target="_blank" href="<{link ctl='company' arg0=$company.company_id}>"><{$CONFIG.site.title}></a></h2>-->
+                            <a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/cheerful_green/static/images/tuan_logo.jpg" width="300" height="100" /></a>
+                            <p><b>联系电话&nbsp;：</b>&nbsp;<{$CONFIG.site.phone}></p>
+                            <!--<p><a title='<{$company.name}>' target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$company.qq}>&amp;site=qq&amp;menu=yes"><img src="<{$pager.theme}>/default/static/images/qqjt.png" /></a></p>-->
+                           <!-- <p><b>公司地址&nbsp;:&nbsp;</b><{$company.addr}></p>-->
+                           <p>省钱、省事、省心、更多团装活动请</p>
+                           <P> <a href="<{link ctl='home:tuanSign' arg0=$tuan.tuan_id}>" mini-load="我要参团" class="now_cantuan">立即参团</a></p>
+                            <p class="h10"></p>
+                        </div>
+                     <h2>最新享受免费服务的业主：</h2>
+                        <div id="marquee5" class="tuanzhaung_detail_r_b" style="width:380px;height:300px;margin-right: 5px;margin-top: 10px;padding-top:10px;overflow: hidden; font-size: 13px;">
+                        	
+                     
+                            <ul>
+                              
+                                 <{calldata mdl="home/sign" city_id=$this->request['city_id']}>
+                         <li>
+                      <p><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" ><{$item.mobile|cutstr:8:'**'}>报名了
+                    <{calldata mdl="home/tuan" tuan_id=$item.tuan_id city_id=$this->request['city_id']}>“<{$item.title|cutstr:30:'**'}>”<{/calldata}></a></p>
+                        </li>
+                                    <{/calldata}>
+                                
+                               <!-- <{foreach from=$signs item=item}>
+                            	<li>
+                                	<span><{$item.cantact|cutstr:3:'**'}></span>
+                                    <span><{$item.mobile|cutstr:5:'**'}></span>
+                                    <span><{date('m/d',$item.dateline)}></span>
+                                </li>
+                                <{/foreach}>-->
+                            </ul>
+                        </div>
+                      <h2>装修知识</h2>
+                      <div class="decoration_class_zhuangxiu">
+                          <ul class="bodr_b bgwhite">
+                            <{widget id='article/newitems' limit=8}>
+                            <p class="mt10"></p>
+                        </ul>
+                     </div>
+                      <h2>装修日记</h2>
+                      <div class="decoration_class_t_l_r_b bgwhite" style="width: 400px;height:200px" >
+                            <div class="decoration_class_diary_l  bgwhite" style="float:left">
+                        <ul style="margin-top:2px">
+                              <{calldata mdl="diary/diary"  order="diary_id:desc"   limit="8" }>
+                              
+                             <li style="width:190px;padding-left:1px">
+                                 <div><font style ="font-size:13px"><{$index+1}>.</font><a target="_blank" href="<{link ctl='content:diaryDetail' arg0=$item.diary_id}>" title="<{$item.title}>" ><{$item.title|cutstr:22:""}></a></div>
+                              </li>
+                              <{/calldata}>
+                            <p class="mt10"></p>
+                        </ul>
+                            </div>
+                            <div class="decoration_class_diary_r" style="float:right;padding-top: px;" >
+                                 <{calldata mdl="diary/diary"  order="diary_id:desc"   limit="8" }>
+                                <a target="_blank" href="<{link ctl='content:diaryDetail' arg0=$item.diary_id}>" title="<{$item.title}>" > <img src="<{$pager.img}>/<{$item.face_pic}>" width="190" height="190" /></a>
+                                 <{/calldata}>
+                                </div>
+                        </div>      
+                        <script>
+                             (function(K, $) {
+                     $(".decoration_class_diary_r a").each(function(a){
+                          var index = $(this).index();
+                           if (a == 0) {
+                             $(this).show();  
+                           }
+                           else {
+                        $(this).hide();
+                                }
+                     });           
+                             
+            $(".decoration_class_diary_l ul li").mouseover(function() {
+                //$(this).css('color','#00AD28');
+                var index = $(this).index();
+                $(".decoration_class_diary_r a").each(function(a) {
+                    if (a == index) {                 
+                        $(this).show();       
+                    } else {
+                     
+                        $(this).hide();
+                    }
+                });
+            });
+        })(window.KT, window.jQuery);
+				 	
+				 </script>    
+                     
+                     
+                     
+                    </div>
+                 <!--主题右面结束-->
+                  <div class="cl h20"></div>
+            
+               
+               </div>    
+               
+            </div>
+<{include file="block/footer.html"}>   

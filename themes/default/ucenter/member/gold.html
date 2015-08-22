@@ -1,0 +1,35 @@
+<{include file="ucenter/header.html"}>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/member:logs'}>" class="tab" title="金币日志">金块日志</a><i></i>
+    <a href="<{link ctl='ucenter/member:logs' arg0='in'}>" class="tab" title="冲值记录">冲值记录</a><i></i>
+    <a href="<{link ctl='ucenter/member:logs' arg0='out'}>" class="tab" title="消费记录">消费记录</a><i></i>
+    <a href="<{link ctl='ucenter/member:gold'}>" class="wytw">我要充值</a>
+</div>
+<h4 class="tips">我的金币:<{$MEMBER.gold}></h4>
+<{if $CONFIG.gold.onpay}>
+<form action="<{link ctl='payment:gold'}>" method="post" >
+<table width="100%" border="0" cellspacing="0" class="from">
+    <tr>
+        <th>冲值金额：</th>
+        <td>
+            <input type="text" name="amount" class="input w-100" value="<{$CONFIG.gole.mini_amount}>" />
+            <span class="tip-commont">1RMB=<{$CONFIG.gold.huilv}>金块, 最小充值￥<{$CONFIG.gold.minpay}></span>
+        </td>
+    </tr>
+    <tr><th>支付平台：</th>
+        <td style="padding:10px">
+            <{foreach $pay_list as $pay}>
+            <{if $pay.status==1}>
+            <label><input type="radio" name="code" value="<{$pay.payment}>" <{if $pay@first}>checked<{/if}>/><img src="<{$pager.img}>/<{$pay.logo}>" style="width:135px;height:45px;"/></label>
+            <{/if}>
+            <{/foreach}>
+        </td>
+    </tr>
+    <th></th><td><input type="submit" value="保存" class="set_btn" /></td>
+    <tr>
+</table>
+</form>
+<{else}>
+<p class="tips">管理员关闭了金块在线充值</p>
+<{/if}>
+<{include file="ucenter/footer.html"}>

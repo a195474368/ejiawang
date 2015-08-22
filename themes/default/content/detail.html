@@ -1,0 +1,123 @@
+<{include file="block/header.html"}>
+<!----------头部和导航公共部分------------> 
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 mt15 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="学装修" href="<{link ctl='content'}>" class="block_lt">学装修</a>
+        <span class="block_lt">></span>
+        <a title="装修学堂" href="<{link ctl='content:items'}>" class="block_lt">装修学堂</a>
+        <{if $detai.cat_title}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='content:items' arg0=$detail.cat_id}>" title="<{$detai.cat_title}>" class="block_lt"><{$detai.cat_title}></a>
+        <{/if}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='content:detail' arg0=$detail.article_id}>" title="<{$detail.title}>" class="block_lt"><{$detail.title}></a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <div class="ask_detail_main w1000 mt15 hauto">
+        <!--        位置结束左面下开始       -->
+        <div class="ask_detail_main_l hauto mt5 lt bgwhite">
+            <div class="learn_detail_l_t hauto bgwhite">
+                <div class="learn_detail_l_t_content hauto">
+                    <h2><{$detail.title}></h2>
+                    <p class="p54">
+                        <span class="block_lt span63">
+                            <font class="org"><{$detail.views}></font><font>人已浏览</font>
+                            <font>时间&nbsp;:&nbsp;</font><font><{$detail.dateline|format}></font> 
+                        </span>
+                        <span class="block rt span64">
+                          <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_t163" data-cmd="t163"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","t163"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","t163"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];</script>
+                        </span>
+                    </p>
+                    <p class="cl"></p>
+                    <p class="p55 bodr mt15 hauto">
+                        导语：<{$detail.desc}>
+                    </p>
+                    <div class="fengshui_content mt15 hauto">
+                        <div class="content">
+                            <{$detail.content}>
+                        </div>
+                        <p class="cl"></p>
+                        <p class="h10 bodr_b"></p>
+                        <p>
+                            <{if $up_item}>
+                            <a target="_blank" href="<{link ctl='content:detail' arg0=$up_item.article_id}>"  title="<{$up_item.title}>" class="red">上一篇：<{$up_item.title}></a><br />
+                            <{/if}>
+                            <{if $next_item}>
+                             <a target="_blank" href="<{link ctl='content:detail' arg0=$next_item.article_id}>" title='<{$next_item.title}>' class="red">下一篇：<{$next_item.title}></a><br />
+                            <{/if}>
+                        </p>
+                        <p>
+                            <b class="f16">相关推荐&nbsp;:&nbsp;</b>
+                        </p>
+                        <{foreach from=$contents item=item}>
+                        <p><a target="_blank" href="<{link ctl='content:detail' arg0=$item.article_id}>" title='<{$item.title}>' class="black"><{$item.title}></a></p>
+                        <{/foreach}>
+                        <div class="h20"></div>
+                    </div>
+
+
+                </div>
+            </div>	
+
+
+
+
+        </div>
+        <!--        位置结束左面下结束       -->
+
+        <!--        位置结束右面下开始       -->
+        <div class="ask_detail_main_r hauto mt5 lt ml20">
+            <{include file="block/tenders.html"}>  
+            <div class="cl"></div>
+            <div class="ads8 mt15 hauto">
+                <{widget id="adv" name="文章列表页右侧广告位" city_id=$request.city_id limit="5"}>
+            </div>
+            <div class="today_tuijian hauto">
+                <h2 class="mb10 mt10">经典日记</h2>
+                <div class="today_tuijian_b hauto bgwhite">
+                    <{widget id='diary/right' limit=10 city_id=$request.city_id}>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+        <!--  评论开始 -->
+       <div class="w1000 hauto bgwhite mt10">
+            <div class="w900 hauto mt20 pinglun">
+                <h2>共<{$pager.count|default:'0'}>条评论</h2>
+                <{foreach $items as $item}>
+                <div class="pl_contant mt10 hauto">
+                    <a href="javascript:void(0);"><img src="<{$pager.img}>/<{$userList[$item.uid].face_80}>" width="40" height="40" /></a>
+                     <div class="pl_contant_b lt" style=" margin-left: 10px; width: 800px;" >
+                        <p>
+                            <span class="red"><{$userList[$item.uid].uname}></span><span style="margin-left: 10px;">时间：<{$item.dateline|format}></span><span style="margin-left: 10px;">来自：<{$item.create_ip}></span>
+                        </p>
+                        <div><{$item.content}></div>
+                    </div>
+                </div>
+                <{/foreach}>
+              
+                <form id='comment_form'>
+                <div class=" w900 hauto mt10">
+                   
+                    <textarea  style="width: 895px;"  rows="5" name="content" ></textarea>
+                    
+                </div>
+                <div class="fbpl rt mt20 mb30"> 
+                        <input type="submit" mini-submit='#comment_form' action="<{link ctl='content:detailComment' arg0=$detail.article_id}>" name="fbpl" value="发表评论" class="baocunpl"/>
+                </div>
+                </form>
+            </div>
+        </div>
+		<div class="cl h20"></div>
+    <!--  评论结束 -->     
+
+    <{include file="block/footer.html"}>  

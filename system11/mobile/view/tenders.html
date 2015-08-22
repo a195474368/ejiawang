@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>免费招标 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/zhaobiao.css">
+    <{include file="mobile:block/sheader.html"}>
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header ><a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">免费招标</h1></header>
+        <!--头部内容结束 -->
+<!--main开始 -->       
+<div class="clear"></div>
+<!--main开始 -->
+<div class="main zhaobiao">
+    <!--流程-->
+    <section class="process">
+        <span class="bg_line"></span>
+        <ul><li><span>1</span><p>提交申请</p></li><li><span>2</span><p>客服回访</p></li><li><span>3</span><p>免费量房</p></li><li><span>4</span><p>免费预算</p></li></ul>
+    </section>
+    <!--流程 end-->
+    <!--发布招标-->
+    <div class="fabu_zb">
+        <div class="gray_bg">
+            <input type="text" id="UserName" onfocus="if (this.value=='您的姓名') this.value='';" onblur="if (this.value=='') this.value='您的姓名';" value="您的姓名" />
+            <span class="tishi" id="userNameError"></span>
+            <input type="text" id="Phone" onfocus="if (this.value=='手机号码') this.value='';" onblur="if (this.value=='') this.value='手机号码';" value="手机号码">
+            <span class="tishi" id="phoneError"></span>
+        </div>
+        <input type="button" value="确认提交" class="submit" />
+    </div>
+    <!--发布招标 end-->
+    <!--提交成功-->
+    <div class="fabu_ok_bg">
+        <div class="fabu_ok">
+            <h3>
+                <img src="images/renzhen.png" alt="成功">提交成功</h3>
+            <p>稍后您的专职装修管家将与您联系，为您讲解装修流程和相关注意事 项，装修过程中遇到的任何问题都可 以咨询您的专职装修管家。</p>
+            <a class="know">知道了</a>
+        </div>
+    </div>
+    <!--提交成功-->
+</div>
+<!--main结束 -->
+</div>
+<!--warp结束 -->
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+    <script>
+        var lock = 0;
+        var CitySimpName = 'hf';
+        $(document).ready(function () {
+            //定义正则表达式
+            var reg_Tname = /^[\u4e00-\u9fa5]{2,8}$/;  //真实姓名正则表达式
+            var reg_mobile = /^[1][3458]\d{9}$/;  //手机正则表达式
+
+            $(".submit").click(function () {
+                $UserName = $("#UserName");
+                $Phone = $("#Phone");
+                var contact = $UserName.val();
+                var phone = $Phone.val();
+
+                if (contact == "" || contact == "请输入您的姓名") {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                } else if (!reg_Tname.test(contact)) {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                }
+
+                if (phone == "" || phone == "请输入您的手机号码") {
+                    $("#phoneError").html("请填写您的手机号码！");
+                    return false;
+                }
+                else if (!reg_mobile.test(phone)) {
+                    $("#phoneError").html("手机号码格式不正确！");
+                    return false;
+                }
+                if (lock == 0) {
+                    $.post( '<{link ctl="tenders:save"}>',{contact: contact, mobile: phone},function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            $("#UserName").val('');
+                            $("#Phone").val('');
+                            $("#userNameError").val('');
+                            $("#phoneError").val('');
+                            lock = 1;
+                            $(".fabu_ok_bg").show();                            
+                        }
+                    }, 'json');
+                } else {
+                    alert("您已发布过订单，请勿重复发布！");
+                }
+            });
+
+            //发布招标成功提示
+            $(".know").click(function () {
+                $(".fabu_ok_bg").hide();
+            });
+        });
+    </script>
+</body>
+</html>

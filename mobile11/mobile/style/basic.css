@@ -1,0 +1,38 @@
+/* CSS Document */
+/*公共样式
+Time:2014-3-7
+AUctor:ijh
+*/
+
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, 
+textarea, iframe, table, th, td {margin: 0;padding: 0;}
+body{font:12px/1.6 "微软雅黑";color:#777777;/*IE下容器居中*/}
+h1,h2,h3,h4,h5,h6{text-align:left;}
+ul,li{list-style:none;}
+a,img,a img{border:0 none;}
+a{text-decoration:none;cursor:pointer;}
+a:hover{text-decoration:underline;}
+i{font-style:normal;}
+input,select{outline:none} 
+textarea{ outline:0; resize:none;text-align:left;}
+form submit,form img,form reset,form button{cursor:pointer;}
+.block_lt{display:block;float:left;}
+.block{display:block;}
+.lt{float:left;display:inline;}
+.rt{float:right; display:inline;}
+.cl{clear:both;}
+#wrap{text-align:left;}
+.mt7{margin-top:7px;}
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.pc_overflow{overflow:hidden; zoom:1;}
+.hauto{height:auto;overflow:hidden;}
+.h10{height:10px;}
+.h20{height:20px;}
+.h30{height:30px;}
+.bodr{border:1px solid #E3E3E3;}
+.none{display:none;}
+.ml2{margin-left:2%;}
+
+.w320{width:320px; margin:0 auto; overflow:hidden; zoom:1;}
+.w300{width:300px; margin:0 auto; overflow:hidden; zoom:1;}

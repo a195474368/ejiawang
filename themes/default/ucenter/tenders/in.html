@@ -1,0 +1,42 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>正在进行的招标</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>标题</th>
+        <th>看标需要消耗金块</th>
+        <th>允许看标企业数</th>
+        <th>参加看标的企业数</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+
+    <{foreach $items as $item}>
+    <tr>    
+        <td><{$item.title}></td>
+        <td><{$item.gold}></td>
+        <td><{$item.num}></td>
+        <td><{$item.num2}></td>
+        <td><{$item.dateline|format}></td>
+        <td>
+            <{if $lookIds[$item.id]}>
+            已查看
+            <{else}>
+            
+            <{if $item.num2 >=$item.num}>
+            结束
+            <{else}>
+            <a href="<{link ctl='ucenter/tenders:view' arg0=$item.id http=true}>" class="yzmbtn">查看</a>
+            <{/if}>
+            <{/if}>        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="19"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+          <td  colspan="19" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

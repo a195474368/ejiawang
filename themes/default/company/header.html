@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><{if $seo_title}><{$seo_title}><{elseif $SEO.title}><{$SEO.title}><{else}><{$CONFIG.site.title}><{/if}></title>
+        <meta name="keywords" content="<{if $seo_keywords}><{$seo_keywords}><{elseif $SEO.keywords}><{$SEO.keywords}><{/if}>" />
+        <meta name="description" content="<{if $seo_description}><{$seo_description}><{elseif $SEO.description}><{$SEO.description}><{/if}>" />
+        <{foreach $template.css as $item}>   	   
+        <link rel="stylesheet" type="text/css" href="<{$pager.theme}>/<{$item}>"/>
+        <{/foreach}>        
+        <link rel="stylesheet" href="<{$pager.res}>/style/kt.widget.css" type="text/css" />
+        <link rel="stylesheet" href="<{$pager.res}>/style/common.css" type="text/css" />
+        <link rel="stylesheet" href="<{$pager.res}>/ui/j.ui.css" type="text/css" />
+        <script type="text/javascript">window.URL = {"domain": "<{$CONFIG.site.domain}>", "url": "<{$CONFIG.siteurl}>", "res": "<{$pager.res}>", "img": "<{$pager.img}>", "city": "<{$request.city.siteurl}>"};</script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/kt.j.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/kt.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/ui/j.ui.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/widget.login.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/widget.msgbox.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/raty/jquery.raty.js"></script>    
+    </head>
+
+    <body>
+        <iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+        <div id="wrap">
+            <!--优惠信息更多详情页头部开始  -->
+            <div class="favorable_detail_top">
+                <div class="favor_detail_p w1000">
+                    <div class="favorable_detail_top_l lt">
+                        <font>你所在的位置&nbsp;：&nbsp;</font>
+                        <a title="<{$CONFIG.site.title}>" href="\"><{$CONFIG.site.title}></a><font>&nbsp;>&nbsp;</font>
+                        <a title="装修公司企业站" href="<{link ctl='gs:items'}>">装修公司企业站</a><font>&nbsp;>&nbsp;</font>
+                        <a title="<{$company.name}>" href="<{link ctl='company' arg0=$company_id}>"><{$company.name}></a>
+                    </div>
+                    <div class="favorable_detail_top_r rt">
+                       
+                        <{if $MEMBER.uname}>
+                        <a href="<{link ctl='ucenter/member:index' http=true}>"  style="float: left; ">  <{$MEMBER.uname}>您好！</a><a  class="a14" style="margin-left: 10px;" href="<{link ctl='passport:loginout'}>">退出</a>
+                <{else}>
+                 <a href="<{link ctl='passport-signup' http='empty'}>" class="a14">注册</a>
+                        <a href="<{link ctl='passport' http='empty'}>" class="a14">登录</a>
+            
+                <{/if}>
+                        
+                        <span class="block_lt span36 black8">咨询热线&nbsp;:&nbsp;</span>
+                        <span class="block_lt ftw red"><{$CONFIG.site.phone}></span>
+
+                    </div>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <!--优惠信息更多详情页头部结束  -->
+            <!--优惠信息更多详情页导航开始  -->
+            <div class="favorable_detail_more_top redbgm">
+                <div class="w1000 favorable_more_menu">
+                    <div class="favorable_more_menu_logo lt bgwhite">
+                        <a href="###"><img src="<{$pager.img}>/<{$company.logo}>" width="135" height="70" /></a>
+                      <{if $company.is_vip}>  <span class="block span34"><font class="f16 red">旗舰店</font></span><{/if}>
+                    </div>
+                    <div class="favorable_more_menu_r lt">
+                        <div class="favorable_more_menu_r_t">
+                            <a href="###" class="block_lt f28 white"><{$company.sort_name}></a>
+                            <span class="block rt span35" style="line-height: 30px;">
+                                <font class="ftw f12 white" style="float: left;">信誉指数&nbsp;：</font>
+                                <div id="company_xy" style="float: left; width: 120px;height: 30px; line-height: 30px;"></div>
+                                <font class="ftw f12 white" style="float: left;">总评分&nbsp;:&nbsp;</font><font class="ftw f12 org" style="float: left;"> <{round($company.scores/10,1)}></font>
+                            </span>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#company_xy').raty({
+                                        starOn: '/static/script/raty/img/star-on.png',
+                                        starOff: '/static/script/raty/img/star-off.png',
+                                        starHalf:'/static/script/raty/img/star-half.png',
+                                        width: 120,
+                                        readOnly: true, score: <{round($company.scores/10,1)}>
+                                    });
+
+                                });
+                            </script>
+                            <p class="cl"></p>
+                        </div>
+                        <div class="favorable_more_menu_r_b">
+                            <ul>
+                                <li><a title="<{$company.name}>首页" href="<{link ctl='company' arg0=$company_id}>" <{if $act=='main'}>class="current8" <{/if}>>首页</a></li>
+                                <li><a title="<{$company.name}>装修案例" href="<{link ctl='company:xiaoguotu' arg0=$company_id}>" <{if $act=='xiaoguotu'}>class="current8" <{/if}>>装修案例</a></li>
+                                <li><a  title="<{$company.name}>设计团队" href="<{link ctl='company:team' arg0=$company_id}>" <{if $act=='team'}>class="current8" <{/if}>>设计团队</a></li>
+                                <li><a title="<{$company.name}>装修案例" href="<{link ctl='company:news' arg0=$company_id}>" <{if $act=='news'}>class="current8" <{/if}>>装企新闻</a></li>
+                                <li><a title="<{$company.name}>在建工地" href="<{link ctl='company:site' arg0=$company_id}>" <{if $act=='site'}>class="current8" <{/if}>>在建工地</a></li>
+                                <li><a title="<{$company.name}>业主评价" href="<{link ctl='company:dianping' arg0=$company_id}>" <{if $act=='dianping'}>class="current8" <{/if}>>业主评价</a></li>
+                                <li><a title="<{$company.name}>优惠信息" href="<{link ctl='company:youhui' arg0=$company_id}>" <{if $act=='youhui'}>class="current8" <{/if}>>优惠信息</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>  

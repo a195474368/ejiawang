@@ -1,0 +1,129 @@
+<{include file="block/header.html"}>
+
+<!----------头部和导航公共部分------------> 
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='gs'}>" title="找装修公司" class="block_lt">找装修公司</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='designer'}>" title="找设计师" class="block_lt">找设计师</a>
+        <{if $area_id}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='designer:items' arg0=$area_id}>" title="<{$area_list[$area_id].area_name}>设计师" class="block_lt "><{$area_list[$area_id].area_name}>设计师</a>
+        <{/if}>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        引导开始             -->
+    <div class="w1000 dirary_list hauto bgwhite mt20">
+        <div class="dirary_list_t hauto">
+            <p class="h30 bodr_b ftw f16">
+                <font >直接定向选择设计师</font>
+                <font class="red">方便快捷</font>
+
+            </p>
+        <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span>区域&nbsp;:&nbsp;</span>
+                <a  href="<{$area_url}>" <{if empty($url_data.area_id)}>class="a1"<{/if}>>不限</a>
+                <{foreach $area_list  as $v}>
+                <a  title="<{$v.area_name}>设计师" href="<{$v.link}>" <{if $v.checked}>class="a1"<{/if}>><{$v.area_name}></a>
+                <{/foreach}>
+            </div>
+
+            <{foreach $attr_values as $item}>
+            <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span><{$item.title}>&nbsp;:&nbsp;</span>
+                <a  title="<{$item.title}>设计师" href="<{$item.link}>"  <{if $item.checked}>class="a1"<{/if}>>不限</a>
+                <{foreach $item.values as $it2}>
+                <a  title="<{$it2.title}>设计师" href="<{$it2.link}>"  <{if $it2.checked}>class="a1"<{/if}>><{$it2.title}></a>
+                <{/foreach}>
+
+            </div>
+            <{/foreach}>
+
+
+        </div>
+
+    </div>
+    <!--        引导结束             -->
+    <!-- 设计团队主题部分开始 -->
+    <div class="designer_team_main w1000 hauto mt20">
+        <!--标题开始 -->
+        <h2>
+            <span class="block_lt f20">设计师</span>
+            <span class="block rt f14">共<font class="red"><{$pager.count|default:'0'}></font>位</span>
+        </h2>
+        <!--标题结束-->
+        <div class="cl"></div>
+        <!--团队介绍开始-->
+        <div class="w1000 hauto  designer_team_describe">
+            
+            <{foreach $designers as $item}>
+            <div class="designer_team_describe_t lt bodr bgwhite mt10 mr15">
+                <div class="designer_team_describe_t_img">
+                    <a title="<{$user_list[$item.uid].realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>">
+                        <img alt="<{$user_list[$item.uid].realname}>" src="<{$pager.img}>/<{$user_list[$item.uid].face}>" width="200" height="200" />
+                    </a>
+                    <div class="mfyu1 orgbgg none"><a mini-load="预约设计" href="<{link ctl='designer:yuyue' arg0=$item.uid http='empty'}>" class="a34">免费预约</a></div>
+                    <div class="her_blog greenbg none">
+                        <a title="<{$user_list[$item.uid].realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" class="a34">他的博客</a>
+                    </div>
+                </div>
+               <a title="<{$user_list[$item.uid].realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" class="block ml20 black f16 mt5 ftw"><{$user_list[$item.uid].realname}></a>
+                <p class="p37">毕业院校：<{$item.school}></p>
+                <p class="p38">
+                   <a title="<{$user_list[$item.uid].realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>">
+                        自我介绍：<{$item.about|cutstr:100:'...'}>
+                    </a>
+                </p>
+
+            </div>
+           <{/foreach}>
+        </div>
+       
+        
+        
+  
+        <!--团队介绍结束-->
+        <!--分页开始-->
+        <div class="w1000 hauto bgwhite mt20">
+            <div class="page">
+                <{$pager.pagebar}>
+            </div>
+        </div>
+        <!--分页结束-->
+        <div class="h20"></div>
+
+
+    </div>
+
+    <!-- 企设计团队主题部分结束 -->  
+
+    <script>
+        $(document).ready(function() {
+            $(".designer_team_describe_t").mouseover(function() {
+                $(this).find(".mfyu1").show();
+                $(this).find(".her_blog").show();
+				
+                $(this).css('border', '1px solid #F00');
+
+            }).mouseout(function() {
+                $(this).css('border', '');
+                $(this).find(".mfyu1").hide();
+				$(this).css('border', '1px solid #EAEAEA');
+                $(this).find(".her_blog").hide();
+
+            });
+
+            $(".qyrz ul li:last").css('border-right', 'none');
+            $(".newest_qdb li").eq(0).mouseover();
+
+        });
+    </script>
+
+    <{include file="block/footer.html"}>      

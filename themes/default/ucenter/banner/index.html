@@ -1,0 +1,40 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>商铺横幅</b></div>
+
+  <table width="100%" border="0" cellspacing="0" class="info">
+        <tr>
+
+            <th>标题</th>
+            <th>图片</th>
+            <th>链接</th>
+            <th>排序</th>  
+            <th>操作</th>
+        </tr>
+    <form mini-form="company" action="<{link ctl='ucenter/banner:update'  http=true}>" method="post">
+        <{foreach $items as $item}>
+        <tr>
+            <td><input type="text" class="input w-200" name="data[<{$item.banner_id}>][title]" value="<{$item.title}>" /></td>
+            <td><img src="<{$pager.img}>/<{$item.pic}>" class="wh-50" /></td>
+            <td><input type="text" class="input w-100" name="data[<{$item.banner_id}>][link]" value="<{$item.link}>" /></td>
+            <td><input type="text" class="input w-50" name="data[<{$item.banner_id}>][orderby]" value="<{$item.orderby}>" /></td>
+            <td><a href="<{link ctl='ucenter/banner:edit' arg0=$item.banner_id http=true}>" class="yzmbtn">修改</a> </td>
+        </tr>
+        <{foreachelse}>
+         <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+        <{/foreach}>
+        
+        <{if !empty($items)}>
+        <tr>
+            <td  colspan="20" class="page-list">
+               <input type="submit" value="批量更新" class="yzmbtn" />
+            </td>
+        </tr>
+        <{/if}>
+    </form>   
+    <tr>
+        <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+    </table>
+
+<{include file="ucenter/footer.html"}>

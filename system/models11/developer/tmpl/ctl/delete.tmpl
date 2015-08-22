@@ -1,0 +1,14 @@
+    public function delete($#pk#=null)
+    {
+        if($#pk# = (int)$#pk#){
+            if(K::M('#module#/handler')->delete($#pk#)){
+                $this->err->add('删除成功');
+            }
+        }else if($ids = $this->GP('#pk#')){
+            if(K::M('#module#/handler')->delete($ids)){
+                $this->err->add('批量删除成功');
+            }
+        }else{
+            $this->err->add('未指定要删除的内容ID', 401);
+        }
+    }

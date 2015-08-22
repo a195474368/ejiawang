@@ -1,0 +1,30 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>企业新闻</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+
+        <th>标题</th><th>创建时间</th><th>创建IP</th><th>是否审核</th>
+        <th>操作</th></tr>
+
+    <{foreach $items as $item}>
+    <tr>    
+
+        <td><{$item.title}></td>
+        <td><{$item.dateline|format}></td>
+        <td><{$item.create_ip}></td>
+        <td><{if $item.audit==1}>已审核<{else}>待审核<{/if}></td>
+        <td>
+            <a href="<{link ctl='ucenter/news:edit' arg0=$item.news_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+            <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

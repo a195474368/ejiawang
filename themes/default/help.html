@@ -1,0 +1,41 @@
+<{include file="block/header.html"}>
+<div class="w1000">
+    <div class="help_main" style="margin-top:20px; padding-bottom: 20px;">
+        <div class="help_left">
+            <div class="help_info">
+                <h1>帮助中心</h1>
+                <{foreach from=$cate_list item=item}>   
+                <{if $item.from=='help' && $item.parent_id!=0}>
+                <dl>
+                    <dt>
+                    <{$item.title}>
+                    </dt>
+                    <{foreach from=$items item=it}>
+                    <{if $it.cat_id == $item.cat_id}>
+                    <dd>
+                        <p <{if $it.page == $page}>class="on"<{/if}>>
+                         <a title="<{$it.title}>"  href="<{link ctl='help' arg0=$it.page}>"><{$it.title}></a>
+                        </p>
+
+                    </dd>
+                    <{/if}>
+                    <{/foreach}>
+                </dl>
+                <{/if}>
+                <{/foreach}>
+
+            </div>
+        </div>
+        <div class="help_right">
+            <div class="help_right">
+                <h2 class="sub_tit">
+                    <{$info.title}>
+                </h2>
+                <div class="sub_box">
+                      <{$info.content}>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<{include file="block/footer.html"}>

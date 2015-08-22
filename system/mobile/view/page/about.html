@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$detail.title}> - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/about.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header>
+            <a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a>
+            <h1 class="title"><{$detail.title}></h1>
+            <a href="<{link ctl='index'}>" class="home"><img src="images/home.png" alt="首页" /></a>
+        </header>
+        <!--头部内容结束 -->
+        <!--main开始 -->        
+        <div class="clear"></div>
+        <!--main开始 -->
+        <div class="main about">
+            <!--about-->
+            <section><h2><{$detail.title}></h2><div><{$detail.content}></div></section>
+        </div>
+    </div>
+    <!--warp结束 -->
+    <!--底部悬浮开始 -->
+    <{include file="mobile:block/toolbar.html"}>
+    <!--底部悬浮结束-->
+    <div id="bgdiv"></div>
+</body>
+</html>

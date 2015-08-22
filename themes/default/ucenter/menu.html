@@ -1,0 +1,18 @@
+<div class="information_main_l lt bodr mt20">
+    <a><img src="<{$pager.img}>/<{$MEMBER.face}>" width="160" height="160" /></a>
+    <p>更换图片</p>
+    <div class="inline_left_menu mt10">
+    <{foreach $menu_list as $menu}>
+     <{if $menu.menu}>
+        <div class="inline_left_menu_son">
+            <span><img src="<{$pager.theme}>/default/static/images/plus_ico.jpg" /> &nbsp;&nbsp;<b><{$menu.title}></b></span>
+            <{foreach $menu.items as $item}>
+            <{if $item.menu}>
+            <p><a href="<{link ctl=$item.ctl}>"><{$item.title}></a></p>
+            <{/if}>
+            <{/foreach}>
+        </div>
+     <{/if}>
+    <{/foreach}>
+    </div>
+</div>

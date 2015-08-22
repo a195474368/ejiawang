@@ -1,0 +1,28 @@
+<div class="material_main_l_t hauto bgwhite">
+	<h2><a href="<{link ctl='mall/shop' arg0=$shop.shop_id}>"><{$shop.title}></a></h2>
+	<p><a href="<{link ctl='mall/shop' arg0=$shop.shop_id}>"><img src="<{$pager.img}>/<{$shop.logo}>" width="180" height="90" /></a></p>
+	<p>口碑&nbsp;:&nbsp;<span class="red ftw f14"><{if $shop.comments}><{round($shop.score/$shop.comments, 2)}><{else}>0.00<{/if}></span></p>
+	<p class="taobao_credit"><span class="<{$shop.credit|shoprank}>"></span></p>
+	<p>
+		<span class="block_lt">认证：</span>
+		<{if $shop.verify_name}><i class="ico_renzheng none"></i><i class="ico_renzhenggray"></i><{/if}>
+		<{if $shop.xiaobao}><i class="ico_bao none" title="保证金:￥<{$shop.xiaobao}>"></i><i class="ico_baogray" title="保证金:￥<{$shop.xiaobao}>"></i><{/if}>
+	</p>
+	<p class="cl"></p>
+	<p class="h10"></p>
+	<p><u><{$shop.qq|qq}></u></p>                 
+	<p>联系电话：<{$shop.phone|default:$CONFIG.site.phone}></p>  	
+	<p>地址：<{$shop.address|default:'--'}></p>
+	<p class="bodr_b h20"></p>                    
+	<p>
+		<i class="ico_zheng"></i><span class="blr">正品保障</span>
+		<i class="ico_7"></i><span class="blr">七天退货</span><br />
+		<i class="ico_cha"></i><span class="blr">差价返还</span>
+		<i class="ico_pei"></i><span class="blr">误工赔偿</span>
+	</p>
+	<p class="cl"></p>
+	<p class="bodr_b h10"></p>
+	<p>店铺浏览人次&nbsp;:&nbsp;<span class="red f14 ftw"><{$shop.views}></span></p>
+	<!-- <p>入驻时间&nbsp;:&nbsp;<{$shop.dateline|format:"Y-m-d"}></p> -->
+	<p class="h10"></p>             
+</div>

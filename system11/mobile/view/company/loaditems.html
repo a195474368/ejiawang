@@ -1,0 +1,5 @@
+<{foreach $items as $item}>
+<a href="<{link ctl='company:detail' arg0=$item.company_id}>" class="company_box"><img src="<{$pager.img}>/<{$item.logo}>" class="company_logo"><span class="company_txt"><span class="company_name"><{$item.sort_name}></span><span class="company_con"><{$item.addr}></span><span class="company_other"><label class="company_yy">工地(<{$item.site_num}>)</label><label>案例(<{$item.case_num}>)</label></span> </span></a>
+<{foreachelse}>
+<a class="company_box"><b style="text-align:center">已经山穷水尽</b></a>
+<{/foreach}>  

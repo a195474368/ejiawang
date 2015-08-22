@@ -1,0 +1,5 @@
+<{foreach $items as $item}>
+<a href="<{link ctl='site:detail' arg0=$item.site_id}>" title="<{$item.title}>" class="gd_box"><img src="<{$pager.img}>/<{$item.face_pic}>" class="gd_logo"><span class="gd_txt"><span class="gd_name"><{$home_list[$item.home_id].name}></span><span class="gd_jg">工地状态：<{$item.status_title}></span><span class="gd_jg">施工单位：<{$company_list[$item.company_id].sort_name}></span></span></a>
+<{foreachelse}>
+<a class="gd_box"><b class="red" style="text-align:center">已经山穷水尽</b></a>
+<{/foreach}>  

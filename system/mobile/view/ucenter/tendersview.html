@@ -1,0 +1,209 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+<div class="mobile_top">
+    <div class="mobile_top_son">
+        <a href="<{link ctl='ucenter:tenderin'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+        <div class="detail-second">看标详情</div>
+    </div>
+</div>
+<div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+<div class="mobile_main1 hauto grey_bg">
+    <div class="owner_info">
+        <ul>
+
+            <li>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>城市：</th>
+                        <td><{$cityList[$detail.city_id].city_name}></td> </tr><tr>   
+                        <th>地区：</th>
+                        <td><{$areaList[$detail.area_id].area_name}></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            小区：
+                        </th>
+                        <td><{if $home.name}><{$home.name}><{else}><{$detail.home_name}><{/if}></td> </tr><tr>   
+                        <th>地址:</th>
+                        <td><{if $look}><{$detail.addr}><{else}>****<{/if}></td>
+
+                    </tr>
+                    <tr>
+                        <th>
+                            称呼：
+                        </th>
+                        <td>
+                            <{if $look}><{$detail.name}><{else}>****<{/if}> 
+                        </td> </tr><tr>   
+                        <th>手机:</th>
+                        <td>
+                            <{if $look}><{$detail.mobile}><{else}>****<{/if}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            招标类型：
+                        </th>
+                        <td>
+                            <{$setting[$type['type']][$detail.type_id]}>
+                        </td> </tr><tr>   
+                        <th>喜欢风格：</th>
+                        <td>
+                            <{$setting[$type['style']][$detail.style_id]}>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>
+                            预算范围：
+                        </th>
+                        <td>
+                            <{$setting[$type['budget']][$detail.budget_id]}>
+                        </td> </tr><tr>   
+                        <th>服务需求：</th>
+                        <td>
+                            <{$setting[$type['service']][$detail.service_id]}>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>
+                            空间户型：
+                        </th>
+                        <td>
+                            <{$setting[$type['house_type']][$detail.house_type_id]}>
+                        </td> </tr><tr>   
+                        <th>装修方式：</th>
+                        <td>
+                            <{$setting[$type['way']][$detail.way_id]}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            开始时间：
+                        </th>
+                        <td>
+                            <{$detail.start_time|default:''}>
+                        </td> </tr><tr>   
+                        <th>面积：</th>
+                        <td>
+                            <{$detail.area|default:''}>㎡
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>
+                            看标需要消耗金块：
+                        </th>
+                        <td>
+                            <{$detail.gold|default:'0'}><em class="fb_ico3"></em>
+                        </td> </tr><tr>   
+                        <th>允许看标企业数：</th>
+                        <td>
+                            <{$detail.num|default:''}>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            参加看标的企业数：
+                        </th>
+                        <td>
+                            <{$detail.num2|default:''}>
+                        </td> </tr><tr>   
+                        <th>浏览量：</th>
+                        <td>
+                            <{$detail.pv_num|default:''}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            IP：
+                        </th>
+                        <td>
+                            <{$detail.create_ip|default:''}>
+                        </td> </tr><tr>   
+                        <th>创建时间：</th>
+                        <td>
+                            <{$detail.dateline|format}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            其他需求：
+                        </th>
+                        <td >
+                            <{$detail.demand}>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <th>
+                            客服反馈：
+                        </th>
+                        <td>
+                            <{$detail.feedback}>
+                        </td> 
+                    </tr>
+                    <{if !$look}>
+                     <tr id='showErr' style="display: none;">
+                         <td style="text-align: center;" colspan="2" ><font id="showTxt" style=" color: red; font-size: 14px;"></font></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" style="text-align: center;">
+                            <a  href="###" id='look' >立刻花费<{$detail.gold|default:'0'}>金块查看</a>
+                        </th>
+                    <script>
+                        var look = 0;
+                        $(document).ready(function() {
+                            function showmsg(message){
+                                $("#showErr").show();
+                                $('#showTxt').html(message);
+                            }
+                            
+                            $("#look").click(function() {
+                                if (look == 0) {
+                                    look = 1;
+                                    $.get("<{link ctl='ucenter:look' arg0=$detail.id}>", function(ret) {
+                                          if(ret.error){
+                                            lock = 0 ;
+                                            showmsg(ret.message);
+                                        }else{ 
+                                            window.location="<{link ctl='ucenter:tenderview' arg0=$detail.id}>";
+                                        }   
+                                    }, 'json');
+                                }
+                            });
+
+                        });
+                    </script>
+                    </tr>
+                    <{else}>
+                     <tr>
+                        <th colspan="2" style="text-align: center;">
+                            <a  href="<{link ctl='ucenter:kehu'}>" >去跟踪</a>
+                        </th>
+                     </tr>
+                    <{/if}>
+                </table>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="cl"></div>
+    <div class="h45"></div>
+</div>
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

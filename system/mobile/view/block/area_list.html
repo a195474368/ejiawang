@@ -1,0 +1,11 @@
+<div class="sidebar">
+    <span class="pack_up">></span>
+    <dl>
+        <dt onclick="javascript:LoadData(0,'区域');">
+        <h3><a href="javascript:LoadData(0,'区域');">全部区域</a></h3>
+        </dt>
+        <{foreach $area_list as $k=>$v}>
+        <dd onclick="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');" ><a href="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');"><{$v.area_name}></a><span>></span></dd>
+        <{/foreach}>
+    </dl>
+</div>

@@ -1,0 +1,5 @@
+<?php exit("Access Denied");?>
+note:System cache file, DO NOT modify me!
+hash:f30e5c6f08f16753ad0fa83a5b50cc16:system_config_company_dianping
+time:0
+data:YTo1OntzOjY6InNjb3JlMSI7czo2OiLmnI3liqEiO3M6Njoic2NvcmUyIjtzOjY6IuS7t+agvCI7czo2OiJzY29yZTMiO3M6Njoi6K6+6K6hIjtzOjY6InNjb3JlNCI7czo2OiLmlr3lt6UiO3M6Njoic2NvcmU1IjtzOjY6IuWUruWQjiI7fQ==

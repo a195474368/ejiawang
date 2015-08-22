@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$detail.name}> -  <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/shop.css">
+    <{include file="mobile:block/sheader.html"}>
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header>
+            <a class="return" href="<{link ctl='company'}>"><img src="images/return.png" alt="返回" /></a>
+            <h1 class="title">公司介绍</h1><a href="<{link ctl='index'}>" class="home"><img src="images/home.png" alt="首页" /></a>
+        </header>
+        <!--头部内容结束 -->
+        <!--main开始 -->
+        
+<!--main开始 -->
+<div class="main shop">
+    <!--about-->
+    <section class="shop_about">
+        <div class="padding10">
+            <h2><{$detail.name}></h2>
+            <p>地址：<{$detail.addr}></p>
+        </div>
+        <dl class="info1">
+            <dt>企业信息</dt>
+            <dd class="padding10">
+                <img src="<{$pager.img}>/<{$detail.logo}>" alt="<{$detail.name}>" />
+                <span class="left">
+                    <{if $member.verify_name}><a class="legalize"><img src="images/renzhen.png" alt="认证" >企业认证</a><{/if}>
+                    <a id="pop_zb" class="button_zb white " href="#">免费招标</a>
+                </span>
+            </dd>
+        </dl>
+        <dl class="info2 padding10">
+            <dt>消费保障：</dt><dd><{if $detail.security}>￥<{$detail.security}><{else}>未参于<{/if}></dd>
+            <dt>联系电话：</dt><dd><{$detail.tel}></dd>
+            <dt>服务口号：</dt><dd><{$detail.slogan}></dd>
+        </dl>
+    </section>
+    <!--about end-->
+    <div class="clear"></div>
+    <!--案例图-->
+    <section class="picture">
+        <dl class="case">
+            <dt>图库案例<a href="<{link ctl='case'}>">更多></a></dt>
+            <dd id="flipsnap_c" class="flipsnap" style="width: 840px">
+            <{foreach $case_list as $item}>
+                <a href="<{link ctl='case:detail' arg0=$item.case_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" alt="<{$item.title}>"></a>
+            <{/foreach}>
+            </dd>
+        </dl>
+        <dl class="gongdi">
+            <dt>在建工地<a href="<{link ctl='site'}>">更多></a></dt>
+            <dd id="flipsnap_g" class="flipsnap" style="width: 840px">
+                <{foreach $site_list as $item}>
+                <a href="<{link ctl='site:detail' arg0=$item.site_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>_thumb.jpg" alt="<{$item.title}>"></a>
+                <{/foreach}>
+            </dd>
+        </dl>
+        <dl class="promotions">
+            <dt>优惠活动<a href="<{link ctl='youhui'}>">更多></a></dt>
+            <dd>
+                <{foreach $youhui_list as $item}>
+                 <a class="promotions_box" href="<{link ctl='youhui:detail' arg0=$item.youhui_id}>">
+                    <img class="promotions" src="<{$pager.img}>/<{$item.face_pic}>" alt="<{$item.title}>">
+                    <span class="title"><{$item.title}></span>
+                    <span class="date"><span class="zhong"></span><{$item.bg_date}> ~ <{$item.end_date}></span>
+                    <span class="date">距离结束还有<span class="red">2</span>天</span>
+                </a>
+                <{/foreach}>
+            </dd>
+        </dl>
+        <dl class="profile">
+            <dt>公司简介</dt>
+            <dd class="padding10"><{$detail.intro}></dd>
+        </dl>
+    </section>
+    <!--案例图 end-->
+</div>
+<!--main结束 -->
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+ <!--发布招标-->
+<div class="pop_fabu" style="display: none">
+    <div class="fabu_zb">
+        <p class="remind">我想免费预约 <b class="red"><{$detail.name}></b> 替我出装修方案</p>
+        <form>
+            <div class="gray_bg">
+                <input type="text" id="UserName" onfocus="if (this.value=='您的姓名') this.value='';" onblur="if (this.value=='') this.value='您的姓名';" value="您的姓名" />
+                <span class="tishi" id="userNameError"></span>
+                <input type="text" id="Phone" onfocus="if (this.value=='手机号码') this.value='';" onblur="if (this.value=='') this.value='手机号码';" value="手机号码">
+                <span class="tishi" id="phoneError"></span>
+            </div>
+            <input type="button" value="确认提交" class="submit" /><input type="reset" class="off_fabu" value="取消" />
+        </form>
+    </div>
+</div>
+<!--发布招标 end-->
+<!--提交成功-->
+<div class="fabu_ok_bg">
+    <div class="fabu_ok">
+        <h3>
+            <img src="images/renzhen.png" alt="成功">提交成功</h3>
+        <p>稍后您的专职装修管家将与您联系，为您讲解装修流程和相关注意事 项，装修过程中遇到的任何问题都可 以咨询您的专职装修管家。</p>
+        <a class="know">知道了</a>
+    </div>
+</div>
+<!--提交成功-->
+<script>
+    var lock = 0;
+    var CitySimpName = 'hf';
+        //弹出层发布招标							   
+        $("#pop_zb").click(function () {
+            $(".pop_fabu").show();
+        });
+        $(document).ready(function () {
+
+            //定义正则表达式
+            var reg_Tname = /^[\u4e00-\u9fa5]{2,8}$/;  //真实姓名正则表达式
+            var reg_mobile = /^[1][3458]\d{9}$/;  //手机正则表达式
+
+            $(".submit").click(function () {
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                $UserName = $("#UserName");
+                $Phone = $("#Phone");
+                var contact = $UserName.val();
+                var phone = $Phone.val();
+
+                if (contact == "" || contact == "您的姓名") {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                } else if (!reg_Tname.test(contact)) {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                }
+
+                if (phone == "" || phone == "手机号码") {
+                    $("#phoneError").html("请填写您的手机号码！");
+                    return false;
+                }
+                else if (!reg_mobile.test(phone)) {
+                    $("#phoneError").html("手机号码格式不正确！");
+                    return false;
+                }
+
+                if (lock == 0) {
+                    $.post('<{link ctl="magic:yuyue"}>', { contact: contact, mobile: phone, company_id: "<{$detail.company_id}>", "content":"预约公司：<{$detail.name}>"}, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            $("#UserName").val('');
+                            $("#Phone").val('');
+                            $("#userNameError").html('');
+                            $("#phoneError").html('');
+                            lock = 1;
+                            $(".pop_fabu, #bgdiv").hide();
+                            $(".fabu_ok_bg").show();                        
+                        }
+                    }, 'json');
+                } else {
+                    alert("您已发布过订单，请勿重复发布！");
+                }
+            });
+
+            $(".off_fabu").click(function () {
+                $("#UserName").val('');
+                $("#Phone").val('');
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                lock = 0;
+                $(".pop_fabu, #bgdiv").hide();
+            });
+
+            $(".know").click(function () {
+                $(".fabu_ok_bg").hide();
+            });
+        });
+</script>
+<!--main结束 -->
+</div>
+<{include file="mobile:block/sfooter.html"}>
+    <script type="text/javascript">
+        var $pointer = $('.pointer span');
+        var flipsnap = Flipsnap('.flipsnap', { distance: 300 });
+        flipsnap.element.addEventListener('fsmoveend', function () {
+            $pointer.filter('.color').removeClass('color');
+            $pointer.eq(flipsnap.currentPoint).addClass('color');
+        }, false);
+
+        if ($("#flipsnap_c").size()>0) {
+            var mp = $("#flipsnap_c a").size()-2;
+            if (mp>0) {
+                Flipsnap('#flipsnap_c', { distance: 140, maxPoint: mp });
+            }
+        }
+        if ($("#flipsnap_g").size() > 0) {
+            var mp = $("#flipsnap_g a").size()-2;
+            if (mp >0) {
+                Flipsnap('#flipsnap_g', { distance: 140, maxPoint: mp});
+            }
+        }
+    </script>
+</body>
+</html>

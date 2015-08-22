@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$detail.title}>_<{$request.city.city_name}>家装案例装修样板间大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/case.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--main开始 -->
+        <div class="main">
+            <!--图片展示-->
+            <div class="case_detail">
+                <div class="case_detail_img" style="width:21280px">
+                    <{foreach $photo_list as $photo}>
+                    <div><span><img src="<{$pager.img}>/<{$photo.photo}>" alt="<{$photo.title}>" num="<{$photo@iteration}>" /></span></div>
+                    <{/foreach}>
+                </div>
+            </div>
+            <!--图片展示 end-->
+            <!--图片上面-->
+            <div class="floating_on_bg"></div>
+            <div class="floating_on">
+                <a class="return" href="<{link ctl='case'}>"><img src="images/return2.png" alt="返回"></a>
+                <h2><span class="single">1</span>/<span class="sum"><{$pager.count}></span></h2>
+                <a class="share_icon"><img src="images/share_icon.png" alt="分享"></a>
+            </div>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bsync.js#uuid=#uuid=&amp;style=1"></script>
+            <div class="floating_under_bg"></div>
+            <div class="floating_under">
+                <{if $pager.prev}><a class="prev" href="<{link ctl='case:detail' arg0=$pager.prev.case_id}>">上一套</a><{else}><a class="prev"></a><{/if}>
+                <a id="pop_zb" class="botton_go">免费设计</a>
+                <{if $pager.next}><a class="next" href="<{link ctl='case:detail' arg0=$pager.next.case_id}>">下一套</a><{else}><a class="next"></a><{/if}>
+            </div>
+            <!--图片上面 end-->
+        </div>
+        <!--main结束 -->
+    </div>
+    <!--warp结束 -->
+    <!--发布招标-->
+<div class="pop_fabu" style="display: none">
+    <div class="fabu_zb">
+            <p class="remind">我想免费预约 <b class="red"><{$company.name}></b> 替我出装修方案</p>
+        <form>
+            <div class="gray_bg">
+                <input type="text" id="UserName" onfocus="if (this.value=='您的姓名') this.value='';" onblur="if (this.value=='') this.value='您的姓名';" value="您的姓名" />
+                <span class="tishi" id="userNameError"></span>
+                <input type="text" id="Phone" onfocus="if (this.value=='手机号码') this.value='';" onblur="if (this.value=='') this.value='手机号码';" value="手机号码">
+                <span class="tishi" id="phoneError"></span>
+            </div>
+            <input type="button" value="确认提交" class="submit" /><input type="reset" class="off_fabu" value="取消" />
+        </form>
+    </div>
+</div>
+<!--发布招标 end-->
+<!--提交成功-->
+<div class="fabu_ok_bg">
+    <div class="fabu_ok">
+        <h3>
+            <img src="images/renzhen.png" alt="成功">提交成功</h3>
+        <p>稍后您的专职装修管家将与您联系，为您讲解装修流程和相关注意事 项，装修过程中遇到的任何问题都可 以咨询您的专职装修管家。</p>
+        <a class="know">知道了</a>
+    </div>
+</div>
+<!--提交成功-->
+<script>
+    var lock = 0;
+    var CitySimpName = 'hf';
+        //弹出层发布招标							   
+        $("#pop_zb").click(function () {
+            $(".pop_fabu").show();
+        });
+        $(document).ready(function () {
+
+            //定义正则表达式
+            var reg_Tname = /^[\u4e00-\u9fa5]{2,8}$/;  //真实姓名正则表达式
+            var reg_mobile = /^[1][3458]\d{9}$/;  //手机正则表达式
+
+            $(".submit").click(function () {
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                $UserName = $("#UserName");
+                $Phone = $("#Phone");
+                var contact = $UserName.val();
+                var phone = $Phone.val();
+
+                if (contact == "" || contact == "您的姓名") {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                } else if (!reg_Tname.test(contact)) {
+                    $("#userNameError").html("请填写您的真实姓名，2至8个中文字符！");
+                    return false;
+                }
+
+                if (phone == "" || phone == "手机号码") {
+                    $("#phoneError").html("请填写您的手机号码！");
+                    return false;
+                }
+                else if (!reg_mobile.test(phone)) {
+                    $("#phoneError").html("手机号码格式不正确！");
+                    return false;
+                }
+
+                if (lock == 0) {
+                    $.post("<{link ctl='magic:yuyue'}>", {"company_id":"<{$company.company_id}>", "contact": contact, "mobile": phone, "content":"预约案例：<{$detail.title}>"}, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            $("#UserName").val('');
+                            $("#Phone").val('');
+                            $("#userNameError").html('');
+                            $("#phoneError").html('');
+                            lock = 1;
+                            $(".pop_fabu, #bgdiv").hide();
+                            $(".fabu_ok_bg").show();                            
+                        }
+                    }, 'json');
+                } else {
+                    alert("您已发布过订单，请勿重复发布！");
+                }
+            });
+            $(".off_fabu").click(function () {
+                $("#UserName").val('');
+                $("#Phone").val('');
+                $("#userNameError").html('');
+                $("#phoneError").html('');
+                lock = 0;
+                $(".pop_fabu, #bgdiv").hide();
+            });
+            $(".know").click(function () {
+                $(".fabu_ok_bg").hide();
+            });
+        });
+</script>
+
+    <!--分享开始 -->
+    <div id="share_area" class="share_area" style="display: none;">
+        <div class="share_areabox">
+            <!--<!-- Baidu Button BEGIN -->
+            <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+            <a class="bds_qzone"></a><a class="bds_tsina"></a><a class="bds_tqq"></a><a class="bds_renren"></a><a class="bds_t163" target="_blank"></a><a class="bds_mshare"></a>
+            </div>
+            <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=662777"></script>
+            <script type="text/javascript" id="bdshell_js"></script>
+            <script type="text/javascript">
+                document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+            </script>
+            <!-- Baidu Button END -->
+        </div>
+        <a class="share_cance white">取消</a>
+    </div>
+    <!--分享结束 -->
+    <script src="script/flipsnap.min.js"></script>
+    <script type="text/javascript">
+        //图片上下居中					 
+        var ccheight = $(window).height();
+        for (var i = 0; i < $(".case_detail_img div").size() ; i++) {
+            imgHeight = $(".case_detail_img div").eq(i).find("img").height();
+            if (imgHeight < ccheight) {
+                $(".case_detail_img div,.case_detail_img span").css("height", ccheight + "px");
+            } else { $(".case_detail_img div,.case_detail_img span").css("height", "100%"); }
+        };
+
+        //转屏图片上下居中
+        $(window).resize(function () {
+            var wh = $(window).height();
+            var imgHeight = $(".case_detail_img div img").height();
+
+            if (imgHeight < wh) {
+                $(".case_detail_img div,.case_detail_img span").css("height", wh + "px");
+
+            } else { $(".case_detail_img div,.case_detail_img span").css("height", "100%"); }
+
+        });
+        //图片划动 
+        var flipsnap = Flipsnap('.case_detail_img', { distance: 320 });
+        flipsnap.refresh();
+        //划动到第几个图片 
+        flipsnap.element.addEventListener('fsmoveend', function () {
+            var number = $(".case_detail_img img").eq(flipsnap.currentPoint);
+            $(".single").html(number.attr("num"));
+        }, false);
+        //图片总个数
+        $(".sum").html($(".case_detail_img img").length);
+        //上一个，下一个
+        $('.prev').click(function () { flipsnap.toPrev(); });
+        $('.next').click(function () { flipsnap.toNext(); });
+
+        //分享
+        $('.share_icon').click(function () {
+            $('#share_area').show();
+        });
+        $('.share_cance').click(function () {
+            $('#share_area').hide();
+        });
+
+        //点击图片，图片上的浮动操作层显示隐藏切换
+        $('.case_detail_img img').click(function () {
+            $(".floating_on ,.floating_under_bg,.floating_under,.floating_on_bg").toggle();
+
+        });
+    </script>
+</body>
+</html>

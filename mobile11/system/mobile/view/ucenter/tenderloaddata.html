@@ -1,0 +1,16 @@
+<{foreach from=$tenders item=item}>
+<li>
+    <table cellspacing="0" cellpadding="0">
+        <tr>
+            <td><{$item.name}></td>
+            <td>手机<{$item.mobile}>,面积:<{$item.area}></td>
+            <td> <{if $item.status}>
+                正在招标
+                <{else}>
+                招标结束
+                <{/if}>
+            </td>
+        </tr>
+    </table>
+</li>
+<{/foreach}>

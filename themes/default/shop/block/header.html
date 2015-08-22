@@ -1,0 +1,17 @@
+<{include file="shop/block/top-header.html"}>
+    <!-- 主题部分开始 -->
+    <div class="index_b_bg hauto">
+        <div class="material_banner mt10 w1000"><img src="<{$pager.img}>/<{$shop.banner}>" /></div>
+        <!-- banner下导航start -->
+        <div class="w1000 material_main hauto">
+        <div class="shop_menu w1000 mb15">
+            <ul>
+                <li><a href="<{link ctl='mall/shop' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'index'}>class="current20"<{/if}>>店铺首页</a></li>
+                <li><a href="<{link ctl='mall/shop:info' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'info'}>class="current20"<{/if}>>商家介绍</a></li>
+                <li><a href="<{link ctl='mall/shop:product' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'product'}>class="current20"<{/if}>>所有产品</a></li>
+                <li><a href="<{link ctl='mall/shop:coupon' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'coupon'}>class="current20"<{/if}>>优惠券</a></li>
+                <li><a href="<{link ctl='mall/shop:news' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'news'}>class="current20"<{/if}>>活动资讯</a></li>
+                <li><a href="<{link ctl='mall/shop:comment' arg0=$shop.shop_id}>" <{if $shop_nav_curr == 'comment'}>class="current20"<{/if}>>口碑点评</a></li>
+            </ul>            	
+        </div>
+        <!-- banner下导航end -->

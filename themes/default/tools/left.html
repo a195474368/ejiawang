@@ -1,0 +1,12 @@
+<div class="tools_left">
+    <div class="title">工具箱</div>
+
+    <{foreach  from=$tools_array item=item key=key}>
+    <div class="dalei">
+        <a <{if $tool == $key}> style="color:#FC0B0B;" <{/if}>
+            title="<{$item}>" 
+            href="<{link ctl='tools:items' arg0=$key}>"><{$item}></a>
+    </div>  
+
+    <{/foreach}>
+</div>

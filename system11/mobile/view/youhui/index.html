@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>优惠活动大全_<{$request.city.city_name}>装修公司优惠活动大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/offer.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header class="header"><a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">优惠活动</h1><a id="area_click" class="area">区域</a></header>
+        <!--头部内容结束 -->       
+        <!--main开始 -->
+        <div class="main">
+            <section class="offer_list"></section>
+            <div class="down">查看更多</div>
+        </div>
+        <!--main结束 -->
+    </div>
+    <!--warp结束 -->
+    <!-- 右侧区域 -->
+    <{include file="mobile:block/area_list.html"}>
+    <!-- 右侧区域结束 -->
+    <div id="bgdiv"></div>
+<script type="text/javascript">
+window.__LODD_LOCK = false;
+window.params = {page:"<{$pager.page}>", area_id:"<{$pager.area_id|default:0}>","kw":"<{$pager.kw}>"};
+var Area_Name = "<{$pager.area_name|default:'区域'}>";
+$(document).ready(function(){
+    $(".down").click(function(){AsyncLoad();});
+    AsyncLoad();
+});
+function AsyncLoad(){
+    if(!window.__LOAD_LOCK){
+        if(params.page > 0){
+            window.__LOAD_LOCK = true;
+            $.post("<{link ctl='youhui:loaddata'}>", params, function(ret){
+                    if(ret.error){
+                        alert(ret.message);
+                    }else{
+                        params.page = ret.nextpage;
+                        $(".offer_list").append(ret.html);
+                        if(ret.nextpage < 1){
+                            $(".down").remove();
+                        }
+                    }
+                    window.__LOAD_LOCK = false;
+            }, 'json');
+        }
+    }
+}
+function LoadData(ID, Name) {
+    params.area_id = ID;
+    Area_Name = Name;
+    params.page = 1;
+    $(".offer_list").children().remove();
+    AsyncLoad();
+}
+</script>
+</body>
+</html>

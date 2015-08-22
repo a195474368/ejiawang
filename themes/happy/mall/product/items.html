@@ -1,0 +1,100 @@
+<{include file="block/header.html"}>
+<link rel="stylesheet" type="text/css" href="<{$pager.theme}>/default/static/style/mallstyle.css?20140109"/> 
+<link rel="stylesheet" type="text/css" href="<{$pager.theme}>/default/static/style/base.css?20140109"/> 
+<link rel="stylesheet" type="text/css" href="%THEME%/static/style/mallstyle.css"/>
+<link rel="stylesheet" type="text/css" href="%THEME%/static/style/base.css"/>
+<!-- 主题部分开始 -->
+<div class="index_b_bg hauto">   
+    <div class="w1000 mall_main_t hauto mt10">
+        <div class="mall_list_l lt">
+            <!-- 左面分类开始   -->
+            <div class="mall_main_t_l lt bgwhite"><{widget id="shop/catenav" tpl="mall/block/catenav.html"}></div>
+            <!-- //左面分类结束   -->
+           
+            <!-- 左面热卖开始 -->
+            <div class="mall_list_paihang hauto bgwhite">
+                <h2>热卖排行<i></i></h2>
+                <ul>
+                <{calldata mdl="product/product" city=$request.city_id order="hot" limit="5"}>
+                    <li>
+                         <p>
+                            <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="65" height="45"/></a>
+                            <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" class="product" title="<{$item.title}>"><{$item.title}></a>
+                            <span class="cl block h10"></span>
+                            <span>市场价&nbsp;：&nbsp;<del>￥<{$item.market_price}></del> </span>
+                            <span>现价&nbsp;：&nbsp;<i>￥<{$item.price}></i></span>
+                            <span class="h5"></span>
+                        </p>
+                    </li>
+                    <{/calldata}>                                
+                </ul>
+            </div>
+            <!-- //左面热卖结束 -->
+        </div>  
+        <!-- //左面结束 -->  
+        <!-- 右面开始   -->  
+        <div class="mall_list_r lt ml10">
+            <div class="mall_list_r_b bgwhite">
+                <!--商品展示开始-->
+				<{widget id="product/filter" cat_id=$pager.cat_id brand_id=$pager.brand_id attr_values=$pager.attr_values order=$pager.order tpl="mall/product/filter.html"}>
+                <div class="mall_list_shunxu">
+                    <span class="span91 lt">排序&nbsp;:&nbsp;</span>
+                    <ul class="ul1 lt">
+                        <li class="li0">
+							<{if empty($pager.order)}>
+							<i class="i1 red">默认</i>
+							<{else}><i class="i1 red">
+							<a href="<{link ctl='mall/product' arg0=$pager.cat_id arg1=$pager.brand_id arg2=$pager.attr_ids arg3=0 arg4=1}>">默认</i><{/if}>
+							<span></span>
+							</li>
+                        <li class="li1">
+							<{if $pager.order == 1}>
+							<i class="i1 red">销量</i>
+							<{else}><i class="i1 red">
+							<a href="<{link ctl='mall/product' arg0=$pager.cat_id arg1=$pager.brand_id arg2=$pager.attr_ids arg3=1 arg4=1}>">销量</i><{/if}>	<span></span>
+						</li>
+                        <li class="li2">
+							<{if $pager.order == 2}>
+							<i class="i1 red">价格</i>
+							<{else}><i class="i1 red">
+							<a href="<{link ctl='mall/product' arg0=$pager.cat_id arg1=$pager.brand_id arg2=$pager.attr_ids arg3=2 arg4=1}>">价格</i><{/if}>	<span></span>						
+						</li>
+                    </ul>
+                    <ul class="ul2 lt">
+                        <li class="li0"><span></span><i class="i1 red">商品</i></li>
+                        <li class="li1"><a href="<{link ctl='mall/product:shop' arg0=$pager.cat_id}>"><span></span><i class="i1">商铺</i></a></li>
+                    </ul>
+                    <span class="span92 lt">共<i><{$pager.count}>件</i>商品</span>
+                </div>
+                <div class="mall_list_show hauto bgwhite mall_list_show_1" id="paixu">
+                    <div class="mall_basic_jcjc_b mb20 bgwhite">
+                        <ul>
+                            <{foreach $items as $item}>
+                            <li <{if $item@iteration mod 4 eq 0}>style="border-right:none;"<{/if}>>
+                                <div class="divhover">
+                                    <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="150" height="100" /></a>
+                                    <p><{$item.title}></p>
+                                    <p><del>￥<{$item.market_price}></del><b>￥<{$item.price}></b></p>
+                                    <{$item.content|icon:"product"}>
+                                    <p class="p61">
+                                        <a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" class="a43"><{$shop_list[$item.shop_id].title}></a>
+                                        <a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" class="a44">查看详情</a>
+                                    </p>
+                                </div>
+                            </li>
+                            <{/foreach}>
+                        </ul>
+                        <div class="h20 cl"></div>
+                    </div>
+                </div>
+                <div class="page"><{$pager.pagebar}></div>
+                <div class="h20"></div>
+                <!-- //商品展示结束 -->
+            </div>
+        </div>
+        <!-- //右面结束 -->
+    </div>           
+    <div class="h30"></div>             
+</div>
+<!-- //主题部分结束 -->
+<{include file="block/footer.html"}>

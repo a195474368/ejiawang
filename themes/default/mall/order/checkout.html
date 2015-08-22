@@ -1,0 +1,78 @@
+<{include file="block/small-header.html"}>
+ <!--主题开始-->
+<div class="bgwhite w1000 gouwubuzhou">
+    <!--步骤开始-->
+    <div class="basic_buzhou w1000">
+        <div class="progress-2"></div>
+        <ul><li class="step_1 on">1、我的购物车</li><li class="step_1 on">2.填写核对订单信息</li><li class="step_3">3.成功提交订单</li><li class="step_4">4.订单已完成</li></ul>
+    </div>
+    <!--步骤结束-->
+    <div class="cl"></div>
+    <!--填写收货信息开始-->
+    <form action="<{link ctl='mall/order:create'}>"  id="order-form">
+    <div class="querenxinxikuang">
+        <h3>填写收货信息</h3>
+        <div class="querenxinxin">
+            <table>
+                <tr><th><i>*</i>收货人&nbsp;:&nbsp;</th><td><input type="text" name="data[contact]" class="input w-300"/></td></tr>
+                <tr><th><i>*</i>联系电话&nbsp;:&nbsp;</th><td><input type="text" name="data[mobile]" class="input w-300"/></td><td></td></tr>
+                <tr><th><i>*</i>地址&nbsp;:&nbsp;</th><td><input type="text" name="data[address]" class="input w-500" style="width:500px;"/></td></tr>
+                <tr><th>备注&nbsp;:&nbsp;</th><td><textarea name="data[note]" class="textarea" style="width:500px;height:80px;"></textarea>(不超过300字)</td></tr>
+            </table>
+        </div>
+    </div>
+    <!--填写收货信息结束-->
+    <!--确认订单信息开始-->
+    <div class="queren_xinxi"><h2>确认订单信息</h2></div>
+     <div class="gouwuche hauto mt10">        
+            <div class="gowushangpin">
+                <div class="gouwushangpin_show">
+                    <table>
+                         <tr>
+                            <th class="w-100"></th>
+                            <th>商品</th>
+                            <th class="w-150">商品单价</th>
+                            <th class="w-1500">运费</th>                                                         
+                            <th class="w-100">数量</th>
+                            <th class="w-150">小计</th>
+                        </tr>
+                        <{foreach $cart.items as $item}>
+                        <tr>
+                            <td><img src="<{$pager.img}>/<{$item.photo}>_small.jpg" width="60" height="60" /></td>
+                            <td  style="text-align:left;">
+                                <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>" target="_blank"><i><{$item.title}></i></a><br />
+                                商家&nbsp;:&nbsp;<a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" target="_blank"><{$shop_list[$item.shop_id].title}></a>
+                            </td>
+                            <td>￥<{$item.price}></td>
+                            <td><{if $item.freight}>￥<{$item.freight}><{else}>包邮<{/if}></td>
+                            <td><{$item.num}></td>
+                            <td>￥<{($item.price*$item.num + $item.freight)}></td>
+                        </tr>
+                        <{/foreach}>
+                    </table>
+                </div>
+                <div class="gouwuche_jiezhang">
+                	<div class="gowuche_jiezahng_l lt"></div>
+                    <div class="gouwuche_jiezhang_r rt">
+                    	<p><span><{$cart.product_count}>件商品&nbsp;总计&nbsp;：</span><span class="spqian">￥<{$cart.product_amount}>元</span></p>
+                        <p>运费&nbsp;:&nbsp;<span class="spqian"><{if $cart.ship_fee}>￥<{$cart.ship_fee}><{else}>包邮<{/if}></span></p>
+                    </div>
+                    <div class="cl"></div>
+                    
+                </div>
+                <div class="querentijiao">
+                    	<div class="querentijiao_deta">
+                    		<span><b>应付金额&nbsp;:&nbsp;</b><i>￥<{$cart.product_amount}>元</i></span>
+                            <a mini-submit="#order-form" class="qujiesuan">确认提交订单</a>
+                        </div>
+                    </div>    
+            </div>
+          
+        </div>      	 
+         <div class="cl"></div>
+      </form>
+       <!--确认订单信息结束-->
+       <div class="h20"></div>
+   </div>
+ <!--主题结束-->
+<{include file="block/footer.html"}>

@@ -1,0 +1,8 @@
+<div class="material_main_l_c hauto bgwhite mt10">
+	<h2>商品分类</h2>
+	<ul>
+		<{foreach $data.options as $k=>$v}>
+		<li><a href="<{link ctl='mall/shop:product' arg0=$shop.shop_id arg1=$k arg2=1}>"><{$v}></a></li>
+		<{/foreach}>                       
+	</ul>
+</div>

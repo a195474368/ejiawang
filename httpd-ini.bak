@@ -1,0 +1,6 @@
+[ISAPI_Rewrite]
+CacheClockRate 3600
+RepeatLimit 32
+RewriteCond  %{HTTP_HOST}
+RewriteRule ^/index.html	/index.php [L]
+RewriteRule ^/(mall|ucenter|about|activity|app|ask|blog|city|case|city|company|content|designer|gs|help|home|passport|payment|site|tenders|tools)(.*)$ /index.php?$1$2 [L]

@@ -1,0 +1,16 @@
+<{foreach $items as $item}>
+<li>
+    <div class="mobile_tuan_b_all">
+        <a href="<{link ctl='site:detail' arg0=$item.site_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="68" height="55"/></a>
+        <div class="mobile_tuan_b_all_r lt">
+            <h4><a title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$item.title|cutstr:21:''}></h4>
+            <p class="mt10"><span class="block_lt">进度：</span><a href="<{link ctl='site:detail' arg0=$item.site_id}>" class="block gongdi_jindu"><{$site_status[$item.status]}></a></p>
+            <div class="cl"></div>
+            <p class="mt10">
+                <span>施工:<a title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company:detail' arg0=$item.company_id}>"><{$company_list[$item.company_id].sort_name}></a></span>&nbsp;&nbsp;&nbsp;
+                <a href="<{link ctl='site:detail' arg0=$item.site_id}>">&gt;&gt;我要参观</a>
+            </p>
+        </div>
+    </div>
+</li>
+<{/foreach}>

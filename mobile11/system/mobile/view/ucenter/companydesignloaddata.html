@@ -1,0 +1,16 @@
+<{foreach from=$items item=item}>
+    <li>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                     <td><{$item.mobile}></td>
+                        <td><{$item.cantact}></td>
+
+                        <td><{$item.dateline|format}></td>
+                </tr>
+                  <tr><td colspan="3">预约设计师：<{$designer_list[$item.designer_id].realname|default:'--'}></td></tr>
+                <tr>
+                    <td colspan="3"><{$item.content}></td>
+                </tr>
+            </table>
+    </li>
+    <{/foreach}>

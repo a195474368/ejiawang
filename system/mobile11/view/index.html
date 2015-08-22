@@ -1,0 +1,115 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+   
+        <div class="mobile_top_son">
+            <div class="detail-second"><{$CONFIG.site.title}><sub>&nbsp;&nbsp;你的贴心装修管家</sub></div>
+        </div>
+    </div>
+
+<!--头部结束-->
+<!--banner开始-->
+	<!--<div class="mobile_banner">
+    	<a href="###"><img src="pic/banner.png" width="320" height="150"/></a>
+    </div>-->
+    <div class="cl h45"></div>
+    <div class="business_banner">
+    	  <div class="banner">
+                <div class="inner" style="width: 900px;">
+                <{AD name="手机首页轮转广告" city_id=$request.city_id  limit="5"}><a href="<{$item.link}>"><img src="<{$pager.img}>/<{$item.thumb}>"/></a><{/AD}>
+                </div>
+            </div>
+            <div class="pointer" id="pointer">
+              <{AD name="手机首页轮转广告"  city_id=$request.city_id  limit="5"}>  <span class="color"></span><{/AD}>
+            </div>
+        <!--轮转效果-->
+    </div>
+    <script type="text/javascript" src="script/flipsnap.min.js"></script>
+<script type="text/javascript">
+    var $pointer = $('.pointer span');
+    var flipsnap = Flipsnap('.inner', { distance: 320 });
+    flipsnap.element.addEventListener('fsmoveend', function () {
+        $pointer.filter('.color').removeClass('color');
+        $pointer.eq(flipsnap.currentPoint).addClass('color');
+    }, false);
+    if ($("#flipsnap_img1").size() > 0) {
+        var mp = $("#flipsnap_img1 a").size() - 2;
+        if (mp > 0) {
+            Flipsnap('#flipsnap_img1', { distance: 150, maxPoint: mp });
+        }
+    }
+    if ($("#flipsnap_img2").size() > 0) {
+        var mp = $("#flipsnap_img2 a").size() - 2;
+        if (mp > 0) {
+            Flipsnap('#flipsnap_img2', { distance: 150, maxPoint: mp });
+        }
+    }
+</script>
+<!--banner结束-->
+<!--主题部分开始-->
+	<div class="mobile_main hauto">
+    	<div class="mobile_span-btn lt">
+            <a href="<{link ctl='tuan'}>" class="current1">
+            	<span class="ico span1"></span>
+                <i>小区团装</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt ml2">
+        	<a  href="<{link ctl='case'}>">
+            	<span class="ico span2"></span>
+                <i>图库</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt">
+        	<a  href="<{link ctl='article'}>">
+            	<span class="ico span3"></span>
+                <i>学装修</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt ml2">
+        	<a  href="<{link ctl='tenders'}>">
+            	<span class="ico span4"></span>
+                <i>发招标</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt">
+        	<a  href="<{link ctl='site'}>">
+            	<span class="ico span5"></span>
+                <i>看工地</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt ml2">
+        	<a href="<{link ctl='company'}>">
+            	<span class="ico span6"></span>
+                <i>找公司</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt">
+        	<a href="<{link ctl='designer'}>">
+            	<span class="ico span7"></span>
+                <i>设计师</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt ml2">
+            <a href="tel:<{$CONFIG.site.phone}>">
+            	<span class="ico span8"></span>
+                <i>装修咨询</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt">
+        	<a href="<{link ctl='youhui'}>">
+            	<span class="ico span9"></span>
+                <i>优惠信息</i>
+            </a>
+        </div>
+        <div class="mobile_span-btn lt ml2">
+        	<a href="<{link ctl='shop'}>">
+            	<span class="ico span10"></span>
+                <i>材料商</i>
+            </a>
+        </div>
+        <div class="cl h45"></div>
+    </div>
+<!--主题部分结束-->
+
+<{include file='mobile:block/footer.html'}>

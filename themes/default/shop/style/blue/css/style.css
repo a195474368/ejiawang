@@ -1,0 +1,27 @@
+
+/*蓝色*/
+.material_top{background:#62BFEA;}
+.shop_menu{height:34px;background:#62BFEA;z-index:999}
+.material_main_l_t h2 a{font-size:16px;color:#5593FF;}
+.material_main_l_t p span.red{color:#F63B8A;}
+.material_main_l_c h3{margin:20px 5px 0 15px;color:#62BFEA;font-size:14px;}
+.material_main_l_c ul li a:hover{color:#F63B8A;}
+.material_main_r_news_r ul li{background:url(../images/li_bg1.png) no-repeat left center;}
+.sale_news ul li{background:url(../images/li_bg1.png) no-repeat left center;}
+.material_main_l_b h2 span{color:#F63B8A;font-size:14px;}
+.material_main_l_b ul li p a.product:hover{color:#62BFEA}
+.material_main_l_b ul li p i{font-size:14px;color:#F63B8A;font-weight:bold;}
+.material_main_r_news_r span a{display:block;color:#F63B8A;font-size:12px;float:right;margin-right:10px;}
+.material_hot_command h2{margin:10px 0 0 10px;font-size:16px;color:#62BFEA;}
+.material_hot_command ul li h3 span{color:#F63B8A;font-weight:bold;font-size:14px;}
+.material_all_product h2 span{font-size:16px;color:#62BFEA;float:left;}
+.material_all_product h2 a{font-size:12px;color:#F63B8A;float:right;}
+.material_all_product ul li .all_product_li p span{font-size:16px;color:#F63B8A;font-weight:bold;}
+.material_hot_purchases ul li .material_hot_purchases_l{width:82px;hieght:100%;line-height:70px;text-align:center;color:#7EB929;font-size:40px;font-weight:bold;}
+.material_shopper_sum p a{color:#F63B8A;}
+
+.sale_detail p span.sale_detail_r a{display: block;width: 125px;height: 40px;line-height: 40px;text-align: center;color: white;
+background:#62BFCC;font-size: 16px;font-weight: bold;border-radius: 7px;margin-top: 20px;}
+.sale_detail p span.sale_detail_r a:hover {background: #62BFFF;text-decoration: none;}
+.material_hot_purchases ul li .material_hot_purchases_l{color:#7EB929;}
+.material_hot_purchases ul li{background: url(../images/yhq_bg.png) no-repeat left center;}

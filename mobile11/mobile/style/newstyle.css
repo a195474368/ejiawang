@@ -1,0 +1,166 @@
+/* CSS Document */
+
+.h45{height:45px;}
+.f14{font-size:14px;}
+.mobile_blog_t{height:auto;overflow:hidden;}
+.h20bodr_b{height:20px;border-bottom:1px dashed #D5D5D5;}
+.mobile_designer_blog p.designer_jieshao span i{display:block;float:left;}
+.mobile_designer_blog p.designer_jieshao span i.i_dizhi{width:12px;height:16px;background-position:-83px -12px;}
+.mobile_designer_blog p.designer_jieshao span i.gd_dizhi{width:92%;line-height:22px;margin-left:3px;font-size:12px;}
+.mobile_designer_blog p.designer_jieshao span a.jincheng{display:block;float:left;width:auto;height:21px;line-height:21px;text-align:center;color:#FFF;background:#72B705;
+border-radius:3px;text-decoration:none;padding:0 6px;}
+
+.mobile_gd_detail_b{width:100%;margin-top:10px;font-size:12px;line-height:24px;}
+.mobile_gd_detail_b b{font-size:14px;}
+
+.mobile_designer_blog p.designer_jieshao span.tuanzhuang_span{font-size:12px;}
+.mobile_designer_blog p.designer_jieshao span.tuanzhuang_span i{font-size:14px;color:#F10B00;float:none;display:inline;}
+.mobile_tuan_detail_c{width:100%;}
+.mobile_tuan_detail_c_t{width:99%;height:37px;border:1px solid #D5D5D5;}
+.mobile_tuan_detail_c_t ul li{float:left;width:32%;height:100%;line-height:37px;text-align:center;font-size:14px;border-right:1px solid #D5D5D5;}
+.mobile_tuan_detail_c_t ul li i{color:#F10B00;}
+.mobile_tuan_detail_c_b{margin-top:10px;width:100%;}
+.mobile_tuan_detail_c_b table{width:100%;}
+.mobile_tuan_detail_c_b table tr th{width:33%;text-align:center;height:26px;line-height:26px;font-size:14px;color:#444444;font-weight:normal;}
+.mobile_tuan_detail_c_b table tr td{width:33%;text-align:center;line-height:26px;font-size:14px;}
+.mobile_tuan_detail_c_b table tr td i{color:#F10B00;}
+.mobile_tuan_detail_b{width:100%;line-height:26px;font-size:14px;}
+.mobile_tuan_detail_b h2{font-size:15px;color:#222;margin-top:10px;}
+
+.mobile_youhui_detail_t{margin-top:10px;}
+.mobile_youhui_detail_t h2{font-size:16px;font-weight:normal;color:#444;}
+.mobile_youhuiquan_down{width:70%;height:80px;border:1px dashed #75A1ED;margin:5px 0 5px 0;position:relative;}
+.mobile_youhuiquan_down p{width:100%;text-align:center;}
+.mobile_youhuiquan_down p span{display:block;font-size:18px;color:#444;}
+.mobile_youhuiquan_down p span i{font-size:26px;color:#5593ff;}
+.mobile_youhuiquan_down .zhe_quan{width:42px;height:32px;background-position:-158px 0;position:absolute;left:-1px;top:-1px;}
+/*渐变按钮*/
+.tuan_but1{display:block;width:98px;height:32px;background:url(../images/tuan_but1.png) no-repeat;line-height:32px;text-align:center;color:#FFF;font-size:14px;text-decoration:none!important;
+opacity:0.8;}
+.tuan_but1:hover{opacity:1.0;}
+/*渐变按钮*/
+
+.mobile_youhui_detail_c{width:95%;background:#FEF4E8;border-radius:3px;margin-top:11px;padding:10px;font-size:14px;line-height:26px;}
+.mobile_youhui_detail_c p i{color:#7BBA16;}
+
+.mobile_wenzhang_b ul li {width: 100%;height: 60px;border-bottom: 1px dashed #D9D9D9;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1{width: 98%;height:100%;background: url(../images/xia_black_ico.png) no-repeat right 40%;
+}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-indent:15px;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p a{font-size:14px;color:#444;width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p span{display:block;float:left;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p span.span_time{width:13px;height:14px;background-position:-184px -185px;margin:3px 3px 0 14px;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p span.span_time_jieshu{width:13px;height:14px;background-position:-163px -186px;margin:3px 3px 0 14px;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p span.youhui_ico{width:18px;height:18px;background-position:-180px -159px;margin:3px 2px 0 14px;}
+.mobile_wenzhang_b ul li .mobile_tuan_b_all1 p span.youhui_jieshu{width:19px;height:19px;background-position:-158px -159px;margin:3px 2px 0 14px;}
+.mobile_tuan a.look_more{display:block;width:100%;height:33px;line-height:33px;text-align:center;background:#DAEAC0;margin-top:10px;font-size:16px;color:#666;font-weight:bold;text-decoration:none!important;opacity:0.8;
+border-radius:4px;}
+.mobile_tuan a.look_more:hover{opacity:1.0;
+text-decoration:blink;}
+
+.mobile_show3{width:150px;height:96px;background:#303030;position:absolute;right:5%;top:13px;z-index:1}
+.mobile_show3 ul li{width:100%;height:31px;line-height:31px;text-align:center;font-size:14px;border-bottom:1px solid #222222;}
+.mobile_show3 ul li a{display:block;width:100%;height:100%;color:#EBEBEB;text-decoration:none!important;}
+.mobile_show3 ul li a:hover{color:#FF3;}
+.mobile_show3 ul li a span{display:block;float:left;}
+.mobile_show3 ul li a span.fenxiang_friends{width:30px;height:16px;background:url(../images/tx_ico.png) no-repeat;background-position:10px 0;margin:8px 3px 0 0;}
+.mobile_show3 ul li a span.fenxiang_QQ{width:19px;height:16px;background:url(../images/tx_ico.png) no-repeat;background-position:0 -32px;margin:8px 3px 0 12px;}
+.mobile_show3 ul li a span.fenxiang_weibo{width:19px;height:16px;background:url(../images/tx_ico.png) no-repeat;background-position:0 -61px;margin:8px 3px 0 12px;}
+
+.mobile_article_detail{width:100%;}
+.mobile_article_detail_title{width:100%;}
+.mobile_article_detail_title h2{font-size:18px;color:#444;font-weight:normal;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mobile_article_detail_title p{color:#888;text-align:center;}
+.mobile_article_detail_title p span{margin-right:10px;}
+.mobile_article_content{font-size:14px;line-height:26px;}
+
+.article_about_read{width:100%;}
+.article_about_read_title{width:100%;height:26px;border-bottom:1px solid #D5D5D5;position:relative;}
+.article_about_read_title span.about_read_span{display:block;width:82px;height:10px;background:#FFF;text-align:center;line-height:10px;font-size:16px;color:#fe8007;position:absolute;left:5%;top:20px;}
+.article_about_read ul{margin-top:10px;line-height:26px;}
+.article_about_read ul li a{color:#666;font-size:14px;}
+.article_about_read ul li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.article_about_read ul li a:hover{color:#fe8007;}
+
+
+.youhuitijiao{width:100%;height:72px;}
+.youhuitijiao a{display:block;width:100%;height:35px;line-height:35px;background:#FF7900;color:#FFF;font-size:18px;text-align:center;text-decoration:none!important;
+border-radius:5px;margin:15px 0 5px 0;opacity:0.9;}
+.youhuitijiao a:hover{opacity:1.0;}
+.youhuitijiao p span{display:block;float:left;font-size:16px;}
+.youhuitijiao p span.span_time{width:13px;height:14px;background-position:-184px -185px;margin:7px 3px 0 14px;}
+
+.mobile_material_all_r p span i b{color:#F10B00;font-weight:normal;}
+.material_detail_b{width:100%;padding-bottom:10px;}
+.material_detail_b p span{color:#444;}
+.material_detail_b p span i{color:#F10B00;}
+/*这个位置和style.css的样式重叠了，把style.css中的这个样式删掉，略有改动*/
+.mobile_material ul li .mobile_material_all a.mobile_material_all_b {display: block;width:45%;height: 70px;border: 1px dashed #75A1ED;margin-bottom: 10px;position: relative;text-align: center;
+color: #666;font-size: 12px;text-decoration: none;font-weight: bold;margin-right:10px;float:left;}
+.mobile_material ul li .mobile_material_all a.mobile_material_all_b .zhe_quan {width: 42px;height: 32px;background-position: -158px 0;position: absolute;left: -1px;
+top: -1px;z-index: -1;}
+.mobile_material ul li .mobile_material_all a.mobile_material_all_b span {display: block;font-size: 14px;}
+.mobile_material ul li .mobile_material_all a.mobile_material_all_b i {display: block;color: #75A1ED;font-size: 16px;}
+/*这个位置和style.css的样式重叠了，把style.css中的这个样式删掉，略有改动*/
+.material_shopper_jieshao{width:100%;font-size:14px;line-height:26px;}
+.material_shopper_jieshao h2{font-size:15px;color:#444;}
+
+.mobile_register,.mobile_register_b,.mobile_register_c{width:100%;}
+.mobile_register_t{width:99%;height:auto;overflow:hidden;border:1px solid #D4D4D4;border-radius:6px;border-bottom:none;}
+.mobile_register_t p{padding:0 10px;height:43px;line-height:43px;border-bottom:1px solid #D4D4D4;position:relative;}
+.mobile_register_t p i{font-size:15px;color:#444;}
+.mobile_register_t p span{position:absolute;left:18%;top:0;font-size:14px;color:#888;}
+.resister_zh{width:80%;height:28px;border:none;padding:0 5px;line-height:28px;font-size:14px;color:#888;font-family:"微软雅黑";}
+.resister_zh1{width:57%;height:28px;border:none;padding:0 5px;line-height:28px;font-size:14px;color:#888;font-family:"微软雅黑";}
+.resister_zh2{width:75%;height:28px;border:none;padding:0 5px;line-height:28px;font-size:14px;color:#888;font-family:"微软雅黑";}
+.resister_select{width:57%;height:28px;border: none;padding:0 5px;line-height:28px;font-size:14px;color:#888;font-family:"微软雅黑";}
+.register_but{display:block;width:100%;height:37px;line-height:37px;text-align:center;color:#FFF;font-size:16px;background:#F27A07;border-radius:6px;text-decoration:none!important;opacity:0.9;}
+.register_but:hover{opacity:1.0;}
+.mobile_register_b h3{font-size:14px;font-weight:normal;color:#444;margin:10px 0;}
+.mobile_register_b p{font-size:14px;margin-top:20px;}
+.mobile_register_b p a{color:#444;font-size:16px;}
+.mobile_register_b p a:hover{color:#D90000;}
+.mobile_register_b p span.seach_mima a{color:#72B705;}
+.mobile_register_b_hao{width:100%;}
+.mobile_register_b_hao a{display:block;width:45%;height:35px;margin-right:10px;float:left;line-height:35px;border-radius:6px;color:#FFF;font-size:14px;text-align:center;text-decoration:none!important;opacity:0.9;}
+.mobile_register_b_hao a:hover{opacity:1.0;}
+.mobile_register_b_hao a span{display:block;float:left;text-align:center;}
+.QQ_denglu{background:#3EB0D9;}
+.weibo_denglu{background:#C82B16;}
+.QQ_ico{width:19px;height:19px;background-position:-181px -133px;margin:7px 5px 0 10px;}
+.weibo_ico{width:23px;height:19px;background-position:-156px -134px;margin:7px 5px 0 5px;}
+.zhanghao{width:73%;height:100%;text-align:center;border-left:1px solid #279AC5;}
+.zhanghao1{width:73%;height:100%;text-align:center;border-left:1px solid #C31600;}
+
+.grey_bg{background:#F1F1F1;}
+.owner_info{width:100%;margin:10px auto;}
+.owner_info ul li{margin-bottom:10px;}
+.owner_info table{width:94%; height: auto; margin:0 auto;background:#FFF;font-size:14px;}
+.owner_info td{ border-right: 1px solid #C1DAD7; 
+    border-bottom: 1px solid #C1DAD7; 
+    background: #fff; 
+    font-size:11px; 
+    padding: 6px 6px 6px 12px; 
+    color: #4f6b72; }
+.owner_info th{ font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+    color: #4f6b72; 
+    border-right: 1px solid #C1DAD7; 
+    border-bottom: 1px solid #C1DAD7; 
+    border-top: 1px solid #C1DAD7; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    text-align: left; 
+    padding: 6px 6px 6px 12px; 
+    background: #CAE8EA }
+.owner_info a{ float: left; width:100%;height:20px;background:#FE8007;color:#FFF;font-size:12px;margin:10px auto;border-radius:6px;text-align:center;}
+
+
+.i_login_info{width:100%;height:auto;overflow:hidden;}
+.mobile_designer_blog p.designer_jieshao i{color:#444;}
+.mobile_designer_blog p.designer_jieshao span i.jinbi_ico{width:15px;height:17px;background:url(../images/ico.png) no-repeat;background-position:-183px -93px;margin-right:5px;}
+.mobile_designer_blog p.designer_jieshao span a{text-decoration:none!important;}
+.mobile_designer_blog p.designer_jieshao span a b{color:#F10B00;font-weight:normal;}
+.mobile_register_t p.i_left_ico{background:url(../images/xia_black_ico.png) no-repeat 95% center;font-size:14px!important;color:#666!important;}
+.mobile_top_son a.detail-third2{display: block;position: absolute;right: 4%;width: 48px;height: 24px;top: 10px;cursor: pointer;z-index: 9;color:#444;
+font-size: 14px;background:#FAFE7D;line-height: 24px;border-radius: 4px;text-decoration: none;opacity:0.9;}
+.mobile_top_son a.detail-third2:hover{opacity:1.0;}

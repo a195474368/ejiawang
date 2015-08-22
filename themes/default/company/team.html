@@ -1,0 +1,78 @@
+<{include file='company/header.html'}>
+	<!--优惠信息更多详情页导航结束  -->
+
+	<!-- 详情页的公共部分 -->
+    <!-- 主题部分开始 -->
+    <div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    	<div class="favor_detail_weizhi w1000 bodr_b mb20">
+        	<font>你当前的位置：</font>
+            <a href="<{link ctl='company:team' arg0=$company_id}>">设计团队</a>
+            
+        </div>
+    <!-- 当前位置结束   -->
+    <!-- 设计团队主题部分开始 -->
+   		<div class="designer_team_main w1000 hauto">
+    		<!--标题开始 -->
+            	<h2>
+                	<span class="block_lt f20">设计团队</span>
+                    <span class="block rt f14">共<font class="red"><{$pager.count|default:'0'}></font>位</span>
+                </h2>
+            <!--标题结束-->
+            <!--团队介绍开始-->
+            	<div class="w1000 hauto mt5 designer_team_describe">
+                          <{foreach $items as $item}>
+                	<div class="designer_team_describe_t lt bodr bgwhite mr10">
+                    	<div class="designer_team_describe_t_img">
+                    		 <a title="<{$item.realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>">
+                        <img alt="<{$item.realname}>" src="<{$pager.img}>/<{$item.face}>" width="200" height="200" />
+                    </a>
+                            <div class="mfyu1 orgbgg none"><a mini-load="预约设计" href="<{link ctl='designer:yuyue' arg0=$item.uid http='empty'}>" class="a34">免费预约</a></div>
+                        </div>
+                         <a title="<{$item.realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" class="block ml20 black f16 mt5 ftw"><{$item.realname}></a>
+                        <p class="p37">毕业院校：<{$item.school}></p>
+                    	<p class="p38">
+                        	<a title="<{$item.realname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>">
+                                自我介绍：<{$item.about|cutstr:100:'...'}>
+                            </a>
+                        </p>
+                    </div>
+                          <{/foreach}>
+                </div>
+             
+    		<!--团队介绍结束-->
+        	<!--分页开始-->
+            	<div class="w1000 hauto bgwhite mt20">
+                    <div class="page">
+                	<{$pager.pagebar}>
+                    </div>
+                </div>
+            <!--分页结束-->
+        
+        
+        </div>
+        
+    <!-- 企设计团队主题部分结束 -->
+    <div class="h30"></div>
+    
+    </div> 
+    
+<script>
+	$(document).ready(function(){
+			$(".designer_team_describe_t").mouseover(function(){
+				$(this).find(".mfyu1").show();
+				$(this).css('border','1px solid red');
+					
+				}).mouseout(function(){
+					$(this).css('border','');
+					$(this).css('border','1px solid #EAEAEA');
+					$(this).find(".mfyu1").hide();
+					
+				});
+							  
+             
+		
+	});
+</script>
+
+<{include file='company/foot.html'}>

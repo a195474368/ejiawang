@@ -1,0 +1,132 @@
+<{include file="block/header.html"}>
+    <!----------头部和导航公共部分------------>  
+    <!--        主题部分开始               -->
+     <div class="index_b_bg hauto">
+     	<!--         你所在的位置开始             -->
+        <div class="w1000 bgwhite ask_list_weizhi">
+                  <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="我搜我家" href="<{link  ctl='home'}>" class="block_lt">我搜我家</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='site'}>" title="在建工地" class="block_lt">在建工地</a>
+        <{if $area_id}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='site' arg0=$area_id}>" title="<{$area_list[$area_id].area_name}>在建工地" class="block_lt "><{$area_list[$area_id].area_name}>在建工地</a>
+        <{/if}>
+        </div>
+        <div class="cl"></div>
+        <!--        你所在的位置结束      -->
+        <!--        户型风格开始      -->
+        <div class="w1000 hauto bgwhite mt20 effect_show bodr_b mb20">
+            <div class="case_attr hauto">
+    
+                <span class="huxing2 block lt f14"><b>区域:</b></span>
+                 <{foreach from=$area_list item=item name=area}>
+     
+                <a title="<{$item.area_name}>在建工地" <{if $item.area_id == $area_id}>class="case_attr_hover"<{/if}> href="<{link ctl='site:items' arg0=$item.area_id}>"><{$item.area_name}></a>
+      
+                <{/foreach}>
+               
+            </div>
+      
+        </div>
+        <!--        户型风格结束      -->
+        <!--        在建工地开始      -->
+        <div class="w1000 hauto mt15 zjgd_main">
+        	<p>
+            	<span class="lt span24">在建工地</span>
+                <span class="rt span25">共有<font class="red f14"><{$pager.count|default:'0'}></font>个在建工地</span>
+            </p>
+            <!--标题 -->
+            <!-- 在建工地图片展示开始  -->
+            <div class="zjgd_show bgwhite w1000 hauto">
+            	<div class="zjgd_show_1 w1000  mt10 hauto">
+                	<ul class="ml20">
+                        <{foreach $items as $item}>
+                    	<li>
+                            <a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="220" height="155"/></a>
+                            <p class="p21 greenbg none"><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>">我要参观</a></p>
+                            <p><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$item.title|cutstr:30:''}></a></p>
+                            <p class="rt mr10">
+                            	<span class="block_lt">进度：</span>
+                                <span class="block_lt span27 orgbg"><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id}>"><{$site_status[$item.status]}></a></span>
+                            </p>
+                            <p class="cl"></p>
+                            <p>
+                                <font class="f12">发布来源：<a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$company_list[$item.company_id].sort_name}></a></font><br />
+								<font class="f12">发布时间：<{date('m-d',$item.dateline)}></font>
+                            </p>
+                          
+                        </li>
+                        <{/foreach}>
+                    </ul>
+                 
+                </div>
+               
+                <div class="page"><{$pager.pagebar}></div>
+                <div class="mt10"></div>
+            </div>
+            
+            <!-- 在建工地图片展示结束 --> 
+        </div>
+        <!--       在建工地结束      -->
+            <div class="cl h20"></div>
+
+<script>
+$(document).ready(function(){
+	$(".zjgd_show_1 ul li").mouseover(function(){
+		var index = $(this).index();
+		$(".zjgd_show_1 ul li").each(function(a){
+			if(a == index){
+				$(this).css('border','1px solid red');
+				$(this).find(".p21").show();
+			}else{
+				$(this).css('border','1px solid #FFF');
+				$(this).find(".p21").hide();
+				}	
+			}).mouseout(function(){
+				$(this).css('border','1px solid #FFF');
+				$(this).find(".p21").hide();
+				
+				});
+	});
+	
+	$(".zjgd_show_2 ul li").mouseover(function(){
+		var index = $(this).index();
+		$(".zjgd_show_2 ul li").each(function(a){
+			if(a == index){
+				$(this).css('border','1px solid red');
+				$(this).find(".p21").show();
+			}else{
+				$(this).css('border','none');
+				$(this).find(".p21").hide();
+				}	
+			}).mouseout(function(){
+				$(this).css('border','1px solid #FFF');
+				$(this).find(".p21").hide();	
+				});
+	});
+	$(".zjgd_show_3 ul li").mouseover(function(){
+		var index = $(this).index();
+		$(".zjgd_show_3 ul li").each(function(a){
+			if(a == index){
+				$(this).css('border','1px solid red');
+				$(this).find(".p21").show();
+			}else{
+				
+				$(this).css('border','none');
+				$(this).find(".p21").hide();
+				}	
+			}).mouseout(function(){
+				$(this).css('border','1px solid #FFF');
+				$(this).find(".p21").hide();	
+				});
+	});  
+	
+	
+	});
+</script>
+
+<{include file="block/footer.html"}>       

@@ -1,0 +1,35 @@
+<{include file='company/header.html'}>
+<!-- 详情页的公共部分 -->
+<!-- 主题部分开始 -->
+<div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    <div class="favor_detail_weizhi w1000 bodr_b mb20">
+        <font>你当前的位置：</font>
+        <a href="<{link ctl='company:news' arg0=$company_id}>">企业新闻</a>
+
+    </div>
+    <!-- 当前位置结束   -->
+    <!-- 企业介绍主题部分开始 -->
+    <div class="qyjs_main w1000 hauto">
+        <!-- 企业介绍主题部分左面开始 -->
+        <{include file='company/left.html'}>		
+        <!-- 企业介绍主题部分左面结束 -->
+        <!-- 企业介绍主题部分右面开始 -->
+        <div class="qyjs_main_r lt hauto ml20">
+                 
+            <div class="acitivity_news_detail bgwhite hauto">
+             		<h2><{$detail.title}></h2>
+                    <div class="acitivity_news_detail_b hauto">
+                    	<p><{$detail.content}></p>
+                    </div>
+              
+             </div>
+            
+        </div>
+        <!-- 企业介绍主题部分右面结束 -->
+    </div>
+    <!-- 企业介绍主题部分结束 -->
+    <div class="h30"></div>
+</div> 
+<!-- 主题部分结束 -->
+<{include file='company/foot.html'}>

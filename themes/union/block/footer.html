@@ -1,0 +1,151 @@
+    <div class="line1"></div>
+    <!-- help -->
+    <div class="footer hauto mb30">
+        <{widget id="public/help"}>
+        <{include file="block/sfooter.html"}>
+    </div>
+    <!-- //help -->
+    <!--免费设计开始-->
+  		<div class="union_free_design">
+        	<div class="union_free_design_l lt none">
+            	 <form id='tenders_form2' action="">
+                 	 <input type="hidden" id='tenders_type_id' name='data[type_id]' value="1" />
+                    <table cellpadding="0" cellspacing="0">
+                        <tr height="33">
+                            <td width="86">我的称呼&nbsp;:&nbsp;</td>
+                            <td><input type="text" class="public_my_chenghu" name="data[name]"/></td>
+                        </tr>
+                        <tr>
+                            <td width="86">联系电话&nbsp;:&nbsp;</td>
+                            <td><input type="text" class="public_my_chenghu" name="data[mobile]"/></td>
+                        </tr>
+                        <tr height="33">
+                             <td width="86">所在小区&nbsp;:&nbsp;</td>
+                            <td>
+                                <input type="text" class="public_my_chenghu" name="data[home_name]"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="20">
+                            	<p>
+                                	免费获得<i>3</i>份不同的设计报价<br/>电话报名：<i><{$CONFIG.site.phone}></i>
+                                </p>
+                                <a mini-submit='#tenders_form2' action="<{link ctl='tenders:save' http='empty'}>" class="union_free_but lt">免费申请</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="union_free_design_r rt">
+            	<p  class="t_max"><a href="###"></a></p>
+                <p  class="t_min none"><a href="###"></a></p>
+                <p class="t_mid">
+                	免费装修设计
+                </p>
+            </div>
+        </div>
+       
+         <!--免费设计结束-->
+        
+     <!-- 客服 --> 
+     	<div class="union_kefu">
+        	<div class="union_kefu_t"></div>
+            <div class="union_kefu_back_top none jquery_back_top"></div><!--返回顶部-->
+           <div class="union_b none">
+           		<div class="union_b_t"> </div>
+                <div class="union_b_c">
+                	<ul>
+                    	<li class="li0"><a href="http://wpa.qq.com/msgrd?v=3&uin=800070067&site=qq&menu=yes"></a></li>
+                        <li class="li1"><a href="http://www.ijh.cc"></a></li>	
+                    </ul>
+                    <div class="union_weixin none">
+                    	<img src="<{$pager.theme}>/union/static/pic/jh_weixin.png" />
+                        <div class="union_weixin_b">
+                        	<a href="###" class="guanzhu"></a>
+                            <a href="###" class="shuliang">4531</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                 <div class="union_b_b none jquery_back_top"></div><!--返回顶部-->
+                 
+           </div>
+        </div>
+    <!-- //客服 --> 
+     <script>
+            var kefu_top_show_hide_status = 0;
+			$(document).ready(function(){
+				$(".union_free_design_r").toggle(
+					function(){
+						$(".union_free_design_l").show();
+						$(".union_free_design_r").show();
+						$(".t_max").hide();
+						$(".t_min").show();
+						},
+					function(){
+						$(".union_free_design_l").hide();
+						$(".union_free_design_r").show();
+						$(".t_min").hide();
+						$(".t_max").show();
+					}	
+				);
+				
+                $(".jquery_back_top").click(function(){
+                    $('body,html').animate({ scrollTop: 0 }, 300);
+                    
+                });
+                
+				
+				$(".union_kefu_t").click(function(){
+					$(".union_b").show();
+					$(".union_kefu_t").hide();
+                    kefu_top_show_hide_status = 1;
+                    $(".union_kefu_back_top").hide();
+					});	
+					
+					
+				$(".union_b_t").click(function(){
+					$(".union_kefu_t").show();
+					$(".union_b").hide();
+                    $(".union_kefu_back_top").show();
+                    kefu_top_show_hide_status = 0;
+				});
+				
+				$(".union_b_c ul li.li1").mouseover(function(){
+						$(".union_weixin").show();	
+				}).mouseout(function(){
+						$(".union_weixin").hide();
+				});
+				/*返回顶部*/
+				var  union_kefu_back_top = 200;//导航栏与浏览器的高度
+				$(window).scroll(function(){
+		
+					if($(this).scrollTop() > union_kefu_back_top && kefu_top_show_hide_status == 0){
+						 $(".union_kefu_back_top").show();
+					}
+					if($(this).scrollTop() < union_kefu_back_top){
+						 $(".union_kefu_back_top").hide();
+					}
+					
+				});	
+				
+				
+				var  kefu_top = 200;//导航栏与浏览器的高度
+				$(window).scroll(function(){
+		
+					if($(this).scrollTop() > kefu_top){
+						 $(".union_b_b").show();
+					}
+					if($(this).scrollTop() < kefu_top){
+						 $(".union_b_b").hide();
+					}
+					
+				});	
+		
+			/*返回顶部*/
+			});
+		</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<{foreach from=$items  item=item}>
+<li>
+    <div class="mobile_tuan_b_all1">
+        <p class="h10"></p>
+        <p>
+            <span class="ico <{if $item.end > 0}>youhui_ico<{else}> youhui_jieshu<{/if}>"></span>
+            <a href="###" class="block_lt"><{$item.title}> </a>
+        </p>
+        <p>
+            <span class="ico span_time"></span>
+            <span><{if $item.end>0}>距离结束还有<{$item.end}><{else}>已结束<{/if}></span>
+        </p>
+
+    </div>
+</li>
+<{/foreach}>

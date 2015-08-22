@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<link rel="stylesheet" type="text/css" href="%THEME%/static/style/mallstyle.css"/>
+<body>
+<div id="wrap">
+	<!--头部开始-->
+    <{include file="block/top-header.html"}>
+    <!--头部结束-->
+    <!--logo开始-->
+    <div class="basic_dingdan">
+    	<div class="w1000 hauto">
+    		<div class="logo lt hauto mt20" id="jq_city_change">
+                    <h1><a href="<{$CONFIG.site.siteurl}>"><img src="%THEME%/static/images/logo.jpg" width="255" height="90" /></a></h1>
+                    <div class="city">
+                        <b><{$request.city.city_name}></b>
+                        <{if $CONFIG.site.multi_city}>
+                        <site><a href="<{link ctl='city'}>" id="jq_city_header_change">[&nbsp;切换城市&nbsp;]</a></site>
+                        <{/if}>
+                        <img src="%THEME%/static/images/logo_p.jpg" />
+                    </div>
+                </div>
+            <div class="basic_gonggao rt">
+            	<{if $CONFIG.bulletin.site}><p>公告：<{$CONFIG.bulletin.site}></p><{/if}>
+            </div>
+        </div>
+    </div>

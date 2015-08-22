@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+    <iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+    <div id="wrap">
+        <div class="top1 red_bodr_t">
+            <div class="w1000 hauto mt20">
+                <div class="logo lt hauto" id="jq_city_change">
+                    <h1><a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>"><img src="<{$pager.theme}>/default/static/pic/logo.jpg" width="255" height="90" /></a></h1>
+                    <div class="city">
+                        <b><{$request.city.city_name}></b>
+                        <{if $CONFIG.site.multi_city}>
+                        <site><a href="<{link ctl='city'}>" id="jq_city_header_change">[&nbsp;切换城市&nbsp;]</a></site>
+                        <{/if}>
+                        <p><img src="%THEME%/static/images/logo_p.jpg" /></p>
+                    </div>
+                    
+                </div>
+                
+                
+                <!--logo end-->
+                <div class="top_r rt hauto">
+                    <p class="mt30">
+                        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="black"><{$CONFIG.site.title}></a><font>迄今已服务</font><font class="red">12560</font><font>业主</font>
+                        <font>已经完成</font><font class="red">475100</font><font>订单,</font><font>6大保障已有</font>
+                        <font class="red">12305</font><font>关注</font>
+                    </p>
+                </div>
+                    
+            </div>
+        </div> 
+       <!----------头部公共部分------------>
+       <!-- banner部分开始   -->
+       <div class="acitivity_detail_banner" style="text-align: center;background: #F1ECD8 url(<{$pager.img}>/<{$detail.banner}>) no-repeat 50% 50%;"></div>
+       <!-- banner部分结束 -->
+       <!-- 主题部分开始 -->
+       <div class="index_b_bg hauto">
+        <!--活动报名开始-->
+       <div class="w1000 hauto huodong mt20">
+                <div class="huodong_l lt">
+                    <p class="h80"></p>
+                    <div class="huodong_l_b ml30">
+                    <form id='baoming_frm'>
+                        <b class="f14">手机号码&nbsp;：&nbsp;</b><input type="text" name="data[tel]" class="sjhm"/>
+                        <p class="h10"></p>
+                        <b class="f14">真实姓名&nbsp;：&nbsp;</b><input type="text" name="data[name]" class="sjhm"/>
+                        <p class="h10"></p>
+                        <b class="f14">装修小区&nbsp;：&nbsp;</b><input type="text" name="data[addr]" class="sjhm"/> 
+                        <div class="daojishi">
+                            <span class="block_lt acitivity_ico span54"></span>
+                            <span class="block_lt ml5 mt10 span55">
+                                <font>报名截止日期&nbsp;：&nbsp;</font>
+                                <font class="red"><{$detail.reg_time}></font>
+                            </span>
+                        </div>
+                        <a mini-submit='#baoming_frm' action="<{link ctl='activity:save' arg0=$detail.id}>" class="block a35">立即报名</a>
+                    </form>
+                    </div>
+                </div>
+                <div class="huodong_r lt ml20 bgwhite">
+                    <div class="huodong_r_l lt">
+                        <p><font class="red"><b>活动时间&nbsp;：&nbsp;</b></font><font><{$detail.bg_time}> <{$detail.sj}></font></p>
+                        <p><font class="red"><b>结束时间&nbsp;：&nbsp;</b></font><font><{$detail.end_time}> <{$detail.sj}></font></p>
+                        <p><font class="red"><b>活动地点&nbsp;：&nbsp;</b></font><font><{$detail.addr}></font></p>
+                        <p><font class="red"><b>公交线路&nbsp;：&nbsp;</b></font><font><{$detail.traffic}>
+                         </font>
+                        </p>
+                        <p class="h20"></p>
+                        <p>
+                            <span class="block_lt">
+                                <font><b>在线客服&nbsp;：&nbsp;</b></font><font class="red"><b><{$CONFIG.site.kfqq|qq}></b></font>
+                            </span>
+                        </p>
+                        <p class="cl"></p>
+                        <p class="mt5"><font><b>24小时客服电话&nbsp;：&nbsp;</b></font><font class="red"><b><{$CONFIG.site.phone}></b></font></p>
+                    </div>
+                    <div  class="huodong_r_r lt mt20">
+                        <div style="height: 270px; width: 220px;" id="allmap"></div>                        
+                    </div>                    
+                      <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=824a595f958e444b737a5bc6325ad44f"></script>
+      
+                        <div id="mapshowcontent" style="display: none;">
+                            <p style="font-size: 14px; font-weight: bold;color: #3399ff;">地址：<{$detail.addr}></p>
+                            <p  style="font-size: 14px; font-weight: bold; margin-top: 5px; color: #3399ff; ">团购热线:<strong><{$CONFIG.site.phone}></strong></p>
+                        </div>
+                         <script type="text/javascript">
+                            // 百度地图API功能
+                            var map = new BMap.Map("allmap");
+                            map.centerAndZoom(new BMap.Point(<{$detail.lng}>, <{$detail.lat}>), 14);
+                            map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+                            var marker1 = new BMap.Marker(new BMap.Point(<{$detail.lng}>, <{$detail.lat}>));  // 创建标注
+                            map.addOverlay(marker1);              // 将标注添加到地图中
+                            marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                            //创建信息窗口
+                            var infoWindow1 = new BMap.InfoWindow($("#mapshowcontent").html());
+                            marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+                        </script>
+
+                </div>
+            </div>
+        <!--活动报名结束-->
+        <!--已报名的业主开始-->
+        <div class="w1000 mt25 has_baoming hauto">
+            <div class="has_baoming_l lt hauto">
+                <h2>
+                    已报名的业主
+                    <font class="red">(共<{$detail.sign_num|default:'0'}>位)</font>
+                </h2>
+                <div class="has_baoming_l_b hauto bgwhite mt10">
+                    <ul>
+                        <{foreach $detail_sign as $item}>
+                        <li>
+                            <span><{$item.tel|cutstr:5:'**'}></span>
+                            <span><{$item.name|cutstr:3:'**'}></span>
+                            <span>成功报名活动</span>
+                        </li>
+                        <{/foreach}>
+                    </ul>
+                </div>
+            </div>
+            <div class="has_baoming_r lt hauto ml20">
+                <h2>活动流程</h2>
+                <div class="has_baoming_r_b  bgwhite mt10" style="height: 240px; overflow-y: auto; ">
+                    <{$detail.process}>
+              
+                </div>
+                <div class="cl"></div>
+                
+            </div>
+        </div>
+        <!--已报名的业主结束-->
+        <!--活动导航开始-->
+        <div class="w1000 mt20 hauto huodong_menu bgwhite">
+            <div class="huodong_nav w1000"  >
+                <ul class="lt">
+                    <li><a href="javascript:void(0);" class="current10">活动导航</a></li>
+                    <{foreach $detail_ex as $item}>
+                    <li><a href="javascript:void(0);" class="jq_hd_dh_click" rel='hddh_<{$item.ex_id}>' ><{$item.name}></a></li>
+                    <{/foreach}>
+         
+                </ul>
+                <a href="###" class="block_lt a38 mt10 jq_lkbm">立刻报名</a>
+            </div>
+            <script>
+               $(document).ready(function(e){
+                    var huodong_nv_top = $(".huodong_nav").offset().top;
+                    $(window).scroll(function(e){
+                       if($(this).scrollTop() >= huodong_nv_top){
+                           $(".huodong_nav").css({position:'fixed',top:'0px'});
+                       }else{
+                           $(".huodong_nav").css({position:''});
+                       }
+                   });
+                   $(".jq_hd_dh_click").click(function(e){                      
+                       e.preventDefault();
+                       var id = $(this).attr('rel');
+                       var huodong_nei_rong_top = $("#"+id).offset().top-80;
+                       $("html,body").animate({scrollTop:huodong_nei_rong_top},300);                       
+                   });
+                   $(".jq_lkbm").click(function(e){
+                       e.preventDefault();
+                       $("html,body").animate({scrollTop:100},300);
+                   });
+                   
+                   $(".has_baoming_l_b ul li:even").css('background','#F0F0F0');
+                   $(".has_baoming_l_b ul li:odd").css('background','#FFF');
+                   $(".has_baoming_r_b ul li").mouseover(function(){
+                       $(this).find(".span56").css('background','#FEF6E3').css('color','#F00'); 
+                       }).mouseout(function(){
+                        $(this).find(".span56").css('background','').css('color','');
+                        });
+                    $(".has_baoming_r_b ul li").eq(0).mouseover();
+               });
+            </script>
+            <div class="huodong_content w1000 hauto">
+                 <{foreach $detail_ex as $item}>
+                <h2 id='hddh_<{$item.ex_id}>'><{$item.name}></h2>
+                <div class="huodong_content_b hauto w960">
+                    <{$item.contents}>
+                </div>
+                 <{/foreach}>
+                
+            </div>
+            <div class="h20"></div>
+        
+        
+        </div>     
+        <!--活动导航结束-->
+      <div class="h30"></div>
+    </div>
+    <!-- 主题部分结束 -->
+    <div class="line1"></div>
+<{include file="block/footer.html"}>           

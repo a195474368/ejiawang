@@ -1,0 +1,106 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+            <a href="<{link ctl='designer'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second"><{$member.realname}>的博客</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+    <div class="mobile_main1 hauto"> 
+    	<div class="mobile_designer_blog">
+        	<div class="mobile_blog_t">
+            	<p class="h10"></p>
+            	<a href="<{link ctl='designer:yuyue' arg0=$member.uid}>" class="design_img"><img src="<{$pager.img}>/<{$member.face}>" width="70" height="70"/></a>
+                <p class="designer_jieshao">
+                	<a href="<{link ctl='designer:yuyue' arg0=$member.uid}>" class="block"><{$member.realname}></a>
+                    <span class="block">所在公司&nbsp;:&nbsp;<{if $company}><a title="<{$company.name}>" href="<{link ctl='company:detail' arg0=$company.company_id}>" ><{$company.sort_name}></a><{/if}></span>
+                    <a href="<{link ctl='designer:yuyue' arg0=$member.uid}>" class="yuyue_but1">预约设计>></a>
+                </p>
+            </div>
+            <div class="cl"></div>
+            <div class="mobile_blog_c">
+            	<div class="mobile_blog_c_title">
+                	<ul>
+                    	<li><a href="<{link ctl='designer:yuyue' arg0=$member.uid}>" class="current5">个人简介</a></li>
+                    </ul>
+                </div>
+                <div class="mobile_blog_content">
+                        <{foreach from=$designer_values item=item name=loop}>
+                	<p>
+                      <{$item.title}>:  
+                    	 <{foreach from=$item.values item=it}>
+                            <{if in_array($it.attr_value_id,$myattr)}>
+                            <{$it.title}> &nbsp;&nbsp;
+                            <{/if}>
+                            <{/foreach}>
+                       
+                    </p>
+                     <{/foreach}>
+                </div>
+            </div>
+            <div class="mobile_blog_b">
+            	<div class="mobile_blog_c_title mobile_blog_public">
+                	<ul>
+                        <{foreach from=$case item=item name=ct}>
+                            <li><a href="javascript:void(0);">案例<{$smarty.foreach.ct.index+1}></a></li>
+                        <{/foreach}>
+                    </ul>
+                </div>
+                <div class="cl"></div>
+                <{foreach from=$case item=item name=ct}>
+                <div class="mobile_blog_b_b mobile_case_<{$smarty.foreach.ct.index}> none">
+                	<p class="h10"></p>
+                	<p>案例名称：<{$item.title}></p>
+       
+                    <{foreach from=$case_values item=itemcase name=loop}>
+                            <p><{$itemcase.title}>:
+
+                                <{foreach from=$itemcase.values item=it}>
+                                <{if $item.attr[$it.attr_value_id]}>
+                                <{$it.title}> &nbsp;&nbsp;
+                                <{/if}>
+                                <{/foreach}>
+                            </p>
+                            <{/foreach}>
+                    
+                    <p>人气指数：<{$item.views}></p>
+                    <p>喜欢数量：<{$item.likes}></p>
+                    <p>案例描述：<{$item.intro|cutstr:20:'..'}></p>
+                    <p class="case_img">
+                    	<a  href="<{link ctl='case:detail' arg0=$item.case_id}>">
+                            <img src="<{$pager.img}>/<{$item.photo}>" width="125" height="100"/>
+                             <span></span>
+                       		 <span class="text"><{$item.title|cutstr:15:'..'}></span>
+                        </a>
+                    </p>
+                </div>
+                <{/foreach}>
+            </div>
+        </div>
+        <div class="h45"></div>
+	</div>
+    <script>
+    $(document).ready(function(){
+         $(".mobile_blog_public ul li").mouseover(function() {
+			var index = $(this).index();
+			$(".mobile_blog_public ul li").each(function(a) {
+				var nn = a
+				if (a == index) {
+					$(this).children(a).addClass("current5");
+					$(".mobile_case_" + nn).show();
+				} else {
+						$(this).children(a).removeClass("current5");
+					$(".mobile_case_" + nn).hide();
+				}
+			});
+		});
+		$(".mobile_blog_public ul li").eq(0).mouseover();
+						
+        
+    });
+    </script>
+<!--主题部分结束-->
+<{include file='mobile:block/footer.html'}>

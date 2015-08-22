@@ -1,0 +1,18 @@
+<div class="material_main_l_b hauto bgwhite mt10">
+	<h2>热卖排行</h2>
+	<ul>
+		<{foreach $data.items as $v}>
+		<li>
+			<p>
+				<a href="<{link ctl='mall/product:detail' arg0=$v.product_id}>"><img src="<{$pager.img}>/<{$v.photo}>" width="65" height="45"/></a>
+				<a href="<{link ctl='mall/product:detail' arg0=$v.product_id}>" class="product"><{$v.title}></a>
+				<span class="cl block h10"></span>
+				<span>市场价&nbsp;：&nbsp;<del>￥<{$v.market_price}></del> </span>
+				<span>现价&nbsp;：&nbsp;<i>￥<{$v.price}></i></span>
+				<span class="h5"></span>
+			</p>                           
+		</li>
+		<{/foreach}>
+	</ul>
+	<p class="h20"></p>
+</div>

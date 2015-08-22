@@ -1,0 +1,60 @@
+<{include file='company/header.html'}>
+	<!-- 详情页的公共部分 -->
+    <!-- 主题部分开始 -->
+     <div class="index_b_bg hauto">
+    <!-- 当前位置开始   -->
+    	<div class="favor_detail_weizhi w1000 bodr_b">
+        	<font>你当前的位置：</font>
+            <a href="<{link ctl='company:youhui' arg0=$company_id}>">优惠信息</a>
+        </div>
+    <!-- 当前位置结束   -->
+    <!-- 优惠信息详情   -->
+        <div class="w1000 favorable_detail_main_b hauto mt20">
+            <h2><a href="<{link ctl='company:youhui' arg0=$company_id}>">优惠信息</a></h2>
+            <div class="w1000 hauto favorable_detail_main_b_ul">
+             <{foreach $items  as $item}>
+               <div class="yhjxz mt5 ml5">
+                        <div class="li_top">
+                            <span class="block_lt <{if $item.end}>span31<{else}>span33<{/if}> jxz mr10"></span>
+                            <span class="block_lt span32">
+               
+                                <font class="f14"><a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>"><{$item.title}></a></font>
+                            </span>
+                        </div>
+                        <div class="cl"></div>
+                      <a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="260" height="180" /></a>
+                        <p class="ml30">
+                            <span class="block_lt">
+                                <font>距离结束：还有</font><font class="red font2"><{$item.end}></font><font>天</font>
+                            </span>
+                            <a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>"  class="block_lt a13 <{if $item.end}>orgbgg<{else}>graybgg<{/if}>">去看看</a>
+                        </p>
+                 </div>
+           <{/foreach}>
+                                   
+            </div>              
+        </div>
+    
+    <div class="w1000 mt20"><div class="page"><{$pager.pagebar}></div></div>
+
+      <!-- 优惠详情结束 -->
+      <div class="h30"></div>
+    </div> 
+     <!-- 主题部分结束 -->
+
+<script>
+	$(document).ready(function(){
+		$(".favorable_more_menu_r_b ul li:last").css('background','none');
+		$(".yhjxz").mouseover(function(){
+			$(this).css('border','1px solid red');
+			$(this).css('box-shadow','0 0 1px 1px #BBB');
+						
+			}).mouseout(function(){
+				$(this).css('border','1px solid #FFF');
+				$(this).css('box-shadow','0 0 1px 1px #BBB');
+				});
+				
+			
+	});
+</script>
+<{include file='company/foot.html'}>

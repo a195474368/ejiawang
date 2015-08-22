@@ -1,0 +1,29 @@
+<{include file="ucenter/header.html"}>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/shop:index'}>" class="tab">基本设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop:info'}>" class="tab">信息设置</a><i></i>
+	<a href="<{link ctl='ucenter/shop:gmsm'}>" class="tab">购买说明</a><i></i>
+	<a href="<{link ctl='ucenter/shop:seo'}>" class="tab">SEO设置</a><i></i>
+    <a href="<{link ctl='ucenter/shop/banner:index'}>" class="tab">轮转广告</a><i></i>
+    <a href="<{link ctl='ucenter/shop:skin'}>" class="tab on">店铺模板</a><i></i>
+</div>
+<h4 class="tips"><a target="_blank" href="<{link ctl='mall/shop' arg0=$shop.shop_id}>"><b class="red">点击预览我的商铺</b></a></h4>
+<form mini-form="company" action="<{link ctl='ucenter/shop:skin'  http=true}>" method="post">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr>
+        <th class="w-100"><span class="red">*</span>模板：</th>
+        <td>
+            <ul class="template_list">
+                <{foreach $skins as $k=>$v}>
+                <li>
+                    <img src="<{$pager.theme}>/<{$v.thumb}>" />
+                    <label><input type="radio" name="skin" <{if $k == $shop.skin}> checked="checked" <{/if}> value="<{$k}>" /><{$v.name}></label>
+                </li>
+                <{/foreach}>
+            </ul>
+        </td>
+    </tr>
+    <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>
+</form>
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,23 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>编辑工地日记</b></div>
+<form mini-form="company" action="<{link ctl='ucenter/site:diaryEdit' arg0=$detail.notes_id  http=true}>" method="post">
+    <table cellspacing="0" cellpadding="0" class="form">
+    
+        <tr>
+            <th><span class="red">*</span>日记内容：</th>
+            <td><textarea name="data[content]" kindeditor="full" style="width:550px;height:350px;"><{$detail.content}></textarea><br /></td>
+        </tr>
+
+
+        <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+    </table>
+</form>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+    (function(K, $) {
+        var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '<{link ctl="magic:editorupload"}>', extraFileUploadParams:{OTOKEN:"<{$OTOKEN}>"}});
+
+    })(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

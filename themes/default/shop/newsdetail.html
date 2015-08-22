@@ -1,0 +1,38 @@
+<{assign var="seo_sub_title" value=$detail.title}>
+<{assign var="shop_nav_curr" value="news"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+    <div class="acitivity_news_detail bgwhite hauto">
+        <h2><{$detail.title}></h2>
+        <div class="acitivity_news_detail_b hauto">
+            <p>
+                <span class="lt"><i><{$detail.views}></i>人已浏览    时间：<{$detail.dateline|format:"Y-m-d"}>   </span>
+                <span class="rt span95">来源：<a href="<{link ctl='mall/shop' arg0=$detail.shop_id}>"><{$shop.title}></a></span>
+            </p>
+            <p class="h20 cl"></p>
+            <div><{$detail.content}></div>
+            <div class="cl"></div>    
+        </div>
+        <div class="acitivity_other_cont hauto"> 
+            <{if $pager.prev}>上一篇：<a href="<{link ctl='mall/news:detail' arg0=$pager.prev.news_id}>"><{$pager.prev.title}></a><{/if}>
+            <{if $pager.next}>下一篇：<a href="<{link ctl='mall/news:detail' arg0=$pager.next.news_id}>"><{$pager.next.title}></a><{/if}>
+            <h2>相关推荐</h2>
+            <ul>
+                <{calldata mdl='shop/news' shop_id=$shop.shop_id orderby="hot" limit="5" ext=false nocache=true}>
+                <li><a href="<{link ctl='mall/news:detail' arg0=$item.news_id}>"><{$item.title}></a></li>
+                <{/calldata}>
+            </ul>
+            <p class="h30"></p>
+        </div>
+    </div>          
+</div>
+<!-- 右面结束 -->
+<{include file="shop/block/footer.html"}>

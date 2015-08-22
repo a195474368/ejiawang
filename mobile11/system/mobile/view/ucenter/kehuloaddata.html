@@ -1,0 +1,32 @@
+<{foreach from=$items item=item}>
+<li>
+    <table cellspacing="0" cellpadding="0">
+        <tr>
+            <th>客户</th><td><{$tenders[$item.tenders_id].title}></td>
+        </tr>
+        <tr>
+            <th>称呼</th>   <td><{$tenders[$item.tenders_id].name}></td>
+        </tr>
+        <tr>
+            <th>电话</th>     <td><{$tenders[$item.tenders_id].mobile}></td>
+        </tr>
+        <tr>
+            <th>IP</th> <td><{$item.create_ip}></td>
+        </tr>
+        <tr>
+            <th>创建时间</th> <td><{$item.dateline|format}></td>
+        </tr>
+        <tr>
+            <th>操作</th>
+            <td>
+                <{if $item.is_signed == 1}>
+                <a href="<{link ctl='ucenter:tracking' arg0=$item.look_id}>"> 恭喜签单</a>
+                <{else}>
+                <a href="<{link ctl='ucenter:tracking' arg0=$item.look_id}>" >跟踪</a>
+                <{/if}>
+            </td>
+        </tr>
+
+    </table>
+</li>
+<{/foreach}>

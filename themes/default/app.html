@@ -1,0 +1,39 @@
+<{include file="block/header.html"}>
+
+	  <!--banner开始-->
+        <div class="download_banner">
+            	<div class="w1000 banner_main">
+                	<div class="download_but">
+                        <a target="_blank" href="<{$CONFIG.mobile.url}>/jhzxv5_android.apk"></a>
+                        <a target="_blank" href="<{$CONFIG.mobile.url}>/jhzxv5_iphone.ipa"></a>
+                    </div>
+                </div>
+            </div>
+     <!--banner结束-->
+     <!--介绍开始-->
+        <div class="w1000 download_jieshao">
+     	<div class="download_jieshao_l lt">
+        	<a href="<{$CONFIG.mobile.url}>"><img src="<{$pager.theme}>/default/static/images/wx_05.png" width="269" height="269"/></a>
+            <h2><{$CONFIG.site.title}>手机端</h2>
+          
+            	<p>
+                    <{$CONFIG.site.intro}>
+                </p>
+                
+        </div>
+        <div class="download_jieshao_r lt">
+        	<div class="app_mobile">
+           		<div class="m_iframe">
+                	<iframe src="<{$CONFIG.mobile.url}>">
+                    </iframe>
+                </div>
+                <p>手机可直接访问<a href="<{$CONFIG.mobile.url}>"><{$CONFIG.mobile.url}></a></p>
+           
+
+           </div>
+           
+        </div>
+     </div>
+       <!--介绍结束-->
+
+<{include file="block/footer.html"}>

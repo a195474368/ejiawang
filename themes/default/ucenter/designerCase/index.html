@@ -1,0 +1,39 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>案例管理</b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+
+        <th>案例名称</th>
+        <th>小区</th>
+        <th>浏览数</th>
+        <th>喜欢数</th>
+        <th>创建时间</th>
+        <th>审核</th>
+        <th>操作</th></tr>
+
+    <{foreach $items as $item}>
+    <tr>    
+
+        <td><{$item.title}></td>
+        <td><{$home_list[$item.home_id].name|default:'--'}></td>
+        <td><{$item.views}></td>
+        <td><{$item.likes}></td>
+        <td><{$item.dateline|format}></td>
+        <td><{if $item.audit}>正常<{else}><span class="red">待审</span><{/if}></td>
+
+        <td>
+            <a href="<{link ctl='ucenter/designerCase:pic' arg0=$item.case_id http=true}>" class="yzmbtn">图片</a>
+            <a href="<{link ctl='ucenter/designerCase:edit' arg0=$item.case_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+    <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,23 @@
+<form action="<{link ctl='home:tuanSign' arg0=$tuan.tuan_id http='empty'}>" mini-form="sign-form" method="post" >
+    <div style="height: 250px;">
+        <div  class="yuyue_box" style="height: 250px;">
+    <h2>我想报名参加<font class="red"><{$tuan.title}></font></h2>
+    <dl style=" height: 130px;">
+        <dt style=" height: 130px;"> 
+            <select class="yuyue_input" name="data[package_id]">
+                 <{foreach $package as $item}>
+                 <option value="<{$item.package_id}>"><{$item.title}></option>
+                 <{/foreach}>
+             </select>
+             <span id="tips_1" class="yuyue_tips"></span>
+            <input class="yuyue_input" name="data[cantact]" id="pop_name_txt" onfocus="if (this.value=='请输入您的姓名'){ this.value=''};this.style.color='#666666';" onblur="if (this.value==''){this.value='请输入您的姓名'};this.style.color='#666666';" value="请输入您的姓名" type="text">
+            <span id="tips_1" class="yuyue_tips"></span>
+            <input class="yuyue_input" name="data[mobile]" id="pop_phone_txt" onfocus="if (this.value=='请输入您的手机号'){ this.value=''};this.style.color='#666666';" onblur="if (this.value==''){this.value='请输入您的手机号'};this.style.color='#666666';" value="请输入您的手机号" type="text">
+            <span id="tips_2" class="yuyue_tips"></span>
+       </dt>
+       <dd><input type="submit" class="yuyue_sub" value="立即报名"/></dd>
+    </dl>
+    <div class="yuyue_bottom"><span>不想等待？您也可以直接联系我们</span><span class="yuyue_tel"><{$CONFIG.site.phone}></span></div>
+</div>
+    </div>
+</form>

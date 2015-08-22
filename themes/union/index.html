@@ -1,0 +1,656 @@
+<{include file="block/index_header.html"}>
+<div class="cl"></div>
+<{include file="index/index_topheader.html"}>
+<{include file="index/index_nav.html"}>
+<!--主题开始-->
+<div class="w1000 union_main">
+<!--最新签约开始-->
+	<div class="union_qianyue mt10">
+    	<!--公共标题开始-->
+        	<div class="union_public_title">
+            	<h2>最新合肥装修业主</h2>
+                <div class="union_public_title_r rt">
+                	累计有 <b class="red f16"><{$pager.sitecount.member}></b> 位合肥业主申请了免费装修设计与报价，<a href="<{link ctl='passport-signup'}>" class="red">我也去看看>></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+        <div class="cl"></div>
+        <div class="public_height union_qianyue_b">
+        <!--左面开始-->
+        	<div class="union_qianyue_b_l lt">
+            	<div class="union_free_shenqing">
+                	<span class="lt">申请免费设计与报价的业主</span>
+                    <span class="rt"><a href="<{link ctl='tenders'}>" class="red">我要申请>></a></span>
+                </div>
+                <div class="cl"></div>
+                <div class="union_qianyue_title">
+                	<p>
+                    	<span>日期</span><span>业主</span>
+                        <span>户型</span><span>面积</span>
+                        <span>预算</span>
+                    </p>
+                </div>
+                <div class="cl"></div>
+                <ul>
+                    <{calldata mdl="tenders/tenders" order="new" city_id=$request.city_id limit="6"}>
+                    <li>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>"><b><{$item.dateline|format:"m月d日"}></b></a>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>"><{$item.name|default:'--'}></a>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>" style="overflow: hidden;" ><{$item.house_type_title|default:'--'}></a>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>"><b><{$item.area|default:'--'}></b></a>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='tenders:detail' arg0=$item.id}>" class="a23"><{$item.budget_title}></a>
+                    </li>
+                    <{/calldata}>  
+                    <div class="cl"></div>
+               </ul>
+            </div>
+        <!--左面结束-->
+        <!--中间开始-->
+        	<div class="union_qianyue_b_c lt">
+            	<div class="union_qianyue_b_c_t">
+                	<p class="p1">
+                    	<span class="lt"><b>装修有问题，我们帮您解决</b></span>
+                        <span class="rt"><a href="<{link ctl='ask'}>">问答>></a></span>
+                    </p>
+                    <form action="<{link ctl='ask:make'}>">
+                        <p class="p2">
+                            <input type="text"  id='data_title' name="title" class="lt zhaodaan">
+                            <input type="submit"  class="block_lt daan" value="提问题">
+                        </p>
+                    </form>
+                 	<ul>
+                            <{calldata mdl="ask/ask" answer_id='>:0' order="ask_id:desc" limit="2"}> 
+                            <li>
+                            	<h3>问：<a target='_blank' title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>" <{if $index <3}>class="red"<{/if}>><{$item.title}></a></h3>
+                                <p>
+                                    <{calldata mdl="ask/answer" answer_id=$item.answer_id limit=1}>
+                                	<b>答&nbsp;:&nbsp;</b>  <{$item.contents|cutstr:100:'..'}>  <a href="<{link ctl='ask:detail' arg0=$item.ask_id}>" class="red">详情>></a>      
+                                    <{/calldata}>
+                                </p>
+                            </li>
+                            <{/calldata}>
+
+                    </ul>
+                   
+                </div>
+            </div>
+        <!--中间结束-->
+        <!--右面开始-->
+        	<div class="union_ads1 lt">
+            	 <div id="mall_id_2" kinBox='{"height":290}'><{widget id="adv" name="95联盟签约右侧广告位" limit="5"}></div>
+            </div>
+        <!--右面结束-->
+        </div>
+    </div>
+<!--最新签约结束-->
+<!--品牌装修公司开始-->
+	<div class="union_qianyue">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>品牌装修公司</h2>
+                <div class="union_public_title_r rt">
+                	<a href="<{link ctl='passport:signup'}>" class="red f14"><b>我要入驻>></b></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+          <div class="cl"></div>
+          <div class="public_height union_qianyue_b">
+          	<!--左面开始-->
+            	<div class="union_pinpai_l lt">
+                	<div class="union_pinpai_l_t">
+                    	<ul class="lt">
+                            <li><a href="<{link ctl='gs'}>" class="aa">合肥装修公司推荐</a></li>
+                            <li><a href="<{link ctl='home:tuan'}>" class="aa">合肥装修团购</a></li>
+                        </ul>
+                        <a href="<{link ctl='gs'}>" class="block rt">更多>></a>
+                    </div>
+                    <div class="cl"></div>
+                    <div class="union_pinpai_l_b union_pinpai_l_b_0">
+                        <ul>
+                            <{KT id="1" name="品牌装修公司" limit="12" city_id=$request.city_id}>
+                            <li>	
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.square_logo}>" width="60" height="60"/></a>
+                                <p>
+                                	<span>案例&nbsp;:&nbsp;<{$item.case_num}></span>
+                                    <span>工地&nbsp;:&nbsp;<{$item.site_num}></span>
+                                    <span>签单&nbsp;:&nbsp;<{$item.tenders_num}></span>
+                                </p>
+                            </li>
+                            <{/KT}>
+                        </ul>
+                        
+                    </div>
+                    <div class="union_pinpai_l_b union_pinpai_l_b_1 none">
+                    	   <{widget id='home/index' city_id=$request.city_id tpl='union.html' limit=9}>          
+                    </div>
+                </div>
+<script>
+    $(document).ready(function(){
+         $(".union_pinpai_l_t ul li").mouseover(function() {
+			var index = $(this).index();
+			$(".union_pinpai_l_t ul li").each(function(a) {
+				var nn = a
+				if (a == index) {
+					$(this).find(".aa").css('color','#FF0000');
+					$(".union_pinpai_l_b_" + nn).show();
+				} else {
+					$(this).find(".aa").css('color','');
+					$(".union_pinpai_l_b_" + nn).hide();
+				}
+			});
+		});
+		$(".union_pinpai_l_t ul li").eq(0).mouseover();   
+		$(".union_qianyue_b_l ul li").last().css('border-bottom','none');
+		$(".union_pinpai_l_b_1 ul li").eq(2).css('border-right','#FFF');
+		$(".union_pinpai_l_b_1 ul li").eq(5).css('border-right','#FFF');
+		$(".union_pinpai_l_b_1 ul li").eq(8).css('border-right','#FFF');
+		$(".union_pinpai_l_b_0 ul li").eq(3).css('border-right','#FFF');
+		$(".union_pinpai_l_b_0 ul li").eq(7).css('border-right','#FFF');
+		$(".union_pinpai_l_b_0 ul li").eq(11).css('border-right','#FFF');
+		$(".union_qianyue_b_l ul li").mouseover(function(){
+		 	$(this).addClass("hover_red");
+		}).mouseout(function(){
+			$(this).removeClass("hover_red");
+		});
+    });
+</script>
+            <!--左面结束-->
+            <!--右面开始-->
+            <div class="union_pinpai_r lt">
+            	<div class="union_pinpai_r_title">
+                	<ul>
+                    	<li><a href="<{link ctl='gs:items'}>" class="aa">装修公司排名</a></li>
+                        <li><a href="<{link ctl='tenders'}>" class="aa">最新签单榜</a></li>
+                    </ul>
+                </div>
+                <div class="cl"></div>
+                <div class="union_pinpai_r_b union_qdb_0 none">
+ 
+                    	<ul>
+                        	 <{calldata mdl="company/company" city_id=$request.city_id order="orderby:desc" limit="6"}>
+                             	<li>
+                                	<div class="fangkuang"><{($index+1)}></div>
+                                    <div class="union_pinpai_r_b_r lt none">
+                                        <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><{$item.name}></a>
+                                        <span class="rt"><{$item.tenders_num}></span>
+                            		</div>
+                                    <div class="union_pinpai_r_b_r_detail lt none">
+                                    	<a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><img src="<{$pager.img}>/<{$item.square_logo}>" width="45" height="45"/></a>
+                                        <p class="lt ml5">
+                                        	 <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.name}></a><br />
+                                        	 <span>案例&nbsp;:&nbsp;<{$item.case_num}></span>
+                                        </p>
+                                    </div>
+                                </li>
+                             <{/calldata}> 
+                        </ul>
+                </div>
+                 <div class="union_pinpai_r_b union_qdb_1 none">
+          
+                    <ul>
+                    	<{calldata mdl="company/company" city_id=$request.city_id order="tenders_num:desc" limit="6"}>
+                         <li>
+                            <div class="fangkuang"><{($index+1)}></div>
+                            <div class="union_pinpai_r_b_r lt none">
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><{$item.name}></a>
+                                <span class="rt"><{$item.tenders_num}></span>
+                            </div>
+                            <div class="union_pinpai_r_b_r_detail lt none">
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><img src="<{$pager.img}>/<{$item.square_logo}>" width="45" height="45"/></a>
+                                <p class="lt ml5">
+                                     <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.name}></a><br />
+                                     <span>签单&nbsp;:&nbsp;<{$item.tenders_num}></span>
+                                </p>
+                            </div>
+                        </li>
+                        <{/calldata}>
+                    </ul>
+                </div>
+            </div>
+            <!--右面结束-->
+          </div>
+          <script>
+		  	$(document).ready(function(){
+				 $(".union_qdb_0 ul li").mouseover(function() {
+				var index = $(this).index();
+				$(".union_qdb_0 ul li").each(function(a) {
+					if (a == index) {
+						$(this).find(".union_pinpai_r_b_r_detail").show();
+						$(this).find(".union_pinpai_r_b_r").hide();
+					} else {
+						$(this).find(".union_pinpai_r_b_r_detail").hide();
+						$(this).find(".union_pinpai_r_b_r").show();
+					}
+	
+				});		
+			});
+			
+				 $(".union_qdb_1 ul li").mouseover(function() {
+				var index = $(this).index();
+				$(".union_qdb_1 ul li").each(function(a) {
+					if (a == index) {
+						$(this).find(".union_pinpai_r_b_r_detail").show();
+						$(this).find(".union_pinpai_r_b_r").hide();
+					} else {
+						$(this).find(".union_pinpai_r_b_r_detail").hide();
+						$(this).find(".union_pinpai_r_b_r").show();
+					}
+	
+				});		
+			});
+
+        	$(".union_qdb_0 ul li").eq(0).mouseover();
+			$(".union_qdb_1 ul li").eq(0).mouseover();
+			$(".union_qdb_0 ul li").last().css('border-bottom','none');
+			$(".union_qdb_1 ul li").last().css('border-bottom','none');
+			
+			 $(".union_pinpai_r_title ul li").mouseover(function() {
+			var index = $(this).index();
+			$(".union_pinpai_r_title ul li").each(function(a) {
+				var tt = a
+				if (a == index) {
+					$(this).find(".aa").css('color','#FF0000');
+					$(".union_qdb_" + tt).show();
+				} else {
+					$(this).find(".aa").css('color','');
+					$(".union_qdb_" + tt).hide();
+				}
+			});
+		});
+		$(".union_pinpai_r_title ul li").eq(0).mouseover();   
+	});
+		  </script>
+    </div>
+    <div class="cl"></div>
+<!--品牌装修公司结束-->
+<!--找我家设计方案开始-->
+	<div class="union_shejifangan">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>找我家的设计方案&nbsp;&nbsp;&nbsp;<i>足不出户，在线参观邻居的装修效果，找到您的装修灵感。</i></h2>
+                <div class="union_public_title_r rt">
+                	<a href="<{link ctl='home'}>" class="red">更多>></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+        	<div class="cl"></div>
+            <div class="union_shejifangan_b">
+            	<div class="union_shejifangan_b_all union_sjfn">
+                	<ul>
+                   
+                          <{calldata mdl="home/main" city_id=$request.city_id limit="6"}>
+                          		<li>
+                                	 <a target="_blank" title="<{$item.name}>" href="<{link ctl='home:detail' arg0=$item.id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="145" height="100"></a>
+                                     <p class="tc"><a target="_blank" title="<{$item.name}>" href="<{link ctl='home:detail' arg0=$item.id}>" class="f16 black"><{$item.name}></a></p>
+                                     <p class="tc">设计方案&nbsp;:&nbsp;<i class="f14 red"><{$item.case_num}>套</i></p>
+                                     <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:detail' arg0=$item.id}>" class="block union_tuanzhuang none">去看看</a>
+                                </li>
+                          <{/calldata}>
+                    </ul>
+                </div>
+                <script>
+					$(document).ready(function(){
+						$(".union_sjfn ul li").mouseover(function(){
+							$(this).find(".union_tuanzhuang").show();
+						}).mouseout(function(){
+							$(this).find(".union_tuanzhuang").hide();
+						});
+						
+						$(".union_zjgd ul li").mouseover(function(){
+							$(this).find(".union_tuanzhuang").show();
+						}).mouseout(function(){
+							$(this).find(".union_tuanzhuang").hide();
+						});
+					});
+				</script>
+            </div>
+    </div>
+<!--找我家设计方案结束-->
+<!--在建工地开始-->
+	<div class="union_shejifangan">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>在建工地&nbsp;&nbsp;&nbsp;</h2>
+                <div class="union_public_title_r rt">
+                	<a href="<{link ctl='site'}>" class="red">更多>></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+        	<div class="cl"></div>
+            <div class="union_shejifangan_b">
+              <{widget id='home/site' city_id=$request.city_id limit=6}>          
+            </div>
+    </div>
+<!--在建工地结束-->
+<!--装修案例开始-->
+	 <div class="union_case">
+     		<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>
+                	装修案例&nbsp;&nbsp;&nbsp;
+                    
+                    
+                </h2>
+                <div class="union_public_title_r rt">
+                	<a href="<{link ctl='case'}>" class="red">免费获取3套设计方案>></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+        	<div class="cl"></div>
+            <div class="union_case_b">
+            <!--左面开始-->
+            	<div class="union_case_b_l lt">
+                	<div class="union_pinpai_l_t">
+                    	<p class="lt ml20"><i><{$request.city.city_name}>装修案例</i>（共389套）</p>
+                        <a href="<{link ctl='case'}>" class="block rt">更多>></a>
+                    </div>
+                    <div class="cl"></div>
+                    <div class="union_case_l_b">
+                    	 <{KT name="首页装修案例:风格" limit="1"}>
+                    	<div class="union_pinpai_l_b_l lt">
+                        	<a href="<{link ctl='case:detail' arg0=$item.case_id}>" class="opc_img">
+                            	<img src="<{$pager.img}>/<{$item.thumb}>" width="357" height="285"/>
+                                <div class="opc_b none">
+                                    <p></p>
+                                    <p class="text"><{$item.title}></p>
+                                </div>
+                            </a>
+                        </div>
+                          <{/KT}>
+                        <div class="union_case_l_b_r lt">
+                        	<ul>
+                            	
+                                 <{KT name="首页装修案例:空间" limit="4"}>
+                                 	<li>
+                                    	<a href="<{link ctl='case:detail' arg0=$item.case_id}>"  class="opc_img">
+                                        	<img src="<{$pager.img}>/<{$item.thumb}>" width="173" height="138"/>
+                                            <div class="opc_b none">
+                                                <p></p>
+                                                <p class="text"><{$item.title}></p>
+                                		    </div>
+                                        </a>
+                                    </li>
+                                <{/KT}>
+                            </ul>
+                        </div>
+                       
+                    </div>
+                    <script>
+						$(document).ready(function(){
+							$(".opc_img").mouseover(function(){
+								$(this).find(".opc_b").show();
+							}).mouseout(function(){
+								$(this).find(".opc_b").hide();
+							});
+						});
+					</script>
+                </div>
+            <!--左面结束-->
+            <!--右面开始-->
+                <div class="union_case_b_r lt">
+                	<div class="union_pinpai_r_title">
+                		<h3>装修效果图大全</h3>
+                	</div>
+                         <{widget id='case/cloud'}>      
+                </div>
+             <!--右面结束-->
+            </div>
+     </div>
+<!--装修案例结束-->
+<!--建材商城开始-->
+	<div class="union_jcsc hauto">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>建材商城&nbsp;&nbsp;&nbsp;</h2>
+                <div class="union_public_title_r rt">
+                	<a href="<{link ctl='mall/index'}>" class="red">更多>></a>
+                </div>
+            </div>
+        <!--公共标题结束-->
+        	<div class="cl"></div>
+            <div class="union_jcsc_b">
+            <!--左面开始-->
+            	<div class="union_case_b_l lt">
+                	<div class="union_jcsc_t">
+                    	<ul>
+                        	<{calldata mdl="product/product" cat_id=1 limit="4"}>
+                        	<!--<li>
+                            	<a href="###"><img src="<{$pager.theme}>/union/static/pic/jcsc_1.png" width="150" height="100"/></a>
+                                <p><a href="###">凯撒豪庭 美式古典 雕花床排骨架床 1.8米床 1.5米床</a></p>
+                                <p><del>￥1899 </del><b>￥1199</b></p>
+                            </li>-->
+                            	<li>
+                                    <a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>" target="_blank"><img src="<{$pager.img}>/<{$item.photo}>_thumb.jpg" width="150" height="100" /></a>
+                                    <p><a href="<{link ctl='mall/product:detail' arg0=$item.product_id}>" title="<{$item.title}>" target="_blank" class="it_title"><{$item.title}></a></p>
+                                    <p><del>￥<{$item.market_price}></del><b>￥<{$item.price}></b></p>
+                            	</li>
+                            <{/calldata}>
+                          
+                        </ul>
+                    </div>
+                    <div class="union_jcsc_c">
+                    	<ul>
+                        	<!--<li>
+                            	<a href="###" class="red">[方太橱柜]</a>
+                                <a href="###" class="black">立体雕花复古电话机/仿古电话机</a>
+                                <a href="###" class="a32">促销</span>
+                            </li>-->
+                          <{calldata mdl="shop/coupon" city_id=$request.city_id limit="4"}>
+                            <li>                             
+                                 <a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" title="<{$item.ext.shop.name}>" target="_blank" class="red">[<{$item.ext.shop.name}>]</a>
+                                 <a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" title="<{$item.title}>" target="_blank" class="black"><{$item.title}></a>
+                                 <a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" target="_blank" class="a32">促销</a>    
+                             </li>
+                          <{/calldata}>
+                           
+                        </ul>
+                    </div>
+                    <div class="union_jcsc_b_b">
+                     	<ul>
+                        	<!--<li><a href="###"><img src="<{$pager.theme}>/union/static/pic/zjgd_2.png" width="120" height="60"/></a></li>-->
+                            <{KT name="首页建材商城推荐商家" city_id=$request.city_id limit="5"}>
+                        		<li><a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" title="<{$item.title}>" target="_blank"><img src="<{$pager.img}>/<{$item.logo}>" width="120" height="60"/></a></li>
+                        	<{/KT}>
+                        </ul>
+                     </div>
+                </div>
+            <!--左面结束-->
+            <!--右面开始-->
+            	<div class="union_case_b_r lt">
+                	<div class="union_ads2">
+                    	<!--<a href="###"><img src="<{$pager.theme}>/union/static/pic/ads2.png" /></a>-->
+                      	  <{widget id="adv" name="95联盟建材商城右侧广告位" limit="5"}>
+                    </div>
+                </div>
+            <!--右面结束-->
+            </div>
+    </div>
+<!--建材商城结束-->
+<!--推荐设计师开始-->
+	<div class="union_designer">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>推荐设计师&nbsp;&nbsp;&nbsp;</h2>
+                <div class="union_public_title_r rt">
+                </div>
+            </div>
+        <!--公共标题结束-->
+        <div class="union_designer_b">
+        	<div class="union_designer_all">
+            	<ul>
+                	<!--<li>
+                    	<a href="###"><img src="<{$pager.theme}>/union/static/pic/design_1.png" width="100" height="100"/></a>
+                        <p><a href="###">刘艳</a></p>
+                        <p class="union_mfyu none"><a href="###">免费预约</a></p>
+                    </li>-->
+                  	  <{calldata mdl="designer/designer" city_id=$request.city_id order="orderby:desc" limit="8"}>
+                      	<li>
+                        	 <a target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" title="<{$item.uname}>"><img src="<{$pager.img}>/<{$item.face}>" width="100" height="100" /></a>
+                             <p><a target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" title="<{$item.uname}>"><{$item.uname}></a></p>
+                             <p class="union_mfyu none"><a mini-load="预约设计" href="<{link ctl='designer:yuyue' arg0=$item.uid http='empty'}>">免费预约</a></p>
+                        </li>
+                       <{/calldata}>
+                </ul>
+            </div>
+        </div>
+        <script>
+			$(document).ready(function(){
+				$(".union_designer_all ul li").mouseover(function(){
+					$(this).find(".union_mfyu").show();
+				}).mouseout(function(){
+					$(this).find(".union_mfyu").hide();
+				});	
+				$(".union_jcsc_b_b ul li img").mouseover(function(){
+					$(this).css('opacity','0.618');
+				}).mouseout(function(){
+					$(this).css('opacity','1.0');
+				});
+			});
+		</script>
+    </div>
+<!--推荐设计师结束-->
+<!--装修课堂开始-->
+	<div class="union_zxkt">
+    	<!--公共标题开始-->
+        <div class="union_public_title mt10">
+            	<h2>装修课堂&nbsp;&nbsp;&nbsp;</h2>
+                <div class="union_public_title_r rt">
+                	
+                </div>
+            </div>
+        <!--公共标题结束-->
+        <div class="union_zxkt_b">
+        	<div class="decoration_class_t_l hauto bodr_r lt">
+                    <div class="decoration_class_t_l_l lt" style="width: 300px;">
+
+                        <div id="mall_id_3" kinBox='{"height":180}'><{widget id="adv" name="95装修课堂左侧广告位" limit="5"}></div>
+                        <div class="union_rjfx">
+                        	<ul>
+                            <{widget id='diary/right' limit=7 city_id=$request.city_id}>
+                            <p class="mt10"></p>
+                        	</ul>
+                        </div>
+                    </div>
+                    <div class="decoration_class_t_l_r lt">
+                        <p class="f18 p35">
+                              <{calldata mdl="article/view" from='article' order="views:desc"  limit="1"}>
+                              <a target="_blank" href="<{link ctl='content:detail' arg0=$item.article_id}>" title="<{$item.title}>" ><{$item.title}></a>
+                              <{/calldata}>
+                        </p>
+                        <ul class="bodr_b">
+                            <{widget id='article/newitems' limit=2}>
+                            <p class="mt10"></p>
+                        </ul>
+                        
+                        <ul class="mt15">
+                            <{calldata mdl="ask/ask" answer_id='>:0' order="ask_id:desc" limit="11"}> 
+                            <li>
+                               <a href="<{link ctl='ask'}>" class="f14 red">[装修问答]</a>
+                               <a target='_blank' title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>"  class="f14 black8"><{$item.title}></a>
+                            </li>
+                            <{/calldata}>                                   
+                            <p class="mt10"></p>                                        
+                        </ul>
+                    </div>
+                </div>
+            <div class="decoration_class_t_r hauto lt">
+                    <div class="decoration_class_t_r_img hauto">
+                        <ul>
+                            <li>
+                                <a target="_blank" title="涂料计算器" href="<{link ctl='tools:items' arg0='main'}>"><img src="<{$pager.theme}>/default/static/pic/tljsq.png" width="56" height="56"/></a><br/>
+                                 <a target="_blank" title="涂料计算器" href="<{link ctl='tools:items' arg0='main'}>">涂料计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="地板计算器" href="<{link ctl='tools:items' arg0='diban'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="地板计算器" href="<{link ctl='tools:items' arg0='diban'}>">地板计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="壁纸计算器" href="<{link ctl='tools:items' arg0='bizhi'}>"><img src="<{$pager.theme}>/default/static/pic/tpjsq.png" width="56" height="56"/></a><br/>
+                               <a target="_blank" title="壁纸计算器" href="<{link ctl='tools:items' arg0='bizhi'}>">壁纸计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="墙砖预算器" href="<{link ctl='tools:items' arg0='qiangzhuan'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="墙砖预算器" href="<{link ctl='tools:items' arg0='qiangzhuan'}>">墙砖预算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="窗帘计算器" href="<{link ctl='tools:items' arg0='chuanlian'}>"><img src="<{$pager.theme}>/default/static/pic/tljsq1.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="窗帘计算器" href="<{link ctl='tools:items' arg0='chuanlian'}>">窗帘计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="地砖计算器" href="<{link ctl='tools:items' arg0='dizhuan'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq2.png" width="56" height="56"/></a><br/>
+                               <a target="_blank" title="地砖计算器" href="<{link ctl='tools:items' arg0='dizhuan'}>">地砖计算器</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <p class="bodr_b"></p>
+                    <div class="decoration_class_t_r_img1">
+                        <{widget id="adv" name="首页最下面装修学堂右侧小图广告" limit="1"}>
+                    </div>
+                </div>
+            <div class="cl"></div>
+            <div class="decoration_class_b hauto">
+                <h2 class="ml10 bodr_b">
+                    <a href="<{link ctl='content'}>" class="block_lt">今日推荐</a>
+                    <span class="block rt">
+
+                        <a href="<{link ctl='content'}>" class="mr10">更多>></a>
+                    </span>
+                </h2>
+                <div class="cl"></div>
+                <ul class="lt ml10 mt10 ul1">
+                     <{widget id='article/randitems' limit=3}>                   
+                </ul>
+                <div class="cl"></div>
+                <div class="mt20"></div>                        
+            </div>
+        </div>
+    </div>
+<!--装修课堂结束-->
+ <!-------- 友情链接------------>
+ 	<div class="union_friends">
+    	<!--公共标题开始-->
+        	<div class="union_public_title mt10">
+            	<h2>友情链接&nbsp;&nbsp;&nbsp;</h2>
+                <div class="union_public_title_r rt">
+                	
+                </div>
+            </div>
+        <!--公共标题结束-->
+        <div class="union_friends_b">
+        	<p><{widget id="links" city_id=$request.city_id}></p>
+        </div>
+    </div>
+  <!-------- 友情链接------------>
+</div>
+<!--主题结束-->
+<div style="height:30px;"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<{include file="block/footer.html"}>

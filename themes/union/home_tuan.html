@@ -1,0 +1,122 @@
+<{include file="block/header.html"}>
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+          <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='home:tuan'}>" title="团装小区" class="block_lt">团装小区</a>
+  
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--搜索开始-->
+    <div class="w1000 mt10">
+    	  <div class="tuanzhuang_title">
+            <h2>热门小区团装</h2>
+            
+        </div>
+          <div class="union_hot_area mt10">
+          	<ul>
+            	<!--<li>
+                	<a href="###"><img src="<{$pager.theme}>/union/static/pic/tuna_1.png" width="30" height="30"/></a>
+                    <p>
+                    	<span>上海三湘海上</span>
+                        <span>立省<i>￥988元</i></span>
+                        <span><i>37</i>人已参团</span>
+                    </p>
+                </li>-->
+                  <{foreach from=$hots item=item}>
+                        <li>
+                        	<a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>"><img src="<{$pager.img}>/<{$home_list[$item.home_id].face_pic}>" width="30" height="30"/></a>
+                       		 <p>
+                                <span><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>"><{$item.title}></a></span>
+                                <span>立省<i>￥<{$item.jieyue}>元</i></span>
+                                <span><i><{$item.sign_num}></i>人已参团</span>
+                    		</p>
+                     
+                        
+                        
+                        </li>
+                  <{/foreach}>
+                
+            </ul>
+          </div>
+        
+    </div>
+    <!--搜索结束-->
+    <!--团装活动开始-->  
+    <div class="tuanzhuang_acitivity w1000">
+        <div class="tuanzhuang_title">
+            <h2>团装活动</h2>
+            <span>共有<i><{$pager.count}></i>个团装活动</span>
+        </div>
+        <div class="cl"></div>
+        <div class="tuanzhuang_b w1000">
+            <{foreach from=$items item=item}>
+            <div class="tuanzhuang_show">
+    <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>"><img src="<{$pager.img}>/<{$home_list[$item.home_id].face_pic}>" width="220" height="155" /></a>
+    <div class="tuanzhuang_time">
+        <span></span>
+        <p class="jq_endtime" value='<{$item.end_time}>'>剩余时间倒计时</p>
+    </div>
+    <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" class="tuanzhuang_name"><{$item.title}></a>
+    <div class="tuanzhuang_join">
+        <p>
+            立省<i>￥<{$item.jieyue}></i>元
+        </p>
+        <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" class="now_cantuan">立即参团</a>      
+    </div>
+    <div class="cl"></div>
+    <p class="rt mr10"><i><{$item.sign_num}></i>人已经参团</p>
+</div>
+            <{/foreach}>
+            
+        </div>
+        
+        <div class="page"><{$pager.pagebar}></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".tuanzhuang_show").mouseover(function() {
+                $(this).find(".tuanzhuang_time").addClass("currentred")
+            })
+                    .mouseout(function() {
+                        $(this).find(".tuanzhuang_time").removeClass("currentred");
+                    });
+
+            var dateTime = new Date();
+            var difference = dateTime.getTime();
+            setInterval(function() {
+                $(".jq_endtime").each(function() {
+                    var obj = $(this);
+                    var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+                    var nowTime = new Date();
+                    var nMS = endTime.getTime() - nowTime.getTime() + difference;
+                    var myD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+                    var myH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+                    var myM = Math.floor(nMS / (1000 * 60)) % 60;
+                    var myS = Math.floor(nMS / 1000) % 60;
+                    if (myD >= 0) {
+                        if(myS % 3 == 0){
+                            obj.parent().parent().find(".tuanzhuang_time").addClass("currentred");
+                        }else{
+                            obj.parent().parent().find(".tuanzhuang_time").removeClass("currentred");
+                        }
+                        var str = myD + "天" + myH + "小时" + myM + "分" + myS + "秒";
+                    } else {
+                        var str = "已结束！";
+                    }
+                    obj.html(str);
+                });
+            }, 1000);
+        });
+    </script>   
+    <!--团装活动结束-->       
+    <div class="cl h20"></div>
+</div>
+
+
+<{include file="block/footer.html"}>  

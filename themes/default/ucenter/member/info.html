@@ -1,0 +1,63 @@
+<{include file="ucenter/header.html"}>
+<script type="text/javascript" src="<{$pager.res}>/script/widget.YMD.js"></script>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/member:info'}>" class="tab on">人个资料</a><i></i>
+	<a href="<{link ctl='ucenter/member:face'}>" class="tab">修改头像</a><i></i>
+	<a href="<{link ctl='ucenter/member:mail'}>" class="tab">修改邮箱</a><i></i>
+    <a href="<{link ctl='ucenter/member:passwd'}>" class="tab">修改密码</a><i></i>
+</div>
+<div class="set_c4">
+<form id="account-form">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr>
+        <th>用户名：</th><td>&nbsp;<{$MEMBER.uname}></td>
+    </tr>
+    <tr>
+        <th>邮箱：</th>
+        <td><{$MEMBER.mail}><span><b>&nbsp;<{if $MEMBER.verify_mail}><span style="color: green;">已验证</span><{else}><a  href="<{link ctl='ucenter/member:email'}>">立刻收邮件认证</a><{/if}></b></span></td>
+    </tr>
+    <tr>
+        <th><span class="red">&nbsp;</span>手机：</th>
+        <td>
+            <{if $MEMBER.verify_mobile}><{$MEMBER.mobile}> <span style="color: green;">已验证</span><{else}>
+            <input type="text" name="account[mobile]" value="<{$MEMBER.mobile}>" class="input"/> <b>&nbsp;<a href="<{link ctl='ucenter/member:mobile'}>">立刻认证</a></b> <{/if}>
+        </td>
+    </tr>
+    <{if $MEMBER.from=='member'}>
+    <tr>
+        <th>类型：</th>
+        <td>
+            <select name="account[from]">
+                
+                <{foreach from=$fromlist key=key item=item}> 
+                        <{if $key != 'mechanic'}>
+                        <option value="<{$key}>" <{if $MEMBER.from == $key}>selected="selected"<{/if}>  ><{$item}></option>
+                        <{/if}>
+                <{/foreach}>
+            </select>
+            业主可以选择更换用户类型！更换后不能变更回来！
+        </td>
+    </tr>
+    <{/if}>
+    <tr>
+        <th><span class="red">*&nbsp;</span>性别：</td>
+        <td>
+            <label><input type="radio" name="account[gender]" value="man" <{if $MEMBER.gender == 'man'}>checked="checked"<{/if}>/>&nbsp;男&nbsp;</label>
+            <label><input type="radio" name="account[gender]" value="womain" <{if $MEMBER.gender == 'woman'}>checked="checked"<{/if}>/>&nbsp;女&nbsp;&nbsp;</label>
+        </td>
+    </tr>
+       <tr height="40">
+        <th><span class="red">*&nbsp;</span>生日：</th>
+        <td><{YMD Y=$MEMBER.Y M=$MEMBER.M D=$MEMBER.D  name="account" class="select"}></td>
+    </tr>
+    <tr>
+        <th><span class="red">*&nbsp;</span>城市：</th>
+        <td><select name="account[city_id]" class="select"><option value="0">选择城市</option><{widget id="data/city" value=$MEMBER.city_id}></select></td>
+    </tr>
+    <tr>
+    <th></th><td><input action="<{link ctl='ucenter/member:info'}>" mini-submit="#account-form" type="button" value="保存" class="set_btn" /></td>
+    </tr>
+</table>
+</form>
+</div>
+<{include file="ucenter/footer.html"}>

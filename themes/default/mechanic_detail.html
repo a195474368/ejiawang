@@ -1,0 +1,93 @@
+<{include file="block/header.html"}>
+
+<!----------头部和导航公共部分------------> 
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='gs'}>" title="找装修管家" class="block_lt">找装修管家</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='mechanic'}>" title="找技工" class="block_lt">找工人</a>
+        <{if $area_id}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='mechanic:items' arg0=$area_id}>" title="<{$area_list[$area_id].area_name}>技工" class="block_lt "><{$area_list[$area_id].area_name}>技工</a>
+        <{/if}>
+    </div>
+    <div class="cl"></div>
+    <!--         你所在的位置结束             -->
+    <div class="w1000 hauto mechanic_detail_main">
+    <!-- 左面开始-->
+    	<div class="mechanic_detail_main_l lt">
+        	<!--公共标题开始-->
+            	<div class="mechanic_public_title"><h2>推荐工人</h2></div>
+            <!--公共标题结束--->
+            	<div class="mechanic_detail_main_public_b mechanic_command_workers">
+                	<ul>
+                        <{calldata mdl='mechanic/mechanic' city_id=$request.city_id order='orderby:desc' limit=4}>
+                    	<li>
+                        	<div class="mechanic_command_all">
+                                <div class="mechanic_command_all_l lt"><a target="_blank" title='<{$item.realname}>' href="<{link ctl='mechanic:detail' arg0=$item.uid}>"><img src="<{$pager.img}>/<{$item.face}>" width="100" height="100"/></a></div>
+                                <div class="mechanic_command_all_r lt">
+                                	<p><a target="_blank" title='<{$item.realname}>' href="<{link ctl='mechanic:detail' arg0=$item.uid}>"><{$item.realname}></a></p>
+                                    <p> 
+                                    	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$item.qq}>&amp;site=qq&amp;menu=yes" class="block_lt">
+                    					<img border="0" src="http://wpa.qq.com/pa?p=2:<{$item.qq}>:51" alt="<{$item.realname}>" title="<{$item.realname}>">
+                   		 				</a>
+                   				   </p>
+                                   <p class="h20"></p>
+                                   <p>
+                                   	
+                                        <span><{$item.mobile}></span>
+                                   </p>
+                                </div>
+                            </div>
+                        </li>
+                        <{/calldata}>
+                      
+                    </ul>
+                </div>
+        </div>
+     <!-- 左面结束-->
+     <!--右面开始-->
+     <div class="mechanic_detail_main_r rt">
+     	<!--公共标题开始-->
+        <div class="mechanic_public_title"><h2>基本信息</h2></div>
+        <!--公共标题结束--->
+        	<div class="workers_basic_info">
+            	<div class="workers_basic_info_t">
+                    <a title="<{$detail.realname}>" href="<{link ctl='mechanic:detail' arg0=$detail.uid}>"><img src="<{$pager.img}>/<{$detail.face}>" width="200" height="200" /></a>
+                    <div class="workers_basic_info_t_r lt">
+                    	<p>
+                        <a title="<{$detail.realname}>" target="_blank" href="<{link ctl='mechanic:detail' arg0=$detail.uid}>" class="block_lt"><{$detail.realname}></a>
+                    	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$detail.qq}>&amp;site=qq&amp;menu=yes" class="block_lt ml5">
+                    	<img border="0" src="http://wpa.qq.com/pa?p=2:<{$detail.qq}>:51" alt="<{$detail.realname}>" title="<{$detail.realname}>">
+                   		 </a>
+                    	</p>
+                        <div class="cl"></div>
+                        <{widget id='attr/form' from='zx:mechanic' value=$attr tpl='show.html'}>
+                        <p>联系电话：<i><{$detail.mobile}></i></p>
+                        <p><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$detail.qq}>&amp;site=qq&amp;menu=yes" class="lianxita">联系Ta</a></p>
+                    </div>
+                </div>
+                <div class="workers_basic_info_b mt10">
+            <!--公共标题开始-->
+            		<div class="mechanic_public_title"><h2>个人简介</h2></div>
+            <!--公共标题结束--->
+            		<div class="workers_basic_info_b_b">
+                    	       <{$detail.about}>
+                    </div>
+                </div>
+            </div>
+     </div>
+     <!--右面结束-->
+    </div>
+    
+    <div class="h30"></div>
+
+ 
+
+    <{include file="block/footer.html"}>      

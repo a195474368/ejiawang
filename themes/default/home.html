@@ -1,0 +1,478 @@
+<{include file="block/header.html"}>
+<!----------头部和导航公共部分------------> 
+<div class="index_b_bg hauto">
+
+    <!--  聚合区域 -->
+    <div class="home_all w1000 hauto mt10">
+        <div class="home_all_l lt bgwhite" style='height: 225px;'>
+            <div class="home_all_l_t hauto bodr_b_x">
+                <p>
+                    <span class="block icobg lt span10"></span>
+                    <span class="block lt">区域</span>
+                </p>
+                <div class="cl"></div>
+                <{foreach from=$area_list item=item name=area}>
+                <{if $smarty.foreach.area.index <8}>
+                <a target="_blank" title="<{$item.area_name}>小区" href="<{link ctl='home:items' arg0=$item.area_id}>"><{$item.area_name}></a>
+                <{/if}>
+                <{/foreach}>
+                <a target="_blank" href="<{link ctl='home:items'}>">更多>></a>
+
+
+            </div>
+            <{foreach from=$attr_values item=item name=one}>
+            <{if $smarty.foreach.one.index <1}>
+            <div class="home_all_l_t hauto mb20 mt20">
+                <p>
+                    <span class="block icobg lt span11"></span>
+                    <span class="block lt"><{$item.title}></span>
+                </p>
+                <div class="cl"></div>
+                <{foreach from=$item.values item=it2 name=two}>
+                <{if $smarty.foreach.two.index < 8}>
+                <a target="_blank" title="<{$request.city.city_name}><{$it2.title}>小区" href="<{$it2.link}>"><{$it2.title}></a>
+                <{/if}>
+                <{/foreach}>
+                <a target="_blank" href="<{link ctl='home:items'}>">更多>></a>
+            </div>
+            <{/if}>
+            <{/foreach}>
+        </div>
+        <div class="home_all_c lt ml10 mr10" style="width:740px;">
+            <div id="home_ad1" kinBox='{"height":225}'><{widget id="adv" name="找我家聚合页广告位" city_id=$request.city_id limit="5"}></div>
+        </div>
+        <div class="home_all_r lt hauto bgwhite">
+            <p>
+                <font class="ftw black f17">想看哪个</font>
+                <font class="ftw red f17">楼盘</font>，
+                <font class="ftw black f17">哪个</font><font class="ftw red f17">户型？</font><br />
+                <font class="f12">提交信息，试试看</font>
+            </p>
+            <form mini-form="survey" action="<{link ctl='home:survey'  http=true}>" method="post">
+                <input type="text" name="data[home_name]"  value="请输入楼盘名称" class="lp_hx bodr lp"/>
+                <select name='data[area_id]' class="hx bodr mt10">
+                    <{foreach from=$area_list item=item name=area}>
+                    <option value="<{$item.area_id}>"><{$item.area_name}></option>
+                    <{/foreach}>
+
+                </select>
+                <input type="text" name="data[tel]"  value="请输入你的联系电话" class="lp_hx bodr mt10 ph"/>
+                <input type="submit"  value="提交调查" class="lp_hxq bodr mt10 redbg dc"/>
+            </form>
+            <p>
+                已有<font class="red">25630</font>人提交
+            </p>
+
+        </div>
+
+
+    </div>
+    <div class="cl"></div>
+    <!--  小区区域 -->
+     		<!--团装活动开始-->  
+                	<div class="tuanzhuang_acitivity w1000">
+                    	<div class="tuanzhuang_title">
+                        	<h2>团装活动</h2>
+                            <a href="<{link ctl='home:tuan'}>">更多>></a>
+                        </div>
+                        <div class="cl"></div>
+                        <div class="tuanzhuang_b w1000">
+                        	
+                          <{widget id='home/index' city_id=$request.city_id limit=4}>          
+                        </div>
+                    </div>
+                    
+                <!--团装活动结束-->  
+    <div class="w1000 xq_area hauto mt20">
+        <div class="xq_area_l lt hauto mr10">
+            <div class="xq_area_l_t hauto">
+                <span class="span12 block lt">小区</span>
+                <span class="span13 block rt mt10"><a href="<{link ctl='home:items'}>">更多>></a></span>
+            </div>
+            <div class="cl"></div>
+            <div class="xq_area_l_b hauto bgwhite mt10 mr10">
+                <ul>
+                    <{calldata mdl="home/main" city_id=$request.city_id  order="pv_num:desc" limit="4"}>
+                    <li>
+                        <a href="<{link ctl='home:detail' arg0=$item.id}>" title='<{$item.name}>'><img src="<{$pager.img}>/<{$item.face_pic}>" width="120" height="100" /></a>
+                        <p>
+                            <a href="<{link ctl='home:detail' arg0=$item.id}>" title='<{$item.name}>'  class="f16 ftw blackb"><font><{$item.name}></font></a><br />
+                            <font class="f12 ftw blackb">均 价：</font><font class="f12 red"><{$item.price}></font><br />   
+                            <font class="f12 ftw blackb">开发商：</font><{$item.kf}><br />
+                            <font class="f12 ftw blackb">地址：</font><{$item.addr}>
+                        </p>
+                    </li>
+                    <{/calldata}>
+                </ul>
+            </div>
+        </div>
+        <div class="xq_area_r lt bgwhite bodr">
+            <a href="<{link ctl='home:maps'}>"><img src="<{$pager.theme}>/default/static/images/map.png"  width="210" height="280"/></a>
+            <div class="search_map icobg">
+                <p>
+                    <font>地图找小区</font><br />
+                    <a href="<{link ctl='home:maps'}>"><u>点击进入>></u></a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="cl"></div>
+    <!--  在建工地区域开始 -->
+    <div class="w1000 hauto mt20">
+        <!-- 在建工地左面开始-->
+        <div class="xq_area_l lt hauto mr10">
+            <div class="xq_area_l_t hauto">
+                <span class="span12 block lt">在建工地</span>
+                <span class="span13 block rt mt10"><a href="<{link ctl='site'}>">更多>></a></span>
+            </div>
+            <div class="cl"></div>
+            <div class="zjgd_area_l_b hauto bgwhite mt10 mr10">
+                <ul>
+                    <{foreach $sites as $item}>
+                    <li>
+                        <a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id }>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="120" height="100" /></a>
+                        <div class="zjgd_area_p lt ml10">
+                            <p>
+                                <font class="f16 ftw blackb"><a target="_blank" title="<{$item.title}>" href="<{link ctl='site:detail' arg0=$item.site_id }>"><{$item.title|cutstr:20:''}></a></font><br />
+                                <font class="f12">由</font><a title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>"><font class="f12 red"><{$company_list[$item.company_id].name}></font></a><font class="f12">提供</font><br />
+                                <font class="f12">地址：<{$item.addr}></font>
+                            </p>
+                            <p class="p5 mt10"><a target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">我要参观</a></p>
+                        </div>
+                        <div class="cl"></div>
+                        <p class="red f12 mt20">参观工地样板房，全程免费专车接送</p>
+                    </li>
+                    <{/foreach}>
+                </ul>
+                <!---这里前端处理的不好有待改进 让程序逻辑复杂化了-->
+                <div class="zjgd_xunhuan hauto mt30">
+                    <{foreach from=$sites item=item name=loop}>
+                    <div class="zjgd_xunhuan_l lt mb20 <{if $smarty.foreach.loop.index > 0}>ml20<{/if}>">
+                        <a target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>" <{if $item.status >=1}>class="current12"<{/if}>>开工大吉</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=2}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">水电改造</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=3}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">泥瓦工</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=4}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">木工</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=5}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">油漆</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=6}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">安装</a>
+                        <span class="block_lt span56">—</span>
+                        <a <{if $item.status >=7}>class="current12"<{/if}> target="_blank" title="<{$item.title}>"  href="<{link ctl='site:detail' arg0=$item.site_id }>">验收</a>
+                    </div>
+                    <{/foreach}>
+                </div>
+            </div>
+            <div class="cl"></div>
+
+
+        </div>
+        <!--      在建工地左面结束-->
+        <!--      在建工地右面开始-->
+        <div class="zjgd_area_r lt hauto">
+            <div class="zjgd_area_r_t hauto">
+                <ul>
+                    <li><a href="###" class="current3">工地最多</a></li>
+                    <li><a href="###">最新更新</a></li>
+                </ul>
+            </div>
+            <div class="zjgd_area_r_b bgwhite mt10 zjgd_area_0 none">
+                <ul>
+                    <{calldata mdl="company/company" city_id=$request.city_id  order="site_num:desc" limit="6"}>
+                    <li>
+                        <div class="zjgd_area_sum none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="cc"><{$index+1}></a>
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="dd"><{$item.name|cutstr:20:'..'}>&nbsp;&nbsp;<{$item.site_num}>个</a>
+                        </div>
+                        <div class="zjgd_area_detail none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.logo}>" width="70" height="36"/></a>
+                            <p>
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.sort_name}></a><br />
+                                <font class="red"><{$item.site_num}>个工地</font>
+                            </p>
+                        </div>    
+                    </li>
+                    <{/calldata}>
+                </ul>
+            </div>
+            <div class="zjgd_area_r_b bgwhite mt10 zjgd_area_1 none">
+                <ul>
+                    <{calldata mdl="company/company" city_id=$request.city_id  order="site_time:desc" limit="6"}>
+                    <li>
+                        <div class="zjgd_area_sum none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="cc"><{$index+1}></a>
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="dd"><{$item.name|cutstr:20:'..'}>&nbsp;&nbsp;<{$item.site_num}>个</a>
+                        </div>
+                        <div class="zjgd_area_detail none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.logo}>" width="70" height="36"/></a>
+                            <p>
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.sort_name}></a><br />
+                                <font class="red"><{$item.site_num}>个工地</font>
+                            </p>
+                        </div>    
+                    </li>
+                    <{/calldata}>
+
+                </ul>
+            </div>
+        </div>
+        <!--      在建工地右面结束-->
+    </div>
+    <!--在建工地区域结束-->
+    <div class="cl"></div>
+    <!--设计方案区域开始-->
+    <div class="design_fangan w1000 hauto mt20">
+        <!--设计方案左面开始-->
+        <div class="xq_area_l lt hauto mr10">
+            <div class="xq_area_l_t hauto">
+                <span class="span12 block lt">设计方案</span>
+                <span class="span13 block rt mt10"><a href="<{link ctl='case'}>">更多>></a></span>
+            </div>
+            <div class="cl"></div>
+
+            <div class="zjgd_area_l_b hauto bgwhite mt10 mr10">
+                
+                <{foreach from=$cases item=item name=case}>
+                <div class="design_fangan_show hauto">
+                    <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>"><img src="<{$pager.img}>/<{$item.photo}>" width="250" height="150" /></a>
+                    <div class="design_fangan_describition lt hauto">
+                        <p>
+                        <h3 class="lt" style="width: 300px; font-size: 15px;"><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>"><{$item.title}></a></h3>
+                            <span class="rt"><font class="red"><{$item.views}></font>人看了此方案</span>
+                        </p>
+                        <div class="cl"></div>
+                        <p>
+                            <font class="f12 ftw blackb">方案提供者&nbsp;:</font>
+                            <font>
+                            <a target="_blank" title="<{$company_list[$item.company_id].name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="f12 red ftw">
+                                <{$company_list[$item.company_id].name}>
+                            </a>
+                            </font><font class="org f12">(<{$item.photos}>张设计图)</font>
+                        </p>
+                        <p>
+                            <font class="f12 ftw blackb">设计思路&nbsp;:</font>
+                            <font class="f12">
+                                 <{$item.intro}>
+                            </font>
+                        </p>
+                        <p class="mt20">
+                            <span class="lt">   
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>" class="f12 ftw blackb">平面布置图&nbsp;&nbsp;|</a>
+                                <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:caseDetail' arg0=$item.home_id arg1=$item.case_id}>" class="f12 ftw blackb">设计图&nbsp;&nbsp;</a>
+                            </span>
+                            <span class="rt span14 red_bg"><a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>">去看看</a></span>
+                        </p>
+                        <div class="cl"></div>
+                        <div class="fk bluebg"><{$smarty.foreach.case.index+1}></div>
+                    </div>
+                </div>
+              
+                <{/foreach}>
+
+            </div>
+
+        </div>
+        <!--设计方案左面结束-->
+        <!--设计方案右面开始-->
+        <div class="zjgd_area_r lt hauto">
+            <div class="hauto sjfa_area_r_t">
+                <ul>
+                    <li><a href="###" class="current3">方案最多</a></li>
+                    <li><a href="###">最新更新</a></li>
+                </ul>
+            </div>
+            <div class="zjgd_area_r_b bgwhite mt10 sjfa_area_0 none">
+                <ul>
+                    <{calldata mdl="company/company" city_id=$request.city_id  order="case_num:desc" limit="9"}>
+                    <li>
+                        <div class="zjgd_area_sum none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="cc"><{$index+1}></a>
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="dd"><{$item.name|cutstr:20:'..'}>&nbsp;&nbsp;<{$item.case_num}>个</a>
+                        </div>
+                        <div class="zjgd_area_detail none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.logo}>" width="70" height="36"/></a>
+                            <p>
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.sort_name}></a><br />
+                                <font class="red"><{$item.case_num}>个案例</font>
+                            </p>
+                        </div>    
+                    </li>
+                    <{/calldata}>
+
+                </ul>
+            </div>
+            <div class="zjgd_area_r_b bgwhite mt10 sjfa_area_1 none">
+                <ul>
+                    <{calldata mdl="company/company" city_id=$request.city_id  order="case_time:desc" limit="9"}>
+                    <li>
+                        <div class="zjgd_area_sum none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="cc"><{$index+1}></a>
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="dd"><{$item.name|cutstr:20:'..'}>&nbsp;&nbsp;<{$item.case_num}>个</a>
+                        </div>
+                        <div class="zjgd_area_detail none">
+                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.logo}>" width="70" height="36"/></a>
+                            <p>
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.sort_name}></a><br />
+                                <font class="red"><{$item.case_num}>个案例</font>
+                            </p>
+                        </div>    
+                    </li>
+                    <{/calldata}>
+
+                </ul>
+            </div>
+        </div>
+        <!--设计方案右面结束-->
+
+
+    </div>
+    <div class="cl"></div>
+    <div class="h30"></div>
+
+    <script>
+        $(document).ready(function() {
+            $(".lp").focus(function() {
+                if ($(this).val() == '请输入楼盘名称')
+                    $(this).val('');
+            }).focusout(function() {
+                if ($(this).val() == '')
+                    $(this).val('请输入楼盘名称');
+            });
+
+            $(".ph").focus(function() {
+                if ($(this).val() == '请输入你的联系电话')
+                    $(this).val('');
+            }).focusout(function() {
+                if ($(this).val() == '')
+                    $(this).val('请输入你的联系电话');
+            });//banner右面表单
+
+
+            /*在建工地右面的*/
+            $(".zjgd_area_r_t ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".zjgd_area_r_t ul li").each(function(a) {
+
+                    if (a == index) {
+                        $(".zjgd_area_" + a).show();
+                        $(this).find('a').addClass('current3');
+                    } else {
+                        $(".zjgd_area_" + a).hide();
+                        $(this).find('a').removeClass('current3');
+                    }
+                });
+            });
+            $(".zjgd_area_r_t ul li").eq(0).mouseover();
+
+
+
+
+
+            $(".zjgd_area_1 ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".zjgd_area_1 ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).find(".zjgd_area_detail").show();
+                        $(this).find(".zjgd_area_sum").hide();
+                    } else {
+                        $(this).find(".zjgd_area_detail").hide();
+                        $(this).find(".zjgd_area_sum").show();
+                    }
+
+                });
+
+            });
+
+            $(".zjgd_area_1 ul li").eq(0).mouseover();
+
+
+
+            $(".zjgd_area_0 ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".zjgd_area_0 ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).find(".zjgd_area_detail").show();
+                        $(this).find(".zjgd_area_sum").hide();
+                    } else {
+                        $(this).find(".zjgd_area_detail").hide();
+                        $(this).find(".zjgd_area_sum").show();
+                    }
+
+                });
+
+            });
+
+            $(".zjgd_area_0 ul li").eq(0).mouseover();
+
+            $(".zjgd_area_0 ul li:last").css('border-bottom', 'none')
+            $(".zjgd_area_1 ul li:last").css('border-bottom', 'none')
+
+
+            /*在建工地*/
+
+            $(".sjfa_area_r_t ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".sjfa_area_r_t ul li").each(function(a) {
+                    var hh = a
+                    if (a == index) {
+                        $(".sjfa_area_" + hh).show();
+                        $(this).find('a').addClass('current3');
+                    } else {
+                        $(".sjfa_area_" + hh).hide();
+                        $(this).find('a').removeClass('current3');
+                    }
+                });
+            });
+            $(".sjfa_area_r_t ul li").eq(0).mouseover();
+
+
+
+
+            $(".sjfa_area_1 ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".sjfa_area_1 ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).find(".zjgd_area_detail").show();
+                        $(this).find(".zjgd_area_sum").hide();
+                    } else {
+                        $(this).find(".zjgd_area_detail").hide();
+                        $(this).find(".zjgd_area_sum").show();
+                    }
+
+                });
+
+            });
+
+            $(".sjfa_area_1 ul li").eq(0).mouseover();
+
+
+
+            $(".sjfa_area_0 ul li").mouseover(function() {
+                var index = $(this).index();
+                $(".sjfa_area_0 ul li").each(function(a) {
+                    if (a == index) {
+                        $(this).find(".zjgd_area_detail").show();
+                        $(this).find(".zjgd_area_sum").hide();
+                    } else {
+                        $(this).find(".zjgd_area_detail").hide();
+                        $(this).find(".zjgd_area_sum").show();
+                    }
+
+                });
+
+            });
+
+            $(".sjfa_area_0 ul li").eq(0).mouseover();
+
+            $(".sjfa_area_0 ul li:last").css('border-bottom', 'none')
+            $(".sjfa_area_1 ul li:last").css('border-bottom', 'none')
+
+
+
+        });
+    </script>
+
+    <{include file="block/footer.html"}>       

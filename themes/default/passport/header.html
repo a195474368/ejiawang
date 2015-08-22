@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><{$tpl_sub_title}><{$CONFIG.site.title}></title>
+        <link rel="stylesheet" type="text/css" href="<{$pager.theme}>/default/static/style/public.css"/>
+        <link rel="stylesheet" type="text/css" href="<{$pager.theme}>/default/static/style/index.css"/>  
+        <link rel="stylesheet" href="<{$pager.res}>/style/kt.widget.css" type="text/css" />
+        <link rel="stylesheet" href="<{$pager.res}>/ui/j.ui.css" type="text/css" />
+        <script type="text/javascript"  src="<{$pager.res}>/script/kt.j.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/kt.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/ui/j.ui.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/widget.login.js"></script>
+        <script type="text/javascript"  src="<{$pager.res}>/script/widget.msgbox.js"></script>
+    </head>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap" class="bo_bg index_b_bg">  
+	<div class="signup_top">
+    	<div class="w960 signup_top_t">
+        	<div class="information_t_l lt">            
+                 <{if $MEMBER.uname}>
+                <a href="<{link ctl='ucenter/member'}>"><{$MEMBER.uname}></a>！您好 <a href="<{link ctl='passport:loginout'}>">退出</a>
+                <{else}>
+                <a href="<{link ctl='passport'}>">[登录]</a><a href="<{link ctl='passport-signup'}>">&nbsp;&nbsp;[注册]</a>
+                <{/if}>
+            </div>
+            <div class="information_r rt">
+            <ul>
+                <li><a href="<{link ctl='mall/cart'}>">购物车<{if $COOKIE.CART_NUMBER}>(<{$COOKIE.CART_NUMBER}>)<{/if}></a>&nbsp;&nbsp;&nbsp;|</li>
+                <li><a href="<{link ctl='ucenter/order'}>">我的订单</a>&nbsp;&nbsp;&nbsp;|</li>
+               
+                <li><a>咨询热线</a><span>&nbsp;<b><{$CONFIG.site.phone}></b></span></li>
+            </ul>
+            </div>
+        </div>
+    </div>  
+    <div class="w960 login_top">          
+        <div class="logo lt hauto" id="jq_city_change">
+            <h1><a href="<{$CONFIG.site.siteurl}>"><img src="<{$pager.theme}>/default/static/images/index_logo.jpg"/></a></h1>
+            <p class="h20"></p>
+            <div class="city">
+                <b><{$request.city.city_name}></b>
+                <{if $CONFIG.site.multi_city}>
+                <site><a href="<{link ctl='city'}>" id="jq_city_header_change">[&nbsp;切换城市&nbsp;]</a></site>
+                <{/if}>
+               
+            </div>
+           
+        </div>
+    </div>

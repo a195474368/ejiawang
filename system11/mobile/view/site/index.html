@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>家装案例效果图大全_<{$request.city.city_name}>家装案例装修样板间大全 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/shop_gd.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header class="header">
+            <a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">在建工地</h1>
+            <a id="area_click" class="area">区域</a>
+            <a class="find" href="#"><img src="images/find.png" alt="搜索"></a>
+        </header>
+        <!--头部内容结束 -->
+        <!--search -->
+        <{include file="mobile:block/search.html"}>
+        <!--search end-->
+        <!--main开始 -->        
+        <div class="main">
+            <div class="gd_list"></div>
+             <div class="down" >查看更多</div>
+        </div>
+    </div>
+    <!--warp结束 -->
+<!-- 右侧区域 -->
+<{include file="mobile:block/area_list.html"}>
+<!-- 右侧区域结束 -->
+    <div id="bgdiv"></div>    
+    <script type="text/javascript">
+        window.__LOAD_LOCK = false;
+        window.params = {page:"<{$pager.page}>", area_id:"<{$pager.area_id}>", kw:"<{$pager.kw}>"};
+        var Area_Name = "<{$pager.area_name|default:'区域'}>";
+        $(function () {AsyncLoad();})
+        function AsyncLoad() {
+            //如果页码大于1，取出当前页索引
+            if (params.page > 0) {
+                if (!window.__LOAD_LOCK) {
+                    window.__LOAD_LOCK = true;
+                    $("#area_click").text(Area_Name);
+                    $.post("<{link ctl='site:loaddata'}>", params, function(ret){
+                        if(ret.error){
+                            alert(ret.message);
+                        }else{
+                            params.page = ret.nextpage;
+                            $(".gd_list").append(ret.html);
+                            if(ret.nextpage < 1){
+                                $(".down").remove();
+                            }
+                        }
+                        window.__LOAD_LOCK = false;
+                    }, 'json');
+                }
+            }
+        }
+        //区域加载
+        function LoadData(ID, Name ) {
+            params.area_id = ID;
+            Area_Name = Name;
+            params.page = 1;
+            $(".gd_list").children().remove();
+            AsyncLoad();
+        }
+    </script>
+</body>
+</html>

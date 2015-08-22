@@ -1,0 +1,60 @@
+<{include file="shop/block/top-header.html"}>
+<!-- 主题部分开始 -->
+<div class="index_b_bg hauto">
+	<div class="w1000 material_main hauto mt15">     		
+		<!-- 左面开始 -->
+		<div class="material_main_l lt hauto">
+			<div class="all_sale bgwhite hauto">
+				<h2>搜索优惠券</h2>
+				<div class="all_sale_city">
+					<a href="<{link ctl='mall/coupon'}>"<{if empty($pager.city_id)}> class="current21"<{/if}>>不限</a>
+					<{foreach $city_list as $city}>
+						<a href="<{link ctl='mall/coupon' arg0=$city.city_id arg1=1}>" <{if $pager.city_id == $city.city_id}> class="current21"<{/if}>><{$city.city_name}></a>
+					<{/foreach}>
+				</div>
+				<p class="h20 cl"></p>
+			</div>
+			<div class="hot_sale bgwhite hauto mt10">
+				<h2>热门优惠券</h2>
+				<ul>
+					<{calldata mdl='shop/coupon' city_id=$request.city_id order='hot' limit="4"}>
+					<li>
+						<span class="red_light_bg"><{($index+1)}></span>
+						<p>
+							<a href="<{link ctl='mall/shop:coupon' arg0=$item.shop_id}>" target="_blank"><{$item.ext.shop.name}></a>
+							<i class="f18">满<{$item.min_amount}>减<{$item.money}></i>
+							<i>已有<{$item.downloads}>人领取</i>
+						</p>
+					</li>
+					<{/calldata}>
+				</ul>
+				<div class="h30"></div>
+			</div>                        
+		</div>
+		<!-- 左面结束 -->
+		<!-- 右面开始 -->
+		<div class="material_main_r lt hauto ml10">
+			<div class="all_sale_r hauto bgwhite">
+				<p>共<span><{$pager.count}></span>张优惠券</p>
+				<div class="cl"></div>
+				<ul>
+					<{foreach $items as $item}>
+					<li>
+						<div class="all_sale_r_li_l lt"><sup>￥</sup><{$item.money}></div>
+						<div class="all_sale_r_li_r lt">
+							<a href="<{link ctl='mall/shop:coupon' arg0=$item.shop_id}>" target="_blank" class="shopper_name"><{$shop_list[$item.shop_id].name}></a>
+							<i>满<{$item.min_amount}>减</i>
+							<a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" target="_blank" class="now_go">立即领取</a>
+						</div>
+					</li>
+					<{/foreach}>
+				</ul>
+			</div>
+			<div class="page"><{$pager.pagebar}></div>
+		</div>    	
+		<!-- 右面结束 -->
+	</div>
+	<div class="h30"></div>         
+</div>    
+<!-- 主题部分结束 --> 
+<{include file="shop/block/footer.html"}>

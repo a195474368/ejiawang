@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$seo_sub_title}><{if $SEO.title}><{$SEO.title}><{elseif $seo_title}><{$seo_title}><{else}><{$CONFIG.site.title}><{/if}></title>
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="<{if $seo_keywords}><{$seo_keywords}><{elseif $SEO.keywords}><{$SEO.keywords}><{/if}>" />
+<meta name="description" content="<{if $seo_description}><{$seo_description}><{elseif $SEO.description}><{$SEO.description}><{/if}>" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
+<link rel="stylesheet" type="text/css" href="<{$pager.theme}>/default/static/style/append.css?20140109"/> 
+<link rel="stylesheet" href="<{$pager.res}>/ui/j.ui.css" type="text/css" />
+<script type="text/javascript">window.URL={"domain":"<{$CONFIG.site.domain}>","url":"<{$CONFIG.siteurl}>", "res":"<{$pager.res}>", "img":"<{$pager.img}>","city":"<{$request.city.siteurl}>"};</script>
+<script type="text/javascript"  src="<{$pager.res}>/script/kt.j.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/script/kt.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/ui/j.ui.js"></script>
+<script type="text/javascript"  src="<{$pager.res}>/script/widget.msgbox.js"></script>
+    
+
+</head>
+<link href="<{$pager.theme}>/style/style.css" rel="stylesheet" type="text/css" />
+<link href="<{$pager.theme}>/style/slideshow.css" rel="stylesheet" type="text/css" />
+<link href="<{$pager.theme}>/style/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<{$pager.theme}>/style/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="<{$pager.theme}>/style/slideshow.js"></script>
+<script type="text/javascript" src="<{$pager.theme}>/style/common.js"></script>
+
+
+
+<body>
+<div id="header">
+	<div class="top">
+		<div class="row">
+			<div class="left">
+                             <{if $MEMBER.uname}>
+				  <a href="<{link ctl='ucenter/member'}>"><{$MEMBER.uname}>！您好</a> <a href="<{link ctl='passport:loginout'}>">退出</a>
+            <{else}>
+        <a href="<{link ctl='passport'}>">登录</a><a href="<{link ctl='passport-signup'}>" >注册</a> 
+            <{/if}>
+				<a href="/mobile" class="iphone">手机版</a>
+			</div>
+			<div class="right">
+                           <!-- <a><span style="CURSOR: hand" onClick="window.external.addFavorite('http://www.ejia.cc','网址')" title="网址">分享本站</span></a>
+                            <div class="bdsharebuttonbox" style="width:140px;height:40px;float:left;padding-top:8px"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq",],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","t163"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];</script>
+				--><ul>
+					<ol>|</ol>
+					<li>关注我们：</li>
+                                  
+					<li><a href=""><i class="fa fa-weibo"></i></a></li>
+					<li><a href=""><i class="fa fa-weixin"></i></a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="logo">
+		<div class="left">
+			<img src="<{$pager.theme}>/images/logo.jpg" />
+		</div>
+		<div class="left city">
+			<span><i class="fa fa-map-marker"></i><{$request.city.city_name}></span>
+                        <{if $CONFIG.site.multi_city}>
+                        <a href="<{link ctl='city'}>">【-切换城市-】</a>
+                         <{/if}>
+		</div>
+		<div class="right">
+			<!--<h2><i class="fa fa-phone-square"></i>咨询热线: <font color="#ca0e05"><{$CONFIG.site.phone}></font></h2>-->
+                       <h2>咨询热线: <font style="color:red"><{$CONFIG.site.phone}></font></h2>
+			<img src="<{$pager.theme}>/images/super.jpg" />
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="nav">
+		<div class="menu">
+			<ul>
+				<li class="menu_main" class="one"><a class="current" href="/">首页</a></li>
+				<li class="menu_main"><img src="<{$pager.theme}>/images/host.png" /><a href="<{link ctl='tenders'}>">设计/报价</a></li>
+				<li class="menu_main"><a href="<{link ctl='case'}>">效果图</a></li>
+				<li class="menu_main"><a href="<{link ctl='gs:items'}>">装修公司</a>
+                                  <ul class="menu_son none" style="width:100%;display:none;position: absolute;z-index: 5;background-color: #00AD28">
+                            
+                         		<li><a  style="padding-left:19px" title="<{$request.city.city_name}>设计师" href="<{link ctl='designer'}>">找设计师</a></li>
+                         		<li><a  style="padding-left:19px" title="<{$request.city.city_name}>装修公司打折信息" href="<{link ctl='gs:youhui'}>">优惠信息</a></li> 
+                                   </ul>
+                                </li>
+				<li class="menu_main"><a href="<{link ctl='home:items'}>">我搜我家</a>
+                                    <ul class="menu_son none" style="position:absolute;display:none;z-index: 5;background-color: #00AD28">
+                                        <li><a style="padding-left:19px" href="<{link ctl='site'}>">在建工地 </a></li>   
+                                     <li><a  style="padding-left:19px" href="<{link ctl='home:tuan'}>">团装小区</a></li>  
+                   	           </ul>
+                                </li>
+				<li class="menu_main"><a href="<{link ctl='content'}>">学装修</a>
+                                <ul class="menu_son none"style="position: absolute;display:none;z-index: 5;background-color: #00AD28">
+                                <li><a style="padding:0 12px" href="<{link ctl='content:diary'}>">装修日记</a></li>
+                         		<li><a style="padding:0 12px" href="<{link ctl='ask'}>">知识问答</a></li>
+                         		<li><a  style="padding:0 12px" href="<{link ctl='content:items'}>">装修课堂</a></li>
+                   		   </ul>
+                                </li>
+				<li class="menu_main"><a href="<{link ctl='mall/index'}>">家居商城</a></li>
+				<li><a href="<{link ctl='yun'}>">云装修</a></li>
+			</ul>
+                    <script type="text/javascript">(function(K, $){
+                     //   $(".menu_son").find(li).css("height","50px");
+                      $(".menu_main").mouseover(function(){$(this).find("ul").show();}).mouseout(function(){$(this).find("ul").hide();});                     
+                     })(window.KT, window.jQuery);</script>
+			<div class="from">
+				<form name="from" id="top-search" method="get" action="<{link ctl='home:items'}>">
+                                            
+					<div id="divselect" class="select" style="height:28px;width:60px">
+                                           
+                                      <select id ="search-name" name="name" style="height:28px;width:60px">
+                                         
+                                 <option value="<{link ctl='home:items'}>" selected="selected">小区</option>              
+                                  <option value="<{link ctl='gs:items'}>">公司</option>
+                                     </select>  
+     
+						<!--<cite>小区</cite>
+						<ul>
+							<li><a href="javascript:;" selectid="小区">小区</a></li>
+							<li><a href="javascript:;" selectid="物业">物业</a></li>
+							<li><a href="javascript:;" selectid="楼盘">楼盘</a></li>
+						</ul>-->
+					</div>
+					
+                                        <input type="text" id='search_header' name="s" value="" class="input" style="height:25px;margin-left:60px" />
+					<input type="submit" class="submit"  value="小区搜索" style="height:27px" />
+				</form>
+			</div>
+                    <script>
+              /*  $(document).ready(function() {
+                    $("#search_header").focus(function() {
+                        if ($(this).val() == '请输入您要查询的小区名称') {
+                            $(this).val('');
+                            
+                        }
+                    }).focusout(function() {
+                        if ($(this).val() == '') {
+                            $(this).val('请输入您要查询的小区名称');
+                        }
+                    });
+                              
+              })    */      
+            </script>
+            <script type="text/javascript">
+ $(document).ready(function(){
+            $("#search-name").change(function(){                                 
+                $("#top-search").attr("action",$(this).val());
+                
+                 $(".submit").attr("value",$(this).find(":selected").text()+"搜索");
+               
+               
+            });
+     })
+            </script>
+                    
+                    
+		</div>
+	</div>
+</div>

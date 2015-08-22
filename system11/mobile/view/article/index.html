@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><{$detail.title}> - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/article.css">
+    <{include file="mobile:block/sheader.html"}>    
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header>
+            <a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a>
+            <h1 class="title">装修学堂</h1>
+            <a href="<{link ctl='index'}>" class="home"><img src="images/home.png" alt="首页" /></a>
+        </header>
+        <!--头部内容结束 -->
+        <!--main开始 -->        
+        <div class="clear"></div>
+        <!--main开始 -->
+        <div class="main">
+        <div class="xzx-list-box">
+            <{foreach $tree as $item}>
+            <h2 class="btn xzx-list-a"><{$item.title}></h2>
+            <{foreach $item.children as $v}>
+            <a href="<{link ctl='article:items' arg0=$v.cat_id arg1=1}>" class="" title="<{$v.title}>"><span class="btn xzx-list-title"><{$v.title}></span></a>
+            <{/foreach}>
+            <{/foreach}>
+        </div>
+        </div>
+    </div>
+    <!--warp结束 -->
+    <!--底部悬浮开始 -->
+    <{include file="mobile:block/toolbar.html"}>
+    <!--底部悬浮结束-->
+    <div id="bgdiv"></div>
+</body>
+</html>

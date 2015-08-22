@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<div id="wrap">
+    <div class="union_top">
+    	<div class="union_top_t">
+        	<div class="union_top_l lt">
+            	<a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/union/static/pic/logo.png" width="150" height="45"/> </a>
+               	<p>
+                	<a href="<{link ctl='index'}>">首页</a>&nbsp;<i>|</i>&nbsp;
+                    <a href="<{link ctl='case'}>">效果图</a>&nbsp;<i>|</i>&nbsp;
+                    <a href="<{link ctl='tenders'}>">免费设计</a>&nbsp;<i>|</i>&nbsp;
+                    <a href="<{link ctl='gs'}>">找装修公司</a>&nbsp;<i>|</i>&nbsp;
+                    <a href="<{link ctl='content'}>">学装修</a>
+                </p>
+            </div>
+            <div class="union_top_r rt">
+            	<div class="union_top_r_l lt">
+                	<{if $MEMBER.uname}>
+          <a href="<{link ctl='ucenter/member'}>"><{$MEMBER.uname}></a><a href="<{link ctl='passport:loginout'}>">[退出]</a>
+            <{else}>
+        <a href="<{link ctl='passport'}>">[登录]</a> <a href="<{link ctl='passport-signup'}>" >[注册]</a>    <a href="<{link ctl='passport:weibo'}>" class="sina_weibo"></a>
+                    <a href="<{link ctl='passport:qqlogin'}>" class="qq_weibo"></a>
+            <{/if}>
+                    
+                  
+                </div>
+                <div class="union_top_r_r rt">
+                	<ul>
+                    	<li class="li0"><span></span><a href="###">收藏</a></li>
+                        <li class="li1"><span class="span1"></span><a href="###" class="aa">快捷导航</a>
+                        	  <div class="fast_nav_detail none">
+                    	<div class="head_nav_in">
+                        	<div class="head_nav_h"><a href="<{link ctl='gs'}>">找装修公司</a></div>
+                            <div class="head_nav_c">
+                            	<a title="<{$request.city.city_name}>装修公司排名" href="<{link ctl='gs:items'}>">找装修公司</a>
+                                <a title="<{$request.city.city_name}>设计师" href="<{link ctl='designer'}>">找设计师</a>
+                                <a title="<{$request.city.city_name}>装修公司打折信息" href="<{link ctl='gs:youhui'}>">优惠信息</a>
+                            </div>
+                        </div>
+                        <div class="head_nav_in">
+                        	<div class="head_nav_h"><a href="<{link ctl='home'}>">我搜我家</a></div>
+                            <div class="head_nav_c">
+                            	<a title="小区楼盘" href="<{link ctl='home:items'}>">小区楼盘</a>
+                                <a href="<{link ctl='home:maps'}>">楼盘地图</a>
+                                <a href="<{link ctl='site'}>">在建工地</a>
+                                <a href="<{link ctl='home:tuan'}>">团装小区</a>
+                            </div>
+                        </div>
+                        <div class="head_nav_in">
+                        	<div class="head_nav_h"><a href="<{link ctl='content'}>">学装修</a></div>
+                            <div class="head_nav_c">
+                            	<a href="<{link ctl='content:diary'}>">装修日记</a>
+                                <a href="<{link ctl='ask'}>">装修问答</a>
+                                <a href="<{link ctl='content:items'}>">装修课堂</a>
+                            </div>
+                        </div>
+                        <div class="head_nav_in">
+                        	<div class="head_nav_h"><a href="<{link ctl='activity'}>">活动</a></div>
+                           	 <div class="head_nav_c">
+                            	<a href="<{link ctl='activity'}>">活动</a>
+                                <a href="<{link ctl='activity:detail' arg0=$item.id}>">我要报名</a>
+                            </div>
+                        </div>
+                        <div class="head_nav_in">
+                        	<div class="head_nav_h"><a href="<{link ctl='mall/index'}>">家居商城</a></div>
+                            <div class="head_nav_c">
+                            	<a href="<{link ctl='mall/cart'}>">购物车<{if $COOKIE.CART_NUMBER}>(<{$COOKIE.CART_NUMBER}>)<{/if}></a>
+                                <a href="<{link ctl='ucenter/order'}>">我的订单</a>
+                                <a>咨询热线&nbsp;:&nbsp;<{$CONFIG.site.phone}></a>
+                            </div>
+                        </div>
+                        <div class="head_nav_in">
+                        	<div class="head_nav_h"><{if $CONFIG.site.multi_city}><a href="<{link ctl='city'}>" id="jq_city_header_change">切换城市</a> <{/if}></div>
+                            <div class="head_nav_c">
+                                <a href="###"><{$request.city.city_name}></a>
+                            </div>
+                        </div>
+                    </div>
+                        </li>
+                    </ul>
+                    <div class="cl"></div>
+                  
+                </div>
+            </div>
+            <script>
+				$(document).ready(function(){
+					$(".union_top_r_r ul li.li1").mouseenter(function(){
+						$(".fast_nav_detail").show();
+						$(this).find(".aa").css('color','#F00');
+						$(this).find(".span1").css('opacity','1.0');
+					}).mouseleave(function(){
+						$(".fast_nav_detail").hide();
+						$(this).find(".aa").css('color','');
+						$(this).find(".span1").css('opacity','0.7');
+					});
+				});
+			</script>
+            <div class="cl"></div>
+        </div>
+    </div>
+    
+   

@@ -1,0 +1,29 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>问答列表:<{$diary.title}></b></div>
+
+<table width="90%" border="0" cellspacing="0" class="info"  border-collapse="separate">
+    <tr>
+        <td>问题</td>
+        <td>回答</td>
+        <td>创建时间</td>
+        
+    </tr>
+    <{foreach $items as $item}>
+    <tr>    
+        <td><a href="<{link ctl='ask:detail' arg0=$item.ask_id}>" target="_blank" ><{$item.title}></a></td>
+       <td><{$item.answer_num}>条</td>
+        <td><{$item.dateline|format}></td>
+       
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+   
+    
+     <tr>
+            <td  colspan="10" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

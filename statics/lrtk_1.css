@@ -1,0 +1,38 @@
+#goTopBtn {
+
+    bottom: 35px;
+
+    cursor: pointer;
+
+    display: none;
+
+    height: 210px;
+
+   
+
+    right: 10px;
+
+    width: 70px;
+
+    z-index: 100;
+	
+	
+	  _right: 10px;
+
+
+
+position:fixed;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||200)-(parseInt(this.currentStyle.marginBottom,10)||0)));border-radius:5px;box-shadow:0 0 2px #6E6E6E
+
+}
+
+#goTopBtn a {
+
+    background: url("/images/pf-ico.gif") no-repeat scroll 0 0 transparent;
+
+    display: block;
+
+    height: 70px;
+
+    width: 70px;
+
+}

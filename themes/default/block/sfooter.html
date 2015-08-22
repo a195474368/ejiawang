@@ -1,0 +1,53 @@
+<!--<div class="footer_b w1000 mt10">
+    <p>
+        <{calldata mdl='article/view' from='about' order='article_id:ASC' limit=10}>
+        <a target="_blank" title="<{$item.title}>" href="<{link ctl='about' arg0=$item.page}>">
+        <font style="font-size:13pt;"><{$item.title}></font></a>
+        <{/calldata}>    
+    </p>    
+    <p> Copyright © 2014 <a href="<{link ctl='index'}>" target="_blank">亿家网</a>, All rights reserved. ICP备案：<{$CONFIG.site.icp}> 技术支持：<a href="http://www.ejiawang.cc" target="_blank">www.ejiawang.cc</a></p>
+    <ul class="w400 mt30 mb30">
+        <li><img src="<{$pager.theme}>/default/static/pic/wj.jpg" width="50" height="50" /><br />网警110</li>
+        <li><img src="<{$pager.theme}>/default/static/pic/gs.jpg" width="50" height="50" /><br /><{$request.city.city_name}>工商</li>
+        <li><img src="<{$pager.theme}>/default/static/pic/xh.jpg" width="50" height="50" /><br />网络协会</li>
+        <li><img src="<{$pager.theme}>/default/static/pic/hb.jpg" width="50" height="50" /><br />ICP备</li>
+    </ul>
+</div>-->
+
+<div id="footer">
+	<div class="footer">
+		<div class="lt footer-logo">
+			<img src="<{$pager.theme}>/images/footer-logo.png" width="265" height="155" />
+		</div>
+		<div class="rt copy">
+			<ul>
+                             <{calldata mdl='article/view' from='about' order='article_id:ASC' limit=10}>
+       <li><a target="_blank" title="<{$item.title}>" href="<{link ctl='about' arg0=$item.page}>">
+				<{$item.title}></a></li>
+                             <{/calldata}>
+				<div class="cl"></div>
+			</ul>
+                    <p style="color:#666">Copyright © 2014 亿家网, All rights reserved. ICP备案：鄂ICP备14004834号-1 </p>
+			<p style="color:#666">技术支持：www.ejiawang.cc 
+                            <!--<a mini-load='申请免费量房' href="<{link ctl='gs:yuyue2'  arg0='1' http='empty'}>" >免费预约</a>-->
+                        
+                        </p>
+			<img src="<{$pager.theme}>/images/icon.png" />
+		</div>
+		<div class="cl"></div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript"  src="<{$pager.res}>/script/jquery.kinMaxShow.js"></script>
+<script type="text/javascript">
+(function(K, $){
+$("[kinBox]").each(function(){
+    var params = $.parseJSON($(this).attr("kinBox") || "{}") || {};
+    if(!$(this).attr("id")){$(this).attr("id") = K.GGUID();}
+    $("#"+$(this).attr('id')).kinMaxShow($.extend({intervalTime:4}, params));
+});
+})(window.KT, window.jQuery);
+</script>
+<div style="display:none;"><{<{$CONFIG.site.tongji}>}></div>

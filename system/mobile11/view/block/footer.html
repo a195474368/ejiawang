@@ -1,0 +1,52 @@
+<!--底部区域开始-->
+	<div class="mobile_footer">
+        <div class="mobile_footer_all">
+            <ul>
+                <li class="li0"><a href="<{link ctl='index'}>">首页</a></li>
+                <li class="li1"><a href="<{link ctl='case'}>">图库</a></li>
+                <li class="li2"><a href="<{link ctl='company'}>">找公司</a></li>
+                <li class="li3"><a href="<{link ctl='ucenter'}>">我的</a></li>
+                <li class="li4"><a href="javascript:void(0);">更多</a></li>
+            </ul>
+        </div>
+	</div>
+<!--底部区域结束-->
+<!--弹出层开始-->
+	<div class="mobile_show none">
+            <ul>
+                <li><a href="<{link ctl='tuan'}>">小区团装</a></li>
+                <li><a href="<{link ctl='article'}>">学装修</a></li>
+                <li><a href="<{link ctl='tenders'}>">发招标</a></li>
+                <li><a href="<{link ctl='site'}>">看工地</a></li>
+                <li><a href="<{link ctl='designer'}>">设计师</a></li>
+                <li><a href="tel:<{$CONFIG.site.phone}>">装修咨询</a></li>
+                <li><a href="<{link ctl='youhui'}>">优惠信息</a></li>
+                <li><a href="<{link ctl='shop'}>">材料商</a></li>
+            </ul>
+	</div>
+<!--弹出层结束-->
+	<script>
+	$(document).ready(function(){
+		$(".mobile_footer_all ul li.li4").toggle(
+			function(){
+				$(".mobile_show").fadeIn("slow");
+				$(".opacity_zhe").fadeIn("slow");
+			},
+			function(){
+				$(".mobile_show").fadeOut("slow");
+				$(".opacity_zhe").fadeOut("slow");
+			}
+		);
+		$(".mobile_show ul li").last().css('border-bottom','none');
+		
+		$(".opacity_zhe").click(function(){
+			$(".opacity_zhe").hide();
+			$(".mobile_show").fadeOut(1000);
+			
+		});
+		
+	});
+</script>
+</div>
+</body>
+</html>

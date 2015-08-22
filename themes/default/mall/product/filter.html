@@ -1,0 +1,26 @@
+<style type="text/css">
+	.mall_list_r_b_title a.on{background:#E63337;color:#FFF;}
+</style>
+<div class="mall_list_r_b_title">
+	<h2 class="h10"></h2>
+	<h3><{$data.top_cate.title}></h3>
+	<p><label>分类：</label><a href="<{$data.cate_all_link}>" <{if $data.cat_id == $data.top_cate.cat_id}>class="on"<{/if}>>全部</a>
+		<{foreach $data.cates as $v}><a href="<{$v.link}>" <{if $data.cat_id == $v.cat_id}>class="on"<{/if}>><{$v.title}></a><{/foreach}>
+	</p>
+	<{if $data.brands}>
+	<p><label>品牌：</label>
+		<a href="<{$data.brand_all_link}>" <{if empty($data.brand_id)}>class="on"<{/if}>>全部</a>
+		<{foreach $data.brands as $v}>
+		<a href="<{$v.link}>" <{if $data.brand_id == $v.brand_id}>class="on"<{/if}>><{$v.title}></a>
+		<{/foreach}>
+	</p>
+	<{/if}>
+	<{foreach $data.attrs as $k=>$v}>
+	<p><label><{$v.title}>：</label>
+        <a href="<{$v.link}>" <{if empty($v.checked)}>class="on"<{/if}>>全部</a>
+		<{foreach $v.values as $vv}>
+		<a href="<{$vv.link}>" <{if in_array($vv.attr_value_id, $data.attr_values)}>class="on"<{/if}>><{$vv.title}></a>
+		<{/foreach}>
+	</p>
+	<{/foreach}>
+</div>

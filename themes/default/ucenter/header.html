@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-cn">
+<{include file="block/sheader.html"}>
+<body style="padding-top:41px;">
+<iframe id="miniframe" name="miniframe" style="display:none;"></iframe>
+<!-- small header op -->
+<div class="head_small">
+    <div class="head_small_c">
+    <ul>
+        <li><a href="<{link ctl='index'}>" title="<{$CONFIG.site.title}>"><img src="<{$pager.res}>/images/slogo.jpg" width="90" height="19" alt="<{$CONFIG.site.title}>" /></a></li>
+        <li><a href="<{link ctl='tenders'}>">我要装修</a> |</li>
+        <li><a href="<{link ctl='home'}>">我爱我家</a> |</li>
+        <li><a href="<{link ctl='case'}>">效果图</a> |</li>
+        <li><a href="<{link ctl='gs'}>">找公司</a> |</li>
+        <li><a href="<{link ctl='mall'}>">商城</a> |</li>
+        <li><a href="<{link ctl='content'}>">学装修</a></li>
+    </ul>
+    <span>
+    <{if $MEMBER.uid}>
+        <a href="<{link ctl='ucenter/member:index'}>"><img src="<{$pager.img}>/<{$MEMBER.face_32}>" width="30" height="30" alt="<{$MEMBER.uname}>" /></a><a href="<{link ctl='ucenter/member:index'}>" class="bg_jiantou"><{$MEMBER.uname}></a><a href="<{link ctl='ucenter/member'}>" class="bg_jiantou">个人设置</a>
+        <{if $MEMBER.from=='company'}><a href="<{link ctl='ucenter/company'}>" class="bg_jiantou">公司管理</a><{elseif $MEMBER.from=='shop'}><a href="<{link ctl='ucenter/shop'}>" class="bg_jiantou">商铺管理</a><{/if}>
+        <a href="<{link ctl='passport:loginout'}>">退出</a>
+    <{else}>
+        <a href="<{link ctl='passport:login'}>" mini-login="login">&nbsp;登录&nbsp;</a></li><li>&nbsp; |&nbsp;</li> <li><a href="<{link ctl='passport:signup'}>" target="_blank">&nbsp;注册&nbsp;</a>
+    <{/if}>
+    </span>	 	
+    </div>
+</div>
+<!-- small header ed -->
+<link href="<{$pager.theme}>/default/static/style/ucenter.css" rel="stylesheet" type="text/css" />
+<div class="main_bg">
+    <div class="main_box">
+        <div class="cen_title">
+            <span class="cen_text"><em></em>会员中心</span>
+            <div class="right cen_titlerh"><em class="fb_ico3"></em>金币：<b class="fonthuang"><{$MEMBER.gold}></b><a href="<{link ctl='ucenter/member:gold'}>" title="充值金币" ><em class="ttb"></em>充值金币</a></div>
+            <div class="clear-both"></div>
+        </div>
+        <div class="main_c">
+            <div class="main_cl">
+                <div class="left_nav">
+                    <{foreach $menu_list as $menu}>
+                    <div class="border">
+                        <dl>
+                            <{if $menu.menu}>
+                            <dt class="current"><a title="<{$menu.title}>" class="title"><em></em><{$menu.title}></a></dt>
+                            <{foreach $menu.items as $item}>
+                            <{if $item.menu}>
+                            <dd<{if $request.ctlmap.ctl==$item.ctl}> class="current"<{/if}>><a href="<{link ctl=$item.ctl}>" title="<{$item.title}>" class="title"><{$item.title}></a></dd>
+                            <{/if}>
+                            <{/foreach}>
+                            <{/if}>
+                        </dl>
+                    </div>
+                    <{/foreach}>
+                </div>
+            </div>
+        <div class="main_cr">
+            <div class="set_c">

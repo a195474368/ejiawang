@@ -1,0 +1,123 @@
+<{include file="block/header.html"}>
+
+<!----------头部和导航公共部分------------>
+<!--   主题部分开始  -->
+<div class="index_b_bg hauto">
+    <!--   主题部分头部开始   -->
+    <div class="w1000 favorable_detail_main_t hauto mt10">
+        <!--   主题部分头部left开始   -->
+        <div class="favorable_detail_main_t_l lt hauto bgwhite" style="height: 300px;">
+            <div class="favorable_detail_main_t_l_cont hauto">
+                <h2>
+                    <{$detail.title}>
+                    <font class="red">(活动时间：<{$detail.bg_date}>-<{$detail.end_date}>)</font>
+                </h2>
+                <div class="whj_show">
+                    <a href="<{link ctl='gs:detail' arg0=$detail.youhui_id}>"><img src="<{$pager.img}>/<{$detail.face_pic}>" width="260" height="180" /></a>
+                    <p class="lt">
+                        <span class="block">(请抓紧时间报名，全城仅99套，名额有限，先签先得！)</span>
+                        <a  <{if $detail.end}>mini-load='我要报名' mini-width="555"  href="<{link ctl='gs:sign' arg0=$detail.youhui_id}>"<{else}>href="javascript:void(0);"<{/if}> class="block a12 <{if $detail.end}>orgbgg<{else}>graybgg<{/if}>">立即报名参加</a>
+                    </p>
+                    <p class="lt">
+                        <span class="block_lt span29 icobg"></span>
+                        <span class="block_lt span30 ml20">
+                            <font class="ftw blackb f22">剩余<{$detail.end}>天</font>&nbsp;&nbsp;
+
+                        </span>
+                    </p>
+
+                </div>
+            </div>  
+            <div class="cl"></div> 
+            <div class="mt20"></div>                	                 
+        </div>
+        <!--   主题部分头部left结束   -->    
+        <!--   主题部分头部right开始   -->
+        <div class="favorable_detail_main_t_r lt hauto bgwhite" style="height:300px;">
+            <div class="favorable_detail_main_t_r_cont hauto">
+                <h3>合作伙伴</h3>
+                <a target="_blank" href="<{link ctl='company' arg0=$company.company_id}>" title="<{$company.name}>" class="block black8"><{$company.name}></a>
+                <div class="mt5 favorable_detail_main_t_r_cont_b hauto">
+                    <p><a target="_blank" href="<{link ctl='company' arg0=$company.company_id}>" title="<{$company.name}>" ><img src="<{$pager.img}>/<{$company.logo}>" width="135" height="70" /></a></p>
+                    <span class="block_lt ml10">
+                        <a target="_blank" title="<{$company.name}>"  href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$company.qq}>&amp;site=qq&amp;menu=yes"  class="mb10 block"><img src="<{$pager.theme}>/default/static/images/qqjt.png" /></a>
+
+                        <font class="f12">联系电话:</font><br />
+                        <font class="f12"><{$company.tel}></font>
+                    </span>
+                </div>
+                <{foreach $dianping as $item}>
+                <div class="favorable_pl hauto mt5">
+
+                    <p class="lt mt10">
+                        <span class="block"><font class="red"><{$item.name|cutstr:3:'**'}></font> &nbsp;&nbsp;<{$item.dateline|format}></span>
+                        <span class="block span30 f12 black8">
+                            <{$item.content|cutstr:100:'..'}>
+                        </span>
+                    </p>
+                   
+
+                </div>
+                <{foreachelse}>
+                <div class="favorable_pl hauto mt5">
+                    <p class="lt mt10">
+                        暂未有任何<{$company.name}>评论结果
+                    </p>
+                </div>
+                <{/foreach}>
+
+            </div>
+        </div>
+        <!--   主题部分头部right结束   -->
+        <div class="cl"></div>
+        <!--   主题部分中部开始   -->
+        <div class="w1000 favorable_detail_main_c hauto mt10 bgwhite">
+            <p><{$detail.content}></p>
+
+        </div>
+        <!--   主题部分中部结束   -->
+        <!--   主题部分底部开始   -->
+        <div class="w1000 favorable_detail_main_b hauto mt15">
+            <h2><a href="<{link ctl='gs:youhui'}>">其他最新优惠活动</a></h2>
+            <div class="w1000 hauto favorable_detail_main_b_ul">
+
+                <{foreach $items  as $item}>
+                <div class="yhjxz ml10 mt10">
+                    <div class="li_top">
+                        <span class="block_lt <{if $item.end}>span31<{else}>span33<{/if}> jxz mr10"></span>
+                        <span class="block_lt span32">
+
+                            <font class="f14"><a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>"><{$item.title}></a></font>
+                        </span>
+                    </div>
+                    <div class="cl"></div>
+                    <a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>"><img src="<{$pager.img}>/<{$item.face_pic}>" width="260" height="180" /></a>
+                    <p class="ml30">
+                        <span class="block_lt">
+                            <font>距离结束：还有</font><font class="red font2"><{$item.end}></font><font>天</font>
+                        </span>
+                        <a title="<{$item.title}>" target="_blank" href="<{link ctl='gs:detail' arg0=$item.youhui_id}>" class="block_lt a13 <{if $item.end}>orgbgg<{else}>graybgg<{/if}>">去看看</a>
+                    </p>
+                </div>
+                <{/foreach}>                       
+            </div>
+
+		<div class="h20"></div>
+
+        </div>
+        <!--   主题部分底部结束  -->
+    </div>    
+    <script>
+        $(document).ready(function() {
+            $(".yhjxz").mouseover(function() {
+                $(this).css('border', '1px solid red');
+                $(this).css('box-shadow', '0 0 1px 1px #BBB');
+
+            }).mouseout(function() {
+                $(this).css('border', '1px solid #FFF');
+                $(this).css('box-shadow', '0 0 1px 1px #BBB');
+            });
+        });
+    </script>
+
+    <{include file="block/footer.html"}>      

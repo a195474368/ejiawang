@@ -1,0 +1,30 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>工地：<{$site.title}></b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>状态</th>
+        <th>创建时间</th>
+
+        <th>操作</th>
+    </tr>
+
+    <{foreach $items as $item}>
+    <tr>    
+        <td><{$status[$item.status]}></td>
+        <td><{$item.dateline|format}></td>
+
+        <td>
+            <a href="<{link ctl='ucenter/site:diaryEdit' arg0=$item.notes_id http=true}>" class="yzmbtn">修改</a>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    <tr>
+        <td  colspan="20" class="page-list"><a href="<{link ctl='ucenter/site:diaryCreate' arg0=$site_id http=true}>" class="yzmbtn">写工地进度</a></td>
+    </tr>
+</table>
+
+<{include file="ucenter/footer.html"}>

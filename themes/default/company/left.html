@@ -1,0 +1,34 @@
+<div class="qyjs_main_l lt hauto">
+    <h2 class="mb10">地理位置</h2>
+
+    <div id='allmap' style="width: 280px; height: 195px">
+       
+    </div>
+    
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=824a595f958e444b737a5bc6325ad44f"></script>
+      
+        <div id="mapshowcontent" style="display: none;">
+            <p style="font-size: 14px; font-weight: bold;color: #3399ff;">地址：<{$company.addr}></p>
+            <p  style="font-size: 14px; font-weight: bold; margin-top: 5px; color: #3399ff; ">咨询电话：<strong><{$company.tel}></strong></p>
+        </div>
+         <script type="text/javascript">
+            // 百度地图API功能
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom(new BMap.Point(<{$company.lng}>, <{$company.lat}>), 14);
+            map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+            var marker1 = new BMap.Marker(new BMap.Point(<{$company.lng}>, <{$company.lat}>));  // 创建标注
+            map.addOverlay(marker1);              // 将标注添加到地图中
+            marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            //创建信息窗口
+            var infoWindow1 = new BMap.InfoWindow($("#mapshowcontent").html());
+            marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+        </script>
+    <div class="qyjs_main_l_b hauto bgwhite mt20">
+        <p class="mt20 p36"><b><{$company.name}></b></p>
+        <p>电话：<{$company.tel}></p>
+        <p>手机：<{$company_member.mobile}></p>
+        <p>Q Q：<{$company.qq}></p>
+        <p>地址：<{$company.addr}></p>
+  
+    </div>
+</div>

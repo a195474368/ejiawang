@@ -1,0 +1,5 @@
+<?php exit("Access Denied");?>
+note:System cache file, DO NOT modify me!
+hash:05ec0553acab44aa1d196c140fe0a4b7:f15ee191ed6f0e44fc6e89a30b6526ac
+time:1440228802
+data:YToxOntpOjk7YTozOntzOjEwOiJzZXR0aW5nX2lkIjtzOjE6IjkiO3M6NDoidHlwZSI7czoxOiIzIjtzOjQ6Im5hbWUiO3M6ODoiMTUtMzDkuIciO319

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>提示信息 - <{$CONFIG.mobile.title}></title>    
+    <link type="text/css" rel="stylesheet" href="style/zhaobiao.css">
+    <{include file="mobile:block/sheader.html"}>
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header ><a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a><h1 class="title">提示信息</h1></header>
+        <!--头部内容结束 -->
+<!--main开始 -->       
+<div class="clear"></div>
+<!--main开始 -->
+<div class="main zhaobiao">
+    <!--流程-->
+    <section class="process">
+        <span class="bg_line"></span>
+        <ul><li><span>1</span><p>提交申请</p></li><li><span>2</span><p>客服回访</p></li><li><span>3</span><p>免费量房</p></li><li><span>4</span><p>免费预算</p></li></ul>
+    </section>
+    <!--流程 end-->
+    <!--提交成功-->
+    <div class="fabu_ok_bg" style="display:block;">
+        <div class="fabu_ok">
+            <h3><{if $pager.error && $pager.error != 200}><img src="images/success.gif" alt="操作成功" />恭喜，操作成功<{else}><img src="images/error.gif" alt="操作失败" />抱歉，操作失败<{/if}></h3>
+            <p><{$pager.message}></p>
+            <a class="know" href="<{link ctl='index'}>">我知道了</a>
+        </div>
+    </div>
+    <!--提交成功-->
+</div>
+<!--main结束 -->
+</div>
+<!--warp结束 -->
+<!--底部悬浮开始 -->
+<{include file="mobile:block/sfooter.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+</body>
+</html>

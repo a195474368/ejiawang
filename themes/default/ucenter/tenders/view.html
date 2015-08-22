@@ -1,0 +1,155 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b><{$detail.title}></b></div>
+
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+        <th>城市：</th>
+        <td><{$cityList[$detail.city_id].city_name}></td>
+        <th>地区：</th>
+        <td><{$areaList[$detail.area_id].area_name}></td>
+    </tr>
+    <tr>
+        <th>
+            小区：
+        </th>
+        <td><{if $home.name}><{$home.name}><{else}><{$detail.home_name}><{/if}></td>
+        <th>地址:</th>
+        <td><{if $look}><{$detail.addr}><{else}>****<{/if}></td>
+
+    </tr>
+    <tr>
+        <th>
+            称呼：
+        </th>
+        <td>
+            <{if $look}><{$detail.name}><{else}>****<{/if}> 
+        </td>
+        <th>手机:</th>
+        <td>
+            <{if $look}><{$detail.mobile}><{else}>****<{/if}>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>
+            招标类型：
+        </th>
+        <td>
+            <{$setting[$type['type']][$detail.type_id]}>
+        </td>
+        <th>喜欢风格：</th>
+        <td>
+            <{$setting[$type['style']][$detail.style_id]}>
+        </td>
+
+    </tr>
+    <tr>
+        <th>
+            预算范围：
+        </th>
+        <td>
+            <{$setting[$type['budget']][$detail.budget_id]}>
+        </td>
+        <th>服务需求：</th>
+        <td>
+            <{$setting[$type['service']][$detail.service_id]}>
+        </td>
+
+    </tr>
+
+
+    <tr>
+        <th>
+            空间户型：
+        </th>
+        <td>
+            <{$setting[$type['house_type']][$detail.house_type_id]}>
+        </td>
+        <th>装修方式：</th>
+        <td>
+            <{$setting[$type['way']][$detail.way_id]}>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>
+            开始时间：
+        </th>
+        <td>
+            <{$detail.start_time|default:''}>
+        </td>
+        <th>面积：</th>
+        <td>
+            <{$detail.area|default:''}>㎡
+        </td>
+
+    </tr>
+
+
+    <tr>
+        <th>
+            看标需要消耗金块：
+        </th>
+        <td>
+             <{$detail.gold|default:'0'}><em class="fb_ico3"></em>
+        </td>
+        <th>允许看标企业数：</th>
+        <td>
+            <{$detail.num|default:''}>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>
+            参加看标的企业数：
+        </th>
+        <td>
+            <{$detail.num2|default:''}>
+        </td>
+        <th>浏览量：</th>
+        <td>
+            <{$detail.pv_num|default:''}>
+        </td> 
+    </tr>
+    <tr>
+        <th>
+            IP：
+        </th>
+        <td>
+            <{$detail.create_ip|default:''}>
+        </td>
+        <th>创建时间：</th>
+        <td>
+            <{$detail.dateline|format}>
+        </td> 
+    </tr>
+    <tr>
+        <th>
+            其他需求：
+        </th>
+        <td colspan="3">
+            <{$detail.demand}>
+        </td> 
+    </tr>
+    <tr>
+        <th>
+            客服反馈：
+        </th>
+        <td colspan="3">
+            <{$detail.feedback}>
+        </td> 
+    </tr>
+    <{if !$look}>
+    <tr>
+        <th colspan="4" style="text-align: center;">
+            <a  href="<{link ctl='ucenter/tenders:look' arg0=$detail.id http=true}>" mini-act="查看"  style="color: red; font-size: 18px; ">立刻花费<{$detail.gold|default:'0'}> <em class="fb_ico3"></em> 查看</a>
+        </th>
+    </tr>
+    <{/if}>
+</table>
+
+<{include file="ucenter/footer.html"}>

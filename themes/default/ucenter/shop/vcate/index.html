@@ -1,0 +1,15 @@
+<{include file="ucenter/header.html"}>
+<div class="set_c2"><h3 class="header_left">店铺分类</h3><a href="<{link ctl='ucenter/shop/vcate:create'}>" mini-load="添加商铺分类" mini-width="400" class="wytw" title="添加分类">添加分类</a></div>
+<table width="100%" class="list">
+    <tr><th>分类名称</th><th class="w-50">排序</th><th class="w-150">操作</th></tr>
+    <{foreach $items as $item}>
+    <tr>
+        <td><{$item.title}></td><td><{$item.orderby}></td>
+        <td>
+            <a href="<{link ctl='ucenter/shop/vcate:edit' arg0=$item.vcat_id}>" mini-load="修改商铺分类" mini-width="400" title="修改">修改</a> || 
+            <a href="<{link ctl='ucenter/shop/vcate:delete' arg0=$item.vcat_id}>" mini-act="删除" mini-confirm="确定要删除吗？" title="删除">删除</a>
+        </td>
+    </tr>
+    <{/foreach}>
+</table>
+<{include file="ucenter/footer.html"}>

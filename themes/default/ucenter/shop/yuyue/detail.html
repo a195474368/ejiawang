@@ -1,0 +1,12 @@
+<{include file="ucenter/header.html"}>
+<div class="set_c2"><h3 class="header_left">查看预约</h3><a href="<{link ctl='ucenter/shop/yuyue'}>" class="wytw">预约管理</a></div>
+<table width="100%" border="0" cellspacing="0" class="info">
+    <tr><th>会员：</th><td><{$member.uname|default:"--"}></td></tr>
+    <tr><th>商品：</th><td><{$product.title|default:"--"}></td></tr>
+    <tr><th>联系人：</th><td><{$detail.contace|default:"--"}></td></tr>
+    <tr><th>手机：</th><td><b class="red"><{$detail.mobile|default:"--"}></b></td></tr>
+    <tr><th>地址：</th><td><{$detail.address|default:"--"}></td></tr>
+    <tr><th>要求：</th><td><{$detail.note|default:"--"}></td></tr>
+    <tr><th>预约时间：</th><td><{$detail.dateline|format}></td></tr>
+</table>
+<{include file="ucenter/footer.html"}>

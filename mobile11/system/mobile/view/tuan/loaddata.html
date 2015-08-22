@@ -1,0 +1,15 @@
+<{foreach from=$items  item=item}>
+<li>
+    <div class="mobile_tuan_b_all">
+        <a title="<{$item.title}>" href="<{link ctl='tuan:detail' arg0=$item.tuan_id}>"><img src="<{$pager.img}>/<{$home_list[$item.home_id].face_pic}>" width="68" height="55"/></a>
+        <div class="mobile_tuan_b_all_r lt">
+            <h4><a title="<{$item.title}>" href="<{link ctl='tuan:detail' arg0=$item.tuan_id}>"><{$item.title}></a></h4>
+            <p>立省：<i>￥<{$item.jieyue}>元</i></p>
+            <p class="mt7">
+                <span class="block_lt mt10"><{$item.sign_num}><i>人已参团</i></span>
+                <a href="<{link ctl='tuan:detail' arg0=$item.tuan_id}>" title="<{$item.title}>" class="block tuan_but">我要参团</a>
+            </p>
+        </div>
+    </div>
+</li>
+<{/foreach}>

@@ -1,0 +1,160 @@
+<{include file="block/header.html"}>
+<!--         主题部分开始           -->
+<script type="text/javascript"  src="<{$pager.theme}>/cheerful_green/static/style/Marquee.js"></script>
+<script type="text/javascript">
+$(function(){
+	//一次横向滚动一个
+	$('#marquee4').kxbdSuperMarquee({
+		isMarquee:true,
+		isEqual:false,
+		scrollDelay:25,
+		controlBtn:{left:'#goL',right:'#goR'},
+		direction:'up'
+		
+	});
+})
+        </script>
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+          <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='home:tuan'}>" title="团装小区" class="block_lt">团装小区</a>
+  
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--搜索开始-->
+    <div class="w1000 tuanzhuang_search">
+        <div class="tuangzhuang_search_l lt">
+            <form method="get" action="<{link ctl='home:tuan'}>">
+                <input type="text" name="s" id='data_keyword' class="tuanzhuang_seach_area" value="<{$pager.s|default:'请输入您要查询的小区名称'}>"/>
+                <input type="submit"  class="tuanzhuang_sub" value="搜索"/>
+            </form>
+            <script>
+                $(document).ready(function() {
+                    $("#data_keyword").focus(function() {
+                        if ($(this).val() == '请输入您要查询的小区名称') {
+                            $(this).val('');
+                        }
+                    }).focusout(function() {
+                        if ($(this).val() == '') {
+                            $(this).val('请输入您要查询的小区名称');
+                        }
+                    });
+                });
+            </script>
+
+        </div>
+        <div class="tuanzhaung_search_r rt">
+            <{foreach from=$hots item=item}>
+            <p><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>"><{$item.title}></a> &nbsp; 立省￥<{$item.jieyue}>元 &nbsp;   <i><{$item.sign_num}></i>人已参团</p>
+            <{/foreach}>
+        </div>
+    </div>
+    <!--搜索结束-->
+    <!--团装活动开始-->  
+    <div class="tuanzhuang_acitivity w1000">
+        <div class="tuanzhuang_title">
+            <h2>团装活动</h2>
+            
+        </div>
+        <div class="cl"></div>
+        <div class="tuanzhuang_b" style="float:left">
+            <{foreach from=$items item=item}>
+            <div class="tuanzhuang_show">
+    <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>"><img src="<{$pager.img}>/<{$home_list[$item.home_id].face_pic}>" width="260" height="165" /></a>
+    <div class="tuanzhuang_time" style="width:260px;top:152px;display: none">
+        <span></span>
+        <p class="jq_endtime" value='<{$item.end_time}>'>剩余时间倒计时</p>
+    </div>
+    <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" class="tuanzhuang_name"><{$item.title|cutstr:25:''}></a>
+    <div class="tuanzhuang_join">
+        
+        <a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" class="now_cantuan">立即参团</a> 
+         <p>
+            立省<i><{$item.jieyue}></i>
+        </p>
+    </div>
+    <div class="cl"></div>
+    <!--<p class="rt mr10"><i><{$item.sign_num}></i>人已经参团</p>-->
+</div>
+              <{if $item@iteration>5}><{break}><{/if}>
+            <{/foreach}>
+             <div class="page" style="clear: both"><{$pager.pagebar}></div>
+        </div>
+        <div class=""style="width:279px;height:800px;margin-right: 5px;margin-top: 10px;overflow: hidden; font-size: 13px;float:left;">
+             <div class="bgwhite" style="height:200px">
+                           <!-- <h2><a title='<{$company.name}>' target="_blank" href="<{link ctl='company' arg0=$company.company_id}>"><{$CONFIG.site.title}></a></h2>-->
+                            <a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/cheerful_green/static/images/tuan_logo.jpg" width="250" height="100" /></a>
+                            <p><b>联系电话&nbsp;：</b>&nbsp;<{$CONFIG.site.phone}></p>
+                            <!--<p><a title='<{$company.name}>' target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<{$company.qq}>&amp;site=qq&amp;menu=yes"><img src="<{$pager.theme}>/default/static/images/qqjt.png" /></a></p>-->
+                           <!-- <p><b>公司地址&nbsp;:&nbsp;</b><{$company.addr}></p>-->
+                           <p>省钱、省事、省心、更多团装活动请</p>
+                           <P> <a href=""  class="now_cantuan">立即参团</a></p>
+                            <p class="h10"></p>
+                        </div>
+              <span><h2>参加团装户主</h2></span>
+        <div id="marquee4" class="bgwhite"style="width:279px;height:275px;margin-right: 5px;margin-top: 10px;padding-top:10px;overflow: hidden; font-size: 13px;float:left;">        
+            <ul>
+           <{calldata mdl="home/sign" city_id=$this->request['city_id']}>
+            <li>
+              <p><a target="_blank" title="<{$item.title}>" href="<{link ctl='home:tuanDetail' arg0=$item.tuan_id}>" ><{$item.mobile|cutstr:4:'**'}>报名了
+                    <{calldata mdl="home/tuan" tuan_id=$item.tuan_id city_id=$this->request['city_id']}>“<{$item.title|cutstr:20:'**'}>”<{/calldata}></a></p>
+           </li>
+           <{/calldata}>
+            </ul>
+            
+        </div>
+            
+       
+        </div>
+        
+        
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".tuanzhuang_show").mouseover(function() {
+                $(this).find(".tuanzhuang_time").addClass("currentred");
+                 $(this).find(".tuanzhuang_time").show();
+            })
+                    .mouseout(function() {
+                        $(this).find(".tuanzhuang_time").removeClass("currentred");
+                         $(this).find(".tuanzhuang_time").hide();
+                    });
+
+            var dateTime = new Date();
+            var difference = dateTime.getTime();
+            setInterval(function() {
+                $(".jq_endtime").each(function() {
+                    var obj = $(this);
+                    var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+                    var nowTime = new Date();
+                    var nMS = endTime.getTime() - nowTime.getTime() + difference;
+                    var myD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+                    var myH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+                    var myM = Math.floor(nMS / (1000 * 60)) % 60;
+                    var myS = Math.floor(nMS / 1000) % 60;
+                    if (myD >= 0) {
+                        if(myS % 3 == 0){
+                           // obj.parent().parent().find(".tuanzhuang_time").addClass("currentred");
+                        }else{
+                            obj.parent().parent().find(".tuanzhuang_time").removeClass("currentred");
+                        }
+                        var str = myD + "天" + myH + "小时" + myM + "分" + myS + "秒";
+                    } else {
+                        var str = "已结束！";
+                    }
+                    obj.html(str);
+                });
+            }, 1000);
+        });
+    </script>   
+    <!--团装活动结束-->       
+    <div class="cl h20"></div>
+</div>
+
+
+<{include file="block/footer.html"}>  

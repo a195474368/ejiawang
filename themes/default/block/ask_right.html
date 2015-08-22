@@ -1,0 +1,60 @@
+
+            <div class="ads4 hauto">
+                <{widget id="adv" name="问答右侧热心公司上广告位" city_id=$request.city_id limit="5"}>
+            </div> 
+            <div class="ask_company_phb hauto mt20">
+                <h2><a target="_blank" title="热心装修公司排行榜" href="<{link ctl='gs:items'}>">热心装修公司排行榜</a></h2>
+                <div class="ask_company_phb_show hauto bgwhite mt10">
+                    <div class="ask_company_phb_show1 hauto">
+                        <ul>
+                            <{calldata mdl="company/company" city_id=$request.city_id  order="answer_num:desc" limit="6"}> 
+
+                            <li>
+                                <div class="ask_show_sum  none">
+                                    <span class="no<{$index+1}> block_lt num"></span>
+                                    <a target="_blank" href="<{link ctl='company' arg0=$item.company_id}>" title="<{$item.name}>" class="block_lt ml5"><{$item.sort_name}></a>
+                                    <span class="rt">回答数&nbsp;<{$item.answer_num}></span>
+                                </div>
+                                <div class="ask_show_detail none">
+                                    <a target="_blank" href="<{link ctl='company' arg0=$item.company_id}>" title="<{$item.name}>"><img width="110" height="55" src="<{$pager.img}>/<{$item.logo}>" /></a>
+                                    <p class="lt ml10">
+                                        <span class="block_lt mb10"><i><{$index+1}></i></span>
+                                        <a target="_blank" href="<{link ctl='company' arg0=$item.company_id}>" title="<{$item.name}>" class="block_lt"><{$item.sort_name}></a><br />
+                                        <a class="cl block"></a>
+                                        <font class="red">回答数<{$item.answer_num}></font>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <{/calldata}>
+                        </ul>
+                    </div>
+                </div>
+            </div>                    
+            <div class="ads4 hauto mt20">
+                <{widget id="adv" name="问答右侧热心公司下广告位"  city_id=$request.city_id limit="5"}>
+            </div>  
+
+            <script>
+                $(document).ready(function() {
+                    $(".ask_main_c_t_ul_son ul li:last").css('border-bottom', 'none').css('margin-bottom', '10px')
+                    $(".ask_main_c_t_ul_son1 ul li:last").css('border-bottom', 'none').css('margin-bottom', '10px')
+                    $(".ask_company_phb_show1 ul li").mouseover(function() {
+                        var index = $(this).index();
+                        $(".ask_company_phb_show1 ul li").each(function(a) {
+                            if (a == index) {
+                                $(this).find(".ask_show_detail").show();
+                                $(this).find(".ask_show_sum").hide();
+                            } else {
+                                $(this).find(".ask_show_detail").hide();
+                                $(this).find(".ask_show_sum").show();
+                            }
+
+                        });
+                    });
+                    $(".ask_company_phb_show1 ul li").eq(0).mouseover();
+                    $(".ask_company_phb_show1 ul li:last").css('border-bottom', 'none');
+
+                });
+            </script>
+       

@@ -1,0 +1,29 @@
+<{assign var="seo_title" value="爱咋咋地，页面就是没有找到!"}>
+<!DOCTYPE html>
+<html>
+<{include file="block/sheader.html"}>
+<body>
+<div id="wrap">
+    <{include file="block/top-header.html"}>
+    <!--top end-->
+    <div class="w1000 hauto mt20">
+        <div class="logo lt hauto">
+            <h1><a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/default/static/images/logo.jpg" width="255" height="90" /></a></h1>
+        </div>
+    </div>
+    <div class="no_page">
+    	<div class="w1000 hauto">
+        	<p class="not_img">
+            	<img src="%THEME%/static/images/not_ico.png" width="238" height="161" />
+            </p>
+            <div class="char_bg ml20">
+            	<p><font>抱歉，你要找的页面</font><span>没有找到，</span><font>它可能...去打小怪兽了！</font></p>
+                <p class="goback"><a href="<{link ctl='index'}>">返回>></a></p>
+            </div>            
+        </div>
+        <div class="null_foot mt30">
+        </div>
+    </div>
+</div>
+</body>
+</html>

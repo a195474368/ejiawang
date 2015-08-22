@@ -1,0 +1,131 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+            <a href="<{link ctl='ucenter'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second">我的订单</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+ <div class="mobile_main1 hauto grey_bg">
+ 	<div class="owner_info">
+    	<ul>
+         <{foreach $items as $order}>
+        	<li>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_table table">
+   
+   
+    <tr class="th">
+        <td colspan="3">
+            <label class="no">订单号：<b class="red"><{$order.order_no}></b></label>
+            <label class="time">下单时间：<{$order.dateline|format:"Y-m-d H:i:s"}></label>
+            <label class="shop">商家：<{$shop_list[$order.shop_id].title|default:'--'}></label>
+       
+        </td>
+    </tr>
+
+    <{foreach $product_list as $product}>
+    <{if $product.order_id == $order.order_id}>
+    <tr class="td">
+        <td class="w-50">
+          <img src="<{$pager.img}>/<{$product.photo}>_small.jpg" photo="<{$pager.img}>/<{$product.photo}>_thumb.jpg" class="wh-50" style="margin:3px;">
+        </td>
+        <td><{$product.title}></td>
+        <td><{$product.price}> x <{$product.number}></td>
+
+
+    </tr>
+
+    <{/if}>
+    <{/foreach}>
+    <tr>
+        <th>总价：</th>
+        <td colspan="2">
+            
+      
+        ￥<{$order.amount }><span class="gray">(<{if $order.freight>0}>运费：￥<{$order.freight}><{else}>包邮<{/if}>)</span><br/>
+         <{if $order.order_status < 2 && $order.order_status >=0}>
+            <{if $order.pay_status}><b class="blue">已经支付</b><{else}><b class="red">等待支付</b><{/if}>
+         <{/if}>
+      
+        </td>
+    </tr>
+    <tr>
+        <th>操作：</th>
+        <td  class='jq_caozuo' colspan="2">
+             <{if $order.order_status == 2}><b class="gray">订单完成</b>
+            <{elseif $order.order_status == 1}><b class="gray">订单已发货<br />等待买家确认收货</b>
+            <{elseif $order.order_status < 0}><b class="gray">订单已经取消</b>
+            <{elseif empty($order.pay_status)}>
+                        <a type='ship' href="<{link ctl='ucenter:orderupdate' arg0='ship' arg1=$order.order_no}>"     >订单发货</a>
+                        <a type="cancel" href="<{link ctl='ucenter:orderupdate' arg0='cancel' arg1=$order.order_no}>"   >取消订单</a>
+                <{else}><a type="ship" href="<{link ctl='ucenter:orderupdate' arg0='ship' arg1=$order.order_no}>" >订单发货</a>
+            <{/if}>
+          
+        </td>
+    </tr>
+    <tr><td colspan="10" style="border:none;height:5px">&nbsp;</td></tr>
+    
+</table>
+            </li>
+        	<{/foreach}>
+        
+        </ul>
+    </div>
+   <div id="jq_loding" style=" height: 20px; text-align: center; "></div>
+  <script>
+        var num = 1;
+        var nextpage = '<{$nextpage}>';
+        var lock  = 0;
+	  $(document).ready(function(e){      
+          function clicka(){
+              $(".jq_caozuo a").click(function(e){
+              e.preventDefault();
+              var obj = $(this);
+              $.get(obj.attr('href'),function(data){
+                  if(data.error){
+                      alert(data.error);
+                  }else{
+                      if(obj.attr('type') =='ship'){
+                          obj.parent().html('<b class="gray">订单已发货<br />等待买家确认收货</b>');
+                      }else{
+                          obj.parent().html('<b class="gray">订单已经取消</b>');
+                      }
+                  }
+              },'json');  
+          });
+          }
+          clicka();
+          
+          
+          $(window).scroll(function(){              
+            if(!lock && $(window).scrollTop() ==$(document).height() - $(window).height()  ){
+                lock = 1;
+                num++;
+                var link = nextpage.replace('{page}',num);
+                $("#jq_loding").html('正在加载中...');
+                $.get(link,function(data){
+                    if(data != 0){
+                        $("#jq_loding").html('');
+                        $(".owner_info ul").append(data);    
+                        $(".jq_caozuo a").unbind('click');
+                        clicka();
+                        lock = 0;
+                    }else{
+                        
+                        $("#jq_loding").html('没有数据了.....');
+                    }
+                },'html');
+            }           
+        });
+
+	  });
+   </script>
+ 
+  <div class="cl"></div>
+  <div class="h45"></div>
+ </div>
+<!--主题部分结束-->
+ <{include file='mobile:block/footer.html'}>

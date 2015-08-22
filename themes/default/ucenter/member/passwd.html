@@ -1,0 +1,33 @@
+<{include file="ucenter/header.html"}>
+<script type="text/javascript" src="<{$pager.res}>/script/widget.YMD.js"></script>
+<div class="filter_tabs">
+    <a href="<{link ctl='ucenter/member:info'}>" class="tab">人个资料</a><i></i>
+	<a href="<{link ctl='ucenter/member:face'}>" class="tab">修改头像</a><i></i>
+	<a href="<{link ctl='ucenter/member:mail'}>" class="tab">修改邮箱</a><i></i>
+    <a href="<{link ctl='ucenter/member:passwd'}>" class="tab on">修改密码</a><i></i>
+</div>
+<div class="set_c4">
+<form id="account-form">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr>
+        <th>用户名：</th><td>&nbsp;<{$MEMBER.uname}></td>
+    </tr>
+    <tr>
+        <th><span class="red">&nbsp;* &nbsp;</span>原密码：</th>
+        <td><input type="password" name="account[old_passwd]" value="" class="input"/></td>
+    </tr>
+    <tr>
+        <th><span class="red">&nbsp;* &nbsp;</span>新密码：</th>
+        <td><input type="password" name="account[passwd]" value="" class="input"/></td>
+    </tr>
+    <tr>
+        <th><span class="red">&nbsp;* &nbsp;</span>确认密码：</th>
+        <td><input type="password" name="account[confirm_passwd]" value="" class="input"/></td>
+    </tr>
+    <tr>
+    <th></th><td><input action="<{link ctl='ucenter/member:passwd'}>" mini-submit="#account-form" type="button" value="保存" class="set_btn" /></td>
+    </tr>
+</table>
+</form>
+</div>
+<{include file="ucenter/footer.html"}>

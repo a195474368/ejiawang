@@ -1,0 +1,54 @@
+        </div>       
+    </div>
+</div>
+<div class="nw_foot"></div>
+<{include file="block/sfooter.html"}>
+<script type="text/javascript">
+(function(T, $){
+//Auto Select Box
+$("[mini-select]").die("click").live("click", function(e){
+    e.stopPropagation(); e.preventDefault();
+    var a = $(this).attr("mini-select").split("/");
+    var elm = a[0].split(",");
+    var multi = a[1] || 'N';
+    var city_id = a[2] || 0;
+    var title = a[3] || ($(this).attr("title") || "请选择");
+    var link = $(this).attr("action") || $(this).attr("href");
+    var width = $(this).attr("mini-width") || 500;
+    if(link.indexOf("?")<0){
+        link += "?city_id="+city_id;
+    }else{
+        link += "&city_id="+city_id;
+    }
+    Widget.Dialog.Select(link, multi, function(ret){
+        if(multi == 'Y'){
+            var itemIds = [], itemNames = [];
+            for(var i=0; i<ret.length; i++){
+                itemIds.push(ret[i][0]);
+                itemNames.push(ret[i][1].title)
+            }
+            $(elm[0]).val(itemIds.join(","));
+            if(elm.length > 1){
+                $(elm[1]).val(itemNames.join(","));
+            }
+        }else{
+            $(elm[0]).val(ret[0]);
+            if(elm.length > 1){
+                $(elm[1]).val(ret[1].title);
+            }
+        }
+    }, {title:title,width:width});
+});
+// Auto CheckBox All
+$(":checkbox[CKA]").die("click").live("click",function(){
+    var $cks = $(":checkbox[CK='"+$(this).attr("CKA")+"']");;
+    if($(this).attr("checked")){
+        $cks.each(function(){$(this).attr("checked",true);});
+    }else{
+        $cks.each(function(){$(this).attr("checked",false);});
+    }
+});
+})(window.KT, window.jQuery);
+</script>
+</body>
+</html>

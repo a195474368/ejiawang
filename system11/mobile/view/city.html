@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<title><{$request.city.seo_title}> -<{$CONFIG.mobile.title}></title>
+<meta name="Keywords" content="<{$request.city.seo_keywords}>" />
+<meta name="Description" content="<{$request.city.seo_description}>" />
+<link type="text/css" rel="stylesheet" href="style/city.css">
+<{include file="mobile:block/sheader.html"}>
+</head>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header><h1 class="title">城市切换</h1></header>
+        <!--头部内容结束 -->
+        <!--main开始 -->
+        <!--中间内容开始 -->
+        <div class="city_switch main">
+            <h2>按拼音检索城市</h2>
+            <div class="clear"></div>
+            <div class="city_all_box">
+                <ul class="city_all">
+                    <{foreach $py_city as $k=>$v}>
+                    <li id="city-<{$k}>">
+                    <span><{$k}></span>
+                    <{foreach $v as $vv}><a href="<{link ctl='city:city' arg0=$vv.city_id}>"><{$vv.city_name}></a><{/foreach}>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+        </div>
+        <!--中间内容结束 -->
+        <div class="clear"></div>
+        <!--main结束 -->
+<{include file="mobile:block/sfooter.html"}>
+<!--底部悬浮开始 -->
+<{include file="mobile:block/toolbar.html"}>
+<!--底部悬浮结束-->
+<div id="bgdiv"></div>
+</body>
+</html>

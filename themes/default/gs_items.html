@@ -1,0 +1,220 @@
+<{include file="block/header.html"}>
+
+<!----------头部和导航公共部分------------> 
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="\" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='gs'}>" title="找装修公司" class="block_lt">找装修公司</a>
+        <{if $area_id}>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='gs:items' arg0=$area_id}>" title="<{$area_list[$area_id].area_name}>装修公司" class="block_lt "><{$area_list[$area_id].area_name}>装修公司</a>
+        <{/if}>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        引导开始             -->
+    <div class="w1000 dirary_list hauto bgwhite mt20">
+        <div class="dirary_list_t hauto">
+            <p class="h30 bodr_b ftw f16">
+                <font >装修公司好不好多方面考核，</font>
+                <font class="red">保障体系、用户真诚评价让您选择放心！</font>
+
+            </p>
+            <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span>区域&nbsp;:&nbsp;</span>
+                <a  href="<{$area_url}>" <{if empty($url_data.area_id)}>class="a1"<{/if}>>不限</a>
+                <{foreach $area_list  as $v}>
+                <a  title="<{$v.area_name}>装修公司" href="<{$v.link}>" <{if $v.checked}>class="a1"<{/if}>><{$v.area_name}></a>
+                <{/foreach}>
+            </div>
+
+            <{foreach $attr_values as $company}>
+            <div class="home_list_area hauto bodr_b_x mt10 mb10">
+                <span><{$company.title}>&nbsp;:&nbsp;</span>
+                <a  title="<{$company.title}>装修公司" href="<{$company.link}>"  <{if $company.checked}>class="a1"<{/if}>>不限</a>
+                <{foreach $company.values as $it2}>
+                <a  title="<{$it2.title}>装修公司" href="<{$it2.link}>"  <{if $it2.checked}>class="a1"<{/if}>><{$it2.title}></a>
+                <{/foreach}>
+
+            </div>
+            <{/foreach}>
+
+
+        </div>
+
+    </div>
+    <!--        引导结束             -->
+    <!--        对比公司开始         -->
+    <div class="ask_detail_main w1000 mt15 hauto">
+        <div>
+             <span class="block "><b>总共为您搜索到
+                              <{if $gs_name}><font class="red"><{$pager.count|default:'0'}></font>个<{/if}>
+                               <font class="red"><{if $gs_name}>有关“<{$gs_name}>”<{else}>所有公司<{/if}></font>结果</b></span>
+        </div>
+        <!--        位置结束左面下开始       -->
+        <div class="ask_detail_main_l hauto mt5 lt">   
+            <{foreach $companys as $company}>
+            <div class="decoration_list_l hauto mt5 bgwhite">
+                <div class="decoration_list_l_t hauto">
+                    <div class="decoration_list_l_t_l lt hauto">
+                        <a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>"><img src="<{$pager.img}>/<{$company.square_logo}>" width="150" height="150" /></a>
+                    </div>
+                    <div class="decoration_list_l_t_c lt hauto ml15">
+                        <p>
+                            <a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>" class="block_lt a41"><{$company.sort_name}></a>
+                            <{if !empty($company.security)}>
+                            <span class="span85 acitivity_ico1"></span>
+                            <span class="span86 ml5">活动保障金<font class="red">￥<{$company.security}></font></span>
+                            <{/if}>
+
+                            <span class="span87 acitivity_ico1"></span>
+
+                            <{if !empty($company.orderby)}>
+                            <span class="span88 redbg ml5"><a title="推广客户" href="javascript:void(0);">推广</a></span>
+                            <{/if}>
+                            <{if $company.is_vip}>
+                            <span class="span89 orgbgg ml5"><a title="VIP旗舰店" href="javascript:void(0);">旗舰店</a></span>
+                            <{/if}>
+                        </p>
+                        <p class="cl"></p>
+                        <p class="p60 graybg mt10">
+                            <span class="ftw f16 red ml10">口号</span>
+                            <span class="f14 black ml10"><{$company.slogan}></span>
+                        </p>
+                        <p>
+                            <b>公司地址:</b><{$company.addr}>
+                        </p>
+                        <p >
+                            业主说:<a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>" style="color: orange;"><{$dianping[$company.company_id].content|default:'暂未评价'}></a>
+                        </p>
+                    </div>
+                    <div class="decoration_list_l_t_r rt hauto">
+                        <h2> <a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>">[进入店铺]</a></h2>
+                        <i>信誉：<span><{round($company.scores/10,1)}></span></i>
+                        <a mini-load='申请免费量房' href="<{link ctl='gs:yuyue' arg0=$company.company_id http='empty'}>" class="orgbgg">免费预约</a>
+                      
+                    </div>
+                </div>
+                <div class="cl"></div>
+                <div class="decoration_list_b hauto">
+                    <div class="decoration_list_b_ul">
+                        <ul>
+                            <li rel='<{$company.company_id}>'><a href="###" rel='<{$company.company_id}>' class="org">公司介绍</a></li>
+                            <li rel='<{$company.company_id}>'><a href="###" rel='<{$company.company_id}>' class="org">资质证书</a></li>
+                            <li rel='<{$company.company_id}>'><a href="###" rel='<{$company.company_id}>' class="org">案例</a></li>
+                        </ul>
+
+                        <p>
+                            <span  rel='<{$company.company_id}>' class="span90">展开<img src="<{$pager.theme}>/default/static/images/zk.png" /></span>
+                            <span  rel='<{$company.company_id}>' class="span91 none">收起<img src="<{$pager.theme}>/default/static/images/sq.png" /></span>
+                        </p>
+                    </div>
+
+                    <div style="float:left" id='jq_company_list_content_<{$company.company_id}>' class="decoration_content none">
+                        <div  class="decoration_list_b_b ">
+                            <h2><a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>" ><{$company.name}></a></h2>
+                            <div class="ml10 mt10 mb10">
+                                <{$company_ex[$company.company_id].intro}>
+                            </div>
+                        </div>
+                        <div class="decoration_list_b_b  none">
+                            <ul>
+                                <{calldata mdl="company/pic" company_id=$company.company_id  order="pic_id:desc" limit="4"}>
+                                <li>
+                                    <a target="_blank" title="<{$company.name}>" href="<{link ctl='company' arg0=$company.company_id}>" ><img src="<{$pager.img}>/<{$item.pic}>" width="300" /></a>
+                                </li>
+                                <{/calldata}> 
+                            </ul>
+                        </div>
+                        <div class="decoration_list_b_b  none">
+                            <ul>
+                                <{calldata mdl="case/case" company_id=$company.company_id  order="case_id:desc" limit="4"}>
+                                <li>
+                                    <a target="_blank" title="<{$item.title}>" href="<{link ctl='case:detail' arg0=$item.case_id}>"><img alt="<{$item.title}>" src="<{$pager.img}>/<{$item.photo}>" width="300" /></a>
+                                </li>
+                                <{/calldata}> 
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div> 
+            <{/foreach}>
+            <div class="mt10" style="min-height: 20px;">
+                <div class="page">
+                    <{$pager.pagebar}>
+                </div>
+                </div>
+<script>
+          $(document).ready( function(){
+            $(".page").find("em").hide();
+           }  )                
+                </script>
+        </div>
+
+
+
+
+        <!--  当点击任何一个展开、收起的时候都会出现相应的内容分 -->
+        <script>
+            $(document).ready(function() {
+                $(".decoration_list_b_ul ul li").click(function() {
+                    var index = $(this).index();
+                    $(this).parent().find('li').each(function(a) {
+                        if (a == index) {
+                            $("#jq_company_list_content_" + $(this).attr('rel')).find(".decoration_list_b_b").eq(a).show();
+                            $(this).find(".org").css('color', '#FE8007');
+                        } else {
+                            $(this).find(".org").css('color', '');
+                            $("#jq_company_list_content_" + $(this).find('a').attr('rel')).find(".decoration_list_b_b").eq(a).hide();
+                        }
+                    });
+                    $(this).parent().parent().find(".span90").click();
+                    
+                });
+           
+                $(".decoration_list_b_ul .span90").click(function() {
+                    $(this).parent().find('.span91').show();
+                    $(this).parent().find('.span90').hide();
+                    $("#jq_company_list_content_" + $(this).attr('rel')).show();
+
+                });
+                $(".decoration_list_b_ul .span91").click(function() {
+                    $(this).parent().find('.span91').hide();
+                    $(this).parent().find('.span90').show();
+                    $("#jq_company_list_content_" + $(this).attr('rel')).hide();
+                });/*展开收起*/
+                $(".qyrz ul li:last").css('border-right', 'none');
+                $(".newest_qdb li").eq(0).mouseover();
+
+            });
+        </script>
+
+
+        <!--        位置结束左面下结束       -->
+
+        <!--        位置结束右面下开始       -->
+        <div class="ask_detail_main_r hauto mt5 lt ml20" style="position:fixed;bottom:20px">
+            <{include file="block/tenders.html"}>  
+            <div class="cl"></div>
+            <div class="ads7 mt15">
+                <{widget id="adv" name="装修公司列表页右侧广告位" city_id=$request.city_id limit="5"}>
+            </div>  
+
+
+
+        </div>
+
+        <!--        位置结束右面结束       -->
+
+        <div class="cl"></div>
+    </div>
+
+
+    <{include file="block/footer.html"}>  

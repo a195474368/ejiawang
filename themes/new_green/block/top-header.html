@@ -1,0 +1,27 @@
+<div class="top" style="height:40px">
+    <div class="information_top w1000" style="height:40px;padding-top: 6px">
+        <div class="information_t_l lt" style="height:40px">
+            <{if $MEMBER.uname}>
+            &nbsp; <a href="<{link ctl='ucenter/member'}>"><{$MEMBER.uname}></a>！您好 <a href="<{link ctl='passport:loginout'}>">退出</a>&nbsp;
+            <{else}>
+         &nbsp;   <a href="<{link ctl='passport'}>">登录</a>&nbsp;&nbsp;   <a href="<{link ctl='passport-signup'}>" >注册</a> &nbsp; 
+            <{/if}>
+             <a href="/mobile" class="red">手机版</a>
+        </div>
+        <div class="information_r rt" style="height:40px">
+            <ul> 
+                <!--<li><a href="###">收藏本站</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>-->
+                <li>
+                    <a href="###" class="block_lt" style="color:#666">关注我们：&nbsp; </a>
+                    <a href="###" class="block_lt guanzhuwomen_1"></a>
+                    <a href="###" class="block_lt guanzhuwomen_2"></a>
+                   
+                </li>
+               <!-- <li><a>咨询热线</a><span>&nbsp;<b><{$CONFIG.site.phone}></b></span></li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+            
+            

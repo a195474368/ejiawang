@@ -1,0 +1,516 @@
+<{include file="block/header.html"}>
+<{include file="index/shu_nav_l.html"}>
+<{include file="index/shu_nav.html"}>
+</div>
+<div class="cl"></div>
+
+<div class="index_b_bg hauto">     
+<!--团装小区开始-->
+	<div class="w1000 joyful_tuan mt10">
+    	<!--左面开始-->
+        	<div class="joyful_tuan_l lt">
+            <!--公共标题开始-->
+            	<div class="joyful_public_title">
+                    	<div class="joyful_public_title_l lt"><h2>团装小区</h2></div>
+                        <div class="joyful_public_title_r rt"><a href="<{link ctl='home:tuan'}>" class="red">更多>></a></div>
+                </div>
+            <!--公共标题结束--->
+            	<div class="cl"></div>
+                <div class="joyful_tuan_l_b mt10">
+                	<{widget id='home/index' city_id=$request.city_id tpl='tuan2.html' limit=4}>
+                </div>
+            </div>
+        <!--左面结束-->
+        <!--右面开始-->
+        	<div class="joyful_tuan_r rt">
+            	 <!--公共标题开始-->
+            	<div class="joyful_public_title">
+                    	<div class="joyful_public_title_l lt"><h2>正在投标</h2></div>
+                        <div class="joyful_public_title_r rt"><a href="<{link ctl='home:tuan'}>" class="red">更多>></a></div>
+                </div>
+            <!--公共标题结束--->
+            	<div class="cl"></div>
+                <div class="joyful_now_zhaobiao mt10">
+                	<ul>
+                    	<{calldata mdl="tenders/tenders" order="new" city_id=$request.city_id order="hot" limit="4"}>
+                    		<li>
+                                <div class="joyful_now_zhaobiao_t">
+                                    <h2 class="joinful_hover_on"><a href="###"><{$item.title}></a></h2>
+                                    <p>发布于：<{date('Y-m-d',$item.dateline)}> </p>
+                                    <p>手机：<{$item.mobile|cutstr:7:'***'}> 业主：<{$item.name|cutstr:3:'**'}> </p>
+                                </div>
+                                <div class="joyful_now_zhaobiao_b">
+                                    <p><span>浏览数:<{$item.pv_num}></span><br /><span>小区:<{$item.home_name}></span></p>
+                                    <a href="<{link ctl='tenders'}>">马上投标</a>
+                                </div>
+                       	 </li>
+                       <{/calldata}>
+                    </ul>
+                </div>
+            </div>
+        <!--右面结束-->
+        <script>
+			$(document).ready(function(){
+				$(".joyful_now_zhaobiao ul li").mouseover(function(){
+					$(this).css('background','#F9F9F9');
+					$(this).find(".joinful_hover_on").addClass("joyful_on");
+				}).mouseout(function(){
+					$(this).css('background','');
+					$(this).find(".joinful_hover_on").removeClass("joyful_on");
+				});
+			});
+		</script>
+    </div>
+<!--团装活动结束-->
+<!-- 品牌装修公司开始 -->
+  	<div class="w1000 joyful_pinpai mt10">
+    	  <!--公共标题开始-->
+            	<div class="joyful_public_title">
+                    	<div class="joyful_public_title_l lt"><h2>品牌装修公司</h2></div>
+                        <div class="jyful_public_title_r rt"><a href="<{link ctl='passport:signup'}>"class="red">我要入驻>></a></div>
+                </div>
+          <!--公共标题结束--->
+          	<div class="joyful_pinpai_b mt10">
+            	<!--左面开始-->
+                	<div class="joyful_pinpai_b_l lt">
+                    	<!--内部公共标题-->
+                    	<div class="joyful_pinpai_b_l_t">
+                        	<h3>
+                            	<span class="lt">合肥装修公司推荐</span>
+                                <span class="rt"><a href="<{link ctl='gs'}>" class="red">更多>></a></span>
+                            </h3>
+                        </div>
+                        <!--内部公共标题-->
+                        <div class="cl"></div>
+                        <div class="joyful_pinpai_b_l_b">
+                        	<ul>
+                            	 <{KT id="1" name="品牌装修公司" limit="12" city_id=$request.city_id}>
+                                    <li>
+                                        <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><img src="<{$pager.img}>/<{$item.square_logo}>" width="60" height="60"/></a>
+                                        <p class="lt">
+                                           <span>案例&nbsp;:&nbsp;<{$item.case_num}></span>
+                                    	   <span>工地&nbsp;:&nbsp;<{$item.site_num}></span>
+                                    	   <span>签单&nbsp;:&nbsp;<{$item.tenders_num}></span>
+                                        </p>
+                                    </li>
+                                 <{/KT}>
+                            </ul>
+                        </div>
+                    </div>
+                <!--左面结束-->
+                <!--右面开始-->
+                	<div class="union_pinpai_r lt">
+                        <div class="union_pinpai_r_title">
+                            <ul>
+                                <li><a href="<{link ctl='gs:items'}>" class="aa">装修公司排名</a></li>
+                                <li><a href="<{link ctl='tenders'}>" class="aa">最新签单榜</a></li>
+                            </ul>
+                        </div>
+                		<div class="cl"></div>
+                		<div class="union_pinpai_r_b union_qdb_0 none">
+ 
+                            <ul>
+                                 <{calldata mdl="company/company" city_id=$request.city_id order="orderby:desc" limit="6"}>
+                                    <li>
+                                        <div class="fangkuang"><{($index+1)}></div>
+                                        <div class="union_pinpai_r_b_r lt none">
+                                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><{$item.name}></a>
+                                            <span class="rt"><{$item.tenders_num}></span>
+                                        </div>
+                                        <div class="union_pinpai_r_b_r_detail lt none">
+                                            <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><img src="<{$pager.img}>/<{$item.square_logo}>" width="45" height="45"/></a>
+                                            <p class="lt ml5">
+                                                 <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.name}></a><br />
+                                                 <span>案例&nbsp;:&nbsp;<{$item.case_num}></span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                 <{/calldata}> 
+                            </ul>
+                	 </div>
+                 		<div class="union_pinpai_r_b union_qdb_1 none">      
+                   		 <ul>
+                    	<{calldata mdl="company/company" city_id=$request.city_id order="tenders_num:desc" limit="6"}>
+                         <li>
+                            <div class="fangkuang"><{($index+1)}></div>
+                            <div class="union_pinpai_r_b_r lt none">
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><{$item.name}></a>
+                                <span class="rt"><{$item.tenders_num}></span>
+                            </div>
+                            <div class="union_pinpai_r_b_r_detail lt none">
+                                <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>" class="lt"><img src="<{$pager.img}>/<{$item.square_logo}>" width="45" height="45"/></a>
+                                <p class="lt ml5">
+                                     <a target="_blank" title="<{$item.name}>" href="<{link ctl='company' arg0=$item.company_id}>"><{$item.name}></a><br />
+                                     <span>签单&nbsp;:&nbsp;<{$item.tenders_num}></span>
+                                </p>
+                            </div>
+                        </li>
+                        <{/calldata}>
+                    </ul>
+                		</div>
+           			 </div>
+                <!--右面结束-->
+               	 <script>
+		  	$(document).ready(function(){
+				 $(".union_qdb_0 ul li").mouseover(function() {
+				var index = $(this).index();
+				$(".union_qdb_0 ul li").each(function(a) {
+					if (a == index) {
+						$(this).find(".union_pinpai_r_b_r_detail").show();
+						$(this).find(".union_pinpai_r_b_r").hide();
+					} else {
+						$(this).find(".union_pinpai_r_b_r_detail").hide();
+						$(this).find(".union_pinpai_r_b_r").show();
+					}
+	
+				});		
+			});
+			
+				 $(".union_qdb_1 ul li").mouseover(function() {
+				var index = $(this).index();
+				$(".union_qdb_1 ul li").each(function(a) {
+					if (a == index) {
+						$(this).find(".union_pinpai_r_b_r_detail").show();
+						$(this).find(".union_pinpai_r_b_r").hide();
+					} else {
+						$(this).find(".union_pinpai_r_b_r_detail").hide();
+						$(this).find(".union_pinpai_r_b_r").show();
+					}
+	
+				});		
+			});
+
+        	$(".union_qdb_0 ul li").eq(0).mouseover();
+			$(".union_qdb_1 ul li").eq(0).mouseover();
+			$(".union_qdb_0 ul li").last().css('border-bottom','none');
+			$(".union_qdb_1 ul li").last().css('border-bottom','none');
+			
+			 $(".union_pinpai_r_title ul li").mouseover(function() {
+			var index = $(this).index();
+			$(".union_pinpai_r_title ul li").each(function(a) {
+				var tt = a
+				if (a == index) {
+					$(this).find(".aa").css('color','#FF0000');
+					$(".union_qdb_" + tt).show();
+				} else {
+					$(this).find(".aa").css('color','');
+					$(".union_qdb_" + tt).hide();
+				}
+			});
+		});
+		$(".union_pinpai_r_title ul li").eq(0).mouseover();   
+	});
+		  </script>
+            </div>
+    </div>
+   
+<!-- 品牌装修公司结束 -->
+    <!-- 装修案例开始 -->
+    	<div class="w1000 joyful_case mt10">
+        	 <!--公共标题开始-->
+            	<div class="joyful_public_title">
+                    	<div class="joyful_public_title_l lt">
+                        	<h2>装修案例</h2>
+                            <div class="lt zhungxiu_style">
+                            	<{widget id='case/cate'}>
+                            </div>
+                        </div>
+                        <div class="joyful_public_title_r rt"><a href="<{link ctl='case'}>" class="red">更多>></a></div>
+                </div>
+            <!--公共标题结束--->
+            <div class="cl"></div>
+            <div class="joyful_case_b mt10">
+           	  	<div class="joyful_case_b_all">
+                       <{widget id='case/indexcase'  limit=5}> 
+				</div>
+                
+            </div>
+        	
+        </div>
+    
+   
+    <!--------------装修案例结束--------------------> 
+    <!------设计师开始------->
+    <div class="recommend_designer w1000 hauto mt10">
+        <h2><a href="<{link ctl='designer'}>">推荐设计师</a></h2>
+    </div>
+    <div class="designer mt10 w1000 bgwhite">                  
+        <div class="wraper lt mb30">
+            <ul class="gundong_img lt" >
+                <{calldata mdl="designer/designer" city_id=$request.city_id order="orderby:desc" limit="8"}>
+                <li>
+                    <a target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" title="<{$item.uname}>"><img src="<{$pager.img}>/<{$item.face}>" width="100" height="100" /></a><br />
+                    <a target="_blank" href="<{link ctl='blog' arg0=$item.uid}>" title="<{$item.uname}>" class="red"><b><{$item.uname}></b></a>
+                    <p class="joyful_look_case none"> <a title="<{$user_list[$item.uid].uname}>" target="_blank" href="<{link ctl='blog' arg0=$item.uid}>">查看案例</a></p>
+                </li>
+                <{/calldata}>
+            </ul>  
+            <script>
+				$(document).ready(function(){
+					$(".wraper li").mouseover(function(){
+						$(this).find(".joyful_look_case").show();
+					}).mouseout(function(){
+						$(this).find(".joyful_look_case").hide();
+					});
+				});
+			</script>                
+        </div>
+    </div>
+    <!------设计师结束------->    
+    <!------设计师结束------->     
+
+    <!------装修课堂开始--------->
+    <div class="decoration_class w1000 hauto mt15">
+        <h2><a href="<{link ctl='content:items'}>" class="block_lt">装修课堂</a><a href="<{link ctl='content:items'}>" class="block rt a31 mt10">更多>></a></h2>
+        <div class="cl"></div>
+        <div class="w1000 hauto bgwhite mt10">
+            <div class="joyful_zxkt">
+            	<div class="joyful_zxkt_l lt">
+                	<div class="a_img">
+                    	<a href="<{link ctl='content:diary'}>"><img src="<{$pager.theme}>/joyful/static/pic/zxkt.png" width="360" height="100"/></a>
+                        <a href="<{link ctl='content:diary'}>" class="joyful_zxkt">装修日记</a>
+                    </div>
+                    <div class="joyful_zxkt_l_b">
+                    	<ul>
+                        	 <{calldata mdl="ask/ask" answer_id='>:0' order="ask_id:desc" limit="6"}> 
+                        		<li><i>日记分享</i>&nbsp;&nbsp;|&nbsp;&nbsp;<a target='_blank' title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>"><{$item.title}></a></li>
+                            <{/calldata}>   
+                          
+                        </ul>
+                    </div>
+                </div>
+                <div class="joyful_zxkt_l lt">
+                	<div class="a_img">
+                    	<a href="<{link ctl='content:items'}>"><img src="<{$pager.theme}>/joyful/static/pic/zxkt.png" width="360" height="100"/></a>
+                        <a href="<{link ctl='content:items'}>" class="joyful_zxkt">装修课堂</a>
+                    </div>
+                    <div class="joyful_zxkt_l_b">
+                    	<ul>
+                        	  <{widget id='article/newitems' limit=6}> 
+                        </ul>
+                    </div>
+                </div>
+                <div class="joyful_zxkt_r lt">
+                	<ul>
+                            <li>
+                                <a target="_blank" title="涂料计算器" href="<{link ctl='tools:items' arg0='main'}>"><img src="<{$pager.theme}>/default/static/pic/tljsq.png" width="56" height="56"/></a><br/>
+                                 <a target="_blank" title="涂料计算器" href="<{link ctl='tools:items' arg0='main'}>">涂料计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="地板计算器" href="<{link ctl='tools:items' arg0='diban'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="地板计算器" href="<{link ctl='tools:items' arg0='diban'}>">地板计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="壁纸计算器" href="<{link ctl='tools:items' arg0='bizhi'}>"><img src="<{$pager.theme}>/default/static/pic/tpjsq.png" width="56" height="56"/></a><br/>
+                               <a target="_blank" title="壁纸计算器" href="<{link ctl='tools:items' arg0='bizhi'}>">壁纸计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="墙砖预算器" href="<{link ctl='tools:items' arg0='qiangzhuan'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="墙砖预算器" href="<{link ctl='tools:items' arg0='qiangzhuan'}>">墙砖预算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="窗帘计算器" href="<{link ctl='tools:items' arg0='chuanlian'}>"><img src="<{$pager.theme}>/default/static/pic/tljsq1.png" width="56" height="56"/></a><br/>
+                                <a target="_blank" title="窗帘计算器" href="<{link ctl='tools:items' arg0='chuanlian'}>">窗帘计算器</a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="地砖计算器" href="<{link ctl='tools:items' arg0='dizhuan'}>"><img src="<{$pager.theme}>/default/static/pic/dbjsq2.png" width="56" height="56"/></a><br/>
+                               <a target="_blank" title="地砖计算器" href="<{link ctl='tools:items' arg0='dizhuan'}>">地砖计算器</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="cl"></div>
+            
+        </div>
+
+    </div>
+    <!------装修课堂结束--------->
+    <!--建材商城开始-->
+    <div class="joyful_jcsh w1000 mt10">
+    	 <!--公共标题开始-->
+        <div class="joyful_public_title">
+             <div class="joyful_public_title_l lt"><h2>建材商城</h2></div>
+             <div class="jyful_public_title_r rt"><a href="<{link ctl='mall/index'}>" class="red">更多>></a></div>
+        </div>
+          <!--公共标题结束--->
+        <div class="joyful_jcsh_b mt10">
+        	<div class="joyful_jcsh_b_l lt">
+                 <ul>
+                    <{KT name="首页建材商城推荐商家" city_id=$request.city_id limit="15"}>
+                    <li><a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" title="<{$item.title}>" target="_blank"><img src="<{$pager.img}>/<{$item.logo}>" width="120" height="60"/></a></li>
+                    <{/KT}>
+                 </ul>
+            </div>
+            <div class="joyful_jcsh_b_r lt">
+            	<ul>
+                  <{calldata mdl="shop/coupon" city_id=$request.city_id limit="7"}>
+                    <li>
+                        <a href="<{link ctl='mall/shop' arg0=$item.shop_id}>" title="<{$item.ext.shop.name}>" target="_blank" class="red ftw">[<{$item.ext.shop.name}>]</a>
+                        <a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" title="<{$item.title}>" target="_blank" class="black8"><{$item.title}></a>
+                        <a href="<{link ctl='mall/coupon:detail' arg0=$item.coupon_id}>" target="_blank"  class="a0">促销</a>
+                    </li>
+                  <{/calldata}>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--建材商城结束-->
+    <!-------- 友情链接------------>
+    <div class="friends_link w1000 hauto mt10 mb20">
+        <h2><a href="<{link ctl='about:link'}>" target="_blank">友情链接</a></h2>
+        <div class="w1000 friend_link_show bgwhite hauto mt10"><p><{widget id="links" city_id=$request.city_id}></p></div>
+    </div>
+    <!-------- //友情链接------------>
+</div>
+<script type="text/javascript">
+    (function(K, $) {
+        $(".company_charts_show_l_t ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".company_charts_show_l_t ul li").each(function(a) {
+                var q = a + 1
+                if (a == index) {
+                    $(".company_chats_" + q).show();
+                    $(this).css('background', '');
+                } else {
+                    $(".company_chats_" + q).hide();
+                    $(this).css('background', '#F2F2F2');
+                }
+            });
+        });
+        $(".company_charts_show_l_t ul li").eq(0).mouseover();
+        $(".news_qdb_1 ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".news_qdb_1 ul li").each(function(a) {
+                if (a == index) {
+                    $(this).find(".news_qdb_all").show();
+                    $(this).find(".news_qdb_sum").hide();
+                } else {
+                    $(this).find(".news_qdb_all").hide();
+                    $(this).find(".news_qdb_sum").show();
+                }
+
+            });
+
+        });
+
+        $(".news_qdb_1 ul li").eq(0).mouseover();
+
+        $(".news_qdb_0 ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".news_qdb_0 ul li").each(function(a) {
+                if (a == index) {
+                    $(this).find(".news_qdb_all").show();
+                    $(this).find(".news_qdb_sum").hide();
+                } else {
+                    $(this).find(".news_qdb_all").hide();
+                    $(this).find(".news_qdb_sum").show();
+                }
+            });
+        });
+
+        $(".news_qdb_0 ul li").eq(0).mouseover();
+        $(".newest_qdb li").mouseover(function() {
+            var index = $(this).index();
+            $(".newest_qdb li").each(function(a) {
+                if (a == index) {
+                    $(this).css('background', '#FFF');
+                    $(this).find(".red").css('color', '#F00').css('font-size', '16px');
+                    $(this).css('border-bottom', '');
+                    $(this).css('border-left', '');
+					$(this).css('border-right', '');
+                    $(".news_qdb_" + a).show();
+                } else {
+                    $(this).css('background', '');
+                    $(this).find(".red").css('color', '#888888').css('font-size', '');
+                    $(this).css('border-bottom', '1px solid #EAEAEA');
+                    $(this).css('border-left', '1px solid #EAEAEA');
+					$(this).css('border-right', '1px solid #EAEAEA');
+                    $(".news_qdb_" + a).hide();
+                }
+            });
+        });
+        $(".newest_qdb li").eq(0).mouseover();
+        $(".materrial_mall_show_l ul li:eq(4)").css('border-right', 'none');
+        $(".materrial_mall_show_l ul li:eq(9)").css('border-right', 'none');
+        $(".materrial_mall_show_l ul li:eq(14)").css('border-right', 'none').css('border-bottom', 'none');
+        $(".materrial_mall_show_l ul li:eq(10)").css('border-bottom', 'none');
+        $(".materrial_mall_show_l ul li:eq(11)").css('border-bottom', 'none');
+        $(".materrial_mall_show_l ul li:eq(12)").css('border-bottom', 'none');
+        $(".materrial_mall_show_l ul li:eq(13)").css('border-bottom', 'none');
+        $(".decoration_case_b_l ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".decoration_case_b_l ul li").each(function(a) {
+                var nn = a + 1
+                if (a == index) {
+
+                    $(".decoration_case_b_all_" + nn).show();
+                } else {
+                    $(this).find("a").removeClass("currentt");
+                    $(".decoration_case_b_all_" + nn).hide();
+                }
+
+            });
+        });
+        $(".decoration_case_b_l ul li").eq(0).mouseover();
+
+
+
+        $(".news_ul_l ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".news_ul_l ul li").each(function(a) {
+                if (a == index) {
+                    $(this).css('background', '#EAEAEA');
+
+                } else {
+
+                    $(this).css('background', '')
+
+                }
+            });
+        }).mouseout(function() {
+            $(this).css('background', 'none');
+
+        });
+
+        $(".news_ul_r ul li").mouseover(function() {
+            var index = $(this).index();
+            $(".news_ul_r ul li").each(function(a) {
+                if (a == index) {
+                    $(this).css('background', '#EAEAEA');
+
+                } else {
+
+                    $(this).css('background', '')
+
+                }
+            });
+        }).mouseout(function() {
+            $(this).css('background', 'none');
+
+        });
+
+
+        $(".decoration_case_b_r_l").mouseover(function() {
+            $(this).find(".p1").show();
+            $(this).find(".text").show();
+
+        }).mouseout(function() {
+            $(this).find(".p1").hide();
+            $(this).find(".text").hide();
+        });
+
+
+        $(".decoration_case_b_r_r ul li").mouseover(function() {
+            $(this).find(".p1").show();
+            $(this).find(".text").show();
+
+        }).mouseout(function() {
+            $(this).find(".p1").hide();
+            $(this).find(".text").hide();
+        });
+    })(window.KT, window.jQuery);
+
+
+
+</script>
+<{include file="block/footer.html"}>

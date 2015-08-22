@@ -1,0 +1,156 @@
+/* CSS Document */
+.i_l_menu_ul li {
+width: 120px;
+height: 47px;
+line-height: 47px;
+text-align: center;
+border-bottom: 1px dashed #eb850d;
+}
+.i_l_menu_ul li span.span37{color:#FFF;}
+.sqbut {
+width: 115px;
+height: 37px;
+background:url(../images/org_bg.png) no-repeat;
+line-height: 37px!important;
+text-align: center;
+}
+.news_ul_l ul li a.a23{color:#FF8B02}
+.news_c h2 a.red{color:#FF8B02;}
+.news_r_b ul li a.a24{background:#FF8B02;}
+.news_r_b ul li a.a25:hover{color:#FF8B02;}
+.company_charts h2 a.a28{color:#FF8B02!important;}
+.news_qdb_details a.mfyu{background:#FF8B02;}
+.bigbg {
+background: url(../images/li_bg1.png) no-repeat;
+}
+.span1 {
+display: block;
+width: 24px;
+height: 24px;
+background-position: -67px -241px;}
+.span2 {
+display: block;
+width: 24px;
+height: 24px;
+background-position: -93px -240px;
+}
+.span3 {
+display: block;
+width: 23px;
+height: 24px;
+background-position: -120px -241px;
+}
+.decoration_case_b_l ul li a.dcotion_case_bg {
+background: url(../images/li_bg1.png) no-repeat -179px -50px;
+display: block;
+width: 43px;
+height: 43px;
+margin: 14px 0 0 10px;
+float: left;
+}
+.materials_mall_all_l_t_ul li a:hover {
+color: #FF8B02;
+}
+.simple_style a:hover {
+background: #FF8B02;
+color: white;
+}
+.designer_name p b a{color:#FF8B02;}
+.decoration_class_t_l_r ul li a:hover{color:#FF8B02;}
+.decoration_class_b .ul1 li a:hover{color:#FF8B02;}
+.free_decoration_r {
+width: 440px;
+height: 450px;
+background: url(../images/kuang_bg.png) no-repeat;
+}
+.home_infor p.p1 span{background: url(../images/big_org_but.png) no-repeat;}
+.decoration_company a:hover{background:#FF8B02;}
+.newest_qdb ul li a:hover{color:#FF8B02;}
+.rijifenxaing_l_ul ul li a{color:#FF8B02;}
+.home_list_area .a1{background:#FF8B02;}
+.home_list_area a:hover{background:#FF8B02;}
+.decoration_list_l_t_r h2 a{color:#FF8B02;}
+.decoration_all_r1 p.p7{border-top: 2px solid #FF8B02;}
+.home_list_show_b_r .p6 .a2{background:#FF8B02;}
+.map_main_l_b_1 p a font{color:#FF8B02;}
+.huxing a:hover, .style a:hover, .yusuan a:hover, .hot_house a:hover{color:#FF8B02;}
+.rijifenxiang_content_ul ul li font{color:#FF8B02}
+.rijifenxiang_content_ul ul li a:hover{color:#FF8B02}
+.span70 a:hover{color:#FF8B02}
+.learn_decoration_list_t_t ul li a:hover, .current11{background:#FF8B02;}
+.ask_main_l_b_b a:hover{background:#0285BD;}
+.ask_main_c_t_ul_son ul li a:hover, .ask_main_c_t_ul_son ul li a.red{color:#FF8B02;}
+.ask_main_c_t_ul_son1 ul li a:hover, .ask_main_c_t_ul_son1 ul li a.red{color:#FF8B02;}
+.ask_main_c_t_ul_son ul li a:hover,.current4{color:#FF8B02;}
+.acitivity_r_b p.p48 span.span90{background:#FF8B02;}
+.zjgd_xunhuan_l a:hover, .current12{background:#FF8B02!important;}
+.line1{border-bottom: 1px solid #FF8B02;}
+.new_favorable_info_b ul li a{color:#FF8B02;}
+.decoration_company a:hover{background:#FF8B02;}
+.newest_qdb ul li a:hover{color:#FF8B02;}
+
+.zjgd_area_r_t ul li a:hover, .sjfa_area_r_t ul li a:hover, .current3 {
+font-size: 18px;
+color: #666!important;
+font-weight: bold;
+display: block;
+width: 80px;
+text-align: center;
+height: 35px;
+line-height: 35px;
+background: url(../images/a_bg.png) no-repeat right bottom;
+text-decoration: none;
+}
+.span4 {
+width: 20px;
+height: 20px;
+background: url(../images/x.png) no-repeat;
+}
+.span5 {
+width: 20px;
+height: 20px;
+background: url(../images/ll.png) no-repeat;
+}
+.change_city_main_style_t a.goincity {
+width: auto;
+height: 30px;
+line-height: 30px;
+padding: 0 7px;
+background: #FF8B02;
+color: white;
+border-radius: 4px;
+font-size: 16px;
+font-weight: bold;
+}
+.change_city_main_style_t ul li a:hover{color:#FF8B02;}
+.jianyuecity {
+width: 998px;
+border: 1px solid #FF8B02;
+margin-top: 10px;
+background: white;
+}
+.all_city {
+width: 130px;
+height: 30px;
+line-height: 30px;
+text-align: center;
+background: #FF8B02;
+border-radius: 0 0 6px 6px;
+margin: 0 auto;
+}
+.orange,.orange a{color:#FF8B02!important;}
+.changecity_yzpj ul li p a {
+color:#FF8B02;
+}
+.changecity_yzpj ul li .changecity_yzpj_detail .changecity_yzpj_content:hover{
+border:1px solid #FF8B02;
+}
+.change_city_zongji {
+width: 370px;
+height: 40px;
+line-height: 40px;
+background: #FF8B02;
+margin-top: 60px;
+color: white;
+font-size: 12px;
+padding-left: 10px;}

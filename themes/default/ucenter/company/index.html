@@ -1,0 +1,66 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>基本信息</b>（<span class="red">*</span>必填项)</div>
+
+<form mini-form="company" action="<{link ctl='ucenter/company:index' http=true}>" method="post">
+<table cellspacing="0" cellpadding="0" class="form">
+    <tr><th><span class="red">*</span>公司名称：</th><td><input type="text" name="data[name]" value="<{$company.name|default:''}>" class="input w-300"/></td></tr>
+  
+    <tr>
+        <th class="w-100"><span class="red">*</span>公司所在地区：</th>
+        <td>
+
+          <select name="data[area_id]" class="w-100"><{widget id="data/area" value=$company.area_id city_id=$company.city_id}></select>
+        </td>
+    </tr>
+    <tr><th><span class="red">*</span>公司简称：</th><td><input type="text" name="data[sort_name]" value="<{$company.sort_name|default:''}>" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>服务口号：</th><td><input type="text" name="data[slogan]" value="<{$company.slogan|default:''}>" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>长方形LOGO：</th><td><input type="file" name="data[logo]" class="input w-300" /></td></tr>
+    <tr><th><span class="red">*</span>正方形LOGO：</th><td><input type="file" name="data[square_logo]" class="input w-300" /></td></tr>
+    <tr><th><span class="red">*</span>联系人：</th><td><input type="text" name="data[contact]" value="<{$company.contact|default:''}>" class="input w-300"/></td></tr>
+    <tr><th><span class="red">*</span>电话：</th><td><input type="text" name="data[tel]" value="<{$company.tel|default:''}>" class="input w-300"/></td></tr>
+    <tr><th>手机：</th><td><input type="text" name="data[mobile]" value="<{$company.mobile|default:''}>" class="input w-200"/>手机建议填写：用于接收预约短信通知</td></tr>
+<tr><th>QQ：</th><td><input type="text" name="data[qq]" value="<{$company.qq|default:''}>" class="input w-300"/></td></tr>
+    <tr><th>地图坐标：</th>
+		<td>
+			<label>经度:<input type="text" name="data[lng]" value="<{$company.lng}>" id="Bmap_marker_lng" class="input w-100"/></label>
+			<label>纬度:<input type="text" name="data[lat]" value="<{$company.lat}>" id="Bmap_marker_lat" class="input w-100"/></label>	
+			<span class="tip-comment">使用百度地图经纬度<a map-marker="#Bmap_marker_lng,#Bmap_marker_lat" class="yzmbtn"><b>拾取工具</b></a></span>
+		</td>
+	</tr>    
+	<tr><th><span class="red">*</span>地址：</th><td><input type="text" name="data[addr]" value="<{$company.addr|default:''}>" class="input w-300"/></td></tr>
+    <{widget id="attr/form" from="zx:company" value=$attr}>
+    
+    <tr><th>公司介绍：</th><td><textarea name="ex[intro]" kindeditor="simple" style="width:550px;height:350px;"><{$detailex.intro}></textarea></td></tr>
+    <tr><th></th><td><input type="submit" value="保存" class="set_btn" /></td></tr>
+</table>
+</form>
+<script type="text/javascript" src="<{$pager.res}>/script/widget.bmap.js"></script>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $){
+var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '<{link ctl="magic:editorupload" http=true}>', extraFileUploadParams:{OTOKEN:"<{$OTOKEN}>"}});
+$("[map-marker]").die("click").live("click", function(e){
+	e.stopPropagation();e.preventDefault();
+	var input = $(this).attr("map-marker").split(",");
+	var point = {lng:"", lat:""};
+	if(input.length < 2){
+		var d = $(input[0]).val().split(",");
+		point.lng = d[0];
+		point.lat = d[1];
+	}else{
+		point.lng = $(input[0]).val();
+		point.lat = $(input[1]).val();
+	}
+	Widget.BMap.Marker(point, function(ret){
+		if(input.length < 2){
+			$(input[0]).val(ret.lng+","+ret.lat);
+		}else{
+			$(input[0]).val(ret.lng);
+			$(input[1]).val(ret.lat);
+		}
+	});
+});
+})(window.KT, window.jQuery);
+</script>
+<{include file="ucenter/footer.html"}>

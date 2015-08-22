@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><{$request.city.seo_title}> -<{$CONFIG.mobile.title}></title>
+<meta name="Keywords" content="<{$request.city.seo_keywords}>" />
+<meta name="Description" content="<{$request.city.seo_description}>" />
+<link type="text/css" rel="stylesheet" href="style/company.css">
+<{include file="mobile:block/sheader.html"}>
+</head>
+<body>
+    <!--页面内容开始 -->
+    <div class="warp">
+        <!--头部内容开始 -->
+        <header >
+            <a class="return" href="<{link ctl='index'}>"><img src="images/return.png" alt="返回" /></a>
+            <h1 class="title">找公司</h1>
+            <a id="area_click" class="area">区域</a>
+            <a class="find" href="#"><img src="images/find.png" alt="搜索"></a>
+        </header>
+        <!--头部内容结束 -->
+<!-- search -->
+<{include file="mobile:block/search.html"}>
+<!-- //search -->
+<div class="clear"></div>
+<!--main开始 -->
+<div class="main">
+    <!--autoDisbox -->
+    <div class="company_list">
+        <{foreach $items as $item}>
+        <a href="<{link ctl='company:detail' arg0=$item.company_id}>" class="company_box"><img src="<{$pager.img}>/<{$item.logo}>" class="company_logo"><span class="company_txt"><span class="company_name"><{$item.sort_name}></span><span class="company_con"><{$item.addr}></span><span class="company_other"><label class="company_yy">工地(<{$item.site_num}>)</label><label>案例(<{$item.case_num}>)</label></span> </span></a>
+        <{/foreach}>  
+        <div class="down">查看更多</div>
+    </div>
+</div>
+<!--main结束 -->
+</div>
+<!--warp结束 -->
+<!--右侧区域-->
+<div class="sidebar">
+    <span class="pack_up">></span>
+    <dl>
+        <dt onclick="javascript:LoadData(0,'区域');">
+        <h3><a href="javascript:LoadData(0,'区域');">全部区域</a></h3>
+        </dt>
+        <{foreach $area_list as $k=>$v}>
+        <dd onclick="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');" ><a href="javascript:LoadData(<{$v.area_id}>,'<{$v.area_name}>');"><{$v.area_name}></a><span>></span></dd>
+        <{/foreach}>
+    </dl>
+</div>
+<!--右侧区域 end-->
+    <script>
+        var searchkey = '';
+        var CityID = '88';
+        var CityToken = 'nb';
+        var lock = 0;
+        var next_page = 1;
+        var Qu = 0;
+        var QuName = '区域';
+        $(document).ready(function () {
+            /*点击搜索输入框，区域按钮隐藏*/
+            $("#company_search1 .search_input").click(function () {
+                $("#company_search1").hide();
+                $("#company_search2").show();
+                $("#company_search2 .search_input").focus();
+            });
+            /*点击取消按钮，搜索结果隐藏，回到页面原始状态*/
+            $(".quxiao_but").click(function () {
+                $("#company_search1").show();
+                $("#company_search2").hide();
+                $(".autoDisbox").hide();
+            });
+            $(".down").click(function(){AsyncLoad();});
+            AsyncLoad();
+        });
+
+        //给窗口绑定事件scroll
+        //$(window).bind("scroll", function () {
+        //    // 然后判断窗口的滚动条是否接近页面底部，这里的20可以自定义
+        //    if ($(document).scrollTop() + $(window).height() > $(document).height() - 20) {
+        //        AsyncLoad();
+        //    }
+        //})
+
+        function AsyncLoad() {
+            //如果页码大于1，取出当前页索引
+            if (next_page > 0) {
+                if (lock == 0) {
+                    lock = 1;
+                    $("#area_click").text(QuName);
+                    $.post("<{link ctl='company:loadata' http='ajax'}>", {page:next_page, area_id:Qu,searchkey: searchkey},function(ret){
+                        next_page = ret.nextPage;
+                        if(!ret.error){
+                           $(".down").before(ret.content); 
+                        }
+                    },'json');
+                }
+            }
+        }
+
+        function LoadData(DistrictId,districtName) {
+            Qu = DistrictId;
+            QuName = districtName;
+            //重置
+            next_page = 1;
+            //清空
+            $(".company_list").children().remove();
+            //加载
+            AsyncLoad();
+        }
+    </script>
+</body>
+</html>

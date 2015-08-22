@@ -1,0 +1,62 @@
+<ul id="mall_cate_nav">
+	<{foreach $data.items as $v}>
+	<li>
+		<div class="mall_main_l_l">
+			<h3><span class="basic_jiancai"></span><span><{$v.title}></span><span class="dayu">></span></h3>
+			<p class="cl"></p>
+		<p>
+		<{foreach $v.childrens as $vv}>
+			<{if $vv.parent_id==$v.cat_id}>
+			<a href="<{link ctl='mall/product' arg0=$vv.cat_id}>"><{$vv.title}></a><{if !$vv@last && $vv@iteration<3 }><i>|</i><{/if}>
+			<{/if}><{if $vv@iteration >3 }><{break}><{/if}><{/foreach}>
+		</p>
+		</div>
+		<div class="mall_main_l_r bgwhite none mall_menu_0">
+		<h2><{$v.title}></h2>
+		<p>
+		<{foreach $v.childrens as $vv}><{if $vv.parent_id==$v.cat_id}><a href="<{link ctl='mall/product' arg0=$vv.cat_id}>"><{$vv.title}></a><{if !$vv@last}><i>|</i><{/if}><{/if}><{/foreach}>
+		</p>
+		<p class="cl h20 bodr_b"></p>
+		<h2>促销活动</h2>
+		<ul><{widget id="adv" name="商城首页分类层促销活动" limit="3"}><div class="cl"></div></ul>
+		<p class="cl h20 bodr_b"></p>
+		<div class="mall_shoppers_img">
+		<ul>
+		<{foreach $v.brannds as $brand}>
+		<{if $brand@iteration>3}><{break}><{/if}>
+		<li><a href="<{link ctl='mall/product:brand' arg0=$brand.brand_id}>"><img src="<{$pager.img}>/<{$brand.logo}>" width="100" height="55" /></a></li>
+		<{/foreach}>
+		<div class="cl"></div>
+		</ul>
+		</div>
+		<div class="cl"></div>
+		</div>
+	</li>
+	<{/foreach}>
+</ul>
+<script type="text/javascript">
+(function(K, $){
+$("#mall_cate_nav li").mouseover(function(){
+    $(this).css('border-left','2px solid #00AD28');
+    $(this).css('box-shadow','2px 2px 2px #EEEEEE');
+	$(this).css('border-right','');
+    $(this).find(".dayu").hide();
+    var $lay = $(this).find(".mall_main_l_r");
+    $lay.show();
+    //var lay_bottom = $lay.offset().top + $lay.height();
+    var lay_bottom = $(this).offset().top + $lay.height();
+    var nav_bottom = $("#mall_cate_nav").offset().top + $("#mall_cate_nav").height();
+    //console.log(lay_bottom, $(this).offset().top, $lay.height(), nav_bottom, $("#mall_cate_nav").offset().top, $("#mall_cate_nav").height());
+    if(lay_bottom > nav_bottom){
+        //$lay.animate({"marginTop": - $lay.height()}, 1000);
+        $lay.animate({"marginTop": nav_bottom - lay_bottom}, 1000);
+    }
+}).mouseout(function(){
+    $(this).css('border-left','');
+    $(this).css('box-shadow','');
+	$(this).css('border-right','1px solid #D5D5D5');
+	$(this).find(".dayu").show();
+    $(this).find(".mall_main_l_r").hide();	
+});
+})(window.KT, window.jQuery);
+</script>

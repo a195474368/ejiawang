@@ -1,0 +1,178 @@
+<{include file="block/header.html"}>
+<!--          主题部分开始       -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 mt15 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='ask'}>" class="block_lt">问答</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='ask:items'}>" class="block_lt">问答列表</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='ask:detail' arg0=$detail.ask_id}>" title="<{$detail.title}>" class="block_lt"><{$detail.title}></a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        位置结束下开始       -->
+    <div class="ask_detail_main w1000 mt15 hauto">
+        <!--        位置结束左面下开始       -->
+        <div class="ask_detail_main_l hauto mt5 lt">
+            <div class="ask_detail_main_l_t bgwhite hauto">
+                <div class="ask_detail_main_l_t_son hauto ">
+                    <p class="p10">
+                        <span class="block_lt icobg span18"></span>
+                        <span class="block_lt span19"><{$detail.title}></span>
+                    </p>
+                    <div class="cl"></div>
+                    <p class="p11 mt10">
+                        <span class="block_lt"><{$member_list[$detail.uid].uname}>&nbsp;|&nbsp;分类：<{$cate_list[$detail.cat_id].title}>&nbsp;|&nbsp;浏览<font class="f12"><{$detail.views}></font>次</span>
+                        <span class="rt"><{date('Y-m-d',$detail.dateline)}></span>
+                    </p>
+                    <div class="cl"></div>
+                    <{if !empty($detail.intro)}>
+                    <p class="p14 mt10 f14">
+                        <{$detail.intro}> 
+                    </p>
+                    <{/if}>
+                    <{foreach from=$supply item=item name=loop}>
+                    <div  class="weicana">
+                        <p class="p20 mt20">
+                            <span class="block"><font>补充<{$smarty.foreach.loop.index+1}></font></span>
+                        </p>
+                        <p class="p14 mt10 f14">
+                            <{$item.contents}> 
+                        </p>
+                    </div>
+                    <{/foreach}>
+
+                    <{if  $detail.uid == $MEMBER.uid && empty($detail.answer_id)}>
+                    <p class="p12 mt20" >
+                        <span class="rt span21"><a  class='show_hide' rel='ask_supply' href="javascript:void(0);">我要补充</a></span>
+                    </p>
+                    <{/if}>
+                    <script>
+                        $(document).ready(function(e) {
+                            $(".show_hide").click(function() {
+                                $("#" + $(this).attr('rel')).show(300);
+                            });
+                        });
+                    </script>
+                    <div id='ask_supply' class="weicana none">
+                        <p class="p20 mt20">
+                            <span class="block"><font>补充我的问题</font></span>
+                        </p>
+                        <form  mini-form="ask"  method="post"  action="<{link ctl='ask:supply' arg0=$detail.ask_id}>">
+                            <textarea  name="content"></textarea>
+                            <span class="block rt mt15 mr10">
+                                <input type="submit" value=" 我要补充 " />
+                            </span>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ask_detail_main_l_t bgwhite hauto mt20">
+                <div class="ask_detail_main_l_t_son hauto">
+                    <{if $detail.answer_id}>
+                    <div class="caina ">
+                        <!--当问题被采纳的时候会显示出这样的页面-->
+                        <p class="p13">
+                            <span class="block_lt span22 icobg"></span>
+                            <span class="block_lt mt15"><font class="f16 black ftw">网友采纳</font></span>
+                            <span class="rt mt15"><font class="f12"><{date('Y-m-d',$answer.dateline)}></font></span>
+                        </p>
+                        <div class="cl"></div>
+                        <p class="p14 mt10 f14">
+                            <{$answer.contents}>
+                        </p>
+                        <p class="p15 mt20">
+                            <span class="block_lt"><img src="<{$pager.img}>/<{$member_list[$answer.uid].face_80}>" width="29" height="29" /></span>
+                            <span class="block_lt ml20">
+                                <{$member_list[$answer.uid].uname}>
+                            </span>  
+                        </p>
+                        <!-- 当问题被采纳的时候会显示出这样的页面--->
+                    </div>
+                    <div class="cl"></div>
+                    <!--当问题未被采纳的时候会显示出这样的页面-->
+                    <{/if}>   
+                     <{if !$detail.answer_id}>
+                    <div class="weicana">
+                        <p class="p20 mt20">
+                            <span class="block"><font>我来帮他解答</font></span>
+                        </p>
+                        <form  mini-form="ask"  method="post" action="<{link ctl='ask:answer' arg0=$detail.ask_id}>">
+                            <textarea name='contents'></textarea>
+                            <span class="block rt mt15 mr10">
+                                <input type="submit" value=" 我要回答 " />
+                            </span>
+                        </form>
+
+                    </div>
+                     <{/if}>
+                    <!--当问题未被采纳的时候会显示出这样的页面-->
+                    <div class="cl"></div>
+                    <p class="p16 mt20"><font>其他热门问题</font></p>
+                    <ul class="simple_question">
+                        <{calldata mdl="ask/ask"  order="views:desc" item=item limit="5"}>
+                        <li><a title="<{$item.title}>" href="<{link ctl='ask:detail' arg0=$item.ask_id}>"><{$item.title}></a><span class="rt"><{date('Y-m-d',$item.dateline)}></span></li>
+                        <{/calldata}>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="ask_detail_main_l_t bgwhite hauto mt20">
+                <div class="ask_detail_main_l_t_son hauto">
+                    <p class="p18">
+                        <span class="block_lt span19">其他<{$pager.count|default:'0'}>条回答</span>
+                    </p>
+                    <{foreach from=$answers item=item}>
+
+                    <div class=" mt10">
+                        <span class="block_lt">
+                            <img src="<{$pager.img}>/<{$member_list[$item.uid].face_80}>" width="29" height="29">
+                            <{$member_list[$item.uid].uname}>
+                        </span>
+                        <span class="rt"><font class="f12"><{date('Y-m-d',$item.dateline)}></font>   <{if  $detail.uid == $MEMBER.uid && empty($detail.answer_id)}><a mini-act='最佳答案' href="<{link ctl='ask:yes' arg0=$item.answer_id}>">设为最佳答案</a><{/if}></span>       
+                    </div>
+
+                    <div class="cl"></div>
+                    <div style="width:700px; padding: 20px;">
+                        <{$item.contents}>
+                    </div>
+
+                    <div class="cl"></div>
+
+                    <{/foreach}>
+
+
+                </div>
+            </div>
+        </div>
+        <!--        位置结束左面下结束       -->
+
+        <!--        位置结束右面下开始       -->
+        <div class="ask_detail_main_r hauto mt5 lt ml20">
+
+            <div class="ask_search_r lt mb20">
+                <p>
+                    <span class="block_lt wenhao icobg"></span>
+                    <span class="block_lt">
+                        <font class="f20 ftw blackb">让每个疑问都有</font><br />
+                        <font class="f24 ftw red"><i>解答!</i></font>
+                    </span>
+                </p>
+                <div class="cl"></div>
+                <a href="<{link ctl='ask:items' arg0=0 arg1=2}>" class="a3 a5">我要回答</a>
+                <a href="<{link ctl='ask:make'}>" class="a4 a5">我要提问</a>
+            </div>
+            <{include file='block/ask_right.html'}>
+        </div>
+    </div>
+    <div class="cl h20"></div>
+</div>
+
+
+<{include file="block/footer.html"}>  

@@ -1,0 +1,83 @@
+<{include file="block/header.html"}>
+<!----------头部和导航公共部分------------> 
+<!--         主题部分开始           -->
+<div class="index_b_bg hauto">
+    <!--         你所在的位置开始             -->
+    <div class="w1000 mt15 bgwhite ask_list_weizhi">
+        <span class="span11 icobg block_lt"></span>
+        <span class="block_lt">您当前所在的位置:</span>
+        <a title="<{$CONFIG.site.title}>" href="<{link ctl='index'}>" class="block_lt"><{$CONFIG.site.title}></a>
+        <span class="block_lt">></span>
+        <a title="我要装修" href="<{link ctl='tenders'}>" class="block_lt">我要装修</a>
+        <span class="block_lt">></span>
+        <a href="<{link ctl='tenders:detail' arg0=$detail.id}>" title='<{$detail.title}>' class="block_lt"><{$detail.title}></a>
+    </div>
+    <div class="cl"></div>
+    <!--        你所在的位置结束      -->
+    <!--        内容详情开始         -->
+    <div class="ask_detail_main w1000 mt15 hauto">
+        <!--        位置结束左面下开始       -->
+        <div class="ask_detail_main_l hauto mt5 lt bgwhite">
+            <div class="decoration_detail_main_l hauto bodr_b">
+                <p class="p49">
+                    <a  href="<{link ctl='tenders:detail' arg0=$detail.id}>" title='<{$detail.title}>'  class="block_lt org f16 ftw"><{$detail.title}></a>
+                   <!--  <span class="block rt">
+                        <font class="f14">发布时间&nbsp;:&nbsp;</font>
+                        <font class="f14"> <{date('Y-m-d',$detail.dateline)}></font>
+                    </span> -->
+                    <span class="block cl"></span>
+                </p>
+                <div class="decoration_main_l_tb">
+                    <p class="mt10 p48">
+                        <span class="block_lt span62"> 
+                            <b class="f14">项目类型&nbsp;：&nbsp;</b><font class="f14">  <{$setting[$type['house_type']][$detail.house_type_id]}></font><br />
+                            <b class="f14">建筑面积&nbsp;：&nbsp;</b><font class="f14">   <{$detail.area|default:''}>㎡</font>
+                        </span> 
+                        <span class="block rt span61">
+                            <font class="f14 white">投标数</font><br />
+                            <font class="org f24"><{$detail.num2}></font><font class="black">/</font><font class="black"><{$detail.num}></font>
+                        </span>
+                    </p>
+                    <p class="cl"></p>
+                </div>
+                <p class="mt15">
+                    <b class="f14">所在区域&nbsp;：&nbsp;</b><font class="f14"><{$cityList[$detail.city_id].city_name}><{$areaList[$detail.area_id].area_name}></font>
+                </p>
+                <p class="mt15">
+                    <b class="f14">装修预算&nbsp;：&nbsp;</b><font class="f14 red"> <{$setting[$type['budget']][$detail.budget_id]}></font>
+                </p>
+                <p class="mt15">
+                    <b class="f14">装修时间&nbsp;：&nbsp;</b><font class="f14 red"> <{$detail.start_time|default:''}></font>
+                </p>
+                <p class="mt15 p50">
+                    <b class="f14">装修要求&nbsp;：&nbsp;</b>
+                    <font class="f14"> <{$detail.demand}></font>
+                </p>
+                <p class="mt15">
+                    <b class="f14">客服沟通&nbsp;：&nbsp;</b>
+                    <font class="f14"><{$detail.feedback}></font>
+                </p>
+                <p class="p51 rt mt30 mb10">
+                    <a href="<{link ctl='tenders'}>" title="赶紧发布招标吧" class="block a39">我要装修</a>
+                    <span class="block span63"><b class="f14">赶紧发布招标吧!</b></span>
+                </p>
+
+            </div>
+           
+            <div class="cl"></div>
+            <div class="h10"></div>
+
+
+        </div>
+        <!--        位置结束左面下结束       -->
+
+        <!--        位置结束右面下开始       -->
+        <div class="ask_detail_main_r hauto mt5 lt ml20">
+          <{include file="block/tenders.html"}>  
+            <div class="cl"></div>
+            <div class="ads7 mt15">
+               <{widget id="adv" name="我要装修右侧广告位" city_id=$request.city_id limit="5"}>
+            </div>  
+        </div>
+    </div>
+ <{include file="block/footer.html"}>  

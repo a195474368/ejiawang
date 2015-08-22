@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+<item>
+	<title>默认模板</title>
+	<style>default</style>
+	<thumb>thumb.jpg</thumb>
+</item>
+<item>
+	<title>默认模板</title>
+	<style>skin01</style>
+	<thumb>thumb.jpg</thumb>
+</item>
+<item>
+	<title>默认模板</title>
+	<style>skin02</style>
+	<thumb>thumb.jpg</thumb>
+</item>
+<item>
+	<title>默认模板</title>
+	<style>skin02</style>
+	<thumb>thumb.jpg</thumb>
+</item>
+</items>

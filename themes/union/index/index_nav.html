@@ -1,0 +1,21 @@
+<div class="union_nav">
+	<div class="w1000">
+    	<div class="union_nav_l lt">
+            <h1><a href="<{link ctl='index'}>"><img src="<{$pager.theme}>/union/static/pic/logo_06.jpg" width="200" height="60"/></a></h1>
+            <div class="union_city">
+                <b><{$request.city.city_name}></b>&nbsp;&nbsp;<a href="<{link ctl='city'}>" id="jq_city_header_change">[切换城市]</a>
+                <p><img src="<{$pager.theme}>/union/static/pic/title02_03.jpg"/></p>
+            </div>
+        </div>
+        <div class="union_nav_r rt">
+        	<ul>
+            	<li><a class="menu_main_a <{if $request.ctl=='case'}>current9<{/if}>" href="<{link ctl='case'}>">效果图</a></li>
+                <li><a class="menu_main_a <{if $request.ctl=='home' || $request.ctl=='site'}>current9<{/if}>" href="<{link ctl='home'}>">我搜我家</a></li>
+                <li><a class="menu_main_a <{if $request.ctl=='gs' || $request.ctl=='designer' }>current9<{/if}>" title="<{$request.city.city_name}>装修公司" href="<{link ctl='gs'}>">找装修公司</a></li>
+                <li><a title='我要装修'  class="menu_main_a <{if $request.ctl=='tenders'}>current9<{/if}>" href="<{link ctl='tenders'}>">我要装修</a></li>
+                <li><a class="menu_main_a <{if $request.ctl=='content' || $request.ctl=='ask' }>current9<{/if}>"" title="学装修" href="<{link ctl='content'}>">学装修</a></li>
+                <li><a class="menu_main_a" href="<{link ctl='mall/index'}>">家居商城</a></li>   
+            </ul>
+        </div>
+    </div>
+</div>

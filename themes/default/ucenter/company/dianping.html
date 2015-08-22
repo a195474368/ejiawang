@@ -1,0 +1,42 @@
+<{include file="ucenter/header.html"}>
+
+<div class="base_info"><b>收到的评价（如果有不实的评价可以投诉网站）</b></div>
+
+  <table width="100%" border="0" cellspacing="0" class="info">
+    <tr>
+      
+        <th>评论</th>
+        <th>评分</th>
+        <th>评价时间</th>
+        <th>操作</th>
+    </tr>
+    <{foreach $items as $item}>
+    <tr>
+        <td><{$item.content}></td>
+        <td><{$CONFIG['company_dianping'].score1}><{$item.score1}>
+         <{$CONFIG['company_dianping'].score2}><{$item.score2}>
+        <{$CONFIG['company_dianping'].score3}><{$item.score3}>
+        <{$CONFIG['company_dianping'].score4}><{$item.score4}>
+        <{$CONFIG['company_dianping'].score5}><{$item.score5}></td>
+        
+        
+        <td><{$item.dateline|format}></td>
+
+        <td>
+            <{if $item.reply}>
+            已回复
+            <{else}>
+            <a href="<{link ctl='ucenter/company:dianpingReply' arg0=$item.id http=true}>">回复</a>
+            <{/if}>
+        </td>
+    </tr>
+    <{foreachelse}>
+     <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+    <{/foreach}>
+    
+    <tr>
+          <td  colspan="20" class="page-list"><div class="page"><{$pager.pagebar}></div></td>
+    </tr>
+    </table>
+
+<{include file="ucenter/footer.html"}>

@@ -1,0 +1,30 @@
+<{include file='mobile:block/header.html'}>
+<!--头部开始-->
+	<div class="mobile_top">
+    	<div class="mobile_top_son">
+            <a href="<{link ctl='index'}>" class="detail-first"><img src="images/back_bg.png" width="10"/></a>
+            <div class="detail-second">学装修</div>
+        </div>
+    </div>
+    <div class="h45"></div>
+<!--头部结束-->
+<!--主题部分开始-->
+    <div class="mobile_main hauto"> 
+
+        <div class="xzx-list-box">
+            <{foreach $tree as $item}>
+            <h2 class="btn xzx-list-a"><{$item.title}></h2>
+            <div class="xzx-list-fl">
+            <{foreach $item.children as $v}>
+            <a href="<{link ctl='article:items' arg0=$v.cat_id arg1=1}>" class="" title="<{$v.title}>"><span class="btn xzx-list-title"><{$v.title}></span></a>
+            <{/foreach}>
+            </div>
+            <{/foreach}>
+        </div>
+  
+       <div class="h45"></div>
+    </div>
+    
+<!--主题部分结束-->
+
+ <{include file='mobile:block/footer.html'}>

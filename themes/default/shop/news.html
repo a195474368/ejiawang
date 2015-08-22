@@ -1,0 +1,26 @@
+<{assign var="seo_sub_title" value="活动资讯"}>
+<{assign var="shop_nav_curr" value="news"}>
+<{include file="shop/block/header.html"}>     		
+<!-- 左面开始 -->
+<div class="material_main_l lt hauto">
+	<{widget id="shop/info" shop_id=$shop.shop_id tpl="shop/block/shopinfo.html"}>
+	<{widget id="shop/vcate" shop_id=$shop.shop_id tpl="shop/block/shopvcate.html"}>
+	<{widget id="shop/saletop" shop_id=$shop.shop_id tpl="shop/block/shopsaletop.html"}>
+</div>
+<!-- 左面结束 -->
+<!-- 右面开始 -->
+<div class="material_main_r lt hauto ml10">
+	<div class="sale_news bgwhite hauto">
+		<h2>活动资讯</h2>
+		<div class="cl"></div>
+		<ul>
+			<{foreach $items as $item}>
+			<li><a href="<{link ctl='mall/news:detail' arg0=$item.news_id}>"><{$item.title}></a></li>
+			<{/foreach}>
+		</ul>
+		<div class="h20"></div>
+        <div class="map_page mt20 mb30 ml20"><div class="page"><{$pager.pagebar}></div></div>
+	</div>
+</div>
+<!-- 右面结束 -->
+<{include file="shop/block/footer.html"}>
